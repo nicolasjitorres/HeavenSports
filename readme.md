@@ -30,3 +30,12 @@ Torres, Nicolas Juan Ignacio
 Yacuk Muñoz, Maria de los Milagros
 
 
+--------------------------------------------------
+Link de Trello
+--------------------------------------------------
+
+https://trello.com/b/hHFi26MA/dh-sprints
+
+
+
+
