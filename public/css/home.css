@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 14px;
+  margin: 0;
+  background-color: #ecedec;
+}
+
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: space-around;
+  height: 75px;
+  align-items: center;
+  background-color: #87d0da;
+}
+
+/* Barra de navegacion */
+nav {
+  display: none;
+}
+
+
+/* Barra de busqueda */
+header input {
+  width: 60%;
+  height: 50%;
+  border: 1px black solid;
+  border-radius: 5px;
+  background-color: white;
+}
+
+/* Logo de la pagina */
+header img {
+  height: 65px;
+  margin: 5px;
+  border-radius: 50%;
+}
+
+/* Iconos */
+header i{
+  background-color: #87d0da;
+}
+
+
+/* MAIN */
+
+/* Titulos */
+main h2 {
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Slider */
+.slider {
+  width: 90%;
+}
+
+/* Articulos en general de cada seccion*/
+article{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Imagenes de cada seccion */
+.oferta img {
+  width: 33%;
+}
+
+.mas-vendido img {
+  width: 50%;
+}
+
+.marca img{
+  width: 30%;
+}
+
+
+/* FOOTER */
+
+footer{
+  text-align: center;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Secciones del footer */
+footer section {
+  width: 50%;
+  padding: 20px;
+}
+
+/* Todas las listas */
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Parrafos en general */
+footer section p{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+/* Listas de los section */
+footer section ul li {
+  padding: 2px;
+}
+
+/* Pie de pagina abajo */
+footer .envios {
+  font-size: 18px;
+  background-color: #87d0da;
+  width: 100%;
+}
