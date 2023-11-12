@@ -4,7 +4,7 @@ Nuestra empresa está orientado a todo aquel que practique deportes ya sea de ma
 Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclusivos. Asesoramos en cuanto a necesidades ortopédicas y vasculares, talles, sujeción y materiales. Con nuestros clientes nos comprometemos a enviarles avisos de ofertas exclusivas de productos y un sistema de fidelización del cliente con beneficios en sus futuras compras. Como servicio post venta ofrecemos orientación en cuanto al mantenimiento y una garantía de cambio directo los primeros 10 días.
 
 
-Paginas referentes:
+## Paginas referentes:
 
 https://www.nike.com.ar/ → Simplicidad en el diseño.
 
@@ -17,7 +17,7 @@ https://www.sporting.com.ar/ → Sobriedad y variedad de diseño. Referente para
 https://www.saucony.com.ar/ → Para incluir variedad.
 
 
-Integrantes:
+## Integrantes:
 
 Melian, Pablo Anibal
 
@@ -31,7 +31,7 @@ Yacuk Muñoz, Maria de los Milagros
 
 
 --------------------------------------------------
-Link de Trello
+## Link de Trello
 --------------------------------------------------
 
 https://trello.com/b/hHFi26MA/dh-sprints
