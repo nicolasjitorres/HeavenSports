@@ -12,7 +12,7 @@ app.listen(PUERTO, () => {
   console.log(`Servidor escuchando en el puerto ${PUERTO}...`);
 });
 
-// Ruta hacía home
+// Ruta hacía index (home)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './views/home.html'));
+  res.sendFile(path.join(__dirname, './views/index.html'));
 });
