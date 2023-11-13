@@ -1,0 +1,244 @@
+/* Estilos generales */
+
+* {
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+body{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center
+}
+
+
+
+
+/* HEADER */
+
+header {
+  background-color: #a2cadf;
+  width: 100%;
+}
+
+.header-nav-superior {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 20%;
+}
+
+.barra-busqueda {
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #4b858d;
+  padding: 5px;
+  font-size: 16px;
+  transition: all 200ms;
+}
+
+.iconos {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 16px;
+  transition: all 200ms;
+}
+
+.header-nav-inferior {
+  opacity: 0;
+  transition: all 200ms;
+}
+
+
+
+
+
+
+
+/* MAIN */
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.titulo {
+  width: 100%;
+  padding: 30px 0 10px;
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+}
+
+.registro {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.registro label {
+  width: 100%;
+  padding: 25px 0 10px;
+  font-size: 12px;
+}
+
+.registro input {
+  width: 100%;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #666;
+  border-radius: 8px;
+}
+
+.botones {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.boton {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #a2cadf;
+  border: 1px solid #4b858d;
+  border-radius: 8px;
+  color: black;
+}
+
+
+
+
+
+
+
+
+/* FOOTER */
+
+.copyright {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 10px 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+
+
+/* TRANSICIONES Y ANIMACIONES */
+
+.boton:hover {
+  background-color: #4b858d;
+  color: white;
+}
+
+.boton {
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.iconos i:hover {
+  color: #ebebeb;
+  transform: scale(1.4);
+}
+
+.iconos i{
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.barra-navegacion a:hover {
+  background-color: #4b858d;
+  color: #ebebeb;
+}
+
+.barra-navegacion a{
+  transition: all 300ms;
+}
+
+
+
+
+/* MEDIA QUERYS */
+
+/* DISEÑOS PARA TABLETS */
+
+@media (min-width:576px) {
+
+  .barra-busqueda{
+    width: 60%;
+  }
+
+  .iconos{
+    width: 20%;
+  }
+
+  .iconos .icono-hamburguesa {
+    display: none;
+  }
+
+  .header-nav-inferior {
+    width: 100%;
+    opacity: 1;
+    display: flex;
+    background-color: #dff4ff;
+  }
+
+  .barra-navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .barra-navegacion a {
+    text-decoration: none;
+    color: #4b858d;
+    border: 1px solid #4b858d;
+    width: 25%;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .titulo{
+    font-size: 24px;
+  }
+
+  .registro label, .registro input{
+    font-size: 16px;
+  }
+
+  .boton {
+    font-size: 16px;
+  }
+
+  .copyright {
+    font-size: 14px;
+  }
+
+}
+
+
+/* MEDIA QUERYS RECOMENDADAS
+@media(min-width: 768px) {
+  
+}
+@media(min-width: 992px) {
+
+}
+@media(min-width: 1200px) {
+
+} */
