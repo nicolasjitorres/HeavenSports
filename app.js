@@ -12,7 +12,28 @@ app.listen(PUERTO, () => {
   console.log(`Servidor escuchando en el puerto ${PUERTO}...`);
 });
 
-// Ruta hacía index (home)
+// Ruta hacía index (ex index (home))
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './views/index.html'));
 });
+
+// Ruta hacía el detalle del producto
+app.get('/productDetail', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/productDetail.html'));
+});
+
+// Ruta hacía el carrito de compras
+app.get('/productCart', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/productCart.html'));
+});
+
+// Ruta hacía el registro
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/register.html'));
+});
+
+// Ruta hacía el login
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, './views/login.html'));
+});
+

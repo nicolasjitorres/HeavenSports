@@ -17,118 +17,159 @@
 
 <body>
 
+  <!-- ENCABEZADO -->
   <header>
 
-    <!-- Logo -->
-    <img src="/images/Logo-zapa.png" alt="Logo provisirio">
+    <div class="header-nav-superior">
+      <!-- Logo -->
+      <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
 
-    <!-- Barra de busqueda -->
-    <input type="text" placeholder="Buscar...">
+      <!-- Barra de busqueda -->
+      <input type="text" placeholder="Buscar..." class="barra-busqueda">
 
-    <!-- Iconos -->
-    <i class="fa-solid fa-user"></i>
-    <i class="fa-solid fa-bars"></i>
-    <i class="fa-solid fa-cart-shopping"></i>
+      <div class="iconos">
+        <!-- Iconos -->
+        <i class="fa-solid fa-bars icono-hamburguesa"></i>
+        <i class="fa-solid fa-user icono-usuario"></i>
+        <i class="fa-solid fa-cart-shopping icono-carrito"></i>
+      </div>
+    </div>
 
-    <!-- Barra de navegacion -->
-    <nav>
-      <a href="">Categorias</a>
-      <a href="">Ofertas</a>
-      <a href="">Promos</a>
-      <a href="">Inicio</a>
-    </nav>
+    <div class="header-nav-inferior">
+      <!-- Barra de navegacion -->
+      <nav class="barra-navegacion">
+        <a href="/">Inicio</a>
+        <a href="">Categorias</a>
+        <a href="">Ofertas</a>
+        <a href="">Nosotros</a>
+      </nav>
+    </div>
 
   </header>
 
+
+
+
+
+  <!-- PRINCIPAL -->
   <main>
-    <!-- Slider -->
-    <section>
-      <h2>Slider</h2>
-      <article>
-        <i class="fa-solid fa-arrow-left"></i>
-        <img src="/images/Logo-barra.png" alt="Slider" class="slider">
-        <i class="fa-solid fa-arrow-right"></i>
-      </article>
-    </section>
 
     <!-- Ofertas -->
-    <section>
-      <h2>Ofertas</h2>
+    <section class="main-section">
+
+      <h3 class="titulo">Ofertas</h3>
+
       <article class="oferta">
-        <img src="/images/Logo.png" alt="Ejemplo1">
-        <img src="/images/Logo.png" alt="Ejemplo2">
-        <img src="/images/Logo.png" alt="Ejemplo3">
+        <img src="/images/zapa-5.jpeg" alt="Ejemplo2">
+        <p class="precio-anterior">$20.000</p>
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Adidas Top blancas</p>
+        <p class="talle">Talles: 39 - 40 - 41 - 42 - 43 - 44</p>
       </article>
+
+      <article class="oferta">
+        <img src="/images/zapa-7.jpeg" alt="Ejemplo2">
+        <p class="precio-anterior">$20.000</p>
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Nike Air Force celestes</p>
+        <p class="talle">Talles: 34 - 35 - 36 - 37 - 38 - 39</p>
+      </article>
+
+
     </section>
 
     <!-- Lo mas vendido -->
-    <section>
-      <h2>Lo mas vendido</h2>
+    <section class="main-section">
+
+      <h3 class="titulo">Lo mas vendido</h3>
+
       <article class="mas-vendido">
-        <img src="/images/Logo.png" alt="Ejemplo1">
-        <img src="/images/Logo.png" alt="Ejemplo2">
-        <img src="/images/Logo.png" alt="Ejemplo3">
-        <img src="/images/Logo.png" alt="Ejemplo4">
+        <img src="/images/zapa-5.jpeg" alt="Ejemplo1">
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Adidas Top blancas</p>
+        <p class="talle">Talles: 34 - 35 - 36 - 37 - 38 - 39</p>
       </article>
+      <article class="mas-vendido">
+        <img src="/images/zapa-6.jpeg" alt="Ejemplo1">
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Nike Air Force blancas</p>
+        <p class="talle">Talles: 34 - 35 - 36 - 37 - 38 - 39</p>
+      </article>
+      <article class="mas-vendido">
+        <img src="/images/zapa-7.jpeg" alt="Ejemplo1">
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Nike Air Force celestes</p>
+        <p class="talle">Talles: 34 - 35 - 36 - 37 - 38 - 39</p>
+      </article>
+      <article class="mas-vendido">
+        <img src="/images/zapa-9.jpeg" alt="Ejemplo1">
+        <p class="precio">$16.000</p>
+        <p class="descripcion">Nike Zoom Pegasus gris</p>
+        <p class="talle">Talles: 34 - 35 - 36 - 37 - 38 - 39</p>
+      </article>
+
     </section>
 
     <!-- Buscar por marca -->
-    <section>
-      <h2>Buscar por marca</h2>
+    <section class="main-section">
+      <h3 class="titulo">Buscar por marca</h3>
+      <i class="fa-solid fa-arrow-left"></i>
       <article class="marca">
-        <i class="fa-solid fa-arrow-left"></i>
-        <img src="/images/Logo.png" alt="Ejemplo1">
-        <img src="/images/Logo.png" alt="Ejemplo2">
-        <img src="/images/Logo.png" alt="Ejemplo3">
-        <i class="fa-solid fa-arrow-right"></i>
+        <img src="/images/logo-nike.png" alt="Ejemplo1">
       </article>
+      <article class="marca">
+        <img src="/images/logo-adidas.png" alt="Ejemplo2">
+      </article>
+      <article class="marca">
+        <img src="/images/logo-puma.png" alt="Ejemplo3">
+      </article>
+      <i class="fa-solid fa-arrow-right"></i>
     </section>
   </main>
 
+
+
+
+
+  <!-- PIE DE PAGINA -->
   <footer>
     <!-- Formas de pago -->
-    <section>
-      <p>Formas de pago</p>
+    <section class="info">
+      <h4>Formas de pago</h4>
       <ul>
-        <li>Deposito/Transferencia</li>
         <li>Mercadopago</li>
-        <li>Cuotas: ahora 3, 6, 12</li>
-        <li>Otros</li>
+        <li>Ahora 3, 6, 12</li>
+        <li>Tarjeta debito/credito</li>
+        <li>Deposito/Transferencia</li>
       </ul>
     </section>
 
     <!-- Contacto -->
-    <section>
-      <p>Contacto</p>
+    <section class="info">
+      <h4>Contacto</h4>
       <ul>
-        <li>heave@sports.com</li>
-        <li>Whatsapp</li>
-        <li>Direccion</li>
-        <li>Telefono</li>
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>heaven@sports.com</li>
       </ul>
     </section>
 
     <!-- Ayuda -->
-    <section>
-      <p>Ayuda</p>
+    <section class="info">
+      <h4>Ayuda</h4>
       <ul>
-        <li>Preguntas</li>
-        <li>Devoluciones</li>
+        <li>Compra y envíos</li>
+        <li>Preguntas frecuentes</li>
+        <li>Cambios y devoluciones</li>
       </ul>
     </section>
 
-    <!-- Nuestras redes -->
-    <section>
-      <p>Encontranos en</p>
-      <ul>
-        <li>Facebook</li>
-        <li>Instagram</li>
-        <li>Twitter</li>
-      </ul>
+    <!-- Copyright -->
+    <section class="copyright">
+      <p>Copyright HeavenSports 2023</p>
     </section>
 
-    <!-- Envios -->
-    <p class="envios">Envios a todo el pais desde $30.000</p>
   </footer>
 
 </body>

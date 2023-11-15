@@ -1,23 +1,21 @@
-/* Configuracion general */
+/* Estilos generales */
 
 * {
-  box-sizing: border-box;
   font-family: Roboto;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 img {
   width: 100%;
 }
 
-body {
+body{
   display: flex;
   flex-wrap: wrap;
   align-content: center
 }
-
-
 
 
 
@@ -76,98 +74,56 @@ header {
 /* MAIN */
 
 main {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* Titulos de las secciones */
 .titulo {
   width: 100%;
+  padding: 30px 0 10px;
+  font-size: 18px;
   text-align: center;
-  padding: 40px 0 10px;
   color: #666;
-  font-size: 1.3rem;
 }
 
-/* Secciones */
-.main-section{
+.registro {
   display: flex;
   flex-wrap: wrap;
   width: 90%;
-  justify-content: space-between;
 }
 
-/* Articulos de las secciones */
-.oferta, .mas-vendido{
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px 0;
-  justify-content: center;
-  background-color: #ebebeb;
-  margin: 10px 0;
+.registro label {
+  width: 100%;
+  padding: 25px 0 10px;
+  font-size: 12px;
+}
+
+.registro input {
+  width: 100%;
+  padding: 5px;
+  font-size: 12px;
   border: 1px solid #666;
+  border-radius: 8px;
 }
 
-/* Imagenes de cada articulo */
-.oferta img, .mas-vendido img {
-  width: 90%;
-}
-
-/* Precio anterior del articulo */
-.oferta .precio-anterior {
-  width: 30%;
-  padding: 10px 0 0 15px;
-  text-decoration:line-through;
-  font-size: 0.85rem;
-}
-
-/* Precio del nuevo articulo para oferta */
-.oferta .precio {
-  width: 70%;
-  padding: 10px 0 0;
-  color: #4b858d;
-  font-weight: bold;
-}
-
-/* Precio pero de los articulos mas vendidos */
-.mas-vendido .precio {
+.botones {
   width: 100%;
-  padding: 10px 15px 0;
-  color: #4b858d;
-  font-weight: bold;
+  padding: 40px 0;
 }
 
-/* Descripcion del articulo */
-.descripcion {
+.boton {
   width: 100%;
-  padding: 10px 15px 0;
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #a2cadf;
+  border: 1px solid #4b858d;
+  border-radius: 8px;
+  color: black;
 }
 
-/* Talles del articulo */
-.talle {
-  width: 100%;
-  padding: 2px 15px 0;
-  font-size: 0.7rem;
-}
 
-/* Contenedor de las marcas */
-.marca{
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #ebebeb;
-  margin: 10px 0;
-  border: 1px solid #666;
-  width: 25%;
-  cursor: pointer;
-}
 
-/* Iconos de flecha */
-.main-section i {
-  align-self: center;
-  cursor: pointer;
-}
 
 
 
@@ -189,7 +145,7 @@ footer {
 /* Secciones de informacion */
 .info {
   width: 90%;
-  margin: 20px 5%;
+  margin: 20px 0;
   text-align: center;
 }
 
@@ -223,11 +179,6 @@ footer {
 
 
 
-
-
-
-
-
 /* TRANSICIONES Y ANIMACIONES */
 
 .boton:hover {
@@ -245,7 +196,7 @@ footer {
   transform: scale(1.4);
 }
 
-.iconos i {
+.iconos i{
   cursor: pointer;
   transition: all 200ms;
 }
@@ -255,7 +206,7 @@ footer {
   color: #ebebeb;
 }
 
-.barra-navegacion a {
+.barra-navegacion a{
   transition: all 300ms;
 }
 
@@ -269,13 +220,13 @@ footer {
 @media (min-width:576px) {
 
 
-
   /* HEADER */
-  .barra-busqueda {
+
+  .barra-busqueda{
     width: 60%;
   }
 
-  .iconos {
+  .iconos{
     width: 20%;
   }
 
@@ -313,15 +264,23 @@ footer {
   }
 
 
+
+
   /* MAIN */
 
-  .titulo {
-    font-size: 1.5rem;
+  .titulo{
+    font-size: 24px;
   }
 
-  .oferta, .mas-vendido {
-    width: 48%;
+  .registro label, .registro input{
+    font-size: 16px;
   }
+
+  .boton {
+    font-size: 16px;
+  }
+
+
 
 
 
@@ -387,12 +346,11 @@ footer {
 
 
 
-
-
 /* MEDIA QUERYS RECOMENDADAS
 @media(min-width: 768px) {
   
 }
+
 @media(min-width: 1200px) {
 
 } */
