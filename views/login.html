@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/login.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>Login</title>
+</head>
+<body>
+  <header>
+    <div class="header-nav-superior">
+      <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+      <input type="text" placeholder="Buscar..." class="barra-busqueda">
+      <div class="iconos">
+        <i class="fa-solid fa-bars icono-hamburguesa"></i>
+        <i class="fa-solid fa-user icono-usuario"></i>
+        <i class="fa-solid fa-cart-shopping icono-carrito"></i>
+      </div>
+    </div>
+    <div class="header-nav-inferior">
+      <nav class="barra-navegacion">
+        <a href="/">Inicio</a>
+        <a href="">Categorias</a>
+        <a href="">Ofertas</a>
+        <a href="">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h4 class="titulo">Ingresar</h4>
+    <form action="/login" method="post" class="login">
+      <label>Ingresá tu correo</label>
+      <input type="email" name="email" id="email" required>
+      <label>Ingresá tu contraseña</label>
+      <input type="password" name="password" id="password" required>
+      <div class="opciones">
+        <label for="recordar">Recordar mi usuario<input type="checkbox" name="recordar"></label>
+        <label for="olvidar"><a href="">¿Olvidaste tu contraseña?</a></label>
+      </div>
+      <div class="botones">
+        <button type="submit" class="boton">Iniciar sesión</button>
+      </div>
+      <div class="reg">
+        <p>¿No tienes una cuenta en Heaven Sport?</p>
+        <a href="/register">Registrarme</a>
+      </div>
+    </form>
+  </main>
+  <footer>
+    <section class="copyright">
+      <p>Copyright HeavenSports 2023</p>
+    </section>
+  </footer>
+</body>
+</html>
