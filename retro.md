@@ -2,18 +2,29 @@
 
 **Start Doing:**
 - Pair programming incluso para tareas individuales.
+- Mantener actualizado el tablero de Trello todos los dias.
+- Retroalimentación de los trabajos de los demás compañeros.
 
 **More of:**
 - Comunicacion continua del equipo.
+- Aprender Git y GitHub.
+- Mejor uso de Trello.
+- Estar a disposicion para ayudar a los demás.
 
 **Keep Doing:**
 - Protitud en resolucion de problemas del otro integrante.
+- Dar una mano al que está atrasado.
 
 **Less of:**
 - Inconclusion de acuerdos.
+- Trabajos con fechas limites.
+- Poca ayuda grupal.
 
 **Stop Doing:**
 - Impuntualidad en reuniones pactadas.
+- No dedicar tiempo a los trabajos y la programación.
+- No dividir trabajos pesados.
+- No colaborar en equipo.
 
 
 --------------------------------------------------
