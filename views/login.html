@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="/css/login.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,17 +13,29 @@
   <title>Login</title>
 </head>
 <body>
+
+  <!-- ENCABEZADO -->
   <header>
     <div class="header-nav-superior">
+
+      <h3 class="nombre-pagina">Heaven Sports</h3>
+
+      <!-- Logo -->
       <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+
+      <!-- Barra de busqueda -->
       <input type="text" placeholder="Buscar..." class="barra-busqueda">
+
       <div class="iconos">
+         <!-- Iconos -->
         <i class="fa-solid fa-bars icono-hamburguesa"></i>
         <i class="fa-solid fa-user icono-usuario"></i>
         <i class="fa-solid fa-cart-shopping icono-carrito"></i>
       </div>
     </div>
+
     <div class="header-nav-inferior">
+      <!-- Barra de navegacion -->
       <nav class="barra-navegacion">
         <a href="/">Inicio</a>
         <a href="">Categorias</a>
@@ -30,30 +44,74 @@
       </nav>
     </div>
   </header>
+
+  <!-- PRINCIPAL -->
   <main>
+
     <h4 class="titulo">Ingresar</h4>
+
+    <!-- FORMULARIO LOGIN -->
     <form action="/login" method="post" class="login">
       <label>Ingresá tu correo</label>
       <input type="email" name="email" id="email" required>
       <label>Ingresá tu contraseña</label>
       <input type="password" name="password" id="password" required>
+      
       <div class="opciones">
         <label for="recordar">Recordar mi usuario<input type="checkbox" name="recordar"></label>
         <label for="olvidar"><a href="">¿Olvidaste tu contraseña?</a></label>
       </div>
+      
       <div class="botones">
         <button type="submit" class="boton">Iniciar sesión</button>
       </div>
+      
       <div class="reg">
         <p>¿No tienes una cuenta en Heaven Sport?</p>
         <a href="/register">Registrarme</a>
       </div>
     </form>
   </main>
+
+  <!-- PIE DE PAGINA -->
   <footer>
+    <!-- Formas de pago -->
+    <section class="info">
+      <h4>Formas de pago</h4>
+      <ul>
+        <li>Mercadopago</li>
+        <li>Ahora 3, 6, 12</li>
+        <li>Tarjeta debito/credito</li>
+        <li>Deposito/Transferencia</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="info">
+      <h4>Contacto</h4>
+      <ul>
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>heaven@sports.com</li>
+      </ul>
+    </section>
+
+    <!-- Ayuda -->
+    <section class="info">
+      <h4>Ayuda</h4>
+      <ul>
+        <li>Compra y envíos</li>
+        <li>Preguntas frecuentes</li>
+        <li>Cambios y devoluciones</li>
+      </ul>
+    </section>
+
+    <!-- Copyright -->
     <section class="copyright">
       <p>Copyright HeavenSports 2023</p>
     </section>
+
   </footer>
 </body>
 </html>
