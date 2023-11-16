@@ -67,7 +67,7 @@ header {
 /*---------------------------------------------------------------------------*/
 
 /* MAIN */
-
+/*
 main {
   display: flex;
   flex-wrap: wrap;
@@ -116,6 +116,291 @@ main {
   border-radius: 8px;
   color: black;
 }
+*/
+
+  
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
+
+/* MAIN */
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0 40px;
+}
+
+.titulo {
+  width: 90%;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.contenedorGlobal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagenes-descripcion {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.imagenesProducto {
+  width: 90%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  border: 10px dashed #66a6af;
+
+
+}
+
+
+
+.imagenesGrupo {
+  display: none;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.imagenInd {
+  width: 23%;
+  border: 2px solid #66a6af;
+}
+
+.imagenesGrande {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 15px 0;
+
+}
+
+.contenedorIconosImagen {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 80%;
+
+  border: 1px solid red;
+}
+
+.iconoImagen {
+  width: 20px;
+  font-size: 20px;
+  padding: 5px;
+  
+  color: #66a6af;
+  background-color: black;
+
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.iconoImagen:hover {
+  color: #ebebeb;
+  transform: scale(1.4);
+}
+
+.iconoImagenIzq {
+  right: 90%;
+  top: 80%
+}
+
+.iconoImagenDer {
+  left: 90%;
+  bottom: 10%;
+}
+
+
+
+.descripcion {
+  font-size: 14px;
+  margin: 15px 10px 0;
+  text-align: justify;
+  padding: 10px 15px;
+}
+
+.contenedor2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.contenedorPrecio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 15px;
+  width: 70%;
+
+  border: 1px solid red;
+}
+
+.iconoPrecio {
+  color: gold;
+}
+
+.subtitulo {
+  font-size: 16px;
+  font-weight: bold;
+
+  border: 1px solid red;
+
+
+}
+
+.colores {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  width: 100%;
+  margin: 15px 0;
+
+  border: 1px solid red;
+}
+
+.coloresInt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+
+}
+
+.contenedorColor {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 30%;
+}
+
+.colorCuadro {
+  width: 17px;
+  height: 17px;
+  border: 2px solid black;
+  border-radius: 2px;
+  margin: 0 10px;
+}
+
+
+
+
+.colorNegro {
+  background-color: black;
+}
+
+.colorBlanco {
+  background-color: white;
+}
+
+.colorAzul {
+  background-color: blue;
+}
+
+.colorVerde {
+  background-color: green;
+}
+
+.colorRosa {
+  background-color: pink;
+}
+
+.colorMarron {
+  background-color: brown;
+}
+
+
+.contenedorTalle {
+  display: flex;
+  width: 100%;
+
+  border: 1px solid red;
+}
+
+.subTalle {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cajaTalles {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+  background-color: #a2cadf;
+  border: 1px solid #4b858d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0 10px;
+  width: 100%;
+}
+
+.boton {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+  background-color: #a2cadf;
+  border: 1px solid #4b858d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.iconoBoton {
+  font-size: 16px;
+  color: black;
+}
+
+.botonFavMini {
+  width: 7vw;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 8px;
+  background-color: #a2cadf;
+  border: 1px solid #4b858d;
+  opacity: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  position: fixed;
+  right: 5%;
+  top: 130px;
+}
+
+.botonFavMiniIcon {
+  color: black;
+}
+
 
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
@@ -124,8 +409,7 @@ main {
 /* FOOTER */
 
 .copyright {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
   padding: 5px 10px 10px;
   font-size: 12px;
   color: #666;
@@ -135,7 +419,7 @@ main {
 
 /* TRANSICIONES Y ANIMACIONES */
 
-.boton:hover {
+.boton:hover, .cajaTalles:hover {
   background-color: #4b858d;
   color: white;
 }
@@ -145,14 +429,19 @@ main {
   transition: all 300ms;
 }
 
-.iconos i:hover {
+.iconos i:hover, .botonFavMini:hover {
   color: #ebebeb;
   transform: scale(1.4);
 }
 
-.iconos i{
+.iconos i {
   cursor: pointer;
   transition: all 200ms;
+}
+
+.botonFavMini {
+  transition: color 200ms;
+
 }
 
 .barra-navegacion a:hover {
@@ -164,6 +453,57 @@ main {
   transition: all 300ms;
 }
 
+.colorCuadro {
+  transition: all 300ms;
+}
+
+.colorCuadro:active, .colorCuadro:hover{
+  border: none;
+  transform: scale(2);
+}
+
+.botonFavMiniIcon:hover {
+  animation-name: vibracion;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-iteration-count: 4;
+  animation-timing-function: linear;
+}
+
+@keyframes vibracion {
+  0% {
+      transform: rotateZ(30deg)
+  }
+  50% {
+      transform: rotateZ(-60deg)
+  }
+  100% {
+      transform: rotateZ(30deg)
+  }
+}
+
+.iconoPrecio {
+  animation-name: estrellaGira;
+  animation-duration: 4s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes estrellaGira {
+  0% {
+      scale: 1.5;
+  }
+  50% {
+      scale: 1;
+      transform: rotateZ(540deg);
+  }
+  100% {
+      scale: 1.5;
+      transform: rotateZ(1080deg);
+  }
+
+}
+
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
@@ -171,13 +511,81 @@ main {
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
+
+@media (max-width:575px) {
+  .botonFav {
+      display: none;
+  }
+}
+
+@media (min-width:576px) {
+  .botonFavMini, .contenedorIconosImagen {
+      display: none;
+      
+  }
+
+  .imagenesProducto {
+      flex-direction: column-reverse;
+  }
+
+  .imagenesGrupo {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 10px;
+
+  }
+
+}
+
+@media(min-width: 992px) {
+
+  .contenedorGlobal {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+  }
+
+  .titulo {
+      width: 35%;
+      position: absolute;
+      left: 68%;
+  }
+
+  .imagenes-descripcion {
+      width: 65%;
+  }
+
+  .imagenesProducto {
+      display: flex;
+      flex-direction: row;
+  }
+
+  .imagenesGrupo {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+  }
+  
+  .imagenInd {
+      width: 100%;
+      border: 2px solid #66a6af;
+  }
+  
+
+  .contenedor2 {
+      width: 35%;
+      justify-content: flex-start;
+  }
+}
+
 
 
 
 /* MEDIA QUERYS */
 
 /* DISEÑOS PARA TABLETS */
-
+/*
 @media (min-width:576px) {
 
   .barra-busqueda{
