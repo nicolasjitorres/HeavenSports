@@ -1,4 +1,4 @@
-/* Estilos generales */
+/* Configuracion general */
 
 * {
   font-family: Roboto;
@@ -35,6 +35,15 @@ header {
   justify-content: space-between;
 }
 
+.nombre-pagina{
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 1.8rem;
+  padding-top: 10px;
+  -webkit-text-stroke: #4b858d 0.05px;
+}
+
 .logo {
   width: 20%;
 }
@@ -62,62 +71,10 @@ header {
   transition: all 200ms;
 }
 
-/*---------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------*/
-
-/* MAIN */
-/*
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Para desactivar los links */
+.header-nav-inferior a {
+  pointer-events: none;
 }
-
-.titulo {
-  width: 100%;
-  padding: 30px 0 10px;
-  font-size: 18px;
-  text-align: center;
-  color: #666;
-}
-
-.registro {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-}
-
-.registro label {
-  width: 100%;
-  padding: 25px 0 10px;
-  font-size: 12px;
-}
-
-.registro input {
-  width: 100%;
-  padding: 5px;
-  font-size: 12px;
-  border: 1px solid #666;
-  border-radius: 8px;
-}
-
-.botones {
-  width: 100%;
-  padding: 40px 0;
-}
-
-.boton {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  background-color: #a2cadf;
-  border: 1px solid #4b858d;
-  border-radius: 8px;
-  color: black;
-}
-*/
-
   
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
@@ -407,12 +364,48 @@ main {
 /*---------------------------------------------------------------------------*/
 
 /* FOOTER */
+footer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 70px 0 0;
+  padding-top: 20px;
+  background-color: #dff4ff;
+  justify-content: center;
+}
 
+/* Secciones de informacion */
+.info {
+  width: 90%;
+  margin: 20px 5%;
+  text-align: center;
+}
+
+/* Todas las listas */
+.info ul {
+  list-style: none;
+}
+
+/* Titulo de la info */
+.info h4 {
+  font-size: 0.8rem;
+}
+
+/* Listas */
+.info li {
+  font-size: 0.7rem;
+  padding: 1px;
+}
+
+
+/* Seccion de copyright */
 .copyright {
-  display: block;
-  padding: 5px 10px 10px;
-  font-size: 12px;
+  justify-self: flex-start;
+  text-align: start;
+  padding: 15px 10px 10px;
+  font-size: 0.7rem;
   color: #666;
+  width: 100%;
 }
 
 
