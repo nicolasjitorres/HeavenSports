@@ -36,6 +36,15 @@ header {
   justify-content: space-between;
 }
 
+.nombre-pagina{
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 1.8rem;
+  padding-top: 10px;
+  -webkit-text-stroke: #4b858d 0.05px;
+}
+
 .logo {
   width: 20%;
 }
@@ -262,6 +271,9 @@ footer {
 
 
 
+
+
+
 /* MEDIA QUERYS */
 
 /* DISEÑOS PARA TABLETS */
@@ -313,6 +325,8 @@ footer {
   }
 
 
+
+
   /* MAIN */
 
   .titulo {
@@ -322,6 +336,8 @@ footer {
   .oferta, .mas-vendido {
     width: 48%;
   }
+
+
 
 
 
