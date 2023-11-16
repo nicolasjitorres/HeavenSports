@@ -86,7 +86,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 15px 0 40px;
+  margin: 25px 0 40px;
 }
 
 .titulo {
@@ -349,8 +349,8 @@ main {
   justify-content: space-around;
 
   position: fixed;
-  right: 5%;
-  top: 130px;
+  right: 4%;
+  top: 180px;
 }
 
 .botonFavMiniIcon {
@@ -615,6 +615,18 @@ footer {
 /* DISEÑOS PARA PC */
 
 @media(min-width: 992px) {
+
+  /* HEADER */
+
+  .barra-busqueda {
+    width: 70%;
+  }
+
+  .iconos {
+    width: 10%;
+  }
+
+  /* MAIN */
 
   .contenedorGlobal {
       display: flex;
