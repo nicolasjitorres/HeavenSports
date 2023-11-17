@@ -1,6 +1,7 @@
-#000000
-#393937
-#66a6af
-#dcd7d0
-#ecedec
-#f2f2f2
+#000000 negro
+#ecedec gris muy claro
+#dcd7d0 gris claro
+#f2f2f2 gris
+#393937 gris oscuro
+#87d0da celeste claro
+#66a6af celeste oscuro
