@@ -1,0 +1,65 @@
+Fuentes:
+- Roboto
+
+Tamaño de fuentes: 
+- Titulos: 18px
+- Subtitulos: 16px
+- Textos cortos: 14px
+- Descripciones/textos largos: 12px
+
+Colores:
+- Black/#000
+- White/#fff
+- Gris muy claro/#ecedec
+- Gris claro/#dcd7d0
+- Gris/f2f2f2
+- Variante de gris/#666
+- Gris oscuro/#393937
+- Celeste claro/#87d0da
+- Celeste/#87d0da
+- Celeste pastel/#a2cadf
+- Celeste oscuro/#66a6af
+
+Diseños predeterminados:
+- Border-radius/8px
+- Border/1px solid
+- Tamaño de iconos/16px black
+- Button/width: 100%, padding: 8px, margin: 5px 0
+
+Medidas para media querys:
+- 576px
+- 768px
+- 992px
+- 1200px
+
+
+/* TRANSICIONES Y ANIMACIONES */
+
+.boton:hover {
+  background-color: #4b858d;
+  color: white;
+}
+
+.boton {
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.iconos i:hover {
+  color: #ebebeb;
+  transform: scale(1.4);
+}
+
+.iconos i{
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.barra-navegacion a:hover {
+  background-color: #4b858d;
+  color: #ebebeb;
+}
+
+.barra-navegacion a{
+  transition: all 200ms;
+}
