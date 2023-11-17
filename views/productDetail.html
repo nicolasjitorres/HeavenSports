@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/productDetail.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <title>Detalle del producto</title>
+</head>
+
+
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+
+    <div class="header-nav-superior">
+      
+      <h3 class="nombre-pagina"><a href="/">Heaven Sports</a></h3>
+
+      <!-- Logo -->
+      <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+
+
+      <!-- Barra de busqueda -->
+      <input type="text" placeholder="Buscar..." class="barra-busqueda">
+
+      <div class="iconos">
+        <!-- Iconos -->
+        <i class="fa-solid fa-bars icono-hamburguesa"></i>
+        <a href="/register"><i class="fa-solid fa-user icono-usuario"></i></a>
+        <i class="fa-solid fa-cart-shopping icono-carrito"></i>
+      </div>
+    </div>
+
+    <div class="header-nav-inferior">
+      <!-- Barra de navegacion -->
+      <nav class="barra-navegacion">
+        <a href="/">Inicio</a>
+        <a href="">Categorias</a>
+        <a href="">Ofertas</a>
+        <a href="">Nosotros</a>
+      </nav>
+    </div>
+
+  </header>
+
+
+  <!-- PRINCIPAL -->
+  <main>
+  
+    <button class="botonFavMini iconos" name="botonFav"><a href="/"><i class="botonFavMiniIcon fa-solid fa-heart"></i></a></button>
+
+
+    <p class="titulo"> Zapatillas Plataforma Botita Star Dama </p>
+
+    <div class="contenedorGlobal">
+
+        <section class="imagenes-descripcion">
+
+            <div class="imagenesProducto">
+                <div class="imagenesGrupo">
+    
+                    <img class="imagenInd" src="\images\ProductoA_1.jpg" alt="imagen chica 1">
+                    <img class="imagenInd" src="\images\ProductoA_2.jpg" alt="imagen chica 2">
+                    <img class="imagenInd" src="\images\ProductoA_3.jpg" alt="imagen chica 3">
+                    <img class="imagenInd" src="\images\ProductoA_4.jpg" alt="imagen chica 4">
+      
+                  </div>
+      
+                  <div class="imagenesGrande">
+      
+                    <img class="imagen0" src="\images\ProductoA_0.jpg" alt="imagen grande">
+                    <div class="contenedorIconosImagen">
+                      <i class="iconoImagen iconoImagenIzq fa-solid fa-chevron-left"></i>
+                      <i class="iconoImagen iconoImagenDer fa-solid fa-chevron-right"></i>
+                    </div>
+      
+      
+                </div>
+    
+            </div>
+    
+            <div class="descripcion">
+                <p>
+                    ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
+                    Excelente calidad y terminación.
+                    Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
+                    Utilizamos materiales de primera calidad.
+                </p>
+            </div>  
+    
+    
+        </section>
+    
+        <section class="contenedor2">
+    
+            <div class="contenedorPrecio">
+                <i class="iconoPrecio fa-solid fa-star"></i>
+                <i class="iconoPrecio fa-solid fa-star"></i>
+    
+                <p class="subtitulo"> Precio: $ 16.000,00 </p>
+    
+                <i class="iconoPrecio fa-solid fa-star"></i>
+                <i class="iconoPrecio fa-solid fa-star"></i>
+            </div>
+                
+    
+            <div class="colores">
+                <div class="coloresInt">
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="negro" required></div>
+                        <div class="colorCuadro colorNegro"></div>
+                        <label class= "colorTexto" >Negro</label>
+                    </div>
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="blanco" required></div>
+                        <div class="colorCuadro colorBlanco"></div>
+                        <label class= "colorTexto" >Blanco</label>
+                    </div>
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="azul" required></div>
+                        <div class="colorCuadro colorAzul"></div>
+                        <label class= "colorTexto" >Azul</label>
+                    </div>
+                </div>
+                <div class="coloresInt">
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="verde" required></div>
+                        <div class="colorCuadro colorVerde"></div>
+                        <label class= "colorTexto" >Verde</label>
+                    </div>
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="rosa" required></div>
+                        <div class="colorCuadro colorRosa"></div>
+                        <label class= "colorTexto" >Rosa</label>
+                    </div>
+                    <div class= "contenedorColor">
+                        <div class= "colorRadio"><input type="radio" name="colores" value="marron" required></div>
+                        <div class="colorCuadro colorMarron"></div>
+                        <label class= "colorTexto" >Marron</label>
+                    </div>
+                </div>       
+    
+            </div>
+    
+            <div class="contenedorTalle">
+                <p class="subtitulo subTalle"> Talle: </p>
+                <select class="cajaTalles" name="talles" id="">
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                </select>
+            </div>
+    
+            <div class="botones">
+                <button class="boton botonFav" name="botonFav"><div>Agregar a Favoritos</div><a href="/"><i class="iconoBoton fa-solid fa-heart"></i></a></button>
+                <button class="boton botonCarr" name="botonCarr"><div>Agregar al Carrito</div><a href="/"><i class="iconoBoton fa-solid fa-cart-plus"></i></a></button>
+            </div>
+    
+        </section>
+
+    </div>
+    
+
+    
+
+  </main>
+
+  <footer>
+    <!-- Formas de pago -->
+    <section class="info">
+      <h4>Formas de pago</h4>
+      <ul>
+        <li>Mercadopago</li>
+        <li>Ahora 3, 6, 12</li>
+        <li>Tarjeta debito/credito</li>
+        <li>Deposito/Transferencia</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="info">
+      <h4>Contacto</h4>
+      <ul>
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>heaven@sports.com</li>
+      </ul>
+    </section>
+
+    <!-- Ayuda -->
+    <section class="info">
+      <h4>Ayuda</h4>
+      <ul>
+        <li>Compra y envíos</li>
+        <li>Preguntas frecuentes</li>
+        <li>Cambios y devoluciones</li>
+      </ul>
+    </section>
+
+    <!-- Copyright -->
+    <section class="copyright">
+      <p>Copyright HeavenSports 2023</p>
+    </section>
+
+  </footer>
+
+</body>
+
+</html>
