@@ -19,8 +19,6 @@ https://www.saucony.com.ar/ → Para incluir variedad.
 
 ## Integrantes:
 
-Melian, Pablo Anibal
-
 Peralta, Diego Maximiliano
 
 Sandez, Matias
