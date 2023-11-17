@@ -44,6 +44,12 @@ header {
   -webkit-text-stroke: #4b858d 0.05px;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+  -webkit-text-stroke: #4b858d 0.05px;
+}
+
 .logo {
   width: 20%;
 }
