@@ -86,7 +86,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 25px 0 40px;
+  margin: 25px 0 0px;
 }
 
 .titulo {
@@ -153,8 +153,6 @@ main {
   justify-content: space-between;
   position: absolute;
   top: 80%;
-
-  border: 1px solid red;
 }
 
 .iconoImagen {
@@ -208,8 +206,6 @@ main {
   justify-content: space-around;
   margin-top: 15px;
   width: 70%;
-
-  border: 1px solid red;
 }
 
 .iconoPrecio {
@@ -219,10 +215,6 @@ main {
 .subtitulo {
   font-size: 16px;
   font-weight: bold;
-
-  border: 1px solid red;
-
-
 }
 
 .colores {
@@ -231,8 +223,6 @@ main {
   font-size: 14px;
   width: 100%;
   margin: 15px 0;
-
-  border: 1px solid red;
 }
 
 .coloresInt {
@@ -288,8 +278,6 @@ main {
 .contenedorTalle {
   display: flex;
   width: 100%;
-
-  border: 1px solid red;
 }
 
 .subTalle {
@@ -637,7 +625,7 @@ footer {
   .titulo {
       width: 35%;
       position: absolute;
-      left: 68%;
+      left: 67%;
   }
 
   .imagenes-descripcion {
