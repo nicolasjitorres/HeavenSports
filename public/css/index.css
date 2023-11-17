@@ -24,6 +24,9 @@ body {
 .linkSinEstilo {
   text-decoration: none;
   color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 
