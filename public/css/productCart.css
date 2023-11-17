@@ -1,23 +1,19 @@
-/* Estilos generales */
-
 * {
+  box-sizing: border-box;
   font-family: Roboto;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 img {
   width: 100%;
 }
 
-body{
+body {
   display: flex;
   flex-wrap: wrap;
   align-content: center
 }
-
-
 
 
 /* HEADER */
@@ -32,6 +28,15 @@ header {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.nombre-pagina{
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 1.8rem;
+  padding-top: 10px;
+  -webkit-text-stroke: #4b858d 0.05px;
 }
 
 .logo {
@@ -65,70 +70,88 @@ header {
 .header-nav-inferior a {
   pointer-events: none;
 }
+  
+  /* MAIN */
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+  }
+  h1 {
+    font-size: 30px;
+    color: #666;
+  }
+  p {
+    font-size: 18px;
+    color: #666;
+  }
+  .cajaProducto {
+    width: 80%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border-radius: 50px;
+  }
+  .cajaProducto img {
+    width: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .cantidad i {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .compra {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+  }
+  .compra h1 {
+    width: 100%;
+  }
+  .compra p {
+    width: 50%;
+    margin-top: 10px;
+  }
+  .compra input {
+    text-align: center;
+    width: 60%;
+  }
 
-
-
-
-
-
-/* MAIN */
-
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.titulo {
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #a2cadf;
+    border: 1px solid #4b858d;
+    border-radius: 8px;
+    color: black;
+    cursor: pointer;
+  }
+  .botones {
+    width: 100%;
+    
+  }
+    
+.volver a {
   width: 100%;
-  padding: 30px 0 10px;
-  font-size: 18px;
   text-align: center;
-  color: #666;
+  text-decoration: none;
+  color: #e1cead;
+  font-weight: bold;
 }
 
-.registro {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
+.volver a:hover {
+  text-decoration: underline;
 }
-
-.registro label {
-  width: 100%;
-  padding: 25px 0 10px;
-  font-size: 12px;
-}
-
-.registro input {
-  width: 100%;
-  padding: 5px;
-  font-size: 12px;
-  border: 1px solid #666;
-  border-radius: 8px;
-}
-
-.botones {
-  width: 100%;
-  padding: 40px 0;
-}
-
-.boton {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  background-color: #a2cadf;
-  border: 1px solid #4b858d;
-  border-radius: 8px;
-  color: black;
-}
-
-
-
-
-
-
-
-
 
 /* FOOTER */
 
@@ -145,7 +168,7 @@ footer {
 /* Secciones de informacion */
 .info {
   width: 90%;
-  margin: 20px 0;
+  margin: 20px 5%;
   text-align: center;
 }
 
@@ -175,22 +198,17 @@ footer {
   color: #666;
   width: 100%;
 }
-
-
-
-
 /* TRANSICIONES Y ANIMACIONES */
 
-.boton:hover {
+button:hover {
   background-color: #4b858d;
   color: white;
 }
 
-.boton {
+button {
   cursor: pointer;
   transition: all 300ms;
 }
-
 .iconos i:hover {
   color: #ebebeb;
   transform: scale(1.4);
@@ -211,22 +229,19 @@ footer {
 }
 
 
-
-
 /* MEDIA QUERYS */
 
-/* DISEÑOS PARA TABLETS */
-
+  
 @media (min-width:576px) {
 
 
-  /* HEADER */
 
-  .barra-busqueda{
+  /* HEADER */
+  .barra-busqueda {
     width: 60%;
   }
 
-  .iconos{
+  .iconos {
     width: 20%;
   }
 
@@ -263,26 +278,11 @@ footer {
     font-size: 16px;
   }
 
-
-
-
   /* MAIN */
 
-  .titulo{
-    font-size: 24px;
+  .titulo {
+    font-size: 1.5rem;
   }
-
-  .registro label, .registro input{
-    font-size: 16px;
-  }
-
-  .boton {
-    font-size: 16px;
-  }
-
-
-
-
 
   /* FOOTER */
 
@@ -306,12 +306,6 @@ footer {
 
 }
 
-
-
-
-
-
-
 /* Resolucion para PC */
 @media(min-width: 992px) {
 
@@ -325,32 +319,4 @@ footer {
     width: 10%;
   }
 
-
-
-
-  /* MAIN */
-
-  .oferta .precio-anterior{
-    width: 15%;
-  }
-
-  .oferta .precio {
-    width: 85%;
-  }
-
-  .mas-vendido {
-    width: 23%;
-  }
-
 }
-
-
-
-/* MEDIA QUERYS RECOMENDADAS
-@media(min-width: 768px) {
-  
-}
-
-@media(min-width: 1200px) {
-
-} */

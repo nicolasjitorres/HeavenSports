@@ -6,16 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/productCart.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-  <title>Registro</title>
+  <title>Carrito</title>
 </head>
-
-
 
 <body>
 
@@ -23,8 +21,12 @@
   <header>
 
     <div class="header-nav-superior">
+      
+      <h3 class="nombre-pagina">Heaven Sports</h3>
+
       <!-- Logo -->
       <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+
 
       <!-- Barra de busqueda -->
       <input type="text" placeholder="Buscar..." class="barra-busqueda">
@@ -49,74 +51,45 @@
 
   </header>
 
-
-
-
-
-
-  
-  <!-- PRINCIPAL -->
+      <!-- CARRITO -->
   <main>
-    <h4 class="titulo">Registrarse</h4>
-
-    <form action="/registro" method="post" class="registro">
-
-      <!-- Nombre completo -->
-      <label>Nombre y apellido</label>
-      <input type="text" name="nombre" id="name">
-
-      <!-- Nombre de usuario -->
-      <label>Nombre de usuari@</label>
-      <input type="text" name="usuario" id="user">
-
-      <!-- Email -->
-      <label>Email</label>
-      <input type="email" name="email" id="email">
-
-      <!-- Provincia -->
-      <label>Provincia</label>
-      <input type="text" name="provincia" id="provincia">
-
-      <!-- Localidad -->
-      <label>Localidad</label>
-      <input type="text" name="localidad" id="localidad">
-
-      <!-- Direccion -->
-      <label>Direccion</label>
-      <input type="text" name="direccion" id="direccion">
-
-      <!-- Codigo postal -->
-      <label>Código postal</label>
-      <input type="text" name="cod-postal" id="cod-postal">
-
-      <!-- Provincia -->
-      <label>Teléfono</label>
-      <input type="text" name="telefono" id="telefono">
-
-      <!-- Contraseña -->
-      <label>Contraseña</label>
-      <input type="password" name="contrasena" id="password">
-
-      <!-- Confirmacion de contraseña -->
-      <label>Confirmar contraseña</label>
-      <input type="password" name="conf-contrasena" id="conf-password">
-
-      <div class="botones">
-        <!-- Boton de registro -->
-        <button type="submit" class="boton">Enviar</button>
-
-        <!-- Boton de reset -->
-        <button type="reset" class="boton">Borrar</button>
+      <div class="cajaProducto">
+        <h1>Heaven Sport</h1>
+        <p>Tienda Oficial</p>
+        <img src="/images/ProductoA_0.jpg" alt="imagen-referencia">
+        <div class="descripcion-producto">
+            <p>... Nombre del producto ...</p>
+            <p>... Descripcion del producto ...</p>
+            <button>Eliminar</button>
+            <button>Guardar</button>
+            <button>Modificar</button>
+            <button>Comprar ahora</button>
+        </div>
+        <div class="cantidad">
+            <button><i class="fa-solid fa-minus"></i>1<i class="fa-solid fa-plus"></i></button>
+            <p>Disponibles: 5</p>
+        </div>
       </div>
-
-    </form>
-
-  </main>
-
-
-
-
-
+        <div class="compra">
+            <h1>Resumen de compra:</h1>
+            <p>"Producto"</p>
+            <p>$$$$</p>
+            <p>Envio</p>
+            <p>$$$$</p>
+            <p><input type="text" name="cupon" placeholder="Cupon dcto"></p>
+            <p>Desc %</p>
+            <p>Total</p>
+            <p>$$$$</p>
+        </div>
+        <div class="botones">
+            <button>Comprar</button>
+            <br>
+            <button>Cancelar Compra</button>
+        </div>
+        <div class="volver">
+             <a href="/">Volver a la Página principal</a>
+        </div>
+    </main>
 
   <!-- PIE DE PAGINA -->
   <footer>
