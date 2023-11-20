@@ -1,0 +1,467 @@
+/************Configuracion general*********************/
+
+* {
+    box-sizing: border-box;
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center
+  }
+
+  
+ /******************************************************/   
+ /*************************HEADER***********************/
+  header {
+    background-color: #a2cadf;
+    width: 100%;
+  }
+  .header-nav-superior {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nombre-pagina{
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-size: 1.8rem;
+    padding-top: 10px;
+    -webkit-text-stroke: #4b858d 0.05px;
+  }
+  .logo {
+    width: 20%;
+  }
+  .barra-busqueda {
+    width: 50%;
+    border-radius: 8px;
+    border: 1px solid #4b858d;
+    padding: 5px;
+    font-size: 16px;
+    transition: all 200ms;
+  }
+  .iconos {
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 16px;
+    transition: all 200ms;
+  }
+  .header-nav-inferior {
+    opacity: 0;
+    transition: all 200ms;
+  }
+  /* Para desactivar los links */
+  .header-nav-inferior a {
+    pointer-events: none;
+  }
+
+
+
+  /******************************************************/   
+  /*********************MAIN****************************/   
+  main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* CARRITO COMPRAS MAIN */
+
+  .main-section{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-content: space-between;
+  }
+
+  /* CARRITO COMPRAS TITULO */
+
+  .titulo {
+    width: 100%;
+    text-align: center;
+    padding: 1em 0 1em;
+    color: #666;
+    font-size: 2em;
+    margin-bottom: -0.9em;
+  }
+
+  /* CARRITO COMPRAS TITULO */
+
+  .carrito-de-compras img {
+    width: 90%;
+    }
+  /* CARRITO COMPRAS IMAGEN */
+  .carrito-de-compras {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    justify-content: center;
+    background-color: #ebebeb;
+    margin: 10px 0;
+    border: 1px solid #666;
+  }
+  /* NOMBRE ARTICULO */
+  .carrito-de-compras P{
+    font-weight: bold;
+    font-family: Roboto;
+    font-size: 1.5em;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 1em;
+    margin-bottom: -18px;
+    margin-left: 18px;
+  }
+
+  .precio-producto {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .precio {
+    font-size: 3em;
+    font-weight: bold;
+    color: green;
+  }
+
+  .en {
+    font-size: 1.3em;
+    font-weight: bold;
+    align-items: center;
+  }
+
+  #cantidad-cuotas{
+    margin-bottom: 2em;
+    padding: 0.2em;
+  }
+  
+#botones-compra {
+  display: flex;
+  width: 100%;
+  justify-content:center;
+}
+
+#botones-compra button {
+  border-radius: 10%;
+  height: 3em;
+  width: 8em;
+  margin-bottom: 3em;
+}
+
+
+  /******************************************************/   
+  /**********************FOOTER**************************/   
+  /* FOOTER */
+  
+  footer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 70px 0 0;
+    padding-top: 20px;
+    background-color: #dff4ff;
+    justify-content: center;
+  }
+  
+  /* Secciones de informacion */
+  .info {
+    width: 90%;
+    margin: 20px 5%;
+    text-align: center;
+  }
+  /* Todas las listas */
+  .info ul {
+    list-style: none;
+  }
+  /* Titulo de la info */
+  .info h4 {
+    font-size: 0.8rem;
+  }
+  /* Listas */
+  .info li {
+    font-size: 0.7rem;
+    padding: 1px;
+  }
+ /******************************************************/  
+ /********************COPYRIGTH*************************/     
+  /* Seccion de copyright */
+  .copyright {
+    justify-self: flex-start;
+    text-align: start;
+    padding: 15px 10px 10px;
+    font-size: 0.7rem;
+    color: #666;
+    width: 100%;
+  }
+  /******************************************************/  
+  /************TRANSICIONES Y ANIMACIONES****************/  
+  .boton:hover {
+    background-color: #4b858d;
+    color: white;
+  }
+  .boton {
+    cursor: pointer;
+    transition: all 300ms;
+  }
+  .iconos i:hover {
+    color: #ebebeb;
+    transform: scale(1.4);
+  }
+  .iconos i {
+    cursor: pointer;
+    transition: all 200ms;
+  }
+  .barra-navegacion a:hover {
+    background-color: #4b858d;
+    color: #ebebeb;
+  }
+  .barra-navegacion a {
+    transition: all 300ms;
+  }
+  /******************************************************/ 
+
+  
+
+
+  /********MEDIA QUERYS*******DISEÑOS PARA TABLETS*******/  
+  @media (min-width:576px) {
+    /* HEADER */
+    .barra-busqueda {
+      width: 60%;
+    }
+    .iconos {
+      width: 20%;
+    }
+    .iconos .icono-hamburguesa {
+      display: none;
+    }
+    .header-nav-inferior {
+      width: 100%;
+      opacity: 1;
+      display: flex;
+      background-color: #dff4ff;
+    }
+    /* Para reactivar los links */
+    .header-nav-inferior a {
+      pointer-events: auto;
+    }
+    .barra-navegacion {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 100%;
+    }
+    .barra-navegacion a {
+      text-decoration: none;
+      color: #4b858d;
+      border: 1px solid #4b858d;
+      width: 25%;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+    }
+    /* MAIN */
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 20px;
+    }
+    h1 {
+      font-size: 30px;
+      color: #e1cead;
+    }
+    p {
+      font-size: 18px;
+      color: #e1cead;
+    }
+    .cajaProducto {
+      width: 80%;
+      background: transparent;
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+    }
+    .cajaProducto img {
+      width: 50%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .cantidad i {
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    .compra {
+      margin-top: 20px;
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: transparent;
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+    }
+    .compra h1 {
+      width: 100%;
+    }
+    .compra p {
+      width: 50%;
+      margin-top: 10px;
+    }
+    .compra input {
+      text-align: center;
+      width: 60%;
+    }
+  
+    button {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      border: solid 3px #87d0da;
+      cursor: pointer;
+    }
+    .botones {
+      width: 100%;
+      
+    }
+  .volver a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #e1cead;
+    font-weight: bold;
+  }
+  .volver a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
+    /* FOOTER */
+  
+    .info{
+      width: 30%;
+      margin: 20px 0;
+      justify-self: center;
+    }
+  
+    .info h4 {
+      font-size: 1.1rem;
+    }
+  
+    .info li {
+      font-size: 0.9rem;
+    }
+  
+    .copyright {
+      font-size: 0.9rem;
+    }
+  
+  }
+    /******************************************************/ 
+  
+  
+  
+  
+  
+  
+  
+    /*******************Resolucion para PC*****************/ 
+  /* Resolucion para PC */
+  @media(min-width: 992px) {
+  
+    /* HEADER */
+  
+    .barra-busqueda {
+      width: 70%;
+    }
+  
+    .iconos {
+      width: 10%;
+    }
+  
+  
+  
+  
+    /* MAIN */
+  
+    .oferta .precio-anterior{
+      width: 15%;
+    }
+  
+    .oferta .precio {
+      width: 85%;
+    }
+  
+    .mas-vendido {
+      width: 23%;
+    }
+  
+  }
+  /******************************************************/ 
+  
+
+
+
+
+  
+  
+  /*****************MEDIA QUERYS RECOMENDADAS************/ 
+  /* MEDIA QUERYS RECOMENDADAS
+  @media(min-width: 768px) {
+    
+  }
+  @media(min-width: 1200px) {
+  
+  } */
+
+
+  @media (min-width: 500px) {
+    .cajaProducto  {
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    main {
+      align-items: stretch;
+    }
+    p {
+      font-size: 24px;
+    }
+    .cajaProducto  {
+      width: 50%;
+    }
+    .compra {
+      position: relative;
+      width: 50%;
+      margin-top: 0px;
+    }
+    .botones button {
+      font-size: 30px;
+    }
+    footer {
+      margin-top: 60px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    footer section {
+      width: 25%;
+    }
+  }
+  /******************************************************/ 
