@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/formCarga.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <title>Cargar Producto</title>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+
+    <div class="header-nav-superior">
+      
+      <h3 class="nombre-pagina">Heaven Sports</h3>
+
+      <!-- Logo -->
+      <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+
+
+      <!-- Barra de busqueda -->
+      <input type="text" placeholder="Buscar..." class="barra-busqueda">
+
+      <div class="iconos">
+        <!-- Iconos -->
+        <i class="fa-solid fa-bars icono-hamburguesa"></i>
+        <a href="/users/register"><i class="fa-solid fa-user icono-usuario"></i></a>
+        <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i></a>
+        
+      </div>
+    </div>
+
+    <div class="header-nav-inferior">
+      <!-- Barra de navegacion -->
+      <nav class="barra-navegacion">
+        <a href="/">Inicio</a>
+        <a href="">Categorias</a>
+        <a href="">Nosotros</a>
+        <a href="/users/login">Iniciar sesión</a>
+      </nav>
+    </div>
+
+  </header>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+    <h4 class="titulo">Cargar Producto</h4>
+
+    <!-- FORMULARIO CARGA PRODUCTO -->
+    <form action="/cargarProducto" method="post" class="carga">
+      
+      <!-- NOMBRE PRODUCTO -->
+      <label>Ingresá el nombre del producto:</label>
+      <input type="text" name="nombre" id="nombre" required>
+      
+      <!-- PRECIO PRODUCTO -->
+      <label>Ingresá el precio del producto:</label>
+      <input type="number" name="precio" id="precio" required>
+     
+      <!-- DESCRIPCION PRODUCTO -->
+      <label>Ingresá la descripcion del producto:</label>
+      <textarea name="descripcion" id="descripcion" cols="60" rows="4" required></textarea>
+      
+      <!-- COLOR PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo subTalle"> Color: </p>
+        <select class="cajaTalles" name="color" id="color">
+          <option value="selectColor" selected disabled>Seleccionar un color</option>
+          <option value="Negro">Negro</option>
+          <option value="Blanco">Blanco</option>
+          <option value="Rojo">Rojo</option>
+          <option value="Azul">Azul</option>
+          <option value="Verde">Verde</option>
+          <option value="Beige">Beige</option>
+          <option value="Celeste">Celeste</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+
+      <!-- TALLE PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo"> Talle: </p>
+        <select class="cajaTalles" name="talles" id="talles">
+          <option value="selectTalle" selected disabled>Seleccionar un talle</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+      </div>
+
+      <!-- CATEGORIA PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo"> Categoria: </p>
+        <select class="cajaTalles" name="categoria" id="categoria">
+          <option value="selectCateg" selected disabled>Seleccionar una categoria</option>
+          <option value="running">Running</option>
+          <option value="futbol">Futbol</option>
+          <option value="Basket">Basket</option>
+          <option value="Tennis">Tenis</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+
+      <!-- CARGAR IMAGENES PRODUCTO -->
+      <label>Cargar imagenes del producto:</label>
+      <input type="file" name="cargaImagen" multiple accept=".jpg, .png">
+
+      <!-- BOTONES -->
+      <div class="botones">
+        <button type="submit" class="boton">Cargar</button>
+        <button type="reset" class="boton">Cancelar</button>
+      </div>
+      
+    </form>
+  </main>
+
+  <!-- PIE DE PAGINA -->
+  <footer>
+    <!-- Formas de pago -->
+    <section class="info">
+      <h4>Formas de pago</h4>
+      <ul>
+        <li>Mercadopago</li>
+        <li>Ahora 3, 6, 12</li>
+        <li>Tarjeta debito/credito</li>
+        <li>Deposito/Transferencia</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="info">
+      <h4>Contacto</h4>
+      <ul>
+        <li>Twitter</li>
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>heaven@sports.com</li>
+      </ul>
+    </section>
+
+    <!-- Ayuda -->
+    <section class="info">
+      <h4>Ayuda</h4>
+      <ul>
+        <li>Compra y envíos</li>
+        <li>Preguntas frecuentes</li>
+        <li>Cambios y devoluciones</li>
+      </ul>
+    </section>
+
+    <!-- Copyright -->
+    <section class="copyright">
+      <p>Copyright HeavenSports 2023</p>
+    </section>
+
+  </footer>
+</body>
+</html>
