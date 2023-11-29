@@ -50,6 +50,10 @@ a {
 }
 
 .logo {
+  width: 100%;
+}
+
+.enlace {
   width: 20%;
 }
 
