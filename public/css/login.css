@@ -92,17 +92,19 @@
   .login {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 90%;
   }
   
   .login label {
     width: 100%;
     padding: 25px 0 10px;
-    font-size: 12px;
+    font-size: 16px;
+    text-align: center;
   }
   
   .login input {
-    width: 100%;
+    width: 400px;
     padding: 5px;
     font-size: 12px;
     border: 1px solid #666;
@@ -112,11 +114,12 @@
   .opciones {
     display: flex;
     text-align: center;
+    justify-content: center;
     width: 100%;
   }
 
   .opciones label {
-    width: 50%;
+    width: 25%;
   }
   .opciones input {
     width: auto;
@@ -136,7 +139,7 @@
   }
 
   .botones {
-    width: 100%;
+    width: 150px;
     padding: 40px 0;
   }
   
@@ -148,6 +151,7 @@
     border: 1px solid #4b858d;
     border-radius: 8px;
     color: black;
+    font-size: 16px;
   }
   
   
@@ -346,16 +350,9 @@
 
   /* MAIN */
 
-  .oferta .precio-anterior{
-    width: 15%;
-  }
+ .login input {
+  max-width: 400px;
 
-  .oferta .precio {
-    width: 85%;
-  }
-
-  .mas-vendido {
-    width: 23%;
-  }
+ }
 
 }
