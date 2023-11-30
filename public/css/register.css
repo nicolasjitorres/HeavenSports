@@ -11,15 +11,6 @@ img {
   width: 100%;
 }
 
-body{
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center
-}
-
-
-
-
 /* HEADER */
 
 header {
@@ -102,47 +93,63 @@ main {
   color: #666;
 }
 
-.registro {
+.contenedorForm {
+  max-width: 800px;
+  border: solid 2px grey;
+  box-shadow: 5px 5px 5px #4b858d;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+ }
+
+ form {
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
-}
+  flex-direction: column;
+ }
 
-.registro label {
+ .box {
+  display: flex;
+  align-items: center;
   width: 100%;
-  padding: 25px 0 10px;
-  font-size: 12px;
-}
+  margin-top: 5px;
+  margin-bottom: 15px;
+ }
+ 
+ label {
+  width: 42%;
+  margin-left: 10px;
+ }
 
-.registro input {
-  width: 100%;
+ input {
+  width: 55%;
   padding: 5px;
-  font-size: 12px;
-  border: 1px solid #666;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: solid 2px #666;   
 }
+
 
 .botones {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 40px 0;
 }
 
 .boton {
-  width: 100%;
+  width: 200px;
   padding: 8px;
-  margin: 5px 0;
+  margin-bottom: 15px;
+  margin-left: 10px;
   background-color: #a2cadf;
   border: 1px solid #4b858d;
   border-radius: 8px;
   color: black;
+  font-size: 16px;
 }
-
-
-
-
-
-
-
 
 
 /* FOOTER */
@@ -283,21 +290,17 @@ footer {
 
   /* MAIN */
 
-  .titulo{
-    font-size: 24px;
+  form {
+    flex-direction: row;
   }
 
-  .registro label, .registro input{
-    font-size: 16px;
+  .box {
+    width: 50%;
   }
 
-  .boton {
-    font-size: 16px;
+  .botones {
+    flex-direction: row;
   }
-
-
-
-
 
   /* FOOTER */
 

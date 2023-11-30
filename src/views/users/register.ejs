@@ -62,58 +62,68 @@
   <!-- PRINCIPAL -->
   <main>
     <h4 class="titulo">Registrarse</h4>
-
-    <form action="/registro" method="post" class="registro">
-
-      <!-- Nombre completo -->
-      <label>Nombre y apellido</label>
-      <input type="text" name="nombre" id="name">
-
-      <!-- Nombre de usuario -->
-      <label>Nombre de usuari@</label>
-      <input type="text" name="usuario" id="user">
-
-      <!-- Email -->
-      <label>Email</label>
-      <input type="email" name="email" id="email">
-
-      <!-- Provincia -->
-      <label>Provincia</label>
-      <input type="text" name="provincia" id="provincia">
-
-      <!-- Localidad -->
-      <label>Localidad</label>
-      <input type="text" name="localidad" id="localidad">
-
-      <!-- Direccion -->
-      <label>Direccion</label>
-      <input type="text" name="direccion" id="direccion">
-
-      <!-- Codigo postal -->
-      <label>Código postal</label>
-      <input type="text" name="cod-postal" id="cod-postal">
-
-      <!-- Provincia -->
-      <label>Teléfono</label>
-      <input type="text" name="telefono" id="telefono">
-
-      <!-- Contraseña -->
-      <label>Contraseña</label>
-      <input type="password" name="contrasena" id="password">
-
-      <!-- Confirmacion de contraseña -->
-      <label>Confirmar contraseña</label>
-      <input type="password" name="conf-contrasena" id="conf-password">
-
-      <div class="botones">
-        <!-- Boton de registro -->
-        <button type="submit" class="boton">Enviar</button>
-
-        <!-- Boton de reset -->
-        <button type="reset" class="boton">Borrar</button>
+    <!-- Formulario registro -->
+    <div class="contenedorForm">
+      <form action="/formularios" method="POST">
+          <!-- Nombre y apellido -->
+          <div class="box">
+              <label for="nombreApellido">Nombre y Apellido</label>
+              <input type="text" name="nombreApellido" id="nombreApellido" required>
+          </div>
+          <!-- Nombre de usuario -->
+          <div class="box">
+              <label for="usuario">Nombre de usuario</label>
+              <input type="text" name="usuario" id="usuario" required>
+          </div>
+          <!-- Email -->
+          <div class="box">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" required>
+          </div>
+          <!-- Provincia -->
+          <div class="box">
+              <label for="provincia">Provincia</label>
+              <input type="text" name="provincia" id="provincia" required>
+          </div>
+          <!-- Localidad -->
+          <div class="box">
+              <label for="localidad">Localidad</label>
+              <input type="text" name="localidad" id="localidad" required>
+          </div>
+          <!-- Direccion -->
+          <div class="box">
+              <label for="direccion">Direccion</label>
+              <input type="text" name="direccion" id="direccion" required>
+          </div>
+          <!-- Codigo postal -->
+          <div class="box">
+            <label for="cp">Codigo Postal</label>
+            <input type="number" name="cp" id="cp" required>
+        </div>
+        <!-- Telefono -->
+        <div class="box">
+          <label for="telefono">Direccion</label>
+          <input type="number" name="telefono" id="telefono" required>
       </div>
-
-    </form>
+          <!-- Contraseña -->
+          <div class="box">
+              <label for="password">Contraseña</label>
+              <input type="password" name="password" id="password" required>
+          </div>
+          <!-- Confirmar contraseña -->
+          <div class="box">
+              <label for="confirmarPass">Confirmar Contraseña</label>
+              <input type="password" name="confirmarPass" id="confirmarPass" required>
+          </div>
+          <div class="botones">
+              <!-- Boton de registro -->
+              <button type="submit" class="boton">Enviar</button>
+      
+              <!-- Boton de reset -->
+              <button type="reset" class="boton">Borrar</button>
+          </div>
+      </form>
+  </div>
 
   </main>
 

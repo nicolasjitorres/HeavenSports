@@ -88,12 +88,21 @@
     text-align: center;
     color: #666;
   }
+
+  .contenedorForm {
+    max-width: 800px;
+    border: solid 2px grey;
+    box-shadow: 5px 5px 5px #4b858d;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+   }
   
   .login {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 90%;
+    width: 100%;
   }
   
   .login label {
@@ -107,8 +116,8 @@
     width: 400px;
     padding: 5px;
     font-size: 12px;
-    border: 1px solid #666;
-    border-radius: 8px;
+    border-radius: 10px;
+    border: solid 2px #666;  
   }
   
   .opciones {
