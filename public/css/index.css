@@ -223,15 +223,30 @@ footer {
 
 /* Titulo de la info */
 .info h4 {
-  font-size: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 /* Listas */
 .info li {
   font-size: 0.7rem;
   padding: 1px;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
+/* Enlaces Redes */
+footer a {
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+/* Iconos Redes */
+footer i {
+  font-size: 2em;
+  margin-left: 10px;
+}
 
 /* Seccion de copyright */
 .copyright {
@@ -364,7 +379,8 @@ footer {
   }
 
   .info h4 {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
   }
 
   .info li {
