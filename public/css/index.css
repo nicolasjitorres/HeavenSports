@@ -28,21 +28,6 @@ body {
   align-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* HEADER */
 
 header {
@@ -146,15 +131,6 @@ header {
 #check:checked ~ .barra-navegacion{
   left: 0;
 }
-
-
-
-
-
-
-
-
-
 
 
 

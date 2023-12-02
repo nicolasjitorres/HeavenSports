@@ -10,7 +10,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
 
   <title>Carrito</title>
 </head>
@@ -21,33 +21,32 @@
   <header>
 
     <div class="header-nav-superior">
-      
-      <h3 class="nombre-pagina">Heaven Sports</h3>
 
-      <!-- Logo -->
-      <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+      <!-- Barra de navegacion -->
+      <input type="checkbox" id="check">
+      <label for="check" id="label-hamburguesa"><i class="fa-solid fa-bars icono-hamburguesa"></i></label>
+
+      <nav class="barra-navegacion">
+        <a href="/"><i class="fa-solid fa-home"></i> Inicio</a>
+        <a href=""><i class="fa-solid fa-book"></i> Productos</a>
+        <a href=""><i class="fa-solid fa-question"></i> Nosotros</a>
+        <a href="/users/register"><i class="fa-solid fa-user icono-usuario"></i> Iniciar sesión</a>
+        <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i> Carrito</a>
+      </nav>
+
+      <!-- Contenedor Logo -->
+      <a href="/" class="inicio">
+        <div class="contenedor-logo">
+          <h3 class="nombre-pagina">Heaven</h3>
+          <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+          <h3 class="nombre-pagina">Sports</h3>
+        </div>
+      </a>
 
 
       <!-- Barra de busqueda -->
       <input type="text" placeholder="Buscar..." class="barra-busqueda">
 
-      <div class="iconos">
-        <!-- Iconos -->
-        <i class="fa-solid fa-bars icono-hamburguesa"></i>
-        <a href="/users/register"><i class="fa-solid fa-user icono-usuario"></i></a>
-        <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i></a>
-        
-      </div>
-    </div>
-
-    <div class="header-nav-inferior">
-      <!-- Barra de navegacion -->
-      <nav class="barra-navegacion">
-        <a href="/">Inicio</a>
-        <a href="">Categorias</a>
-        <a href="">Nosotros</a>
-        <a href="/users/login">Iniciar sesión</a>
-      </nav>
     </div>
 
   </header>
@@ -57,7 +56,7 @@
         <div class="cajaProducto">
           <div class="tituloCart">
               <h1>Heaven Sport</h1>
-              <p>Tienda Oficial</p>
+              <h2>Tienda Oficial</h2>
           </div>
           <img src="/images/ProductoA_0.jpg" alt="imagen-referencia">
           <div class="descripcion-producto">
@@ -99,40 +98,44 @@
   <!-- PIE DE PAGINA -->
   <footer>
     <!-- Formas de pago -->
+    <input type="checkbox" id="check-info">
     <section class="info">
-      <h4>Formas de pago</h4>
+      <label for="check-info">
+        <h4>Informacion</h4>
+      </label>
       <ul>
-        <li>Mercadopago</li>
-        <li>Ahora 3, 6, 12</li>
-        <li>Tarjeta debito/credito</li>
-        <li>Deposito/Transferencia</li>
+        <li>Medios de pago</li>
+        <li>Políticas</li>
       </ul>
     </section>
 
     <!-- Contacto -->
+    <input type="checkbox" id="check-us">
     <section class="info">
-      <h4>Contacto</h4>
+      <label for="check-us">
+        <h4>Nosotros</h4>
+      </label>
       <ul>
-        <li>Twitter</li>
-        <li>Facebook</li>
-        <li>Instagram</li>
-        <li>heaven@sports.com</li>
+        <li>Acerca de HS</li>
+        <li>Contacto</li>
       </ul>
     </section>
 
     <!-- Ayuda -->
+    <input type="checkbox" id="check-help">
     <section class="info">
-      <h4>Ayuda</h4>
+      <label for="check-help">
+        <h4>Ayuda</h4>
+      </label>
       <ul>
-        <li>Compra y envíos</li>
-        <li>Preguntas frecuentes</li>
         <li>Cambios y devoluciones</li>
+        <li>Compra segura</li>
       </ul>
     </section>
 
     <!-- Copyright -->
     <section class="copyright">
-      <p>Copyright HeavenSports 2023</p>
+      <p>Heaven Sports ©| Todos los derechos reservados.</p>
     </section>
 
   </footer>
