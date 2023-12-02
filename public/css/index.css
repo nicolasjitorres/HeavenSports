@@ -554,9 +554,6 @@ footer input:checked + .info {
     justify-content: flex-end;
   }
 
-  .barra-navegacion{
-    position: inherit;
-  }
 
   .barra-busqueda{
     margin: 0;
