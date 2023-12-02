@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const routerProducts = require('./products.routes');
-const routerUsers = require('./users.routes');
-const path = require('path');
+const indexController = require('../controllers/indexController');
 
-// Ruta hacía index
-router.get('/', (req, res) => {
-  res.render('index', {});
-});
-router.use('/products', routerProducts);
-router.use('/users', routerUsers);
+
+// Ruta hacía el detalle del producto
+router.get('/', indexController.index);
+
+// Ruta hacía el carrito de compras
+router.get('/about', indexController.about);
 
 module.exports = router;
