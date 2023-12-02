@@ -1,5 +1,3 @@
-const path = require('path');
-
 const controller = {
     cart: (req, res) => {
         res.render('products/cart', {});

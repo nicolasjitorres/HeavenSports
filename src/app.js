@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const indexRouter = require('./routes/index.routes')
+const mainRouter = require('./routes/main.routes')
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, './views'));
@@ -15,7 +15,7 @@ app.listen(PUERTO, () => {
   console.log(`Servidor escuchando en el puerto ${PUERTO}...`);
 });
 
-app.use('/', indexRouter);
+app.use('/', mainRouter);
 
 
 

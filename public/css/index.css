@@ -18,8 +18,7 @@
   box-sizing: border-box;
   font-family: poppins, sans-serif;
   margin: 0;
-  padding: 0;
-  
+  padding: 0;  
 }
 
 
@@ -553,6 +552,10 @@ footer input:checked + .info {
   /* HEADER */
   .header-nav-superior{
     justify-content: flex-end;
+  }
+
+  .barra-navegacion{
+    position: inherit;
   }
 
   .barra-busqueda{
