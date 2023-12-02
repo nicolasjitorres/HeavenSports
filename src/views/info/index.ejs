@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+
+  <title>Principal</title>
+</head>
+
+<body id="body">
+
+  <!-- ENCABEZADO -->
+  <header>
+
+    <div class="header-nav-superior">
+
+      <!-- Barra de navegacion -->
+      <input type="checkbox" id="check">
+      <label for="check" id="label-hamburguesa"><i class="fa-solid fa-bars icono-hamburguesa"></i></label>
+
+      <nav class="barra-navegacion">
+        <a href="/"><i class="fa-solid fa-home"></i> Inicio</a>
+        <a href=""><i class="fa-solid fa-book"></i> Productos</a>
+        <a href=""><i class="fa-solid fa-question"></i> Nosotros</a>
+        <a href="/users/register"><i class="fa-solid fa-user icono-usuario"></i> Iniciar sesión</a>
+        <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i> Carrito</a>
+      </nav>
+
+      <!-- Contenedor Logo -->
+      <a href="/" class="inicio">
+        <div class="contenedor-logo">
+          <h3 class="nombre-pagina">Heaven</h3>
+          <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
+          <h3 class="nombre-pagina">Sports</h3>
+        </div>
+      </a>
+
+
+      <!-- Barra de busqueda -->
+      <input type="text" placeholder="Buscar..." class="barra-busqueda">
+
+    </div>
+
+    
+
+
+  </header>
+
+
+
+
+
+  <!-- PRINCIPAL -->
+  <main>
+
+
+
+
+    <div class="div-slider">
+
+      <div class="slider">
+        <div class="img-slider slide1"><img src="images/gif2.gif" alt="Slide 1"></div>
+        <div class="img-slider slide2"><img src="images/gif3.gif" alt="Slide 2"></div>
+        <div class="img-slider slide3"><img src="images/gif4.gif" alt="Slide 3"></div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Ofertas -->
+    <section class="main-section">
+
+      <h3 class="titulo">OFERTAS</h3>
+
+      <a class="oferta" href="/productDetail">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-5.jpeg" alt="Ejemplo2">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio-anterior">$20.000</p>
+          <p class="precio">$16.000 <span class="descuento">20% descuento</span></p>
+          <p class="descripcion">Adidas Top Blancas</p>
+        </div>
+      </a>
+
+      <a class="oferta" href="/productDetail">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-7.jpeg" alt="Ejemplo2">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio-anterior">$20.000</p>
+          <p class="precio">$15.000 <span class="descuento">25% descuento</span></p>
+          <p class="descripcion">Nike Air Force 1 Celestes</p>
+        </div>
+      </a>
+
+
+    </section>
+
+    <!-- Lo mas vendido -->
+    <section class="main-section">
+
+      <h3 class="titulo">LO MAS VENDIDO</h3>
+
+      <a class="mas-vendido">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-9.jpeg" alt="Zapa 9">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio">$16.000</p>
+          <p class="descripcion">Nike Zoom Pegasus Gris</p>
+        </div>
+      </a>
+
+      <a class="mas-vendido">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-7.jpeg" alt="Zapa 7">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio">$16.000</p>
+          <p class="descripcion">Nike Air Force 1 Celestes</p>
+        </div>
+      </a>
+
+      <a class="mas-vendido">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-6.jpeg" alt="Zapa 6">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio">$16.000</p>
+          <p class="descripcion">Nike Air Force 1 Blancas</p>
+        </div>
+      </a>
+
+      <a class="mas-vendido">
+        <p class="envio-gratis">ENVIO GRATIS</p>
+        <img src="/images/zapa-5.jpeg" alt="Zapa 5">
+        <div class="contenedor-precio-descripcion">
+          <p class="precio">$16.000</p>
+          <p class="descripcion">Adidas Top Blancas</p>
+        </div>
+      </a>
+
+
+
+    </section>
+
+    <!-- Buscar por marca -->
+    <section class="main-section marcas">
+      <h3 class="titulo">TODAS LAS MARCAS</h3>
+      <article class="marca">
+        <img src="/images/logo-nike.png" alt="Ejemplo1">
+      </article>
+      <article class="marca">
+        <img src="/images/logo-adidas.png" alt="Ejemplo2">
+      </article>
+      <article class="marca">
+        <img src="/images/logo-puma.png" alt="Ejemplo3">
+      </article>
+    </section>
+  </main>
+
+
+
+
+
+  <!-- PIE DE PAGINA -->
+  <footer>
+    <!-- Formas de pago -->
+    <input type="checkbox" id="check-info">
+    <section class="info">
+      <label for="check-info">
+        <h4>Informacion</h4>
+      </label>
+      <ul>
+        <li>Medios de pago</li>
+        <li>Políticas</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <input type="checkbox" id="check-us">
+    <section class="info">
+      <label for="check-us">
+        <h4>Nosotros</h4>
+      </label>
+      <ul>
+        <li>Acerca de HS</li>
+        <li>Contacto</li>
+      </ul>
+    </section>
+
+    <!-- Ayuda -->
+    <input type="checkbox" id="check-help">
+    <section class="info">
+      <label for="check-help">
+        <h4>Ayuda</h4>
+      </label>
+      <ul>
+        <li>Cambios y devoluciones</li>
+        <li>Compra segura</li>
+      </ul>
+    </section>
+
+    <!-- Copyright -->
+    <section class="copyright">
+      <p>Heaven Sports ©| Todos los derechos reservados.</p>
+    </section>
+
+  </footer>
+
+</body>
+
+</html>
