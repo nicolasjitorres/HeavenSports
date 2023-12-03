@@ -173,10 +173,28 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+
     justify-content: center;
     background-color: var(--secondary);
+
   }
   
+  .contenedor-parrafo {
+    display: flex;
+   
+    z-index: 1;
+    background: url(Logo-barra.png);
+    padding: 30px 80px;
+    text-align: center;
+  }
+
+  .imagFondo {
+    display: flex;
+    position: absolute;
+    opacity: 30%;
+    width: 50vh;
+    z-index: 0;
+  }
   
   
   
