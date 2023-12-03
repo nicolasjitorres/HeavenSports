@@ -1,0 +1,329 @@
+/* HEADER */
+
+header {
+    background-color: var(--dark-primary) ;
+    width: 100%;
+    border-bottom: 2px solid var(--dark-primary);
+  }
+  
+  .header-nav-superior {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 14px 30px;
+    height: 50px;
+  }
+  
+  .contenedor-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+  }
+  
+  .nombre-pagina{
+    text-align: center;
+    color: var(--light);
+    font-size: 1.5rem;
+    display: none;
+  }
+  
+  .logo {
+    width: 36px;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+  }
+  
+  .inicio {
+    text-decoration: none;
+  }
+  
+  .barra-busqueda {
+    border-radius: 5px;
+    border: none;
+    padding: 2px 10px;
+    font-size: 12px;
+    transition: all 200ms;
+    width: 80%;
+    outline: none;
+    color: var(--secondary-text);
+  }
+  
+  #label-hamburguesa{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 20px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: all 500ms;
+    color: var(--light);
+  }
+  
+  
+  #check {
+    display: none;
+  }
+  
+  .barra-navegacion {
+    display: flex;
+    position: absolute;
+    top: 49px;
+    left: -150px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: var(--dark-primary);
+    opacity: 90%;
+    backdrop-filter: blur(3px);
+    width: 150px;
+    font-size: 1rem;
+    z-index: 10;
+    transition: all 500ms;
+  }
+  
+  .barra-navegacion a {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--light);
+    width: 100%;
+    text-align: end;
+  }
+  
+  #label-exit {
+    padding: 0 5px;
+  }
+  
+  #check:checked ~ .barra-navegacion{
+    left: 0;
+  }
+
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+
+
+  /* FOOTER */
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 0 0;
+    background-color: var(--dark);
+    justify-content: center;
+  }
+  
+  /* Secciones de informacion */
+  .info {
+    width: 80%;
+    height: 40px;
+    text-align: start;
+    color: var(--light);
+    padding: 10px 5px;
+    border-top: 1px solid var(--light);
+    transition: all 200ms;
+  }
+  
+  /* Titulo de la info */
+  .info h4 {
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  /* Todas las listas */
+  .info ul {
+    list-style: none;
+    display: none;
+    padding: 5px;
+  }
+  
+  /* Listas */
+  .info li {
+    font-size: 9px;
+    padding: 1px 5px;
+  }
+  
+  
+  /* Seccion de copyright */
+  .copyright {
+    text-align: center;
+    padding: 30px 10px 10px;
+    font-size: 9px;
+    color: var(--light);
+    width: 100%;
+  }
+  
+  footer input {
+    display: none;
+  }
+  
+  footer input:checked + .info ul {
+    display: block;
+  }
+  
+  footer input:checked + .info {
+    height: 80px;
+  }
+
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+
+
+  /* TRANSICIONES Y ANIMACIONES */
+
+.boton:hover {
+    background-color: var(--primary);
+    color: var(--light);
+  }
+  
+  .boton {
+    cursor: pointer;
+    transition: all 300ms;
+  }
+  
+  
+  .barra-navegacion a:active, #label-hamburguesa:active, .logo:active {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+  
+  .barra-navegacion a, #label-hamburguesa .icono-hamburguesa, .logo:active {
+    transition: all 100ms;
+  }
+  
+
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+
+
+  /* MEDIA QUERYS */
+
+/* DISEÑOS PARA TABLETS */
+
+@media (min-width:768px) {
+
+
+
+    /* HEADER */
+    
+    .header-nav-superior{
+      height: auto;
+      justify-content: flex-start;
+    }
+    
+    .barra-busqueda {
+      width: 300px;
+      order: 5;
+      margin-left: 50px;
+    }
+  
+    .inicio {
+      width: 220px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+  
+    .contenedor-logo{
+      width: 100%;
+    }
+  
+    .nombre-pagina{
+      display: block;
+    }
+  
+    .logo{
+      position: relative;
+      top: auto;
+      right: auto;
+    }
+  
+  
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+    
+  
+    /* FOOTER */
+  
+   
+    .info {
+      width: 30%;
+      margin: 20px 0;
+      text-align: center;
+    }
+  
+    .info h4 {
+      font-size: 1.1rem;
+    }
+  
+    .info li {
+      font-size: 0.9rem;
+    }
+  
+    .copyright {
+      font-size: 0.9rem;
+    }
+  
+  }
+  
+  
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+/*----------------------------------------------------------------*/
+  
+  
+  /* Resolucion para PC */
+  @media(min-width: 1024px) {
+  
+    /* HEADER */
+    .header-nav-superior{
+      justify-content: flex-end;
+    }
+  
+  
+    .barra-busqueda{
+      margin: 0;
+    }
+  
+    .inicio{
+      right: 40%;
+    }
+  
+    .nombre-pagina{
+      font-size: 30px;
+    }
+  
+    .logo{
+      width: 45px;
+      height: 45px;
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* MEDIA QUERYS RECOMENDADAS
+  @media(min-width: 768px) {
+    
+  }
+  @media(min-width: 1200px) {
+  
+  } */
