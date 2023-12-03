@@ -17,7 +17,7 @@ body {
 
 
 /* HEADER */
-
+/*
 header {
   background-color: #a2cadf;
   width: 100%;
@@ -67,10 +67,12 @@ header {
 }
 
 /* Para desactivar los links */
+/*
 .header-nav-inferior a {
   pointer-events: none;
 }
-  
+*/
+
   /* MAIN */
   main {
     display: flex;
@@ -154,7 +156,7 @@ header {
 }
 
 /* FOOTER */
-
+/*
 footer {
   width: 100%;
   display: flex;
@@ -166,6 +168,7 @@ footer {
 }
 
 /* Secciones de informacion */
+/*
 .info {
   width: 90%;
   margin: 20px 5%;
@@ -173,16 +176,19 @@ footer {
 }
 
 /* Todas las listas */
+/*
 .info ul {
   list-style: none;
 }
 
 /* Titulo de la info */
+/*
 .info h4 {
   font-size: 0.8rem;
 }
 
 /* Listas */
+/*
 .info li {
   font-size: 0.7rem;
   padding: 1px;
@@ -190,6 +196,7 @@ footer {
 
 
 /* Seccion de copyright */
+/*
 .copyright {
   justify-self: flex-start;
   text-align: start;
@@ -218,7 +225,7 @@ button {
   cursor: pointer;
   transition: all 200ms;
 }
-
+/*
 .barra-navegacion a:hover {
   background-color: #4b858d;
   color: #ebebeb;
@@ -227,7 +234,7 @@ button {
 .barra-navegacion a{
   transition: all 300ms;
 }
-
+*/
 
 /* MEDIA QUERYS */
 
@@ -237,6 +244,7 @@ button {
 
 
   /* HEADER */
+  /*
   .barra-busqueda {
     width: 60%;
   }
@@ -257,6 +265,7 @@ button {
   }
 
   /* Para reactivar los links */
+  /*
   .header-nav-inferior a {
     pointer-events: auto;
   }
@@ -277,6 +286,7 @@ button {
     padding: 10px;
     font-size: 16px;
   }
+  */
 
   /* MAIN */
 
@@ -285,7 +295,7 @@ button {
   }
 
   /* FOOTER */
-
+/*
   .info{
     width: 30%;
     margin: 20px 0;
@@ -305,12 +315,13 @@ button {
   }
 
 }
+*/
 
 /* Resolucion para PC */
 @media(min-width: 992px) {
 
   /* HEADER */
-
+/*
   .barra-busqueda {
     width: 70%;
   }
@@ -318,5 +329,6 @@ button {
   .iconos {
     width: 10%;
   }
+  */
 
 }

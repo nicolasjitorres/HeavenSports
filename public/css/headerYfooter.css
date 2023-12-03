@@ -1,3 +1,14 @@
+:root{
+    --dark-primary:#132c3a;
+    --primary: #4b858d;
+    --light-primary:#a2cadf;
+    --secondary-text:#666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+  }
+
 /* HEADER */
 
 header {
