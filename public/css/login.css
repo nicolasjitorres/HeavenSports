@@ -216,12 +216,12 @@
   cursor: pointer;
   transition: all 300ms;
 }
-
+/*
 .iconos i:hover {
   color: #ebebeb;
   transform: scale(1.4);
 }
-
+/*
 .iconos i {
   cursor: pointer;
   transition: all 200ms;
@@ -263,7 +263,7 @@
   .iconos .icono-hamburguesa {
     display: none;
   }
-
+/*
   .header-nav-inferior {
     width: 100%;
     opacity: 1;
