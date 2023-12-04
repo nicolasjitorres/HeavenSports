@@ -10,42 +10,25 @@
 }
 
 
-
-/* Configuracion general */
-
 * {
   box-sizing: border-box;
   font-family: poppins, sans-serif;
   margin: 0;
   padding: 0;
+  
 }
-
 
 body {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: center
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* HEADER */
 
 header {
-  background-color: var(--dark-primary) ;
+  background-color: var(--dark-primary);
   width: 100%;
   border-bottom: 2px solid var(--dark-primary);
 }
@@ -58,14 +41,14 @@ header {
   height: 50px;
 }
 
-.contenedor-logo{
+.contenedor-logo {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 300px;
 }
 
-.nombre-pagina{
+.nombre-pagina {
   text-align: center;
   color: var(--light);
   font-size: 1.5rem;
@@ -94,7 +77,7 @@ header {
   color: var(--secondary-text);
 }
 
-#label-hamburguesa{
+#label-hamburguesa {
   position: absolute;
   left: 10px;
   top: 10px;
@@ -116,15 +99,15 @@ header {
 .barra-navegacion {
   display: flex;
   position: absolute;
-  top: 49px;
-  left: -150px;
+  top: 50px;
+  left: -170px;
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;
   background-color: var(--dark-primary);
   opacity: 90%;
   backdrop-filter: blur(3px);
-  width: 150px;
+  width: 170px;
   font-size: 1rem;
   z-index: 10;
   transition: all 500ms;
@@ -142,189 +125,10 @@ header {
   padding: 0 5px;
 }
 
-#check:checked ~ .barra-navegacion{
+#check:checked~.barra-navegacion {
   left: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/* MAIN */
-
-main {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: var(--secondary);
-}
-
-.div-slider {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.slider {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.img-slider {
-  width: 100%;
-  position: relative;
-  padding: 20px 10px 0;
-}
-
-.img-slider img {
-  width: 100%;
-
-  border-radius: 10px;
-}
-
-.slide1,
-.slide2,
-.slide3 {
-  transform: translate(100%);
-  position: relative;
-  transition: all 500ms ease-in-out;
-}
-
-.slide1 {
-  animation: autoSlide1 15s infinite alternate;
-}
-
-.slide2 {
-  animation: autoSlide2 15s infinite alternate;
-}
-
-.slide3 {
-  animation: autoSlide3 15s infinite alternate;
-}
-
-/* Titulos de las secciones */
-.titulo {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0 10px;
-  color: var(--dark);
-  font-size: 1.3rem;
-}
-
-/* Secciones */
-.main-section {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  justify-content: center;
-}
-
-/* Articulos de las secciones */
-.oferta,
-.mas-vendido {
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 10px;
-  justify-content: center;
-  background-color: var(--light);
-  margin: 5px 2.7px;
-  align-items: center;
-  border-radius: 5px;
-  position: relative;
-  text-decoration: none;
-}
-
-/* Imagenes de cada articulo */
-.oferta img,
-.mas-vendido img {
-  width: 25%;
-  max-width: 150px;
-  opacity: 90%;
-}
-
-.envio-gratis {
-  position: absolute;
-  font-size: 12px;
-  top: 10px;
-  right: 10px;
-  color: var(--light);
-  background-color: var(--primary);
-  font-weight: bold;
-  padding: 0 5px;
-}
-
-.contenedor-precio-descripcion {
-  width: 75%;
-  padding-left: 15px;
-}
-
-/* Precio anterior del articulo */
-.precio-anterior {
-  text-decoration: line-through;
-  font-size: 10px;
-  color: var(--dark);
-}
-
-/* Precio del nuevo articulo para oferta */
-.precio {
-  color: var(--dark);
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.descuento {
-  font-size: 10px;
-  color: var(--discount);
-}
-
-/* Descripcion del articulo */
-.descripcion {
-  font-size: 12px;
-  color: var(--dark);
-}
-
-/* Contenedor de las marcas */
-.contenedor-marcas {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  justify-content: center;
-  padding: 40px 10px;
-}
-
-.marca {
-  display: flex;
-  background-color: var(--light);
-  width: 70px;
-  cursor: pointer;
-  margin: 10px 5px 0;
-}
-
-.marca img {
-  width: 100%;
-}
-
-/* Iconos de flecha */
-.main-section i {
-  align-self: center;
-  cursor: pointer;
-}
 
 
 
@@ -386,11 +190,11 @@ footer input {
   display: none;
 }
 
-footer input:checked + .info ul {
+footer input:checked+.info ul {
   display: block;
 }
 
-footer input:checked + .info {
+footer input:checked+.info {
   height: 80px;
 }
 
@@ -401,115 +205,10 @@ footer input:checked + .info {
 
 /* TRANSICIONES Y ANIMACIONES */
 
-
-
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-
-
-/* MEDIA QUERYS */
-
-/* DISEÑOS PARA TABLETS */
-
-@media (min-width:768px) {
-
-
-
-  /* HEADER */
-  
-  .header-nav-superior{
-    height: auto;
-    justify-content: flex-start;
-  }
-  
-  .barra-busqueda {
-    width: 300px;
-    order: 5;
-    margin-left: 50px;
-  }
-
-  .inicio {
-    width: 220px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-  }
-
-  .contenedor-logo{
-    width: 100%;
-  }
-
-  .nombre-pagina{
-    display: block;
-  }
-
-  .logo{
-    position: relative;
-    top: auto;
-    right: auto;
-  }
-
-
-
-
-  /* FOOTER */
-
- 
-  .info{
-    width: 30%;
-    margin: 20px 0;
-    text-align: center;
-  }
-
-  .info h4 {
-    font-size: 1.1rem;
-  }
-
-  .info li {
-    font-size: 0.9rem;
-  }
-
-  .copyright {
-    font-size: 0.9rem;
-  }
-
+#label-hamburguesa {
+  cursor: pointer;
 }
 
 
 
 
-
-
-
-/* Resolucion para PC */
-@media(min-width: 1024px) {
-
-  /* HEADER */
-  .header-nav-superior{
-    justify-content: flex-end;
-  }
-
-
-  .barra-busqueda{
-    margin: 0;
-  }
-
-  .inicio{
-    right: 40%;
-  }
-
-  .nombre-pagina{
-    font-size: 30px;
-  }
-
-  .logo{
-    width: 45px;
-    height: 45px;
-  }
-
-
-
-}

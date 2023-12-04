@@ -1,8 +1,9 @@
 <%- include ('../partials/head')%>
 
-  <link rel="stylesheet" href="/css/formCarga.css">
+<link rel="stylesheet" href="/css/formCarga.css">
+<link rel="stylesheet" href="/css/mediaQ.css">
 
-  <title>Carrito</title>
+<title>Carrito</title>
 </head>
 
 <body>
@@ -17,19 +18,19 @@
 
     <!-- FORMULARIO CARGA PRODUCTO -->
     <form action="/cargarProducto" method="post" class="carga">
-      
+
       <!-- NOMBRE PRODUCTO -->
       <label>Ingresá el nombre del producto:</label>
       <input type="text" name="nombre" id="nombre" required>
-      
+
       <!-- PRECIO PRODUCTO -->
       <label>Ingresá el precio del producto:</label>
       <input type="number" name="precio" id="precio" required>
-     
+
       <!-- DESCRIPCION PRODUCTO -->
       <label>Ingresá la descripcion del producto:</label>
       <textarea name="descripcion" id="descripcion" cols="60" rows="4" required></textarea>
-      
+
       <!-- COLOR PRODUCTO -->
       <div class="contenedorTalle">
         <p class="subtitulo subTalle"> Color: </p>
@@ -85,7 +86,7 @@
         <button type="submit" class="boton">Cargar</button>
         <button type="reset" class="boton">Cancelar</button>
       </div>
-      
+
     </form>
   </main>
 
@@ -94,4 +95,5 @@
 
 
 </body>
+
 </html>

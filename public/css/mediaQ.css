@@ -1,0 +1,225 @@
+:root {
+    --dark-primary: #132c3a;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+}
+
+
+
+/* MEDIA QUERYS */
+
+/* DISEÑOS PARA TABLETS */
+
+@media (min-width:768px) {
+
+
+
+    /* HEADER */
+
+    .header-nav-superior {
+        height: auto;
+        justify-content: flex-start;
+    }
+
+    .barra-busqueda {
+        width: 300px;
+        order: 5;
+        margin-left: 50px;
+    }
+
+    .inicio {
+        width: 220px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+
+    .contenedor-logo {
+        width: 100%;
+    }
+
+    .nombre-pagina {
+        display: block;
+    }
+
+    .logo {
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+
+
+
+
+    /* MAIN */
+
+    .titulo {
+        font-size: 1.5rem;
+    }
+
+    .main-section {
+        justify-content: space-around;
+        display: flex;
+    }
+
+    .oferta,
+    .mas-vendido {
+        width: 48%;
+        max-width: 400px;
+    }
+
+    .marca {
+        width: 100px;
+    }
+
+
+
+
+    /* FOOTER */
+
+
+    .info {
+        width: 30%;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .info h4 {
+        font-size: 1.1rem;
+    }
+
+    .info li {
+        font-size: 0.9rem;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+    }
+
+}
+
+
+
+
+
+
+
+/* Resolucion para PC */
+@media(min-width: 1024px) {
+
+    /* HEADER */
+    .header-nav-superior {
+        justify-content: flex-end;
+    }
+
+
+    .barra-busqueda {
+        margin: 0;
+    }
+
+    .inicio {
+        right: 40%;
+    }
+
+    .nombre-pagina {
+        font-size: 30px;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+
+
+
+    /* MAIN */
+
+    .titulo {
+        font-size: 36px;
+    }
+
+    .precio-anterior {
+        font-size: 14px;
+    }
+
+    .precio {
+        font-size: 18px
+    }
+
+    .descuento {
+        font-size: 14px;
+    }
+
+    .descripcion {
+        font-size: 14px;
+    }
+
+
+
+    /* Articulos de las secciones */
+    .oferta,
+    .mas-vendido {
+        width: 250px;
+        margin: 10px;
+        transition: all 200ms ease-in-out;
+    }
+
+    .marca {
+        transition: all 200ms ease-in-out;
+    }
+
+
+    /* Imagenes de cada articulo */
+    .oferta img,
+    .mas-vendido img {
+        width: 90%;
+        max-width: 300px;
+        padding: 10px 0;
+
+    }
+
+    .envio-gratis {
+        z-index: 10;
+        font-size: 18px;
+    }
+
+    .contenedor-precio-descripcion {
+        width: 90%;
+        padding: 10px 0;
+    }
+
+    .main-section {
+        justify-content: center;
+    }
+
+    .oferta:hover,
+    .mas-vendido:hover,
+    .marca:hover {
+        transform: scale(1.1);
+        background-color: var(--light-primary);
+    }
+
+    .icono-hamburguesa:hover,
+    .inicio:hover {
+        transform: scale(1.2);
+    }
+
+    .barra-navegacion a:hover {
+        font-size: 19px;
+        background-color: var(--light-primary);
+        color: var(--dark);
+    }
+
+    .inicio,
+    .barra-navegacion a,
+    .icono-hamburguesa {
+        transition: all 200ms ease-in-out;
+    }
+
+}

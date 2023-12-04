@@ -1,24 +1,18 @@
-* {
-  box-sizing: border-box;
-  font-family: Roboto;
-  margin: 0;
-  padding: 0;
-}
+  /* Configuracion general */
+  :root {
+    --dark-primary: #132c3a;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+  }
 
-img {
-  width: 100%;
-}
-
-body {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center
-}
-
-
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
 
 
   /* MAIN */
@@ -30,29 +24,35 @@ body {
     text-align: center;
     padding-top: 20px;
   }
+
   h1 {
     font-size: 30px;
     color: #666;
   }
+
   p {
     /*font-size: 18px;*/
     color: #666;
   }
+
   .cajaProducto {
     width: 80%;
     background: transparent;
     backdrop-filter: blur(20px);
     border-radius: 50px;
   }
+
   .cajaProducto img {
     width: 50%;
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
   .cantidad i {
     margin-left: 3px;
     margin-right: 3px;
   }
+
   .compra {
     margin-top: 20px;
     width: 80%;
@@ -63,13 +63,16 @@ body {
     backdrop-filter: blur(20px);
     border-radius: 30px;
   }
+
   .compra h1 {
     width: 100%;
   }
+
   .compra p {
     width: 50%;
     margin-top: 10px;
   }
+
   .compra input {
     text-align: center;
     width: 60%;
@@ -86,70 +89,39 @@ body {
     color: black;
     cursor: pointer;
   }
+
   .botones {
     width: 100%;
-    
+
   }
-    
-.volver a {
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-  color: #e1cead;
-  font-weight: bold;
-}
 
-.volver a:hover {
-  text-decoration: underline;
-}
+  .volver a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: #e1cead;
+    font-weight: bold;
+  }
 
-
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-
-
-/* TRANSICIONES Y ANIMACIONES */
-
-button:hover {
-  background-color: #4b858d;
-  color: white;
-}
-
-button {
-  cursor: pointer;
-  transition: all 300ms;
-}
-
-
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-
-
-/* MEDIA QUERYS */
-
-  
-@media (min-width:576px) {
-
-
-  /* MAIN */
-
-  .titulo {
-    font-size: 1.5rem;
+  .volver a:hover {
+    text-decoration: underline;
   }
 
 
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
 
 
-/* Resolucion para PC */
-@media(min-width: 992px) {
+  /* TRANSICIONES Y ANIMACIONES */
 
+  button:hover {
+    background-color: #4b858d;
+    color: white;
+  }
 
+  button {
+    cursor: pointer;
+    transition: all 300ms;
+  }
 
-}

@@ -1,26 +1,13 @@
   /* Configuracion general */
-  
-  * {
-    box-sizing: border-box;
-    font-family: poppins, sans-serif;
-    margin: 0;
-    padding: 0;
-    
-  }
-  
-  body {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center
-  }
-  
-  
-  .linkSinEstilo {
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  :root {
+    --dark-primary: #132c3a;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
   }
   
  
@@ -211,76 +198,3 @@
     cursor: pointer;
   }
   
-  
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-
- 
-  /* TRANSICIONES Y ANIMACIONES */
-   
-  
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-  
-  
-  /* MEDIA QUERYS */
-  
-  /* DISEÑOS PARA TABLETS */
-  
-  @media (min-width:576px) {  
-  
-    /* MAIN */
-  
-    .titulo {
-      font-size: 1.5rem;
-    }
-  
-    .oferta, .mas-vendido {
-      width: 48%;
-    }
-   
-  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-  
-  
-  /* Resolucion para PC */
-  @media(min-width: 992px) {
-  
-   
-    /* MAIN */
-  
-    .oferta .precio-anterior{
-      width: 15%;
-    }
-  
-    .oferta .precio {
-      width: 85%;
-    }
-  
-    .mas-vendido {
-      width: 23%;
-    }
-  
-  }
-  
-  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/  
-/*------------------------------------------------------*/    
-  
-  
-  /* MEDIA QUERYS RECOMENDADAS
-  @media(min-width: 768px) {
-    
-  }
-  @media(min-width: 1200px) {
-  
-  } */

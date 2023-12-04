@@ -1,21 +1,14 @@
-/* Configuracion general */
-
-* {
-  font-family: Roboto;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-img {
-  width: 100%;
-}
-
-body{
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center
-}
+  /* Configuracion general */
+  :root {
+    --dark-primary: #132c3a;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+  }
 
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
@@ -433,7 +426,7 @@ main {
       margin-bottom: 10px;
   }
 
-  
+}
 /*------------------------------------------------------*/  
 /*------------------------------------------------------*/  
 /*------------------------------------------------------*/  
