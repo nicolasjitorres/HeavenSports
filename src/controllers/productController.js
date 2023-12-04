@@ -4,6 +4,9 @@ const controller = {
     },
     detail: (req, res) => {
         res.render('products/detail', {});
+    },
+    formCarga: (req, res) => {
+        res.render('products/formCarga', {});
     }
 }
 
