@@ -17,74 +17,11 @@ body{
   align-content: center
 }
 
-
-
-
-/* HEADER */
-/*
-header {
-  background-color: #a2cadf;
-  width: 100%;
-}
-
-.header-nav-superior {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nombre-pagina{
-  width: 100%;
-  text-align: center;
-  color: #000;
-  font-size: 1.8rem;
-  padding-top: 10px;
-  -webkit-text-stroke: #4b858d 0.05px;
-}
-
 a {
   text-decoration: none;
   color: #000;
   -webkit-text-stroke: #4b858d 0.05px;
 }
-
-.logo {
-  width: 20%;
-}
-
-.barra-busqueda {
-  width: 50%;
-  border-radius: 8px;
-  border: 1px solid #4b858d;
-  padding: 5px;
-  font-size: 16px;
-  transition: all 200ms;
-}
-
-.iconos {
-  width: 30%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  font-size: 16px;
-  transition: all 200ms;
-}
-
-.header-nav-inferior {
-  opacity: 0;
-  transition: all 200ms;
-}
-
-/* Para desactivar los links */
-/*
-.header-nav-inferior a {
-  pointer-events: none;
-}
-*/
-
-
-
 
 
 /* MAIN */
@@ -139,65 +76,9 @@ main {
 }
 
 
-
-
-
-
-
-
-
-/* FOOTER */
-/*
-footer {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 70px 0 0;
-  padding-top: 20px;
-  background-color: #dff4ff;
-  justify-content: center;
-}
-
-/* Secciones de informacion */
-/*
-.info {
-  width: 90%;
-  margin: 20px 0;
-  text-align: center;
-}
-
-/* Todas las listas */
-/*
-.info ul {
-  list-style: none;
-}
-
-/* Titulo de la info */
-/*
-.info h4 {
-  font-size: 0.8rem;
-}
-
-/* Listas */
-/*
-.info li {
-  font-size: 0.7rem;
-  padding: 1px;
-}
-
-
-/* Seccion de copyright */
-/*
-.copyright {
-  justify-self: flex-start;
-  text-align: start;
-  padding: 15px 10px 10px;
-  font-size: 0.7rem;
-  color: #666;
-  width: 100%;
-}
-*/
-
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
 
 
 /* TRANSICIONES Y ANIMACIONES */
@@ -211,27 +92,11 @@ footer {
   cursor: pointer;
   transition: all 300ms;
 }
-/*
-.iconos i:hover {
-  color: #ebebeb;
-  transform: scale(1.4);
-}
-
-.iconos i{
-  cursor: pointer;
-  transition: all 200ms;
-}
-
-.barra-navegacion a:hover {
-  background-color: #4b858d;
-  color: #ebebeb;
-}
-
-.barra-navegacion a{
-  transition: all 300ms;
-}
 
 
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
 
 
 /* MEDIA QUERYS */
@@ -239,53 +104,6 @@ footer {
 /* DISEÑOS PARA TABLETS */
 
 @media (min-width:576px) {
-
-
-  /* HEADER */
-/*
-  .barra-busqueda{
-    width: 60%;
-  }
-
-  .iconos{
-    width: 20%;
-  }
-
-  .iconos .icono-hamburguesa {
-    display: none;
-  }
-
-  .header-nav-inferior {
-    width: 100%;
-    opacity: 1;
-    display: flex;
-    background-color: #dff4ff;
-  }
-
-  /* Para reactivar los links */
-  /*
-  .header-nav-inferior a {
-    pointer-events: auto;
-  }
-
-  .barra-navegacion {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
-  }
-
-  .barra-navegacion a {
-    text-decoration: none;
-    color: #4b858d;
-    border: 1px solid #4b858d;
-    width: 25%;
-    text-align: center;
-    padding: 10px;
-    font-size: 16px;
-  }
-
-
 
 
   /* MAIN */
@@ -303,52 +121,13 @@ footer {
   }
 
 
-
-
-
-  /* FOOTER */
-/*
-  .info{
-    width: 30%;
-    margin: 20px 0;
-    justify-self: center;
-  }
-
-  .info h4 {
-    font-size: 1.1rem;
-  }
-
-  .info li {
-    font-size: 0.9rem;
-  }
-
-  .copyright {
-    font-size: 0.9rem;
-  }
-
-}
-*/
-
-
-
-
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
 
 
 /* Resolucion para PC */
 @media(min-width: 992px) {
-
-  /* HEADER */
-/*
-  .barra-busqueda {
-    width: 70%;
-  }
-
-  .iconos {
-    width: 10%;
-  }
-*/
-
-
 
   /* MAIN */
 
@@ -366,6 +145,10 @@ footer {
 
 }
 
+
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
+/*------------------------------------------------------*/  
 
 
 /* MEDIA QUERYS RECOMENDADAS
