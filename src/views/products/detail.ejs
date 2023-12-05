@@ -14,130 +14,64 @@
 
   <%- include ('../partials/header')%>
 
+
   <!-- PRINCIPAL -->
   <main>
 
-    <button class="botonFavMini iconos" name="botonFav"><a href="/"><i
-          class="botonFavMiniIcon fa-solid fa-heart"></i></a></button>
+
+    <div class="contenedor-producto">
+
+      <p class="nombre">Zapatillas Adidas Top Blancas</p>
 
 
-    <p class="titulo"> Zapatillas Plataforma Botita Star Dama </p>
-
-    <div class="contenedorGlobal">
-
-      <section class="imagenes-descripcion">
-
-        <div class="imagenesProducto">
-          <div class="imagenesGrupo">
-
-            <img class="imagenInd" src="\images\ProductoA_1.jpg" alt="imagen chica 1">
-            <img class="imagenInd" src="\images\ProductoA_2.jpg" alt="imagen chica 2">
-            <img class="imagenInd" src="\images\ProductoA_3.jpg" alt="imagen chica 3">
-            <img class="imagenInd" src="\images\ProductoA_4.jpg" alt="imagen chica 4">
-
-          </div>
-
-          <div class="imagenesGrande">
-
-            <img class="imagen0" src="\images\ProductoA_0.jpg" alt="imagen grande">
-            <div class="contenedorIconosImagen">
-              <i class="iconoImagen iconoImagenIzq fa-solid fa-chevron-left"></i>
-              <i class="iconoImagen iconoImagenDer fa-solid fa-chevron-right"></i>
-            </div>
-
-
-          </div>
-
+      <div class="imagenes-producto">
+        <div class="imagen-muestra">
+          <img class="imagen0" src="\images\zapa-5.jpeg" alt="imagen grande">
         </div>
-
-        <div class="descripcion">
-          <p>
-            ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
-            Excelente calidad y terminación.
-            Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
-            Utilizamos materiales de primera calidad.
-          </p>
+        <div class="imagen-disponible">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 1">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 2">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 3">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 4">
         </div>
+      </div>
+
+      <p class="precio-producto">$ 16.000,00 </p>
+
+      <p class="descripcion-producto">
+        ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
+        Excelente calidad y terminación.
+        Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
+        Utilizamos materiales de primera calidad.
+      </p>
 
 
-      </section>
+      <div class="talle-producto">
+        <p class="titulo-talle">Talles disponibles </p>
+        <select class="contenedor-talles" name="talles" id="">
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+      </div>
 
-      <section class="contenedor2">
-
-        <div class="contenedorPrecio">
-          <i class="iconoPrecio fa-solid fa-star"></i>
-          <i class="iconoPrecio fa-solid fa-star"></i>
-
-          <p class="subtitulo"> Precio: $ 16.000,00 </p>
-
-          <i class="iconoPrecio fa-solid fa-star"></i>
-          <i class="iconoPrecio fa-solid fa-star"></i>
-        </div>
+      <a href="/products/cart">
+        <button class="boton-carrito" name="botonCarr">
+          Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
+        </button>
+      </a>
 
 
-        <div class="colores">
-          <div class="coloresInt">
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="negro" required></div>
-              <div class="colorCuadro colorNegro"></div>
-              <label class="colorTexto">Negro</label>
-            </div>
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="blanco" required></div>
-              <div class="colorCuadro colorBlanco"></div>
-              <label class="colorTexto">Blanco</label>
-            </div>
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="azul" required></div>
-              <div class="colorCuadro colorAzul"></div>
-              <label class="colorTexto">Azul</label>
-            </div>
-          </div>
-          <div class="coloresInt">
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="verde" required></div>
-              <div class="colorCuadro colorVerde"></div>
-              <label class="colorTexto">Verde</label>
-            </div>
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="rosa" required></div>
-              <div class="colorCuadro colorRosa"></div>
-              <label class="colorTexto">Rosa</label>
-            </div>
-            <div class="contenedorColor">
-              <div class="colorRadio"><input type="radio" name="colores" value="marron" required></div>
-              <div class="colorCuadro colorMarron"></div>
-              <label class="colorTexto">Marron</label>
-            </div>
-          </div>
 
-        </div>
+    </div>
 
-        <div class="contenedorTalle">
-          <p class="subtitulo subTalle"> Talle: </p>
-          <select class="cajaTalles" name="talles" id="">
-            <option value="36">36</option>
-            <option value="37">37</option>
-            <option value="38">38</option>
-            <option value="39">39</option>
-            <option value="40">40</option>
-            <option value="41">41</option>
-            <option value="42">42</option>
-            <option value="43">43</option>
-            <option value="44">44</option>
-          </select>
-        </div>
 
-        <div class="botones">
-          <button class="boton botonFav" name="botonFav">
-            <div>Agregar a Favoritos</div><a href="/"><i class="iconoBoton fa-solid fa-heart"></i></a>
-          </button>
-          <a href="/products/cart"><button class="boton botonCarr" name="botonCarr">
-              <div>Agregar al Carrito</div><i class="iconoBoton fa-solid fa-cart-plus"></i>
-            </button></a>
-        </div>
-
-      </section>
 
     </div>
 
@@ -146,8 +80,10 @@
 
   </main>
 
+
   <%- include ('../partials/footer')%>
 
 </body>
+
 
 </html>
