@@ -1,0 +1,89 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/detail.css">
+<link rel="stylesheet" href="/css/mediaQ.css">
+
+<title>Detalle del producto</title>
+</head>
+
+
+
+<body>
+
+  <!-- ENCABEZADO -->
+
+  <%- include ('../partials/header')%>
+
+
+  <!-- PRINCIPAL -->
+  <main>
+
+
+    <div class="contenedor-producto">
+
+      <p class="nombre">Zapatillas Adidas Top Blancas</p>
+
+
+      <div class="imagenes-producto">
+        <div class="imagen-muestra">
+          <img class="imagen0" src="\images\zapa-5.jpeg" alt="imagen grande">
+        </div>
+        <div class="imagen-disponible">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 1">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 2">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 3">
+          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 4">
+        </div>
+      </div>
+
+      <p class="precio-producto">$ 16.000,00 </p>
+
+      <p class="descripcion-producto">
+        ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
+        Excelente calidad y terminación.
+        Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
+        Utilizamos materiales de primera calidad.
+      </p>
+
+
+      <div class="talle-producto">
+        <p class="titulo-talle">Talles disponibles </p>
+        <select class="contenedor-talles" name="talles" id="">
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+      </div>
+
+      <a href="/products/cart">
+        <button class="boton-carrito" name="botonCarr">
+          Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
+        </button>
+      </a>
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+
+
+  </main>
+
+
+  <%- include ('../partials/footer')%>
+
+</body>
+
+
+</html>
