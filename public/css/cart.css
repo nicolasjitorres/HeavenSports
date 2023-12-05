@@ -22,30 +22,51 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 785px;
+    background-color: var(--secondary);
     padding-top: 20px;
+  }
+
+  .tituloCart {
+    width: 100%;
+    color: var(--dark);
+    margin-bottom: 10px;
   }
 
   h1 {
     font-size: 30px;
-    color: #666;
+    width: 100%;
+  }
+  h2 {
+    font-size: 24px;
   }
 
   p {
-    /*font-size: 18px;*/
-    color: #666;
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .cajaProducto {
-    width: 80%;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    border-radius: 50px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: solid 1px var(--dark-primary);
   }
 
   .cajaProducto img {
-    width: 50%;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    width: 32%;
+    border: solid 1px var(--dark-primary);
+    border-radius: 10px;
+  }
+
+  .descripcion-producto {
+    width: 65%;
+    margin-top: 20px;
   }
 
   .cantidad i {
@@ -54,14 +75,18 @@
   }
 
   .compra {
-    margin-top: 20px;
-    width: 80%;
+    border: solid 1px var(--dark-primary);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
+  }
+  
+  .total {
+    padding-top: 10px;
+    border-top: solid 1px #666;
   }
 
   .compra h1 {
@@ -76,52 +101,284 @@
   .compra input {
     text-align: center;
     width: 60%;
+    padding: 5px;
   }
 
   button {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 8px;
-    font-size: 16px;
-    background-color: #a2cadf;
-    border: 1px solid #4b858d;
+    font-size: 14px;
+    color: white;
+    border: 1px solid var(--dark-primary);
     border-radius: 8px;
-    color: black;
+    background-color: var(--dark-primary);
+    font-weight: bold;
     cursor: pointer;
   }
 
   .botones {
     width: 100%;
-
+    
   }
 
-  .volver a {
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    color: #e1cead;
-    font-weight: bold;
-  }
+.volver {
+  margin-bottom: 10px;
+}
+    
+.volver a {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: var(--dark-primary);
+  font-weight: bold;
+}
 
   .volver a:hover {
     text-decoration: underline;
   }
 
+/* FOOTER */
 
-  /*------------------------------------------------------*/
-  /*------------------------------------------------------*/
-  /*------------------------------------------------------*/
+footer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 0 0;
+  background-color: var(--dark);
+  justify-content: center;
+}
+
+/* Secciones de informacion */
+.info {
+  width: 80%;
+  height: 40px;
+  text-align: start;
+  color: var(--light);
+  padding: 10px 5px;
+  border-top: 1px solid var(--light);
+  transition: all 200ms;
+}
+
+/* Titulo de la info */
+.info h4 {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Todas las listas */
+.info ul {
+  list-style: none;
+  display: none;
+  padding: 5px;
+}
+
+/* Listas */
+.info li {
+  font-size: 9px;
+  padding: 1px 5px;
+}
 
 
-  /* TRANSICIONES Y ANIMACIONES */
+/* Seccion de copyright */
+.copyright {
+  text-align: center;
+  padding: 30px 10px 10px;
+  font-size: 9px;
+  color: var(--light);
+  width: 100%;
+}
+
+footer input {
+  display: none;
+}
+
+footer input:checked + .info ul {
+  display: block;
+}
+
+footer input:checked + .info {
+  height: 80px;
+}
+
+/* TRANSICIONES Y ANIMACIONES */
 
   button:hover {
     background-color: #4b858d;
     color: white;
   }
 
-  button {
-    cursor: pointer;
-    transition: all 300ms;
+button {
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.boton:hover {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+.boton {
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+
+.barra-navegacion a:active, #label-hamburguesa:active, .logo:active {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.barra-navegacion a, #label-hamburguesa .icono-hamburguesa, .logo:active {
+  transition: all 100ms;
+}
+
+
+/* MEDIA QUERYS */
+
+  
+@media (min-width:768px) {
+
+/* HEADER */
+  
+.header-nav-superior{
+  height: auto;
+  justify-content: flex-start;
+}
+
+.barra-busqueda {
+  width: 300px;
+  order: 5;
+  margin-left: 50px;
+}
+
+.inicio {
+  width: 220px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.contenedor-logo{
+  width: 100%;
+}
+
+.nombre-pagina{
+  display: block;
+}
+
+.logo{
+  position: relative;
+  top: auto;
+  right: auto;
+}
+  /* MAIN */
+
+  .titulo {
+    font-size: 1.5rem;
   }
 
+  
+  /* FOOTER */
+
+ 
+  .info{
+    width: 30%;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .info h4 {
+    font-size: 1.1rem;
+  }
+
+  .info li {
+    font-size: 0.9rem;
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+  }
+
+}
+
+/* Resolucion para PC */
+@media(min-width: 1024px) {
+
+  /* HEADER */
+  .header-nav-superior{
+    justify-content: flex-end;
+  }
+
+
+  .barra-busqueda{
+    margin: 0;
+  }
+
+  .inicio{
+    right: 40%;
+  }
+
+  .nombre-pagina{
+    font-size: 30px;
+  }
+
+  .logo{
+    width: 45px;
+    height: 45px;
+  }
+
+
+  /* MAIN */
+
+  main {
+    max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      align-items: normal;
+  }
+  .cajaProducto {
+      width: 500px;
+      margin: 0;
+  }
+  .cajaProducto img {
+      width: 32%;
+      height: 170px;
+  }
+  .descripcion-producto {
+      width: 65%;
+      margin-top: 0px;
+  }
+  .descripcion-producto p {
+      margin-top: 18px;
+  }
+  .compra {
+      width: 450px;
+      
+      margin: 0px;
+  }
+
+  .compra p {
+    margin-top: 0px;
+  }
+
+  .total {
+    padding-top: 20px
+  }
+
+  .botonesCart {
+      width: 80%;
+  }
+  .cantidad {
+      width: 20%;
+  }
+
+  .cantidad p {
+    font-size: 14px;
+  }
+
+  .botones {
+      width: 100%;
+      margin-top: 20px;
+  }
+}
