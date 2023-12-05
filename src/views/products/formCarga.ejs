@@ -1,0 +1,99 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/formCarga.css">
+<link rel="stylesheet" href="/css/mediaQ.css">
+
+<title>Carrito</title>
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+    <h4 class="titulo">Cargar Producto</h4>
+
+    <!-- FORMULARIO CARGA PRODUCTO -->
+    <form action="/cargarProducto" method="post" class="carga">
+
+      <!-- NOMBRE PRODUCTO -->
+      <label>Ingresá el nombre del producto:</label>
+      <input type="text" name="nombre" id="nombre" required>
+
+      <!-- PRECIO PRODUCTO -->
+      <label>Ingresá el precio del producto:</label>
+      <input type="number" name="precio" id="precio" required>
+
+      <!-- DESCRIPCION PRODUCTO -->
+      <label>Ingresá la descripcion del producto:</label>
+      <textarea name="descripcion" id="descripcion" cols="60" rows="4" required></textarea>
+
+      <!-- COLOR PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo subTalle"> Color: </p>
+        <select class="cajaTalles" name="color" id="color">
+          <option value="selectColor" selected disabled>Seleccionar un color</option>
+          <option value="Negro">Negro</option>
+          <option value="Blanco">Blanco</option>
+          <option value="Rojo">Rojo</option>
+          <option value="Azul">Azul</option>
+          <option value="Verde">Verde</option>
+          <option value="Beige">Beige</option>
+          <option value="Celeste">Celeste</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+
+      <!-- TALLE PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo"> Talle: </p>
+        <select class="cajaTalles" name="talles" id="talles">
+          <option value="selectTalle" selected disabled>Seleccionar un talle</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+      </div>
+
+      <!-- CATEGORIA PRODUCTO -->
+      <div class="contenedorTalle">
+        <p class="subtitulo"> Categoria: </p>
+        <select class="cajaTalles" name="categoria" id="categoria">
+          <option value="selectCateg" selected disabled>Seleccionar una categoria</option>
+          <option value="running">Running</option>
+          <option value="futbol">Futbol</option>
+          <option value="Basket">Basket</option>
+          <option value="Tennis">Tenis</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+
+      <!-- CARGAR IMAGENES PRODUCTO -->
+      <label>Cargar imagenes del producto:</label>
+      <input type="file" name="cargaImagen" multiple accept=".jpg, .png">
+
+      <!-- BOTONES -->
+      <div class="botones">
+        <button type="submit" class="boton">Cargar</button>
+        <button type="reset" class="boton">Cancelar</button>
+      </div>
+
+    </form>
+  </main>
+
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>

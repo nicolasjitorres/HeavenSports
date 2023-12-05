@@ -1,170 +1,19 @@
-
-:root{
-    --dark-primary:#132c3a;
+  /* Configuracion general */
+  :root {
+    --dark-primary: #132c3a;
     --primary: #4b858d;
-    --light-primary:#a2cadf;
-    --secondary-text:#666;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
     --secondary: #ebebeb;
     --light: #fff;
     --dark: #000;
     --discount: #008f39;
   }
   
-  
-  
-  /* Configuracion general */
-  
-  * {
-    box-sizing: border-box;
-    font-family: poppins, sans-serif;
-    margin: 0;
-    padding: 0;
-    
-  }
-  
-  body {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center
-  }
-  
-  
-  .linkSinEstilo {
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  /* HEADER */
-  
-  header {
-    background-color: var(--dark-primary) ;
-    width: 100%;
-    border-bottom: 2px solid var(--dark-primary);
-  }
-  
-  .header-nav-superior {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 14px 30px;
-    height: 50px;
-  }
-  
-  .contenedor-logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-  }
-  
-  .nombre-pagina{
-    text-align: center;
-    color: var(--light);
-    font-size: 1.5rem;
-    display: none;
-  }
-  
-  .logo {
-    width: 36px;
-    position: absolute;
-    right: 10px;
-    top: 7px;
-  }
-  
-  .inicio {
-    text-decoration: none;
-  }
-  
-  .barra-busqueda {
-    border-radius: 5px;
-    border: none;
-    padding: 2px 10px;
-    font-size: 12px;
-    transition: all 200ms;
-    width: 80%;
-    outline: none;
-    color: var(--secondary-text);
-  }
-  
-  #label-hamburguesa{
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    font-size: 20px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    transition: all 500ms;
-    color: var(--light);
-  }
-  
-  
-  #check {
-    display: none;
-  }
-  
-  .barra-navegacion {
-    display: flex;
-    position: absolute;
-    top: 49px;
-    left: -150px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: column;
-    background-color: var(--dark-primary);
-    opacity: 90%;
-    backdrop-filter: blur(3px);
-    width: 150px;
-    font-size: 1rem;
-    z-index: 10;
-    transition: all 500ms;
-  }
-  
-  .barra-navegacion a {
-    padding: 5px 10px;
-    text-decoration: none;
-    color: var(--light);
-    width: 100%;
-    text-align: end;
-  }
-  
-  #label-exit {
-    padding: 0 5px;
-  }
-  
-  #check:checked ~ .barra-navegacion{
-    left: 0;
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
+/*------------------------------------------------------*/
+/*------------------------------------------------------*/
+/*------------------------------------------------------*/  
   
   
   /* MAIN */
@@ -173,13 +22,29 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+
     justify-content: center;
     background-color: var(--secondary);
+
   }
   
-  
-  
-  
+  .contenedor-parrafo {
+    display: flex;
+   
+    z-index: 1;
+    background: url(Logo-barra.png);
+    padding: 30px 80px;
+    text-align: center;
+  }
+
+  .imagFondo {
+    display: flex;
+    position: absolute;
+    opacity: 30%;
+    width: 50vh;
+    z-index: 0;
+  }
+    
   .div-slider{
     width: 100%;
     display: flex;
@@ -225,7 +90,6 @@
   .slide3{
     animation: autoSlide3 15s infinite alternate;
   }
-  
   
   
   
@@ -334,273 +198,3 @@
     cursor: pointer;
   }
   
-  
-  
-  
-  
-  
-  /* FOOTER */
-  
-  footer {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 40px 0 0;
-    background-color: var(--dark);
-    justify-content: center;
-  }
-  
-  /* Secciones de informacion */
-  .info {
-    width: 80%;
-    height: 40px;
-    text-align: start;
-    color: var(--light);
-    padding: 10px 5px;
-    border-top: 1px solid var(--light);
-    transition: all 200ms;
-  }
-  
-  /* Titulo de la info */
-  .info h4 {
-    font-size: 12px;
-    cursor: pointer;
-  }
-  
-  /* Todas las listas */
-  .info ul {
-    list-style: none;
-    display: none;
-    padding: 5px;
-  }
-  
-  /* Listas */
-  .info li {
-    font-size: 9px;
-    padding: 1px 5px;
-  }
-  
-  
-  /* Seccion de copyright */
-  .copyright {
-    text-align: center;
-    padding: 30px 10px 10px;
-    font-size: 8px;
-    color: var(--light);
-    width: 100%;
-  }
-  
-  footer input {
-    display: none;
-  }
-  
-  footer input:checked + .info ul {
-    display: block;
-  }
-  
-  footer input:checked + .info {
-    height: 80px;
-  }
-  
-  
-  
-  
-  
-  
-  /* TRANSICIONES Y ANIMACIONES */
-  
-  .boton:hover {
-    background-color: var(--primary);
-    color: var(--light);
-  }
-  
-  .boton {
-    cursor: pointer;
-    transition: all 300ms;
-  }
-  
-  
-  .barra-navegacion a:active, #label-hamburguesa:active, .logo:active {
-    background-color: var(--primary);
-    color: var(--secondary);
-  }
-  
-  .barra-navegacion a, #label-hamburguesa .icono-hamburguesa, .logo:active {
-    transition: all 100ms;
-  }
-  
-  
-  @keyframes autoSlide1 {
-    0%, 25% { 
-      position: relative;
-      transform: translateX(0); }
-    40%, 100% { 
-      position: absolute;
-      transform: translateX(-100%); }
-  }
-  
-  @keyframes autoSlide2 {
-    0%, 25% { 
-      position: absolute;
-      transform: translateX(100%); }
-    40%, 65% { 
-      position: relative;
-      transform: translateX(0); }
-    80%, 100% { 
-      position: absolute;
-      transform: translateX(-100%); }
-  }
-  
-  @keyframes autoSlide3 {
-    0%, 65% { 
-      position: absolute;
-      transform: translateX(100%); }
-    80%, 100% { 
-      position: relative;
-      transform: translateX(0%); }
-  }
-  
-  
-  
-  
-  
-  
-  
-  /* MEDIA QUERYS */
-  
-  /* DISEÑOS PARA TABLETS */
-  
-  @media (min-width:576px) {
-  
-  
-  
-    /* HEADER */
-    .barra-busqueda {
-      width: 60%;
-    }
-  
-    .iconos {
-      width: 20%;
-    }
-  
-    .iconos .icono-hamburguesa {
-      display: none;
-    }
-  
-    .header-nav-inferior {
-      width: 100%;
-      opacity: 1;
-      display: flex;
-      background-color: #dff4ff;
-    }
-  
-    /* Para reactivar los links */
-    .header-nav-inferior a {
-      pointer-events: auto;
-    }
-  
-    .barra-navegacion {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      width: 100%;
-    }
-  
-    .barra-navegacion a {
-      text-decoration: none;
-      color: #4b858d;
-      border: 1px solid #4b858d;
-      width: 25%;
-      text-align: center;
-      padding: 10px;
-      font-size: 16px;
-    }
-  
-  
-  
-  
-    /* MAIN */
-  
-    .titulo {
-      font-size: 1.5rem;
-    }
-  
-    .oferta, .mas-vendido {
-      width: 48%;
-    }
-  
-  
-  
-  
-  
-    /* FOOTER */
-  
-    .info{
-      width: 30%;
-      margin: 20px 0;
-      justify-self: center;
-    }
-  
-    .info h4 {
-      font-size: 1.1rem;
-    }
-  
-    .info li {
-      font-size: 0.9rem;
-    }
-  
-    .copyright {
-      font-size: 0.9rem;
-    }
-  
-  }
-  
-  
-  
-  
-  
-  
-  
-  /* Resolucion para PC */
-  @media(min-width: 992px) {
-  
-    /* HEADER */
-  
-    .barra-busqueda {
-      width: 70%;
-    }
-  
-    .iconos {
-      width: 10%;
-    }
-  
-  
-  
-  
-    /* MAIN */
-  
-    .oferta .precio-anterior{
-      width: 15%;
-    }
-  
-    .oferta .precio {
-      width: 85%;
-    }
-  
-    .mas-vendido {
-      width: 23%;
-    }
-  
-  }
-  
-  
-  
-  
-  
-  /* MEDIA QUERYS RECOMENDADAS
-  @media(min-width: 768px) {
-    
-  }
-  @media(min-width: 1200px) {
-  
-  } */

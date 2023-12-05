@@ -1,114 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include ('../partials/head')%>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/about.css">
+<link rel="stylesheet" href="/css/mediaQ.css">
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="/css/about.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
-
-  <title>Principal</title>
+<title>Principal</title>
 </head>
 
 <body id="body">
 
   <!-- ENCABEZADO -->
-  <header>
 
-    <div class="header-nav-superior">
-
-      <!-- Barra de navegacion -->
-      <input type="checkbox" id="check">
-      <label for="check" id="label-hamburguesa"><i class="fa-solid fa-bars icono-hamburguesa"></i></label>
-
-      <nav class="barra-navegacion">
-        <a href="/"><i class="fa-solid fa-home"></i> Inicio</a>
-        <a href=""><i class="fa-solid fa-book"></i> Productos</a>
-        <a href=""><i class="fa-solid fa-question"></i> Nosotros</a>
-        <a href="/users/register"><i class="fa-solid fa-user icono-usuario"></i> Iniciar sesión</a>
-        <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i> Carrito</a>
-      </nav>
-
-
-
-
-      <!-- Contenedor Logo -->
-      <a href="/" class="inicio">
-        <div class="contenedor-logo">
-          <h3 class="nombre-pagina">Heaven</h3>
-          <img src="/images/Logo-zapa.png" alt="Logo provisirio" class="logo">
-          <h3 class="nombre-pagina">Sports</h3>
-        </div>
-      </a>
-
-
-      <!-- Barra de busqueda -->
-      <input type="text" placeholder="Buscar..." class="barra-busqueda">
-
-    </div>
-
-    
-
-
-  </header>
-
+  <%- include ('../partials/header')%>
 
   <main>
-    
+    <!--
+    <img src="..\images\Logo-barra.png" class="imagFondo">
+    -->
+    <div class="contenedor-parrafo">
+      Nuestro sitio web es un e-commerce que ofrece una amplia gama de calzados deportivos, abarcando la variedad de
+      marcas, disciplinas deportivas, talles, géneros y modalidad. Podrá encontrar desde calzado Outdoor, para Futbol,
+      Golf, Tennis, Jockey, ocasionales, hasta zapatillas acuáticas entre muchos otros mas. Trabajamos hasta el talle 47
+      iniciando desde talles para niños.
+      Realizamos envíos a todo el país.
+      Nuestra empresa está orientado a todo aquel que practique deportes ya sea de manera amateur o profesional, de
+      todas las edades y que busque calidad, comodidad y confort en su andar y eficiencia en su práctica deportiva.
+      Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclusivos. Asesoramos en cuanto a
+      necesidades ortopédicas y vasculares, talles, sujeción y materiales. Con nuestros clientes nos comprometemos a
+      enviarles avisos de ofertas exclusivas de productos y un sistema de fidelización del cliente con beneficios en sus
+      futuras compras. Como servicio post venta ofrecemos orientación en cuanto al mantenimiento y una garantía de
+      cambio directo los primeros 10 días.
+    </div>
+
   </main>
 
 
 
 
   <!-- PIE DE PAGINA -->
-  <footer>
-    <!-- Formas de pago -->
-    <input type="checkbox" id="check-info">
-    <section class="info">
-      <label for="check-info">
-        <h4>Informacion</h4>
-      </label>
-      <ul>
-        <li>Medios de pago</li>
-        <li>Políticas</li>
-      </ul>
-    </section>
 
-    <!-- Contacto -->
-    <input type="checkbox" id="check-us">
-    <section class="info">
-      <label for="check-us">
-        <h4>Nosotros</h4>
-      </label>
-      <ul>
-        <li>Acerca de</li>
-        <li>Contacto</li>
-      </ul>
-    </section>
-
-    <!-- Ayuda -->
-    <input type="checkbox" id="check-help">
-    <section class="info">
-      <label for="check-help">
-        <h4>Ayuda</h4>
-      </label>
-      <ul>
-        <li>Cambios y devoluciones</li>
-        <li>Compra segura</li>
-      </ul>
-    </section>
-
-    <!-- Copyright -->
-    <section class="copyright">
-      <p>Heaven Sports ©| Todos los derechos reservados.</p>
-    </section>
-
-  </footer>
+  <%- include ('../partials/footer')%>
 
 </body>
 
