@@ -278,3 +278,130 @@ main {
 
 
 
+
+/* MEDIA QUERYS */
+
+/* DISEÑOS PARA TABLETS */
+
+@media (min-width:768px) {
+
+
+  /* MAIN */
+
+  .titulo {
+      font-size: 1.5rem;
+  }
+
+  .main-section {
+      justify-content: space-around;
+      display: flex;
+  }
+
+  .oferta,
+  .mas-vendido {
+      width: 48%;
+      max-width: 400px;
+  }
+
+  .marca {
+      width: 100px;
+  }
+
+
+}
+
+
+
+
+
+
+
+/* Resolucion para PC */
+@media(min-width: 1024px) {
+
+
+  /* MAIN */
+
+  .titulo {
+      font-size: 36px;
+  }
+
+  .precio-anterior {
+      font-size: 14px;
+  }
+
+  .precio {
+      font-size: 18px
+  }
+
+  .descuento {
+      font-size: 14px;
+  }
+
+  .descripcion {
+      font-size: 14px;
+  }
+
+
+
+  /* Articulos de las secciones */
+  .oferta,
+  .mas-vendido {
+      width: 250px;
+      margin: 10px;
+      transition: all 200ms ease-in-out;
+  }
+
+  .marca {
+      transition: all 200ms ease-in-out;
+  }
+
+
+  /* Imagenes de cada articulo */
+  .oferta img,
+  .mas-vendido img {
+      width: 90%;
+      max-width: 300px;
+      padding: 10px 0;
+
+  }
+
+  .envio-gratis {
+      z-index: 10;
+      font-size: 18px;
+  }
+
+  .contenedor-precio-descripcion {
+      width: 90%;
+      padding: 10px 0;
+  }
+
+  .main-section {
+      justify-content: center;
+  }
+
+  .oferta:hover,
+  .mas-vendido:hover,
+  .marca:hover {
+      transform: scale(1.1);
+      background-color: var(--light-primary);
+  }
+
+  .icono-hamburguesa:hover,
+  .inicio:hover {
+      transform: scale(1.2);
+  }
+
+  .barra-navegacion a:hover {
+      font-size: 19px;
+      background-color: var(--light-primary);
+      color: var(--dark);
+  }
+
+  .inicio,
+  .barra-navegacion a,
+  .icono-hamburguesa {
+      transition: all 200ms ease-in-out;
+  }
+
+}
