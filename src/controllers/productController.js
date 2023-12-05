@@ -7,6 +7,9 @@ const controller = {
     },
     formCarga: (req, res) => {
         res.render('products/formCarga', {});
+    },
+    formEdit: (req, res) => {
+        res.render('products/formEdit', {});
     }
 }
 

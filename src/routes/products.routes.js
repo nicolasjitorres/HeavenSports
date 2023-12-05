@@ -12,4 +12,8 @@ router.get('/cart', productController.cart);
 // Ruta hacía el formulario de carga de producto
 router.get('/formCarga', productController.formCarga);
 
+// Ruta hacía el formulario de edicion de producto
+router.get('/formEdit', productController.formEdit);
+
+
 module.exports = router;
