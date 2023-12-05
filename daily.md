@@ -11,7 +11,7 @@ Se puede resumir en lo siguiente:
 
 **Sandez Matias:**
 - Que se hizo ayer: Revision del feedback del Sprint 2.
-- Impedimentos:
+- Impedimentos: -
 - Que se hara: 
 
 **Torres Nicolas:**
@@ -30,7 +30,7 @@ Se puede resumir en lo siguiente:
 **Peralta Diego:**
 - Que se hizo ayer: Arreglos en el formulario de login, register, el carrito, el formulario de carga de producto, footer.
 - Impedimentos: -
-- Que se hara: Formulario para cargar productos, en ejs con estilos e imagenes.
+- Que se hara: Formulario para cargar y editar productos, en ejs con estilos e imagenes.
 
 **Sandez Matias:**
 - Que se hizo ayer:
@@ -39,10 +39,10 @@ Se puede resumir en lo siguiente:
 
 **Torres Nicolas:**
 - Que se hizo ayer: Actualizacion de estilos en el home. Implementacion con template engines. Ordenamiento de carpetas y archivos para adecuarse al template.
-- Impedimentos:
+- Impedimentos: -
 - Que se hara: Correcciones y actualizaciones varias.
 
 **Yacuk Maria:**
 - Que se hizo ayer: Creacion de los parciales head, header y footer, e implementacion de estilos en todas las paginas para adecurse a los parciales. 
-- Impedimentos:
+- Impedimentos: -
 - Que se hara: Plasmado de conclusiones de las reuniones. Revision de los items pedidos en el enunciado del Sprint 3 para completar algunos faltantes.
