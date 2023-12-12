@@ -12,7 +12,7 @@ Se puede resumir en lo siguiente:
 **Sandez Matias:**
 - Que se hizo ayer: Revision del feedback del Sprint 2.
 - Impedimentos: -
-- Que se hara: 
+- Que se hara: -
 
 **Torres Nicolas:**
 - Que se hizo ayer: Revision del feedback del Sprint 2.
@@ -33,9 +33,9 @@ Se puede resumir en lo siguiente:
 - Que se hara: Formulario para cargar y editar productos, en ejs con estilos e imagenes.
 
 **Sandez Matias:**
-- Que se hizo ayer:
-- Impedimentos:
-- Que se hara:
+- Que se hizo ayer: -
+- Impedimentos: -
+- Que se hara: -
 
 **Torres Nicolas:**
 - Que se hizo ayer: Actualizacion de estilos en el home. Implementacion con template engines. Ordenamiento de carpetas y archivos para adecuarse al template.
