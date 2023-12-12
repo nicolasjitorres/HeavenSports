@@ -173,6 +173,7 @@ main {
 .descuento {
   font-size: 10px;
   color: var(--discount);
+  margin-left: 10px;
 }
 
 /* Descripcion del articulo */

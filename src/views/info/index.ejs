@@ -37,66 +37,17 @@
 
       <h3 class="titulo">PRODUCTOS DESTACADOS</h3>
 
-      <a class="oferta" href="/products/detail">
+      <% for (let i= 0; i< productos.length; i++) {%>
+      <a class="oferta" href="/products/detail/<%= productos[i].Id %>">
         <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-5.jpeg" alt="Ejemplo2">
+        <img src="/images/<%= productos[i].Imagen %>" alt="Ejemplo2">
         <div class="contenedor-precio-descripcion">
           <p class="precio-anterior">$20.000</p>
-          <p class="precio">$16.000 <span class="descuento">20% descuento</span></p>
-          <p class="descripcion">Adidas Top Blancas</p>
+          <p class="precio">$ <%= productos[i].Precio %><span class="descuento"><%= productos[i].Descuento %> % descuento</span></p>
+          <p class="descripcion"><%= productos[i].Nombre %></p>
         </div>
       </a>
-
-      <a class="oferta" href="/products/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-7.jpeg" alt="Ejemplo2">
-        <div class="contenedor-precio-descripcion">
-          <p class="precio-anterior">$20.000</p>
-          <p class="precio">$15.000 <span class="descuento">25% descuento</span></p>
-          <p class="descripcion">Nike Air Force 1 Celestes</p>
-        </div>
-      </a>
-
-      <a class="mas-vendido" href="/products/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-9.jpeg" alt="Zapa 9">
-        <div class="contenedor-precio-descripcion">
-          <p class="precio">$16.000</p>
-          <p class="descripcion">Nike Zoom Pegasus Gris</p>
-        </div>
-      </a>
-
-      <a class="mas-vendido" href="/products/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-6.jpeg" alt="Zapa 6">
-        <div class="contenedor-precio-descripcion">
-          <p class="precio">$16.000</p>
-          <p class="descripcion">Nike Air Force 1 Blancas</p>
-        </div>
-      </a>
-
-      <a class="mas-vendido" href="/products/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-5.jpeg" alt="Zapa 6">
-        <div class="contenedor-precio-descripcion">
-          <p class="precio">$16.000</p>
-          <p class="descripcion">Adidas Top Blancas</p>
-        </div>
-      </a>
-
-      <a class="mas-vendido" href="/products/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/zapa-1.jpeg" alt="Zapa 6">
-        <div class="contenedor-precio-descripcion">
-          <p class="precio">$16.000</p>
-          <p class="descripcion">Nike SB Blancas detalle Gris</p>
-        </div>
-      </a>
-
-
-    
-
-
+      <%} %>
     </section>
 
     <!-- Buscar por marca -->
