@@ -21,28 +21,25 @@
 
     <div class="contenedor-producto">
 
-      <p class="nombre">Zapatillas Adidas Top Blancas</p>
+      <p class="nombre"><%= producto.Nombre %></p>
 
 
       <div class="imagenes-producto">
         <div class="imagen-muestra">
-          <img class="imagen0" src="\images\zapa-5.jpeg" alt="imagen grande">
+          <img class="imagen0" src="\images\<%= producto.Imagen %>" alt="imagen grande">
         </div>
         <div class="imagen-disponible">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 1">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 2">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 3">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 4">
+          <img class="imagenInd" src="\images\<%= producto.Imagen %>" alt="imagen chica 1">
+          <img class="imagenInd" src="\images\<%= producto.Imagen %>" alt="imagen chica 2">
+          <img class="imagenInd" src="\images\<%= producto.Imagen %>" alt="imagen chica 3">
+          <img class="imagenInd" src="\images\<%= producto.Imagen %>" alt="imagen chica 4">
         </div>
       </div>
 
-      <p class="precio-producto">$ 16.000,00 </p>
+      <p class="precio-producto">$ <%= producto.Precio %></p>
 
       <p class="descripcion-producto">
-        ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
-        Excelente calidad y terminación.
-        Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
-        Utilizamos materiales de primera calidad.
+        <%= producto.Descripcion %>
       </p>
 
 

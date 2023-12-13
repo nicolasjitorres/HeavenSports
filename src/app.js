@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mainRouter = require('./routes/main.routes')
+const productsRouter = require('./routes/products.routes')
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, './views'));
@@ -16,6 +17,7 @@ app.listen(PUERTO, () => {
 });
 
 app.use('/', mainRouter);
+app.use('/products', productsRouter);
 
 
 
