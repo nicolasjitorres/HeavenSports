@@ -1,17 +1,10 @@
-const fs = require('fs');
-const path = require('path');
 const productService = require('../data/productService');
-
-const productsFilePath = path.join(__dirname, '../data/productDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 
 const controller = {
     // Mostrar todos los productos
     index: (req, res) => {
-		res.render('products', ({
+		res.render('products/products', ({
 			productos: productService.getAll()
 		}));
 	},
@@ -24,11 +17,21 @@ const controller = {
     cart: (req, res) => {
         res.render('products/cart', {});
     },
-    formCarga: (req, res) => {
-        res.render('products/formCarga', {});
+    create: (req, res) => {
+        res.render('products/create');
     },
-    formEdit: (req, res) => {
-        res.render('products/formEdit', {});
+    save: (req, res) => {
+        productService.saveProduct(req.body, req.files);
+		res.redirect('/products');
+    },
+    edit: (req, res) => {
+        res.render('products/edit', ({
+			producto: productService.getOne(req.params.id)
+		}));
+    },
+    update: (req, res) => {
+        productService.edit(req.body, req.params.id, req.files);
+        res.redirect('/products/'+ req.params.id + "/detail");
     }
 }
 

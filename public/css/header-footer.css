@@ -15,7 +15,7 @@
   font-family: poppins, sans-serif;
   margin: 0;
   padding: 0;
-  
+
 }
 
 body {
@@ -224,35 +224,35 @@ footer input:checked+.info {
   /* HEADER */
 
   .header-nav-superior {
-      height: auto;
-      justify-content: flex-start;
+    height: auto;
+    justify-content: flex-start;
   }
 
   .barra-busqueda {
-      width: 300px;
-      order: 5;
-      margin-left: 50px;
+    width: 300px;
+    order: 5;
+    margin-left: 50px;
   }
 
   .inicio {
-      width: 220px;
-      position: absolute;
-      right: 5px;
-      top: 5px;
+    width: 220px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
   }
 
   .contenedor-logo {
-      width: 100%;
+    width: 100%;
   }
 
   .nombre-pagina {
-      display: block;
+    display: block;
   }
 
   .logo {
-      position: relative;
-      top: auto;
-      right: auto;
+    position: relative;
+    top: auto;
+    right: auto;
   }
 
 
@@ -265,21 +265,21 @@ footer input:checked+.info {
 
 
   .info {
-      width: 30%;
-      margin: 20px 0;
-      text-align: center;
+    width: 30%;
+    margin: 20px 0;
+    text-align: center;
   }
 
   .info h4 {
-      font-size: 1.1rem;
+    font-size: 1.1rem;
   }
 
   .info li {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
   .copyright {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
 }
@@ -295,25 +295,25 @@ footer input:checked+.info {
 
   /* HEADER */
   .header-nav-superior {
-      justify-content: flex-end;
+    justify-content: flex-end;
   }
 
-
   .barra-busqueda {
-      margin: 0;
+    margin: 0;
   }
 
   .inicio {
-      right: 40%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nombre-pagina {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   .logo {
-      width: 45px;
-      height: 45px;
+    width: 45px;
+    height: 45px;
   }
 
 
