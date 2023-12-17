@@ -17,6 +17,7 @@
     <!-- Formulario edicion -->
     <div class="contenedor-form">
       <h4 class="titulo">Edicion de producto</h4>
+
       <form action="/products/<%= producto.Id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
@@ -112,6 +113,7 @@
         
 
       </form>
+      
       <div class="botones">
         <!-- Boton carga -->
         <button type="submit" class="boton">Guardar</button>
@@ -119,10 +121,12 @@
         <!-- Boton de reset -->
         <button type="reset" class="boton">Limpiar</button>
 
-        <form action="/products/<%= producto.Id %>/?_method=DELETE" method="POST">
-          <button type="submit" class="boton">Eliminar</button>
+        
+        <form action="/products/<%= producto.Id %>/?_method=DELETE" method="POST" class="boton">
+          <button type="submit" class="boton-form">Eliminar</button>
         </form>
-
+        
+      
       </div>
     </div>
   </main>
