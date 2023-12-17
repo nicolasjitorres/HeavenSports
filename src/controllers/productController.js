@@ -32,7 +32,11 @@ const controller = {
     update: (req, res) => {
         productService.edit(req.body, req.params.id, req.files);
         res.redirect('/products/'+ req.params.id + "/detail");
-    }
+    },
+    destroy: (req, res) => {
+		productService.delete(req);
+		res.redirect('/products')
+	}
 }
 
 module.exports = controller
