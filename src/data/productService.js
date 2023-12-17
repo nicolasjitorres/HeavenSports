@@ -68,6 +68,7 @@ const productService = {
         let idAEliminar = this.products.findIndex(producto => producto.id == req.params.id);
         this.products.splice(idAEliminar, 1);
         fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
+        console.log(idAEliminar)
     }
 }
 

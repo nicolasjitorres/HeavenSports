@@ -22,7 +22,7 @@ router.get('/', productController.index);
 
 /*** GET ONE PRODUCT ***/ 
 // Ruta hacía el detalle del producto
-router.get('/detail/:id', productController.detail); 
+router.get('/:id/detail', productController.detail); 
 
 // Ruta hacía el carrito de compras
 router.get('/cart', productController.cart);
@@ -32,7 +32,7 @@ router.get('/create', productController.create);
 router.post('/', upload.array('Imagen'), productController.save); 
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/edit/:id', productController.edit); 
+router.get('/:id/edit', productController.edit); 
 router.put('/:id', upload.array('Imagen'), productController.update); 
 
 /*** DELETE ONE PRODUCT***/ 

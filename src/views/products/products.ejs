@@ -38,7 +38,7 @@
       <h3 class="titulo">PRODUCTOS DESTACADOS</h3>
 
       <% for (let i= 0; i< productos.length; i++) {%>
-      <a class="oferta" href="/products/detail/<%= productos[i].Id %>">
+      <a class="oferta" href="/products/<%= productos[i].Id %>/detail">
         <p class="envio-gratis">ENVIO GRATIS</p>
         <img src="/images/<%= productos[i].Imagen %>" alt="Ejemplo2">
         <div class="contenedor-precio-descripcion">

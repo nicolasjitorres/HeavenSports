@@ -16,7 +16,7 @@
 
     <!-- Formulario edicion -->
     <div class="contenedor-form">
-      <h4 class="titulo">Nuevo producto</h4>
+      <h4 class="titulo">Edicion de producto</h4>
       <form action="/products/<%= producto.Id %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
@@ -43,18 +43,20 @@
           <label for="descuento">Descuento</label>
         </div>
 
-        <!-- COLOR PRODUCTO 
+        <!-- COLOR PRODUCTO -->
         <div class="box">
-          <input type="text" name="Color" id="color" required value="%= producto.Color.join(" ") %>">
+          <!--<input type="text" name="Color" id="color" required value="%= producto.Color.join(" ") %>">-->
+          <input type="text" name="Color" id="color" >
           <label for="color">Colores (separados por un espacio)</label>
         </div>
 
-         TALLE PRODUCTO 
+        <!-- TALLE PRODUCTO -->
         <div class="box">
-          <input type="text" name="Talle" id="talle" required value="%= producto.Talle.join(" ") %>">
+          <!--<input type="text" name="Talle" id="talle" required value="%= producto.Talle.join(" ") %>">-->
+          <input type="text" name="Talle" id="talle">
           <label for="talle">Talles (separados por un espacio)</label>
         </div>
-        -->
+        
 
 
         <!-- STOCK PRODUCTO -->
@@ -107,15 +109,21 @@
           <input class="input-image" type="file" id="img" name="Imagen" multiple accept=".jpg, .png">
           <p>¡Atención! Esto sobreescrirá a las imagenes anteriores.</p>
         </div>
-        <div class="botones">
-          <!-- Boton carga -->
-          <button type="submit" class="boton">Guardar</button>
-
-          <!-- Boton de reset -->
-          <button type="reset" class="boton">Limpiar</button>
-        </div>
+        
 
       </form>
+      <div class="botones">
+        <!-- Boton carga -->
+        <button type="submit" class="boton">Guardar</button>
+
+        <!-- Boton de reset -->
+        <button type="reset" class="boton">Limpiar</button>
+
+        <form action="/products/<%= producto.Id %>/?_method=DELETE" method="POST">
+          <button type="submit" class="boton">Eliminar</button>
+        </form>
+
+      </div>
     </div>
   </main>
   <!-- PIE DE PAGINA -->
