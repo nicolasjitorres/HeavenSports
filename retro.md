@@ -2,28 +2,28 @@
 
 **Start Doing:**
 - ~~ Pair programming incluso para tareas individuales. ~~
-- Mantener actualizado el tablero de Trello todos los dias.
+- ~~ Mantener actualizado el tablero de Trello todos los dias. ~~
 - Retroalimentación de los trabajos de los demás compañeros.
 - Utilizar metodologia BEM.
 - Hacer wireframes para las distintas media queries.
 - Programar y coordinar mejor los trabajos de cada uno. 
 
 **More of:**
-- Comunicacion continua del equipo.
+- ~~ Comunicacion continua del equipo. ~~
 - Aprender Git y GitHub.
 - Mejor uso de Trello.
 - ~~ Estar a disposicion para ayudar a los demás. ~~
 - ~~ Prontitud en resolución de bloqueantes de otrxs compañerxs. ~~
-- Mejor uso de Trello.
 - Pair programming incluso para tareas individuales.
+- Mantener actualizado el tablero de Trello todos los dias.
 
 **Keep Doing:**
-- Protitud en resolucion de problemas del otro integrante.
+- Prontitud en resolucion de problemas del otro integrante.
 - Dar una mano al que está atrasado.
-- Comunicación.
 - Trabajo en equipo y ayuda a los demas
 - Estar a disposicion para ayudar a los demás.
-- Prontitud en resolución de bloqueantes de otrxs compañerxs
+- Prontitud en resolución de bloqueantes de otrxs compañerxs.
+- Comunicacion continua del equipo. 
 
 **Less of:**
 - Inconclusion de acuerdos.
@@ -32,12 +32,13 @@
 - Tareas interdependientes.
 - Descoordinación.
 - No dedicar tiempo a los trabajos y la programación.
+- No colaborar en equipo.
 
 **Stop Doing:**
 - Impuntualidad en reuniones pactadas.
 - ~~ No dedicar tiempo a los trabajos y la programación. ~~
 - No dividir trabajos pesados.
-- No colaborar en equipo.
+- ~~ No colaborar en equipo. ~~
 
 
 --------------------------------------------------
