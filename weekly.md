@@ -1,3 +1,5 @@
+# SPRINT 3
+
 Las reuniones no fueron homogeneas, con esto me refiero no fueron necesariamente diarias, ni estuvieron todos los integrantes del grupo, pero nos mantuvimos en contacto a traves del grupo de Whatsapp.
 
 Se puede resumir en lo siguiente:
