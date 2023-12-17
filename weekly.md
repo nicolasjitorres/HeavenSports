@@ -1,3 +1,48 @@
+# SPRINT 4
+
+Reuniones semanales, con comunicacion continua por Whatsapp.
+
+Se puede resumir en lo siguiente:
+
+## Reunion 1
+
+**Peralta Diego:**
+- Que se hizo ayer:  
+- Impedimentos: -
+- Que se hara: Edicion de estilos en home y formularios. Retoques en la vista index.
+
+**Torres Nicolas:**
+- Que se hizo ayer: Cracion del listado de productos en el archivo .json en la carpeta data (luego se reemplazará por la BD).
+- Impedimentos:
+- Que se hara:
+
+**Yacuk Maria:**
+- Que se hizo ayer: Implementacion del Feedback del Sprint 3.
+- Impedimentos: - 
+- Que se hara: Actualizacion y retoques de tarjetas en Trello.
+
+
+## Reunion 2:
+
+**Peralta Diego:**
+- Que se hizo ayer: CRUD: metodo Get de un producto invividual para mostrar su detalle.
+- Impedimentos:
+- Que se hara: Implementacion de muestreo dinamico del detalle de un producto (ruta parametrizada).
+
+**Torres Nicolas:**
+- Que se hizo ayer: 
+- Impedimentos:
+- Que se hara:
+
+**Yacuk Maria:**
+- Que se hizo ayer: CRUD: metodo DELETE. Implementacion de la accion para borrado de un producto. Correccion de algunas rutas.
+- Impedimentos: -
+- Que se hara: Actualizacion del retro.md y el daily/weekly.md.
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
 # SPRINT 3
 
 Las reuniones no fueron homogeneas, con esto me refiero no fueron necesariamente diarias, ni estuvieron todos los integrantes del grupo, pero nos mantuvimos en contacto a traves del grupo de Whatsapp.
