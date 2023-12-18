@@ -38,7 +38,7 @@ const productService = {
             }
             productoNuevo.Imagen = imagenes;
         } else {
-            productoNuevo.Imagen = ["default.jpg"];
+            productoNuevo.Imagen = ["default.png"];
         }
         productoNuevo.Talle = productoNuevo.Talle.split(" ");
         productoNuevo.Color = productoNuevo.Color.split(" ").map(color => capitalize(color));
@@ -50,6 +50,13 @@ const productService = {
     },
     edit: function (productoEditado, id, files) {
         productoEditado.Id = id;
+        productoEditado.Nombre = capitalize(productoEditado.Nombre);
+        productoEditado.Descripcion = capitalize(productoEditado.Descripcion);
+        productoEditado.Precio = parseFloat(productoEditado.Precio);
+        productoEditado.Descuento = parseFloat(productoEditado.Descuento);
+        productoEditado.Talle = productoEditado.Talle.split(" ");
+        productoEditado.Color = productoEditado.Color.split(" ").map(color => capitalize(color));
+
         let indiceProducto = this.products.findIndex(producto => producto.Id == id);
         if (files.length) {
             let imagenes = [];

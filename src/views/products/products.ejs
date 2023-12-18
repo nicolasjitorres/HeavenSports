@@ -1,8 +1,8 @@
 <%- include ('../partials/head')%>
 
-  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/index.css">
 
-  <title>Principal</title>
+<title>Productos</title>
 </head>
 
 <body id="body">
@@ -22,9 +22,9 @@
 
     <div class="div-slider">
       <div class="slider">
-        <div class="img-slider slide1"><img src="images/gif2.gif" alt="Slide 1"></div>
-        <div class="img-slider slide2"><img src="images/gif3.gif" alt="Slide 2"></div>
-        <div class="img-slider slide3"><img src="images/gif4.gif" alt="Slide 3"></div>
+        <div class="img-slider slide1"><img src="/images/slider/slider1.jpg" alt="Slide 1"></div>
+        <div class="img-slider slide2"><img src="/images/slider/slider2.webp" alt="Slide 2"></div>
+        <div class="img-slider slide3"><img src="/images/slider/slider3.webp" alt="Slide 3"></div>
       </div>
     </div>
 
@@ -35,41 +35,30 @@
     <!-- Ofertas -->
     <section class="main-section">
 
-      <h3 class="titulo">PRODUCTOS DESTACADOS</h3>
+      <h3 class="titulo">TODOS LOS PRODUCTOS</h3>
 
       <% for (let i= 0; i< productos.length; i++) {%>
-      <a class="oferta" href="/products/detail/<%= productos[i].Id %>">
+      <a class="oferta" href="/products/<%= productos[i].Id %>/detail">
         <p class="envio-gratis">ENVIO GRATIS</p>
-        <img src="/images/<%= productos[i].Imagen %>" alt="Ejemplo2">
+        <div class="contenedor-img">
+          <img src="/images/products/<%= productos[i].Imagen %>" alt="Ejemplo2">
+        </div>
         <div class="contenedor-precio-descripcion">
           <% if (productos[i].Descuento != 0) { %>
-            <p class="precio-anterior">$<%= productos[i].Precio %></p>
-            <p class="precio">
-              $<%= (productos[i].Precio - (productos[i].Precio * (productos[i].Descuento / 100))).toFixed(2) %>
-              <span class="descuento"><%= productos[i].Descuento %>% descuento</span>
-            </p>
+          <p class="precio-anterior">$<%= productos[i].Precio %></p>
+          <p class="precio">
+            $<%= (productos[i].Precio - (productos[i].Precio * (productos[i].Descuento / 100))).toFixed(2) %>
+            <span class="descuento"><%= productos[i].Descuento %>% descuento</span>
+          </p>
           <% } else { %>
-            <p class="precio">$<%= productos[i].Precio%>
-          <% } %>
-          <p class="descripcion"><%= productos[i].Nombre %></p>
+          <p class="precio">$<%= productos[i].Precio%>
+            <% } %>
+            <p class="descripcion"><%= productos[i].Nombre %></p>
         </div>
       </a>
       <%} %>
     </section>
 
-    <!-- Buscar por marca -->
-    <section class="contenedor-marcas">
-      <h3 class="titulo">TODAS LAS MARCAS</h3>
-      <article class="marca">
-        <img src="/images/logo-nike.png" alt="Ejemplo1">
-      </article>
-      <article class="marca">
-        <img src="/images/logo-adidas.png" alt="Ejemplo2">
-      </article>
-      <article class="marca">
-        <img src="/images/logo-puma.png" alt="Ejemplo3">
-      </article>
-    </section>
   </main>
 
 
@@ -77,7 +66,7 @@
 
 
   <!-- PIE DE PAGINA -->
-  
+
   <%- include ('../partials/footer')%>
 
 </body>

@@ -142,6 +142,7 @@
   }
 
   .box-img p{
+    width: 100%;
     font-size: 11px;
     padding: 5px 0;
   }
@@ -246,20 +247,17 @@
   
     .box label,
     .box-check-titulo,
-    .box input {
+    .box input{
       font-size: 14px;
     }
   
     .label-check {
       font-size: 12px;
+      width: 80px;
     }
-  
-    .box-img {
-      width: 145px;
-    }
-  
-    .box-img label {
-      top: 5px;
+
+    .box-img p{
+      font-size: 12px;
     }
   
     .boton {
@@ -291,15 +289,17 @@
     .label-check {
       font-size: 14px;
     }
-  
-    .box-img {
-      width: 160px;
+      
+    .label-img{
+      font-size: 14px;
+      width: 200px;
     }
-  
-    .box-img label {
-      top: 5px;
+
+    .box-img p{
+      font-size: 14px;
     }
-  
+
+
     .boton {
       font-size: 18px;
     }
