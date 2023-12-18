@@ -27,12 +27,13 @@
         <div class="imagen-muestra">
           <img class="imagen0" src="/images/products/<%= producto.Imagen %>" alt="imagen grande">
         </div>
+        <% if(producto.Imagen.length > 1){ %>
         <div class="imagen-disponible">
-          <img class="imagenInd" src="/images/products/<%= producto.Imagen %>" alt="imagen chica 1">
-          <img class="imagenInd" src="/images/products/<%= producto.Imagen %>" alt="imagen chica 2">
-          <img class="imagenInd" src="/images/products/<%= producto.Imagen %>" alt="imagen chica 3">
-          <img class="imagenInd" src="/images/products/<%= producto.Imagen %>" alt="imagen chica 4">
+          <% for (let i = 1; i < producto.Imagen.length; i++) { %>
+          <img class="imagenInd" src="/images/products/<%= producto.Imagen[i] %>">
+          <% } %>
         </div>
+        <% } %>
       </div>
 
       <p class="precio-producto">$ <%= producto.Precio %></p>
@@ -63,7 +64,17 @@
         </button>
       </a>
 
+      <a href="/products/<%= producto.Id %>/edit">
+        <button class="boton-carrito" name="botonCarr">
+          Editar
+        </button>
+      </a>
 
+      <a href="/products/<%= producto.Id %>/delete">
+        <button class="boton-carrito" name="botonCarr">
+          Eliminar
+        </button>
+      </a>
 
     </div>
 
