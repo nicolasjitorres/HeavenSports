@@ -1,1 +1,133 @@
-[{"Nombre":"Nike AIr force 1","Descripcion":"Zapatilla icónica de Nike con suela Air","Precio":"130","Descuento":"10","Color":"Blanco Negro","Talle":"34 35 36 37 38 39 40 41 42 43 44","Stock":"8","Categoria":"Deportivo","Id":"1","Imagen":["zapa-1.jpeg"]},{"Id":2,"Nombre":"Adidas Superstar","Descripcion":"Zapatilla clásica de Adidas con puntera de concha","Precio":90,"Descuento":5,"Color":["Blanco","Negro"],"Talle":["34","35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-2.jpeg"],"Categoria":["Casual"],"Stock":12},{"Id":3,"Nombre":"Formal Elegance","Descripcion":"Zapato formal con estilo elegante","Precio":150,"Descuento":15,"Color":["Negro","Marrón"],"Talle":["38","39","40","41","42","43","44"],"Imagen":["zapa-3.jpeg"],"Categoria":["Formal"],"Stock":5},{"Id":4,"Nombre":"Converse Chuck Taylor All Star","Descripcion":"Zapatilla clásica de lona con suela de goma","Precio":50,"Descuento":0,"Color":["Rojo","Azul","Blanco"],"Talle":["34","35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-4.jpeg"],"Categoria":["Urbano"],"Stock":10},{"Id":5,"Nombre":"Puma RS-X Reinvention","Descripcion":"Zapatilla deportiva con diseño moderno","Precio":80,"Descuento":20,"Color":["Negro","Verde","Gris"],"Talle":["35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-5.jpeg"],"Categoria":["Deportivo"],"Stock":6},{"Id":6,"Nombre":"Disney Kids Sneakers","Descripcion":"Zapatilla infantil con personajes de Disney","Precio":40,"Descuento":15,"Color":["Azul","Rosado"],"Talle":["24","25","26","27","28","29","30","31","32","33"],"Imagen":["zapa-6.jpeg"],"Categoria":["Niños"],"Stock":8},{"Id":7,"Nombre":"Vans Old Skool","Descripcion":"Zapatilla clásica de skate con la icónica raya lateral","Precio":70,"Descuento":10,"Color":["Negro","Blanco","Azul"],"Talle":["34","35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-7.jpeg"],"Categoria":["Urbano"],"Stock":7},{"Id":8,"Nombre":"Reebok Nano 9","Descripcion":"Zapatilla de entrenamiento cruzado para rendimiento óptimo","Precio":110,"Descuento":15,"Color":["Gris","Amarillo","Negro"],"Talle":["35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-8.jpeg"],"Categoria":["Deportivo"],"Stock":9},{"Id":9,"Nombre":"Formal Elegance II","Descripcion":"Zapato formal con diseño elegante y refinado","Precio":160,"Descuento":20,"Color":["Negro","Marrón","Gris"],"Talle":["38","39","40","41","42","43","44"],"Imagen":["zapa-9.jpeg"],"Categoria":["Formal"],"Stock":4},{"Id":10,"Nombre":"Nike Revolution 5 (Niños)","Descripcion":"Zapatilla deportiva para niños con suela cómoda","Precio":50,"Descuento":5,"Color":["Azul","Rojo","Verde"],"Talle":["24","25","26","27","28","29","30","31","32","33"],"Imagen":["zapa-1.jpeg"],"Categoria":["Niños"],"Stock":11},{"Id":11,"Nombre":"Casual Comfort Slip-On","Descripcion":"Zapatilla casual sin cordones para comodidad instantánea","Precio":80,"Descuento":0,"Color":["Gris","Beige","Azul"],"Talle":["34","35","36","37","38","39","40","41","42","43","44"],"Imagen":["zapa-2.jpeg"],"Categoria":["Casual"],"Stock":6},{"Id":12,"Nombre":"Adidas Kids Playtime","Descripcion":"Zapatilla infantil con diseño divertido para jugar","Precio":35,"Descuento":10,"Color":["Rosado","Azul","Amarillo"],"Talle":["24","25","26","27","28","29","30","31","32","33"],"Imagen":["zapa-3.jpeg"],"Categoria":["Niños"],"Stock":10},{"Nombre":"Fre","Descripcion":"Kyuk","Precio":35,"Descuento":2,"Color":["Regve","Bwr"],"Talle":["5","6"],"Stock":"2","Id":13,"Imagen":["Imagen-1702826369298.jpg"]},{"Nombre":"Htrq","Descripcion":"Qwm","Precio":63,"Descuento":5,"Color":["Fwee"],"Talle":["6","8","95"],"Stock":"7","Categoria":"Formal","Id":14,"Imagen":["Imagen-1702826540091.jpg"]},{"Nombre":"Deportivo","Descripcion":"Qwdq","Precio":686,"Descuento":8,"Color":["Rtyu"],"Talle":["40"],"Stock":"1","Categoria":"Deportivo","Id":15,"Imagen":["Imagen-1702826596500.jpg"]}]
+[{
+    "Nombre": "Nike air",
+    "Descripcion": "Zapatilla icónica de nike con suela air",
+    "Precio": 130,
+    "Descuento": 10,
+    "Color": ["Blanco", "Negro", "Azul"],
+    "Talle": ["34", "35", "36", "37", "38", "39"],
+    "Stock": "8",
+    "Categoria": ["Deportivo", "Urbano", "Formal"],
+    "Id": "1",
+    "Imagen": ["zapa-1.jpeg"]
+}, {
+    "Id": 2,
+    "Nombre": "Adidas Superstar",
+    "Descripcion": "Zapatilla clásica de Adidas con puntera de concha",
+    "Precio": 90,
+    "Descuento": 5,
+    "Color": ["Blanco", "Negro"],
+    "Talle": ["34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-2.jpeg"],
+    "Categoria": ["Casual"],
+    "Stock": 12
+}, {
+    "Id": 3,
+    "Nombre": "Formal Elegance",
+    "Descripcion": "Zapato formal con estilo elegante",
+    "Precio": 150,
+    "Descuento": 15,
+    "Color": ["Negro", "Marrón"],
+    "Talle": ["38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-3.jpeg"],
+    "Categoria": ["Formal"],
+    "Stock": 5
+}, {
+    "Id": 4,
+    "Nombre": "Converse Chuck Taylor All Star",
+    "Descripcion": "Zapatilla clásica de lona con suela de goma",
+    "Precio": 50,
+    "Descuento": 0,
+    "Color": ["Rojo", "Azul", "Blanco"],
+    "Talle": ["34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-4.jpeg"],
+    "Categoria": ["Urbano"],
+    "Stock": 10
+}, {
+    "Id": 5,
+    "Nombre": "Puma RS-X Reinvention",
+    "Descripcion": "Zapatilla deportiva con diseño moderno",
+    "Precio": 80,
+    "Descuento": 20,
+    "Color": ["Negro", "Verde", "Gris"],
+    "Talle": ["35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-5.jpeg"],
+    "Categoria": ["Deportivo"],
+    "Stock": 6
+}, {
+    "Id": 6,
+    "Nombre": "Disney Kids Sneakers",
+    "Descripcion": "Zapatilla infantil con personajes de Disney",
+    "Precio": 40,
+    "Descuento": 15,
+    "Color": ["Azul", "Rosado"],
+    "Talle": ["24", "25", "26", "27", "28", "29", "30", "31", "32", "33"],
+    "Imagen": ["zapa-6.jpeg"],
+    "Categoria": ["Niños"],
+    "Stock": 8
+}, {
+    "Id": 7,
+    "Nombre": "Vans Old Skool",
+    "Descripcion": "Zapatilla clásica de skate con la icónica raya lateral",
+    "Precio": 70,
+    "Descuento": 10,
+    "Color": ["Negro", "Blanco", "Azul"],
+    "Talle": ["34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-7.jpeg"],
+    "Categoria": ["Urbano"],
+    "Stock": 7
+}, {
+    "Id": 8,
+    "Nombre": "Reebok Nano 9",
+    "Descripcion": "Zapatilla de entrenamiento cruzado para rendimiento óptimo",
+    "Precio": 110,
+    "Descuento": 15,
+    "Color": ["Gris", "Amarillo", "Negro"],
+    "Talle": ["35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-8.jpeg"],
+    "Categoria": ["Deportivo"],
+    "Stock": 9
+}, {
+    "Id": 9,
+    "Nombre": "Formal Elegance II",
+    "Descripcion": "Zapato formal con diseño elegante y refinado",
+    "Precio": 160,
+    "Descuento": 20,
+    "Color": ["Negro", "Marrón", "Gris"],
+    "Talle": ["38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-9.jpeg"],
+    "Categoria": ["Formal"],
+    "Stock": 4
+}, {
+    "Id": 10,
+    "Nombre": "Nike Revolution 5 (Niños)",
+    "Descripcion": "Zapatilla deportiva para niños con suela cómoda",
+    "Precio": 50,
+    "Descuento": 5,
+    "Color": ["Azul", "Rojo", "Verde"],
+    "Talle": ["24", "25", "26", "27", "28", "29", "30", "31", "32", "33"],
+    "Imagen": ["zapa-1.jpeg"],
+    "Categoria": ["Niños"],
+    "Stock": 11
+}, {
+    "Id": 11,
+    "Nombre": "Casual Comfort Slip-On",
+    "Descripcion": "Zapatilla casual sin cordones para comodidad instantánea",
+    "Precio": 80,
+    "Descuento": 0,
+    "Color": ["Gris", "Beige", "Azul"],
+    "Talle": ["34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44"],
+    "Imagen": ["zapa-2.jpeg"],
+    "Categoria": ["Casual"],
+    "Stock": 6
+}, {
+    "Id": 12,
+    "Nombre": "Adidas Kids Playtime",
+    "Descripcion": "Zapatilla infantil con diseño divertido para jugar",
+    "Precio": 35,
+    "Descuento": 10,
+    "Color": ["Rosado", "Azul", "Amarillo"],
+    "Talle": ["24", "25", "26", "27", "28", "29", "30", "31", "32", "33"],
+    "Imagen": ["zapa-3.jpeg"],
+    "Categoria": ["Niños"],
+    "Stock": 10
+}]
