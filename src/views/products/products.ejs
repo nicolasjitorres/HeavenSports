@@ -41,7 +41,7 @@
       <a class="oferta" href="/products/<%= productos[i].Id %>/detail">
         <p class="envio-gratis">ENVIO GRATIS</p>
         <div class="contenedor-img">
-          <img src="/images/products/<%= productos[i].Imagen %>" alt="Ejemplo2">
+          <img src="/images/products/<%= productos[i].Imagen[0] %>" alt="Ejemplo2">
         </div>
         <div class="contenedor-precio-descripcion">
           <% if (productos[i].Descuento != 0) { %>

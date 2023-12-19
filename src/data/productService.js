@@ -31,6 +31,7 @@ const productService = {
         productoNuevo.Descripcion = capitalize(productoNuevo.Descripcion);
         productoNuevo.Precio = parseFloat(productoNuevo.Precio);
         productoNuevo.Descuento = parseFloat(productoNuevo.Descuento);
+        productoNuevo.Stock = parseFloat(productoNuevo.Stock);
         if (files.length) {
             let imagenes = [];
             for (let i = 0; i < files.length; i++) {
@@ -56,6 +57,7 @@ const productService = {
         productoEditado.Descuento = parseFloat(productoEditado.Descuento);
         productoEditado.Talle = productoEditado.Talle.split(" ");
         productoEditado.Color = productoEditado.Color.split(" ").map(color => capitalize(color));
+        productoEditado.Stock = parseFloat(productoEditado.Stock);
 
         let indiceProducto = this.products.findIndex(producto => producto.Id == id);
         if (files.length) {
@@ -75,7 +77,6 @@ const productService = {
         let idAEliminar = this.products.findIndex(producto => producto.id == req.params.id);
         this.products.splice(idAEliminar, 1);
         fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
-        console.log(idAEliminar)
     }
 }
 
