@@ -75,6 +75,8 @@ main {
 }
 
 
+
+
 .slide1,
 .slide2,
 .slide3 {
@@ -398,8 +400,7 @@ main {
       background-color: var(--light-primary);
   }
 
-  .icono-hamburguesa:hover,
-  .inicio:hover {
+  .icono-hamburguesa:hover{
       transform: scale(1.2);
   }
 
@@ -409,7 +410,6 @@ main {
       color: var(--dark);
   }
 
-  .inicio,
   .barra-navegacion a,
   .icono-hamburguesa {
       transition: all 200ms ease-in-out;

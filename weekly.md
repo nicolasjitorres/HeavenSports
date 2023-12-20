@@ -26,7 +26,7 @@ Se puede resumir en lo siguiente:
 
 **Peralta Diego:**
 - Que se hizo ayer: CRUD: metodo Get de un producto invividual para mostrar su detalle.
-- Impedimentos:
+- Impedimentos: -
 - Que se hara: Implementacion de muestreo dinamico del detalle de un producto (ruta parametrizada).
 
 **Torres Nicolas:**

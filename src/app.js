@@ -3,8 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const methodOverride =  require('method-override');
-const mainRouter = require('./routes/main.routes')
-const productsRouter = require('./routes/products.routes')
+const indexRouter = require('./routes/index.routes')
 
 
 app.use(express.static('public'));
@@ -23,8 +22,7 @@ app.listen(PUERTO, () => {
   console.log(`Servidor escuchando en el puerto ${PUERTO}...`);
 });
 
-app.use('/', mainRouter);
-app.use('/products', productsRouter);
+app.use('/', indexRouter);
 
 
 
