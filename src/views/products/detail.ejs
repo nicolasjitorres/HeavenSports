@@ -1,7 +1,6 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/detail.css">
-<link rel="stylesheet" href="/css/mediaQ.css">
 
 <title>Detalle del producto</title>
 </head>
@@ -18,65 +17,94 @@
   <!-- PRINCIPAL -->
   <main>
 
-
+    <img class="background-image" src="/images/products/<%=producto.Imagen[0] %>">
     <div class="contenedor-producto">
 
-      <p class="nombre">Zapatillas Adidas Top Blancas</p>
 
+      <% if(producto.Imagen.length > 0 && producto.Imagen[0] != "default.png") { %>
 
       <div class="imagenes-producto">
-        <div class="imagen-muestra">
-          <img class="imagen0" src="\images\zapa-5.jpeg" alt="imagen grande">
+        <div class="cont-imagen-principal">
+          <% for (let i = 0; i < producto.Imagen.length; i++) { %>
+          <input type="radio" name="radio-img" id="inp-<%= i %>" <%= i == 0 ? "checked" : "" %>>
+          <img class="img-principal-<%= i %>" src="/images/products/<%=producto.Imagen[i] %>">
+          <% } %>
         </div>
-        <div class="imagen-disponible">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 1">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 2">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 3">
-          <img class="imagenInd" src="\images\zapa-5.jpeg" alt="imagen chica 4">
+        <div class="cont-imagen-secundaria">
+          <% for (let i = 0; i < producto.Imagen.length; i++) { %>
+          <label for="inp-<%= i %>"><img class="img-secundaria-<%= i %>" src="/images/products/<%=producto.Imagen[i] %>"></label>
+          <% } %>
         </div>
       </div>
 
-      <p class="precio-producto">$ 16.000,00 </p>
-
-      <p class="descripcion-producto">
-        ZAPATILLA ANATOMICA UNISEX, se adapta perfectamente al pie.
-        Excelente calidad y terminación.
-        Base liviana y flexible (no hace ruido al caminar), tela reforzada, puntera y contrafuerte. Vienen en caja.
-        Utilizamos materiales de primera calidad.
-      </p>
 
 
-      <div class="talle-producto">
-        <p class="titulo-talle">Talles disponibles </p>
-        <select class="contenedor-talles" name="talles" id="">
-          <option value="36">36</option>
-          <option value="37">37</option>
-          <option value="38">38</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-          <option value="41">41</option>
-          <option value="42">42</option>
-          <option value="43">43</option>
-          <option value="44">44</option>
-        </select>
-      </div>
+      <% } %>
 
-      <a href="/products/cart">
-        <button class="boton-carrito" name="botonCarr">
+
+      <div class="contenedor-datos">
+        <p class="nombre-producto"><%= producto.Nombre %></p>
+
+
+        <div class="contenedor-precio-desc">
+          <p class="precio-anterior">$<%= producto.Precio %></p>
+          <p class="descuento-producto"><%= producto.Descuento %>% OFF</p>
+        </div>
+
+        <p class="precio-producto">$<%= Math.floor(producto.Precio - (producto.Precio * (producto.Descuento / 100))) %>
+        </p>
+
+        <p class="descripcion-producto">
+          <%= producto.Descripcion %>
+        </p>
+
+
+        <% if(producto.Stock > 0){ %>
+        <p class="stock-producto">
+          ¡Stock disponible! <%= producto.Stock  %> unidades
+        </p>
+
+        <div class="color-talle">
+          <div class="color-producto">
+            <p class="titulo-color">Color</p>
+            <select class="select-colores" name="Color">
+              <% for (let i = 0; i < producto.Color.length; i++) { %>
+              <option value="<%= producto.Color[i] %>"><%= producto.Color[i] %></option>
+              <% } %>
+            </select>
+          </div>
+
+          <div class="talle-producto">
+            <p class="titulo-talle">Talle</p>
+            <select class="select-talles" name="Talle">
+              <% for (let i = 0; i < producto.Talle.length; i++) { %>
+              <option value="<%= producto.Talle[i] %>"><%= producto.Talle[i] %></option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+
+        <a href="/products/cart" class="boton-carrito">
           Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
-        </button>
-      </a>
+        </a>
 
+        <% } else { %>
 
+        <p class="stock-producto">
+          Sin stock disponible
+        </p>
+        <% } %>
+
+        <a href="/products/<%= producto.Id %>/edit" class="boton-editar">
+          Editar
+        </a>
+
+        <form action="/products/<%= producto.Id %>/?_method=DELETE" method="POST" class="form-eliminar">
+          <button type="submit" class="boton-eliminar">Eliminar</button>
+        </form>
+      </div>
 
     </div>
-
-
-
-    </div>
-
-
-
 
   </main>
 
