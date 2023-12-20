@@ -7,14 +7,14 @@ Se puede resumir en lo siguiente:
 ## Reunion 1
 
 **Peralta Diego:**
-- Que se hizo ayer:  
+- Que se hizo ayer:  Vista dinamica del index.
 - Impedimentos: -
 - Que se hara: Edicion de estilos en home y formularios. Retoques en la vista index.
 
 **Torres Nicolas:**
-- Que se hizo ayer: Cracion del listado de productos en el archivo .json en la carpeta data (luego se reemplazará por la BD).
-- Impedimentos:
-- Que se hara:
+- Que se hizo ayer: Distribucion de tareas y detalles en el tablero de trabajo. Correcciones de estilos pendientes.
+- Impedimentos: Algunas rutas y botones no funcionales. Esto fue detallado en el tablero de trabajo.
+- Que se hara: CRUD: metodos GET, POST y PUT para la creacion y edicion de un producto. Adecuacion para carga de imagenes y reemplazo en la edicion.
 
 **Yacuk Maria:**
 - Que se hizo ayer: Implementacion del Feedback del Sprint 3.
@@ -30,12 +30,12 @@ Se puede resumir en lo siguiente:
 - Que se hara: Implementacion de muestreo dinamico del detalle de un producto (ruta parametrizada).
 
 **Torres Nicolas:**
-- Que se hizo ayer: 
-- Impedimentos:
-- Que se hara:
+- Que se hizo ayer: Correccion de estilos en pagina de carga y edicion. Finalizacion de la pagina "About".
+- Impedimentos: Coordinar los estilos para hacerlos amigables, pero no pesados, usando como referencia otras paginas.
+- Que se hara: Control general.
 
 **Yacuk Maria:**
-- Que se hizo ayer: CRUD: metodo DELETE. Implementacion de la accion para borrado de un producto. Correccion de algunas rutas.
+- Que se hizo ayer: CRUD: metodo DELETE. Implementacion de la accion para borrado de un producto. Correccion de algunas rutas. Retoques en tablero de trabajo.
 - Impedimentos: -
 - Que se hara: Actualizacion del retro.md y el daily/weekly.md.
 
