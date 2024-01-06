@@ -2,6 +2,7 @@
   :root {
     --dark-primary: #132c3a;
     --delete: #8f0000;
+    --delete-light: #d30000;
     --primary: #4b858d;
     --light-primary: #a2cadf;
     --secondary-text: #666;
@@ -87,6 +88,7 @@
   .cont-imagen-secundaria label {
     width: 21%;
     margin: 0px 5px;
+    cursor: pointer;
   }
   
   .cont-imagen-principal img{
@@ -219,7 +221,7 @@
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
-    
+    transition: all 200ms ease-in-out;
   }
 
 
@@ -235,6 +237,8 @@
     margin: 20px 10px 0;
     border-radius: 5px;
     font-size: 16px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
   }
 
   .boton-editar{
@@ -250,6 +254,19 @@
     border: none;
     color: var(--light);
     font-size: 16px;
+    cursor: pointer;
+  }
+
+  .boton-carrito:hover{
+    background-color: var(--primary);
+  }
+
+  .boton-editar:hover{
+    background-color: var(--light-primary);
+  }
+
+  .form-eliminar:hover{
+    background-color: var(--delete-light);
   }
 
   /* MEDIA QUERYS */

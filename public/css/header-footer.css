@@ -208,7 +208,7 @@ footer input:checked+.info {
 /* TRANSICIONES Y ANIMACIONES */
 
 #label-hamburguesa:hover,
-.logo:hover{
+.logo:hover {
   transform: scale(1.2);
 }
 
@@ -249,11 +249,11 @@ footer input:checked+.info {
     width: 100%;
   }
 
-  .contenedor-logo{
+  .contenedor-logo {
     transition: all 300ms ease-in-out;
   }
 
-  .contenedor-logo:hover{
+  .contenedor-logo:hover {
     transform: scale(1.2);
   }
 
@@ -328,7 +328,20 @@ footer input:checked+.info {
     height: 45px;
   }
 
+  .icono-hamburguesa:hover {
+    transform: scale(1.2);
+  }
 
+  .barra-navegacion a:hover {
+    font-size: 19px;
+    background-color: var(--light-primary);
+    color: var(--dark);
+  }
+
+  .barra-navegacion a,
+  .icono-hamburguesa {
+    transition: all 200ms ease-in-out;
+  }
 
 
 }
