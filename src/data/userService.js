@@ -14,7 +14,7 @@ const userService = {
         return userService.getData();
     },
 
-    generateId : function () {
+    generateId: function () {
         if (this.users == '') {
             return parseInt(1,10);
         }
@@ -58,10 +58,17 @@ const userService = {
         let userFound = allUsers.find(singleUser => singleUser[field] == need);
         return userFound;
     },
+
+    deleteUser: function (id) {
+		let allUsers = this.getAll();
+		let newAlllUsers = allUsers.filter(oneUser => oneUser.Id !== id);
+		fs.writeFileSync(userPath, JSON.stringify(newAlllUsers, null, ' '), 'utf-8');
+		return true;
+	} 
     
 }
 
 module.exports = userService;
 
-console.log(userService.saveUser({Nombre: 'Pedro', Email: 'pedro@prueba.com'}));
-console.log(userService.generateId());
+//onsole.log(userService.saveUser({Nombre: 'Pedro', Email: 'pedro@prueba.com'}));
+console.log(userService.deleteUser(5));
