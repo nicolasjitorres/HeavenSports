@@ -5,6 +5,15 @@ const bcryptjs = require('bcryptjs');
 
 const userService = {
     users: JSON.parse(fs.readFileSync(userPath,'utf-8')),
+    
+    getData: function () {
+        return userService.users;
+    },
+
+    getAll: function () {
+        return userService.getData();
+    },
+
     saveUser : function(body, file) {
         if(body.Contrasena == body.ReContrasena){
             let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
@@ -24,7 +33,16 @@ const userService = {
             this.users.push(user);
             fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
         }
-    }
+    },
+
+    findByPk: function (id) {
+        let allUsers = this.getAll();
+        let userFound = allUsers.find(singleUser => singleUser.Id == id);
+        return userFound;
+    },
+    
 }
 
 module.exports = userService;
+
+console.log(userService.findByPk(8));
