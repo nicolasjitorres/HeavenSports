@@ -15,7 +15,7 @@ const userService = {
                 Email : body.Email,
                 Contrasena : Contrasena,
                 Categoria : "Comprador",
-                FotoPerfil : "default.png"
+                FotoPerfil : "default.jpeg"
             }
             if(file){
                 user.FotoPerfil = file.filename;

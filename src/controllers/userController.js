@@ -1,4 +1,5 @@
 const userService = require('../data/userService');
+const { validationResult } = require('express-validator');
 
 const controller = {
     login: (req, res) => {
@@ -10,6 +11,11 @@ const controller = {
     save: (req, res) => {
         userService.saveUser(req.body, req.file);
 		res.redirect('/');
+    },
+    profile: (req, res) => {
+        res.render('users/profile', ({
+			usuario: req.session.userLogged
+		}));
     }
 }
 

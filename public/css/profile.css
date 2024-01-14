@@ -1,0 +1,230 @@
+  /* Configuracion general */
+  :root {
+    --dark-primary: #132c3a;
+    --delete: #8f0000;
+    --delete-light: #d30000;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+  }
+
+
+
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
+  /*------------------------------------------------------*/
+
+
+  /* MAIN */
+
+  main {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 50px;
+  }
+
+  .background-image {
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    height: 100vh;
+    filter: blur(5px);
+    min-width: 110vw;
+  }
+
+  .contenedor-usuario {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: transparent;
+
+  }
+
+  .imagenes-usuario {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .imagenes-usuario img {
+    width: 100%;
+  }
+
+  .cont-imagen-principal {
+    width: 100%;
+    max-width: 300px;
+    margin: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cont-imagen-principal input {
+    display: none;
+  }
+  
+  .cont-imagen-principal img{
+    position: absolute;
+    top: -100vh;
+    transition: all 500ms ease;
+  }
+
+  .cont-imagen-principal input:checked + img{
+    position: relative;
+    top: 0;
+  }
+
+
+
+
+
+  .contenedor-datos {
+    width: 100%;
+    background-color: var(--light);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+  }
+ 
+  .nombre-usuario {
+    width: 65%;
+    max-width: 200px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  
+  .otros-datos-usuario {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .boton-carrito {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 50px;
+    background-color: var(--dark-primary);
+    border: none;
+    color: var(--light);
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+  }
+
+
+  .boton-editar,
+  .form-eliminar{
+    width: 40%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--light);
+    margin: 20px 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+  }
+
+  .boton-editar{
+    background-color: var(--primary);
+  }
+
+  .form-eliminar{
+    background-color: var(--delete);
+  }
+
+  .boton-eliminar{
+    background-color: transparent;
+    border: none;
+    color: var(--light);
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .boton-carrito:hover{
+    background-color: var(--primary);
+  }
+
+  .boton-editar:hover{
+    background-color: var(--light-primary);
+  }
+
+  .form-eliminar:hover{
+    background-color: var(--delete-light);
+  }
+
+  /* MEDIA QUERYS */
+
+  /* DISEÑOS PARA TABLETS */
+
+  @media (min-width:768px) {
+
+
+    /* MAIN */
+    main{
+      min-height: 50vh;
+      padding-bottom: 0;
+    }
+
+    .background-image{
+      display: none;
+    }
+
+    .contenedor-usuario{
+      background-color: var(--secondary);
+      width: 90%;
+      max-width: 700px;
+      justify-content: space-between;
+      margin: 40px;
+    }
+
+    .imagenes-usuario{
+      width: 35%;
+      margin:0;
+      background-color: var(--secondary);
+    }
+
+    .cont-imagen-principal{
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+    }
+ 
+    .contenedor-datos{
+      width: 56%;
+      margin: 30px;
+      padding: 20px;
+    }
+
+
+
+  }
+
+
+
+
+
+
+
+  /* Resolucion para PC */
+  @media(min-width: 1024px) {}
