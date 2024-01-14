@@ -40,9 +40,15 @@ const userService = {
         let userFound = allUsers.find(singleUser => singleUser.Id == id);
         return userFound;
     },
+
+    findByField: function (field, need) {
+        let allUsers = this.getAll();
+        let userFound = allUsers.find(singleUser => singleUser[field] == need);
+        return userFound;
+    },
     
 }
 
 module.exports = userService;
 
-console.log(userService.findByPk(8));
+console.log(userService.findByField('Email', 'homerosimp@prueba.com'));
