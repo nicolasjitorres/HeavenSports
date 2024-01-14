@@ -20,7 +20,7 @@ const controller = {
     destroyUser: (req, res) => {
 		userService.deleteUser(req);
 		res.redirect('/users')
-	}: 
+	}
 }
 
 module.exports = controller
