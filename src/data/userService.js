@@ -3,6 +3,8 @@ const fs = require('fs');
 const userPath = path.resolve(__dirname, './userDatabase.json');
 //const bcryptjs = require('bcryptjs');
 
+
+
 const userService = {
     users: JSON.parse(fs.readFileSync(userPath,'utf-8')),
     
@@ -23,8 +25,8 @@ const userService = {
         }
     },
 
+    saveUser : function(body, file) {      
 
-    saveUser : function(body, file) {
         if(body.Contrasena == body.ReContrasena){
             //let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
             let user = {
@@ -43,7 +45,7 @@ const userService = {
             this.users.push(user);
             fs.writeFileSync(userPath, JSON.stringify(this.users, null, ' '), 'utf-8');
 
-            return true
+            
         }
     },
 
@@ -63,7 +65,7 @@ const userService = {
 		let allUsers = this.getAll();
 		let newAlllUsers = allUsers.filter(oneUser => oneUser.Id !== id);
 		fs.writeFileSync(userPath, JSON.stringify(newAlllUsers, null, ' '), 'utf-8');
-		return true;
+		
 	} 
     
 }
@@ -71,4 +73,4 @@ const userService = {
 module.exports = userService;
 
 //onsole.log(userService.saveUser({Nombre: 'Pedro', Email: 'pedro@prueba.com'}));
-console.log(userService.deleteUser(5));
+//console.log(userService.deleteUser(5));
