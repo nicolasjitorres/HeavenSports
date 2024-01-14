@@ -14,11 +14,21 @@ const userService = {
         return userService.getData();
     },
 
+    generateId : function () {
+        if (this.users == '') {
+            return parseInt(1,10);
+        }
+        else {
+            return this.users[this.users.length - 1].Id + 1;
+        }
+    },
+
+
     saveUser : function(body, file) {
         if(body.Contrasena == body.ReContrasena){
             //let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
             let user = {
-                Id : this.users[this.users.length - 1].Id + 1,
+                Id : this.generateId(),
                 Nombre : body.Nombre,
                 //Telefono : parseInt(body.Telefono),
                 Email : body.Email,
@@ -53,4 +63,5 @@ const userService = {
 
 module.exports = userService;
 
-console.log(userService.saveUser({Nombre: 'Ana', Email: 'ana@prueba.com'}));
+console.log(userService.saveUser({Nombre: 'Pedro', Email: 'pedro@prueba.com'}));
+console.log(userService.generateId());
