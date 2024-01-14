@@ -20,4 +20,7 @@ router.post('/', upload.single('Imagen'), validations, userController.save);
 // Perfil de un usuario
 router.get('/profile/:userId', userController.profile);
 
+/*** DELETE ONE User***/ 
+router.delete('/:userId', userController.destroyUser); 
+
 module.exports = router;

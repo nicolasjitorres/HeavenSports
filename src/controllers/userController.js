@@ -16,7 +16,11 @@ const controller = {
         res.render('users/profile', ({
 			usuario: req.session.userLogged
 		}));
-    }
+    },
+    destroyUser: (req, res) => {
+		userService.deleteUser(req);
+		res.redirect('/users')
+	}: 
 }
 
 module.exports = controller
