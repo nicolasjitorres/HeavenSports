@@ -23,4 +23,15 @@ router.get('/login', userController.login);
 router.get('/register', userController.register);
 router.post('/', upload.single('Imagen'), userController.save); 
 
+//Ruta lista de usuarios
+router.get('/usuarios', userController.usuarios);
+
+// Ruta info del usuario
+router.get('/:id/detail', userController.detail);
+
+//Ruta Editar usuario
+router.get('/:id/edit', userController.edit);
+router.put('/:id', userController.update);
+
+
 module.exports = router;

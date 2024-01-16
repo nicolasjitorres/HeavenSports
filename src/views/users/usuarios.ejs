@@ -1,0 +1,41 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/index.css">
+<title>Ver Usuarios</title>
+
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+    <!-- Lista de todos los usuarios -->
+    
+    <section class="main-section">
+
+        <h3 class="titulo">Usuarios registrados:</h3>
+  
+        <% for (let i= 0; i< usuarios.length; i++) {%>
+        <a class="oferta" href="/users/<%= usuarios[i].Id %>/detail">
+          
+          <div class="contenedor-precio-descripcion">
+            <p class="precio">Nombre:<br><%= usuarios[i].Nombre %></p><br>
+            <p class="precio">Telefono:<br><%= usuarios[i].Telefono %></p><br>
+            <p class="descripcion">Email:<br><%= usuarios[i].Email %></p>
+          </div>
+        </a>
+        <%} %>
+      </section>
+
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>
