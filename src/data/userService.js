@@ -7,22 +7,6 @@ const bcryptjs = require('bcryptjs');
 
 const userService = {
     users: JSON.parse(fs.readFileSync(userPath,'utf-8')),
-    signIn: function(body) {
-        let usuario = this.users.find(user => user.Email == body.Email);
-        // Borrar esta linea
-        console.log(usuario);
-        if(usuario){
-            if(bcryptjs.compareSync(body.Contrasena, usuario.Contrasena)){
-                // Borrar esta linea
-                console.log("Usuario logueado");
-            }else{
-                console.log("credenciales invalidas.");
-            }
-        }else{
-            console.log("credenciales invalidas.");
-        }
-    },
-
     getAll: function () {
         return this.users;
     },
@@ -52,7 +36,21 @@ const userService = {
             return this.users[this.users.length - 1].Id + 1;
         }
     },
-
+    signIn: function(body) {
+        let usuario = this.users.find(user => user.Email == body.Email);
+        // Borrar esta linea
+        console.log(usuario);
+        if(usuario){
+            if(bcryptjs.compareSync(body.Contrasena, usuario.Contrasena)){
+                // Borrar esta linea
+                console.log("Usuario logueado");
+            }else{
+                console.log("credenciales invalidas.");
+            }
+        }else{
+            console.log("credenciales invalidas.");
+        }
+    },
     saveUser : function(body, file) {      
         if (!this.users.find(user => user.Email == body.Email)) {
     
@@ -82,7 +80,6 @@ const userService = {
             console.log("Este email ya está registrado");
         }
     },
-
     findByPk: function (id) {
         let allUsers = this.getAll();
         let userFound = allUsers.find(singleUser => singleUser.Id == id);
@@ -94,7 +91,6 @@ const userService = {
         let userFound = allUsers.find(singleUser => singleUser[field] == need);
         return userFound;
     },
-
     deleteUser: function (id) {
 		let allUsers = this.getAll();
 		let newAlllUsers = allUsers.filter(oneUser => oneUser.Id !== id);
@@ -105,10 +101,7 @@ const userService = {
         let usuario = this.users.find(user => user.Id == id);
         return usuario;
     }
-    
 }
 
 module.exports = userService;
 
-//onsole.log(userService.saveUser({Nombre: 'Pedro', Email: 'pedro@prueba.com'}));
-//console.log(userService.deleteUser(5));
