@@ -1,0 +1,87 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/edit-usuario.css">
+<title>Editar</title>
+
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+
+    <!-- Formulario edicion -->
+    <div class="contenedor-form">
+      <h4 class="titulo">Actualizar informacion del usuario:</h4>
+
+      <form action="/users/<%= usuario.Id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+        <!-- NOMBRE -->
+        <div class="box">
+          <input type="text" name="Nombre" id="nombre" required value="<%= usuario.Nombre %>">
+          <label for="nombre">Nombre</label>
+        </div>
+
+        <!-- TELEFONO -->
+        <div class="box">
+            <input type="text" name="Telefono" id="telefono" required value="<%= usuario.Telefono %>">
+            <label for="telefono">Telefono</label>
+          </div>
+
+          <!-- EMAIL -->
+        <div class="box">
+            <input type="email" name="Email" id="email" required value="<%= usuario.Email %>">
+            <label for="email">Email</label>
+          </div>
+
+          <!-- CONTRASEÑA -->
+        <div class="box">
+            <input type="text" name="Contraseña" id="contraseña" required value="<%= usuario.Contraseña %>">
+            <label for="contraseña">Contraseña</label>
+          </div>
+        
+        <!-- CATEGORIA-->
+        <div class="box-check">
+          <label class="box-check-titulo">Categoria</label>
+          <input type="radio" name="Categoria" id="Administrador" value="Administrador"
+            <% if (usuario.Categoria.includes("Administrador")) { %> checked <% } %>>
+          <label for="Administrador" class="label-check">
+            Administrador
+          </label>
+          <input type="radio" name="Categoria" id="Comprador" value="Comprador"
+            <% if (usuario.Categoria.includes("Comprador")) { %> checked <% } %>>
+          <label for="Comprador" class="label-check">
+            Comprador
+          </label>
+        </div>
+
+        <!-- CARGAR IMAGEN USUARIO -->
+        <div class="box-img">
+          <label for="img" class="label-img">Cargar imagen</label>
+          <input class="input-image" type="file" id="img" name="Imagen" accept=".jpg, .png">
+        </div>
+        
+        <div class="botones">
+          <!-- Boton carga -->
+          <button type="submit" class="boton">Guardar</button>
+  
+          <!-- Boton de reset -->
+          <button type="reset" class="boton">Limpiar</button>
+  
+        </div>
+
+      </form>
+      
+    </div>
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>
