@@ -18,6 +18,7 @@ const upload = multer({ storage: mDStorage});
 
 // Ruta hacía el login
 router.get('/login', userController.login);
+router.post('/signIn', userController.signIn);
 
 // REGISTRAR UN USUARIO
 router.get('/register', userController.register);
