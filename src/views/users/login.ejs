@@ -1,48 +1,61 @@
 <%- include ('../partials/head')%>
 
-  <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/login.css">
 
-  <title>Login</title>
+<title>Login</title>
 </head>
+
 <body>
 
   <!-- ENCABEZADO -->
-  
+
   <%- include ('../partials/header')%>
 
   <!-- PRINCIPAL -->
   <main>
 
-    <h1 class="titulo">Ingresar</h1>
 
-    <!-- FORMULARIO LOGIN -->
-    <div class="contenedorForm">
-    <form action="/login" method="post" class="login">
-      <label>Ingresá tu correo</label>
-      <input type="email" name="email" id="email" required>
-      <label>Ingresá tu contraseña</label>
-      <input type="password" name="password" id="password" required>
-      
-      <div class="opciones">
-        <label for="recordar">Recordar mi usuario<input type="checkbox" name="recordar"></label>
-        <label for="olvidar"><a href="">¿Olvidaste tu contraseña?</a></label>
-      </div>
-      
-      <div class="botones">
-        <button type="submit" class="boton">Iniciar sesión</button>
-      </div>
-      
-      <div class="reg">
-        <p>¿No tienes una cuenta en Heaven Sport?</p>
-        <a href="/users/register">Registrarme</a>
-      </div>
-    </form>
-  </div>
+    <!-- Formulario registro -->
+    <div class="contenedor-form">
+      <h4 class="titulo">Iniciá Sesión</h4>
+      <form action="/users/signIn" method="POST">
+
+        <!-- EMAIL USUARIO -->
+        <div class="box">
+          <input type="email" name="Email" id="email" required>
+          <label for="email">Email</label>
+        </div>
+
+        <!-- CONTRASEÑA USUARIO -->
+        <div class="box">
+          <input type="password" name="Contrasena" id="contrasena" required>
+          <label for="contrasena">Contraseña</label>
+        </div>
+
+        <!-- RECORDAR USUARIO -->
+        <div class="box-recordar">
+          <input type="checkbox" name="Recordar" id="recordar">
+          <label for="recordar" class="label-recordar">Recuérdame</label>
+        </div>
+
+        
+        <div class="botones">
+          <!-- Boton carga -->
+          <button type="submit" class="boton">Ingresar</button>
+        </div>
+
+        
+        <!-- RECORDAR USUARIO -->
+        <a class="link-registro" href="/users/register">¿Todavía no tienes una cuenta? Registrate</a>
+
+      </form>
+    </div>
   </main>
 
   <!-- PIE DE PAGINA -->
-  
+
   <%- include ('../partials/footer')%>
 
 </body>
+
 </html>
