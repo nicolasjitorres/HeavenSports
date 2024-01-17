@@ -24,7 +24,7 @@ router.get('/profile/:userId', userController.profile);
 router.delete('/:userId', userController.destroyUser); 
 
 //Ruta lista de usuarios
-router.get('/usuarios', userController.usuarios);
+router.get('/', userController.usuarios);
 
 // Ruta info del usuario
 router.get('/:id/detail', userController.detail);
