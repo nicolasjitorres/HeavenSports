@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const userPath = path.resolve(__dirname, './userDatabase.json');
-//const bcryptjs = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 
 
 
@@ -28,15 +28,15 @@ const userService = {
     saveUser : function(body, file) {      
 
         if(body.Contrasena == body.ReContrasena){
-            //let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
+            let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
             let user = {
                 Id : this.generateId(),
                 Nombre : body.Nombre,
-                //Telefono : parseInt(body.Telefono),
+                Telefono : parseInt(body.Telefono),
                 Email : body.Email,
-                //Contrasena : Contrasena,
-                //Categoria : "Comprador",
-                //FotoPerfil : "default.jpeg"
+                Contrasena : Contrasena,
+                Categoria : "Comprador",
+                FotoPerfil : "default.jpeg"
             }
             if(file){
                 user.FotoPerfil = file.filename;
@@ -66,7 +66,11 @@ const userService = {
 		let newAlllUsers = allUsers.filter(oneUser => oneUser.Id !== id);
 		fs.writeFileSync(userPath, JSON.stringify(newAlllUsers, null, ' '), 'utf-8');
 		
-	} 
+	},
+    userProfile: function(id){
+        let usuario = this.users.find(user => user.Id == id);
+        return usuario;
+    }
     
 }
 

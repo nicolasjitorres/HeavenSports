@@ -55,31 +55,11 @@
  },
  {
   "Id": 8,
-  "Nombre": "Homero Simpson",
-  "Telefono": 1234567,
-  "Email": "homerosimp@prueba.com",
-  "Contrasena": "$2a$15$yA/7sF82i7bQVEDwWi1UmO/5hXH5S6aHM/d/JI.EINqjfcsdjM75i",
+  "Nombre": "nicolas",
+  "Telefono": 12412554521,
+  "Email": "nicoignacio123@gmail.com",
+  "Contrasena": "$2a$15$AtDJjHDe7rscKAMrfFFHGeeCYjA3WKk/wVIYnB/80S/2gZqWc/qxK",
   "Categoria": "Comprador",
-  "FotoPerfil": "Imagen-1705189450342.jpeg"
- },
- {
-  "Id": 9,
-  "Nombre": "Ana",
-  "Email": "ana@prueba.com"
- },
- {
-  "Id": 10,
-  "Nombre": "Sara",
-  "Email": "sara@prueba.com"
- },
- {
-  "Id": 11,
-  "Nombre": "Sara 2",
-  "Email": "sara@prueba.com"
- },
- {
-  "Id": 12,
-  "Nombre": "Sara 2",
-  "Email": "sara@prueba.com"
+  "FotoPerfil": "default.jpeg"
  }
 ]

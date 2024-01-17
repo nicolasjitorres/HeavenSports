@@ -26,7 +26,6 @@
       <div class="imagenes-usuario">
         <div class="cont-imagen-principal">
           <img class="img-principal" src="/images/users/<%= usuario.FotoPerfil %> ">
-          
         </div>
       </div>
 
@@ -47,19 +46,12 @@
             <%= usuario.Email %>
         </p>
 
-
-<!--
-        <a href="/products/cart" class="boton-carrito">
-          Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
-        </a>
--->
-
         <a href="/users/<%= usuario.Id %>/edit" class="boton-editar">
           Editar perfil
         </a>
 
         <form action="/users/<%= usuario.Id %>/?_method=DELETE" method="POST" class="form-eliminar">
-          <button type="submit" class="boton-eliminar">Eliminar cuenta</button>
+          <button type="submit" class="boton-eliminar">Eliminar</button>
         </form>
       </div>
 
