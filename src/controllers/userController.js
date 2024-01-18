@@ -1,13 +1,12 @@
 const userService = require('../data/userService');
-const {
-    validationResult
-} = require('express-validator');
+
+
 
 const controller = {
     login: (req, res) => {
         res.render('users/login');
     },
-    signIn: (req,res) => {
+    signIn: (req, res) => {
         userService.signIn(req.body);
         res.redirect('/');
     },
@@ -15,54 +14,39 @@ const controller = {
         res.render('users/register');
     },
     save: (req, res) => {
-
-        // Verificacion si el mail ya existe en la BD
-        let registeredUser = userService.findByField('Email', req.body.Email);
-
-        if (registeredUser) {
-            // Borrar siguiente linea de console.log
-            console.log('Mail viejo');
-            return res.render('users/register', {
-                // AQUI VAN LOS ERRORES QUE SE PASAN A LA VISTA (49:25)
-            });
-
-        }else{
-            userService.saveUser(req.body, req.file);
+        // Devuelve true si el usuario pudo ser registrado, caso contrario devuelve false
+        let saveUser = userService.saveUser(req.body, req.file);
+        if (saveUser) {
             res.redirect('/');
-        }
-
-    },
-    profile: (req, res) => {
-        let user = userService.userProfile(req.params.userId);
-        if (user) {
-            res.render('users/profile', ({
-                usuario: user
-            }));
         } else {
-            res.render('info/error')
+            // Este es el caso en el que ya se encuentra el mail en uso
+            res.render('users/register', {})
         }
 
     },
     destroyUser: (req, res) => {
-        userService.deleteUser(req);
+        console.log(req.params.id)
+        userService.deleteUser(req.params.id);
         res.redirect('/users')
     },
     usuarios: (req, res) => {
-        res.render('users/usuarios', {usuarios: userService.getAll()});
+        res.render('users/usuarios', {
+            usuarios: userService.getAll()
+        });
     },
     detail: (req, res) => {
-		res.render('users/detail', ({
-			usuario: userService.getOne(req.params.id)
-		}));
-	},
+        res.render('users/detail', ({
+            usuario: userService.getOne(req.params.id)
+        }));
+    },
     edit: (req, res) => {
         res.render('users/edit', ({
-			usuario: userService.getOne(req.params.id)
-		}));
+            usuario: userService.getOne(req.params.id)
+        }));
     },
     update: (req, res) => {
-        userService.edit(req.body, req.params.id, req.files);
-        res.redirect('/users/'+ req.params.id + "/detail");
+        userService.edit(req.body, req.params.id, req.file);
+        res.redirect('/users/' + req.params.id + "/detail");
     },
 }
 

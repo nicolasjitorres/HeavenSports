@@ -10,27 +10,24 @@ const validations = require('../middlewares/validateRegisterMiddleware');
 const upload = require('../middlewares/multerMiddleware');
 
 
-// Ruta hacía el login
+// LOGUEARSE
 router.get('/login', userController.login);
 router.post('/signIn', userController.signIn);
 
-// REGISTRAR UN USUARIO
+// REGISTRO
 router.get('/register', userController.register);
 router.post('/', upload.single('Imagen'), validations, userController.save); 
 
-// Perfil de un usuario
-router.get('/profile/:userId', userController.profile);
+// ELIMINACION DE UNA CUENTA
+router.delete('/:id', userController.destroyUser); 
 
-/*** DELETE ONE User***/ 
-router.delete('/:userId', userController.destroyUser); 
-
-//Ruta lista de usuarios
+// TODOS LOS USUARIOS
 router.get('/', userController.usuarios);
 
-// Ruta info del usuario
+// DETALLE DEL USUARIO
 router.get('/:id/detail', userController.detail);
 
-//Ruta Editar usuario
+// EDICION DEL USUARIO
 router.get('/:id/edit', userController.edit);
 router.put('/:id', userController.update);
 
