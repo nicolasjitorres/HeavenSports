@@ -35,9 +35,11 @@ const userService = {
                 console.log("Usuario logueado");
             } else {
                 console.log("credenciales invalidas.");
+                throw new Error('Credenciales invalidas')
             }
         } else {
             console.log("credenciales invalidas.");
+            throw new Error('Credenciales invalidas')
         }
     },
     saveUser: function (body, file) {

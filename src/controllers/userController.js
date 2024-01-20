@@ -7,8 +7,13 @@ const controller = {
         res.render('users/login');
     },
     signIn: (req, res) => {
-        userService.signIn(req.body);
-        res.redirect('/');
+        try {
+            userService.signIn(req.body);
+            res.redirect('/');
+        } catch (error) {
+            console.log(error.message);
+            res.render('users/login');
+        }
     },
     register: (req, res) => {
         res.render('users/register');
