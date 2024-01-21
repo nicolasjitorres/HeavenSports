@@ -1,9 +1,29 @@
-[{
-    "Id": 1,
-    "Nombre": "Nico",
-    "Telefono": 123241,
-    "Email": "nicoignacio123@gmail.com",
-    "Contrasena": "$2a$15$CDHvJtIb6yOCbfsApYsy9eFGI.5gywySzNVQ9aGDBhS75EjKlGj1q",
-    "Categoria": "Usuario",
-    "FotoPerfil": "default.png"
-}]
+[
+ {
+  "Id": 1,
+  "Nombre": "Nico",
+  "Telefono": 123241,
+  "Email": "nicoignacio123@gmail.com",
+  "Contrasena": "$2a$15$CDHvJtIb6yOCbfsApYsy9eFGI.5gywySzNVQ9aGDBhS75EjKlGj1q",
+  "Categoria": "Usuario",
+  "FotoPerfil": "default.png"
+ },
+ {
+  "Id": 2,
+  "Nombre": "Diego Peralta",
+  "Telefono": 3854123123,
+  "Email": "diego@gmail.com",
+  "Contrasena": "$2a$15$2RR0iP.juuv5rAYOYZHG5.0i37Oh023SskLwoueK6FRC0ikJHDbde",
+  "Categoria": "Administrador",
+  "FotoPerfil": "default.png"
+ },
+ {
+  "Id": 3,
+  "Nombre": "Maria",
+  "Telefono": 3854123,
+  "Email": "maria@gmail.com",
+  "Contrasena": "$2a$15$THIz2mN8kSyPkpQwJu/IrOruFFoz0ojEFzXmFCZTUygRcZIxj869y",
+  "Categoria": "Usuario",
+  "FotoPerfil": "default.png"
+ }
+]

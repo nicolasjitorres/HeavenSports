@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 const upload = require('../middlewares/multerMiddleware');
 const guestUserMiddleware = require('../middlewares/guestUserMiddleware');
 const authUserMiddleware = require('../middlewares/authUserMiddleware');
+const adminMiddleware = require("../middlewares/adminMiddleware");
 
 
 // LOGIN
@@ -24,7 +25,7 @@ router.post('/register', upload.single('Imagen'), userController.save);
 router.delete('/:id', userController.destroyUser); 
 
 // TODOS LOS USUARIOS
-router.get('/', authUserMiddleware, userController.usuarios);
+router.get('/', adminMiddleware, userController.usuarios);
 
 // PERFIL DEL USUARIO
 router.get('/profile', authUserMiddleware, userController.profile);
