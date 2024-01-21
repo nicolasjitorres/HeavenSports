@@ -1,0 +1,72 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/userEdit.css">
+<title>Editar</title>
+
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+
+    <!-- Formulario edicion -->
+    <div class="contenedor-form">
+      <h4 class="titulo">Edición del perfil</h4>
+
+      <form action="/users/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+
+        <!-- NOMBRE -->
+        <div class="box">
+          <input type="text" name="Nombre" id="nombre" required value="<%= usuario.Nombre %>">
+          <label for="nombre">Nombre</label>
+        </div>
+
+        <!-- TELEFONO -->
+        <div class="box">
+          <input type="text" name="Telefono" id="telefono" required value="<%= usuario.Telefono %>">
+          <label for="telefono">Telefono</label>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="box">
+          <input type="email" name="Email" id="email" required value="<%= usuario.Email %>">
+          <label for="email">Email</label>
+        </div>
+
+        <!-- IMAGEN ANTERIOR USUARIO -->
+        <div class="box-img-ant">
+          <label class="box-check-titulo">Imagen de perfil actual</label>
+          <img src="/images/users/<%= usuario.FotoPerfil %>" alt="img-anterior">
+        </div>
+
+
+        <!-- CARGAR IMAGEN USUARIO -->
+        <div class="box-img">
+          <label for="img" class="label-img">Cargar imagen nueva</label>
+          <input class="input-image" type="file" id="img" name="Imagen" accept=".jpg, .png">
+          <p>¡Atención! Esto sobreescrirá a la imagen anterior.</p>
+        </div>
+
+
+        <div class="botones">
+          <!-- Boton carga -->
+          <button type="submit" class="boton">Guardar</button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>

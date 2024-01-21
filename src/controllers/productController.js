@@ -25,7 +25,7 @@ const controller = {
 		res.redirect('/products');
     },
     edit: (req, res) => {
-        res.render('products/edit', ({
+        res.render('products/productEdit', ({
 			producto: productService.getOne(req.params.id)
 		}));
     },

@@ -32,6 +32,10 @@
           <label for="contrasena">Contraseña</label>
         </div>
 
+        <% if (locals.error) { %>
+          <p style="color: red; text-align: center; padding: 0 0 15px;"><%= error %></p>
+        <%} %>
+
         <!-- RECORDAR USUARIO -->
         <div class="box-recordar">
           <input type="checkbox" name="Recordar" id="recordar">

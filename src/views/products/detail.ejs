@@ -17,11 +17,11 @@
   <!-- PRINCIPAL -->
   <main>
 
-    <img class="background-image" src="/images/products/<%=producto.Imagen[0] %>">
+    <% if (producto.Imagen[0] != "default.png") { %>
+      <img class="background-image" src="/images/products/<%=producto.Imagen[0] %>">
+    <% } %>
     <div class="contenedor-producto">
 
-
-      <% if(producto.Imagen.length > 0 && producto.Imagen[0] != "default.png") { %>
 
       <div class="imagenes-producto">
         <div class="cont-imagen-principal">
@@ -39,17 +39,15 @@
 
 
 
-      <% } %>
-
-
       <div class="contenedor-datos">
         <p class="nombre-producto"><%= producto.Nombre %></p>
 
-
-        <div class="contenedor-precio-desc">
-          <p class="precio-anterior">$<%= producto.Precio %></p>
-          <p class="descuento-producto"><%= producto.Descuento %>% OFF</p>
-        </div>
+        <% if (producto.Descuento != 0) { %>
+          <div class="contenedor-precio-desc">
+            <p class="precio-anterior">$<%= producto.Precio %></p>
+            <p class="descuento-producto"><%= producto.Descuento %>% OFF</p>
+          </div>
+        <% } %>
 
         <p class="precio-producto">$<%= Math.floor(producto.Precio - (producto.Precio * (producto.Descuento / 100))) %>
         </p>
@@ -83,6 +81,11 @@
             </select>
           </div>
         </div>
+
+        <p class="descripcion-producto">
+          Categorias: <%= producto.Categoria.join(", ") %>
+        </p>
+
 
         <a href="/products/cart" class="boton-carrito">
           Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>

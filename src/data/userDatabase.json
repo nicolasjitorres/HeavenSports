@@ -1,1 +1,9 @@
-[{"Id":1,"Nombre":"Juan Gomez","Telefono":3855123456,"Email":"juan.gomez@gmail.com","Contrasena":"contraseña123","Categoria":"Comprador","FotoPerfil":"default.jpg"},{"Id":4,"Nombre":"Ana Fernández","Telefono":385456789,"Email":"ana.fernandez@gmail.com","Contrasena":"contraseña123","Categoria":"Comprador","FotoPerfil":"default.jpg"},{"Id":5,"Nombre":"Martín Pérez","Telefono":385567890,"Email":"martin.perez@gmail.com","Contrasena":"segura456","Categoria":"Comprador","FotoPerfil":"default.jpg"},{"Id":7,"Nombre":"nico","Telefono":12345667,"Email":"nicoignacio123@gmail.com","Contrasena":"$2a$15$beOr3Yc6jbVVfT2k.y2/QuhXbk4eUPr4J2TKF/9TOadRm6M7Q9qoy","Categoria":"Comprador","FotoPerfil":"default.png"}]
+[{
+    "Id": 1,
+    "Nombre": "Nico",
+    "Telefono": 123241,
+    "Email": "nicoignacio123@gmail.com",
+    "Contrasena": "$2a$15$CDHvJtIb6yOCbfsApYsy9eFGI.5gywySzNVQ9aGDBhS75EjKlGj1q",
+    "Categoria": "Usuario",
+    "FotoPerfil": "default.png"
+}]

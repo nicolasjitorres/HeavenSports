@@ -2,34 +2,42 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 
-const { body } = require('express-validator');
-
 
 // Middlewares
-const validations = require('../middlewares/validateRegisterMiddleware');
 const upload = require('../middlewares/multerMiddleware');
+const guestUserMiddleware = require('../middlewares/guestUserMiddleware');
+const authUserMiddleware = require('../middlewares/authUserMiddleware');
 
 
-// LOGUEARSE
-router.get('/login', userController.login);
+// LOGIN
+router.get('/login', guestUserMiddleware, userController.login);
 router.post('/signIn', userController.signIn);
 
+// LOGOUT
+router.get('/logout', authUserMiddleware, userController.logout);
+
 // REGISTRO
-router.get('/register', userController.register);
-router.post('/', upload.single('Imagen'), validations, userController.save); 
+router.get('/register', guestUserMiddleware, userController.register);
+router.post('/register', upload.single('Imagen'), userController.save); 
 
 // ELIMINACION DE UNA CUENTA
 router.delete('/:id', userController.destroyUser); 
 
 // TODOS LOS USUARIOS
-router.get('/', userController.usuarios);
+router.get('/', authUserMiddleware, userController.usuarios);
 
-// DETALLE DEL USUARIO
-router.get('/:id/detail', userController.detail);
+// PERFIL DEL USUARIO
+router.get('/profile', authUserMiddleware, userController.profile);
 
 // EDICION DEL USUARIO
-router.get('/:id/edit', userController.edit);
-router.put('/:id', userController.update);
+router.get('/edit', authUserMiddleware, userController.edit);
+router.put('/edit', upload.single('Imagen'), userController.update);
+
+// CAMBIO DE CONTRASEÑA
+router.get('/changePass', authUserMiddleware, userController.changePass);
+router.put('/changePass', userController.updatePass);
+
+
 
 
 module.exports = router;
