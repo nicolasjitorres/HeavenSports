@@ -1,11 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/register.css">
+<title>Error</title>
+
 </head>
+
 <body>
-    <p>¡UPS! Parece que ocurrío un error... :(</p>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+    
+    <!-- MENSAJE ERROR -->
+    <div class="contenedor-error">
+        <p>¡UPS! Parece que ocurrío un error... :(</p>
+        <a href="/">Volver a la página principal</a>
+    </div>
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
 </body>
+
 </html>
