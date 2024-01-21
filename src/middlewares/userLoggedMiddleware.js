@@ -4,6 +4,8 @@ const userLoggedMiddleware = (req, res, next)=>{
 
     let userEmailFromCookie = req.cookies.emailUserRemember;
     let userLogged = userService.findByField('Email', userEmailFromCookie);
+    let admin
+
     if (userLogged) {
         req.session.userLogged = {...userLogged};
         delete req.session.userLogged.Contrasena;
@@ -11,9 +13,14 @@ const userLoggedMiddleware = (req, res, next)=>{
 
     if(req.session.userLogged){
         res.locals.userLogged = true;
+        if(req.session.userLogged.Categoria == "Administrador"){
+            res.locals.admin = true
+        }
+
     }else{
         res.locals.userLogged = false;
     }
+
     next();
 }
 

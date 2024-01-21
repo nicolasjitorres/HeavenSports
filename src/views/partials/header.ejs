@@ -18,6 +18,9 @@
       <a href="/users/login"><i class="fa-solid fa-right-to-bracket icono-usuario"></i> Iniciá sesión</a>
       <a href="/users/register"><i class="fa-solid fa-user-plus icono-usuario"></i> Registrate</a>
       <% } %>
+      <% if (locals.userLogged && locals.admin) { %>
+        <a href="/users/"><i class="fa-solid fa-users icono-usuario"></i> Lista Usuarios</a>
+      <% } %>
     </nav>
 
     <!-- Contenedor Logo -->
