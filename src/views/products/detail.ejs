@@ -98,6 +98,7 @@
         </p>
         <% } %>
 
+        <% if (user && user.Categoria == "Administrador") { %>
         <a href="/products/<%= producto.Id %>/edit" class="boton-editar">
           Editar
         </a>
@@ -106,6 +107,8 @@
           <button type="submit" class="boton-eliminar">Eliminar</button>
         </form>
       </div>
+      
+      <% } %>
 
     </div>
 

@@ -25,5 +25,23 @@
   "Contrasena": "$2a$15$THIz2mN8kSyPkpQwJu/IrOruFFoz0ojEFzXmFCZTUygRcZIxj869y",
   "Categoria": "Usuario",
   "FotoPerfil": "default.png"
+ },
+ {
+  "Id": 4,
+  "Nombre": "Prueba",
+  "Telefono": 123456,
+  "Email": "prueba@prueba.com",
+  "Contrasena": "$2a$15$4QVw5HOdwP7N4dilhUU9ruUbm9sXMgLKGfVzLImOMqgbBLuUtkLru",
+  "Categoria": "Administrador",
+  "FotoPerfil": "default.png"
+ },
+ {
+  "Id": 5,
+  "Nombre": "noadmin",
+  "Telefono": 123456,
+  "Email": "noadmin@prueba.com",
+  "Contrasena": "$2a$15$1DeLlibiPRpulVU4e0P4RuRqvlX7IJcbsayoAgCCHK4//UmuBbJla",
+  "Categoria": "Usuario",
+  "FotoPerfil": "default.png"
  }
 ]
