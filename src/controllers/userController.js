@@ -54,11 +54,16 @@ const controller = {
     },
     usuarios: (req, res) => {
         res.render('users/usuarios', {
-            usuarios: userService.getAll()
+            usuarios: userService.getAll(), admin: req.session.userLogged.Categoria
         });
     },
     profile: (req, res) => {
         res.render('users/profile', ({
+            usuario: userService.findByPk(req.session.userLogged.Id)
+        }));
+    },
+    profileForAdmin: (req, res) => {
+        res.render('users/profileForAdmin', ({
             usuario: userService.findByPk(req.session.userLogged.Id)
         }));
     },

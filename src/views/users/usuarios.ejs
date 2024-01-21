@@ -20,8 +20,9 @@
         <h3 class="titulo">Usuarios registrados:</h3>
   
         <% for (let i= 0; i< usuarios.length; i++) {%>
-        <a class="oferta" href="/users/<%= usuarios[i].Id %>/detail">
-          
+        <!--<a class="oferta" href="/users/%= usuarios[i].Id %>/detail">-->
+        <a class="oferta" href="/users/<%= (admin == "Administrador") ? "profileForAdmin" : "profile" %>">
+                  
           <div class="contenedor-precio-descripcion">
             <p class="precio">Nombre:<br><%= usuarios[i].Nombre %></p><br>
             <p class="precio">Telefono:<br><%= usuarios[i].Telefono %></p><br>

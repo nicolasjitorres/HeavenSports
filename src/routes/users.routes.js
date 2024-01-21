@@ -30,6 +30,9 @@ router.get('/', adminMiddleware, userController.usuarios);
 // PERFIL DEL USUARIO
 router.get('/profile', authUserMiddleware, userController.profile);
 
+// PERFIL DEL USUARIO (vista de administrador)
+router.get('/profileForAdmin', adminMiddleware, userController.profileForAdmin);
+
 // EDICION DEL USUARIO
 router.get('/edit', authUserMiddleware, userController.edit);
 router.put('/edit', upload.single('Imagen'), userController.update);
