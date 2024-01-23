@@ -62,10 +62,16 @@ const controller = {
             usuario: userService.findByPk(req.session.userLogged.Id)
         }));
     },
-    profileForAdmin: (req, res) => {
-        res.render('users/profileForAdmin', ({
-            usuario: userService.findByPk(req.session.userLogged.Id)
+    userEditAdmin: (req, res) => {
+        res.render('users/userEditAdmin', ({
+            usuario: userService.findByPk(req.params.id)
         }));
+    },
+    changeCategory: (req, res) => {
+        userService.change(req.params.id);
+        res.render('users/userEditAdmin', {
+            usuario: userService.findByPk(req.params.id)
+        });
     },
     edit: (req, res) => {
         res.render('users/userEdit', ({

@@ -104,6 +104,17 @@ const userService = {
         } else {
             throw new Error("Las contraseñas nuevas no coinciden.")
         }
+    },
+    change: function (id) {
+        let user = this.findByPk(id);
+        if (user.Categoria == "Usuario") {
+            user.Categoria = "Administrador";
+        } else {
+            user.Categoria = "Usuario";
+        }
+        let idUser = this.users.findIndex(user => user.Id == id);
+        this.users[idUser] = user;
+        fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
     }
 }
 

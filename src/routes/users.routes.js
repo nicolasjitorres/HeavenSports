@@ -31,7 +31,8 @@ router.get('/', adminMiddleware, userController.usuarios);
 router.get('/profile', authUserMiddleware, userController.profile);
 
 // PERFIL DEL USUARIO (vista de administrador)
-router.get('/profileForAdmin', adminMiddleware, userController.profileForAdmin);
+router.get('/userEdit/:id', adminMiddleware, userController.userEditAdmin);
+router.put('/changeCategory/:id', adminMiddleware, userController.changeCategory)
 
 // EDICION DEL USUARIO
 router.get('/edit', authUserMiddleware, userController.edit);

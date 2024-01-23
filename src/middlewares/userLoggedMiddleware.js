@@ -4,7 +4,6 @@ const userLoggedMiddleware = (req, res, next)=>{
 
     let userEmailFromCookie = req.cookies.emailUserRemember;
     let userLogged = userService.findByField('Email', userEmailFromCookie);
-    let admin
 
     if (userLogged) {
         req.session.userLogged = {...userLogged};

@@ -1,6 +1,6 @@
 <%- include ('../partials/head')%>
 
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/users.css">
 <title>Ver Usuarios</title>
 
 </head>
@@ -14,23 +14,21 @@
   <main>
 
     <!-- Lista de todos los usuarios -->
-    
-    <section class="main-section">
 
-        <h3 class="titulo">Usuarios registrados:</h3>
-  
-        <% for (let i= 0; i< usuarios.length; i++) {%>
-        <!--<a class="oferta" href="/users/%= usuarios[i].Id %>/detail">-->
-        <a class="oferta" href="/users/<%= (admin == "Administrador") ? "profileForAdmin" : "profile" %>">
-                  
-          <div class="contenedor-precio-descripcion">
-            <p class="precio">Nombre:<br><%= usuarios[i].Nombre %></p><br>
-            <p class="precio">Telefono:<br><%= usuarios[i].Telefono %></p><br>
-            <p class="descripcion">Email:<br><%= usuarios[i].Email %></p>
-          </div>
-        </a>
-        <%} %>
-      </section>
+
+    <h3 class="titulo">Usuarios registrados:</h3>
+
+    <% for (let i= 0; i< usuarios.length; i++) {%>
+    <!--<a class="oferta" href="/users/%= usuarios[i].Id %>/detail">-->
+    <a class="contenedor-usuario" href="/users/userEdit/<%= usuarios[i].Id %>">
+
+      <div class="contenedor-precio-descripcion">
+        <img src="/images/users/<%= usuarios[i].FotoPerfil  %>" alt="" class="foto-perfil">
+        <p class="dato">Nombre: <%= usuarios[i].Nombre %></p>
+        <p class="dato">Email: <%= usuarios[i].Email %></p>
+      </div>
+    </a>
+    <%} %>
 
   </main>
   <!-- PIE DE PAGINA -->
