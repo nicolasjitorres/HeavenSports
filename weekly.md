@@ -1,3 +1,46 @@
+# SPRINT 5
+
+Reuniones semanales, con comunicacion continua por Whatsapp.
+
+## Reunion 1
+
+**Peralta Diego:**
+- Que se hizo ayer: Creacion del metodo para listar todos los usuarios registrados, la vista 'usuarios.ejs' y detail de cada usuario.
+- Impedimentos: -
+- Que se hara: Edicion de la vista 'info/about.ejs'.
+
+**Torres Nicolas:**
+- Que se hizo ayer: Distribucion de tareas y detalles en el tablero de trabajo. Correcciones de estilos pendientes.
+- Impedimentos:
+- Que se hara: Creacion de la rama para poder realizar la implementacion del 'create' de usuario y la vista 'register.ejs'.
+
+**Yacuk Maria:**
+- Que se hizo ayer: Creacion de los metodos correspondientes para el detalle del usuario y la vista 'profile.ejs'. Creacion del metodo delete.Validaciones en userRoutes (falta en el controller y en el formulario).
+- Impedimentos: -
+- Que se hara: Acomodado de userDatabase.json y modificacion del metodo saveUser para que mantenga el orden. Creacion del metodo "generateId".Verificacion en userController de si el email no existe ya en la BD. Movida de multer a la nueva carpeta "Middlewares".
+
+
+## Reunion 2:
+
+**Peralta Diego:**
+- Que se hizo ayer: Pair Programming con middlewares de admin.
+- Impedimentos: -
+- Que se hara: visibilidad de los botones de edicion y eliminar en el detail del producto solo para admin. Creacion de la vista 'info/error.ejs' a la cual se redireccionara al usuario cuando no tenga los permisos para acceder a la ruta.
+
+**Torres Nicolas:**
+- Que se hizo ayer: Correcion de estilos y rutas pendientes.
+- Impedimentos:
+- Que se hara: Implementacion de la funcion 'login' de usuario, que tendra como objetivo permitir a un usuario loguearse por si mismo dentro de la pagina una vez realizado el registro. Implementacion de cookies y session para poder restringir el acceso a los usuarios a ciertas vistas que no esten permitidas ver, y para que se muestre una vista cada vez que se entre a una ruta que no este definida.
+
+**Yacuk Maria:**
+- Que se hizo ayer: Pair Programming con middlewares de admin.
+- Impedimentos: -
+- Que se hara: visibilidad de los botones de edicion en el detail del producto solo para admin. Vista del profile adicional para admin.
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
 # SPRINT 4
 
 Reuniones semanales, con comunicacion continua por Whatsapp.
