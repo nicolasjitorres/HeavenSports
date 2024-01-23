@@ -1,0 +1,61 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/userEdit.css">
+<title>Editar</title>
+
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+
+    <!-- Formulario edicion -->
+    <div class="contenedor-form">
+      <h4 class="titulo">Edición del perfil</h4>
+
+      <form action="/users/changePass?_method=PUT" method="POST">
+
+        <!-- CONTRASEÑA ACTUAL -->
+        <div class="box">
+          <input type="password" name="ContrasenaActual" id="ContrasenaActual" required>
+          <label for="ContrasenaActual">Contraseña actual</label>
+        </div>
+
+        <!-- NUEVA CONTRASEÑA -->
+        <div class="box">
+          <input type="password" name="Contrasena" id="Contrasena" required>
+          <label for="Contrasena">Nueva contraseña</label>
+        </div>
+
+        <!-- REPETIR NUEVA CONTRASEÑA -->
+        <div class="box">
+          <input type="password" name="ReContrasena" id="ReContrasena" required>
+          <label for="ReContrasena">Repetir nueva contraseña</label>
+        </div>
+
+        <% if (locals.error) { %>
+          <p style="color: red; text-align: center;"><%= error%></p>
+        <% } %>
+
+        <div class="botones">
+          <!-- Boton carga -->
+          <button type="submit" class="boton">Actualizar</button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>

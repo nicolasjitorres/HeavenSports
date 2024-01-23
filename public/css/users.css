@@ -1,0 +1,111 @@
+:root {
+    --dark-primary: #132c3a;
+    --primary: #4b858d;
+    --light-primary: #a2cadf;
+    --secondary-text: #666;
+    --secondary: #ebebeb;
+    --light: #fff;
+    --dark: #000;
+    --discount: #008f39;
+}
+
+
+
+
+/* MAIN */
+
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--secondary);
+    padding-bottom: 50px;
+}
+
+
+
+
+
+/* Titulo */
+.titulo {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0 10px;
+    color: var(--dark);
+    font-size: 1.1rem;
+}
+
+
+.contenedor-usuario {
+    width: 90%;
+    max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: flex-start;
+    background-color: var(--light);
+    margin: 5px;
+    align-items: center;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+
+.foto-perfil {
+    width: 60px;
+    opacity: 90%;
+}
+
+
+.dato {
+    color: var(--dark);
+    font-size: 13px;
+}
+
+
+
+
+
+
+
+
+
+/* MEDIA QUERYS */
+
+/* DISEÑOS PARA TABLETS */
+
+@media (min-width:768px) {
+
+
+    /* MAIN */
+
+    .titulo {
+        font-size: 1.4rem;
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/* Resolucion para PC */
+@media(min-width: 1024px) {
+
+
+    /* MAIN */
+
+    .titulo {
+        font-size: 1.4rem;
+    }
+
+
+
+}

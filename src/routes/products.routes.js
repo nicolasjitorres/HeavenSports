@@ -3,6 +3,7 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 const path = require('path');
 const multer = require('multer');
+const adminMiddleware = require("../middlewares/adminMiddleware");
 
 const imgStorage = path.join(__dirname, '../../public/images/products');
 var mDStorage = multer.diskStorage({
@@ -28,14 +29,14 @@ router.get('/:id/detail', productController.detail);
 router.get('/cart', productController.cart);
 
 /*** CREATE ONE PRODUCT ***/ 
-router.get('/create', productController.create); 
+router.get('/create', adminMiddleware, productController.create); 
 router.post('/', upload.array('Imagen'), productController.save); 
 
 /*** EDIT ONE PRODUCT ***/ 
-router.get('/:id/edit', productController.edit); 
+router.get('/:id/edit', adminMiddleware, productController.edit); 
 router.put('/:id', upload.array('Imagen'), productController.update); 
 
 /*** DELETE ONE PRODUCT***/ 
-router.delete('/:id', productController.destroy); 
+router.delete('/:id', adminMiddleware, productController.destroy); 
 
 module.exports = router;

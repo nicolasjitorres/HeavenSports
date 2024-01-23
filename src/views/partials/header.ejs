@@ -10,8 +10,17 @@
       <a href="/"><i class="fa-solid fa-home"></i> Inicio</a>
       <a href="/products"><i class="fa-solid fa-book"></i> Productos</a>
       <a href="/about"><i class="fa-solid fa-question"></i> Nosotros</a>
-      <a href="/users/login"><i class="fa-solid fa-user icono-usuario"></i> Iniciar sesión</a>
       <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i> Carrito</a>
+      <% if (locals.userLogged) { %>
+      <a href="/users/profile"><i class="fa-solid fa-user icono-usuario"></i> Mi perfil</a>
+      <a href="/users/logout"><i class="fa-solid fa-right-from-bracket icono-usuario"></i> Cerrar sesión</a>
+      <% }else{ %>
+      <a href="/users/login"><i class="fa-solid fa-right-to-bracket icono-usuario"></i> Iniciá sesión</a>
+      <a href="/users/register"><i class="fa-solid fa-user-plus icono-usuario"></i> Registrate</a>
+      <% } %>
+      <% if (locals.userLogged && locals.admin) { %>
+        <a href="/users/"><i class="fa-solid fa-users icono-usuario"></i> Lista Usuarios</a>
+      <% } %>
     </nav>
 
     <!-- Contenedor Logo -->

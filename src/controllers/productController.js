@@ -11,7 +11,7 @@ const controller = {
     // Mostrar detalle producto por ID
     detail: (req, res) => {
 		res.render('products/detail', ({
-			producto: productService.getOne(req.params.id)
+			producto: productService.getOne(req.params.id), user: req.session.userLogged
 		}));
 	},
     cart: (req, res) => {
@@ -25,7 +25,7 @@ const controller = {
 		res.redirect('/products');
     },
     edit: (req, res) => {
-        res.render('products/edit', ({
+        res.render('products/productEdit', ({
 			producto: productService.getOne(req.params.id)
 		}));
     },

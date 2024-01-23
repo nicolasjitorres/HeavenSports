@@ -400,19 +400,5 @@ main {
       background-color: var(--light-primary);
   }
 
-  .icono-hamburguesa:hover{
-      transform: scale(1.2);
-  }
-
-  .barra-navegacion a:hover {
-      font-size: 19px;
-      background-color: var(--light-primary);
-      color: var(--dark);
-  }
-
-  .barra-navegacion a,
-  .icono-hamburguesa {
-      transition: all 200ms ease-in-out;
-  }
 
 }

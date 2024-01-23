@@ -1,0 +1,40 @@
+<%- include ('../partials/head')%>
+
+<link rel="stylesheet" href="/css/users.css">
+<title>Ver Usuarios</title>
+
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <%- include ('../partials/header')%>
+
+  <!-- PRINCIPAL -->
+  <main>
+
+    <!-- Lista de todos los usuarios -->
+
+
+    <h3 class="titulo">Usuarios registrados:</h3>
+
+    <% for (let i= 0; i< usuarios.length; i++) {%>
+    <!--<a class="oferta" href="/users/%= usuarios[i].Id %>/detail">-->
+    <a class="contenedor-usuario" href="/users/userEdit/<%= usuarios[i].Id %>">
+
+      <div class="contenedor-precio-descripcion">
+        <img src="/images/users/<%= usuarios[i].FotoPerfil  %>" alt="" class="foto-perfil">
+        <p class="dato">Nombre: <%= usuarios[i].Nombre %></p>
+        <p class="dato">Email: <%= usuarios[i].Email %></p>
+      </div>
+    </a>
+    <%} %>
+
+  </main>
+  <!-- PIE DE PAGINA -->
+  <%- include ('../partials/footer')%>
+
+
+</body>
+
+</html>
