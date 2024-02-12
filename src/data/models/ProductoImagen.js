@@ -12,9 +12,21 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_producto: {
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'productos',
+                    key: 'id'
+                }
+            }
         },
         id_imagen:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'imagenes',
+                    key: 'id'
+                }
+            }
         }
     }
 
@@ -24,6 +36,21 @@ module.exports = (sequelize, DataTypes) =>{
     }
 
     let ProductoImagen = sequelize.define(alias, columns, config);
+
+
+    ProductoImagen.associate = function(models){
+
+        ProductoImagen.belongsTo(models.Productos, {
+            as: 'productos',
+            foreignKey:'id_producto'
+        }),
+
+        ProductoImagen.belongsTo(models.Imagenes, {
+            as: 'imagenes',
+            foreignKey:'id_imagen'
+        }),
+    }
+
 
     return ProductoImagen;
 }
