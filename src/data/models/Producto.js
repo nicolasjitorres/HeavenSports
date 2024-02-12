@@ -18,6 +18,12 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_marca: {
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'marcas',
+                    key: 'id'
+                }
+            }
         }
     }
 
@@ -27,6 +33,16 @@ module.exports = (sequelize, DataTypes) =>{
     }
 
     let Producto = sequelize.define(alias, columns, config);
+
+
+    Producto.associate = function(models){
+
+        Producto.belongsTo(models.Marcas, {
+            as: 'marcas',
+            foreignKey:'id_marca'
+        })
+    }
+
 
     return Producto;
 }
