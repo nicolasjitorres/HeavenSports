@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_usuario:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'usuarios',
+                    key: 'id'
+                }
+            }
         },
         precio_total:{
             type: DataTypes.BIGINT,
@@ -24,6 +30,16 @@ module.exports = (sequelize, DataTypes) =>{
     }
 
     let Carrito = sequelize.define(alias, columns, config);
+
+
+    Carrito.associate = function(models){
+
+        Carrito.belongsTo(models.Usuarios, {
+            as: 'usuarios',
+            foreignKey:'id_usuario'
+        })
+    }
+
 
     return Carrito;
 }

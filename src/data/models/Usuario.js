@@ -55,11 +55,16 @@ module.exports = (sequelize, DataTypes) =>{
         Usuario.belongsTo(models.Imagenes, {
             as: 'imagenes',
             foreignKey: 'id_imagen_perfil'
-        })
+        }),
 
         Usuario.belongsTo(models.Roles, {
             as: 'roles',
             foreignKey: 'id_rol'
+        }),
+
+        Usuario.hasMany(models.Carritos, {
+            as: 'carritos',
+            foreignKey:'id_usuario'
         })
 
         ////////////////
