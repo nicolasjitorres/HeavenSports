@@ -12,9 +12,21 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_producto: {
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'productos',
+                    key: 'id'
+                }
+            }
         },
         id_categoria:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'categorias',
+                    key: 'id'
+                }
+            }
         }
     }
 
