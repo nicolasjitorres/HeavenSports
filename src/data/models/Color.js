@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         hexadecimal:{
             type: DataTypes.STRING(50),
-        },
+        }
     }
 
     let config = {

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         extension:{
             type: DataTypes.STRING(10),
-        },
+        }
     }
 
     let config = {

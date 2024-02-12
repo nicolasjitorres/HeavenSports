@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         precio_total:{
             type: DataTypes.BIGINT,
-        },
+        }
     }
 
     let config = {

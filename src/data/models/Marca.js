@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         nombre: {
             type: DataTypes.STRING(50),
-        },
+        }
     }
 
     let config = {

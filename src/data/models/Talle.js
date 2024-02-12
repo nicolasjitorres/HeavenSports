@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         descripcion:{
             type: DataTypes.STRING(100),
-        },
+        }
     }
 
     let config = {
