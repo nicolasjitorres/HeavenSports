@@ -1,0 +1,13 @@
+
+const path = require('path');
+
+
+let sequelizerc = {
+  'config': path.resolve('src', 'data', 'config', 'config.js'), // si la extension es json, no hace falta exportarlo, si es js, si es necesario exportarlo
+  'models-path': path.resolve('src', 'data', 'models'),
+  'seeders-path': path.resolve('src','data', 'seeders'),
+  'migrations-path': path.resolve('src', 'data', 'migrations')
+};
+
+
+module.exports = sequelizerc;
