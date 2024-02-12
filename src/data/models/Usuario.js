@@ -67,18 +67,6 @@ module.exports = (sequelize, DataTypes) =>{
             foreignKey:'id_usuario'
         })
 
-        ////////////////
-        Actor.belongsToMany(models.Peliculas, {
-            as: 'peliculas',
-            through: models.Peliculas_Actores,
-            foreignKey: 'actor_id',
-            otherKey: 'movie_id'
-        })
-
-        Actor.hasMany(models.Peliculas_Actores, {
-            as: 'peliculaActores',
-            foreignKey:'actor_id'
-        })
     }
 
     return Usuario;
