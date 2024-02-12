@@ -3,6 +3,8 @@ const fs = require('fs');
 
 const productsFilePath = path.join(__dirname, './productDatabase.json');
 
+const db = require("./models");
+
 const capitalize = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
 }

@@ -3,7 +3,7 @@ const fs = require('fs');
 const userPath = path.resolve(__dirname, './userDatabase.json');
 const bcryptjs = require('bcryptjs');
 
-
+const db = require("./models");
 
 const userService = {
     users: JSON.parse(fs.readFileSync(userPath, 'utf-8')),
