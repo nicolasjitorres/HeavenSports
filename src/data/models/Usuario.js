@@ -33,6 +33,12 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_rol:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'roles',
+                    key: 'id'
+                }
+            }
         }
     }
 
@@ -49,6 +55,11 @@ module.exports = (sequelize, DataTypes) =>{
         Usuario.belongsTo(models.Imagenes, {
             as: 'imagenes',
             foreignKey: 'id_imagen_perfil'
+        })
+
+        Usuario.belongsTo(models.Roles, {
+            as: 'roles',
+            foreignKey: 'id_rol'
         })
 
         ////////////////
