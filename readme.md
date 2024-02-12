@@ -3,6 +3,14 @@ Realizamos envíos a todo el país.
 Nuestra empresa está orientado a todo aquel que practique deportes ya sea de manera amateur o profesional, de todas las edades y que busque calidad, comodidad y confort en su andar y eficiencia en su práctica deportiva.
 Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclusivos. Asesoramos en cuanto a necesidades ortopédicas y vasculares, talles, sujeción y materiales. Con nuestros clientes nos comprometemos a enviarles avisos de ofertas exclusivas de productos y un sistema de fidelización del cliente con beneficios en sus futuras compras. Como servicio post venta ofrecemos orientación en cuanto al mantenimiento y una garantía de cambio directo los primeros 10 días.
 
+--------------------
+
+Se debe tener un archivo ".env" con el siguiente contenido:
+DB_USER = user
+DB_PASS = pass
+DB_NAME = db_name
+
+
 
 ## Paginas referentes:
 
