@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     Imagen.associate = function(models){
 
-        Imagen.hasMany(models.Usuarios, {
+        Imagen.belongsTo(models.Usuarios, {
             as: 'usuarios',
             foreignKey:'id_imagen_perfil'
         })
