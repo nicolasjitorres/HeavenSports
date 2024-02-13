@@ -12,9 +12,21 @@ module.exports = (sequelize, DataTypes) =>{
         },
         id_carrito:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'carritos',
+                    key: 'id'
+                }
+            }
         },
         id_producto_color_taller:{
             type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'producto_color_talle',
+                    key: 'id'
+                }
+            }
         },
         cantidad_producto: {
             type: DataTypes.INTEGER,
@@ -27,6 +39,22 @@ module.exports = (sequelize, DataTypes) =>{
     }
 
     let CarritoProductoColorTalle = sequelize.define(alias, columns, config);
+
+
+    CarritoProductoColorTalle.associate = function(models){
+
+        CarritoProductoColorTalle.belongsTo(models.ProductosColoresTalles, {
+            as: 'productosColoresTalles',
+            foreignKey:'id_producto_color_talle'
+        }),
+
+        CarritoProductoColorTalle.belongsTo(models.Carritos, {
+            as: 'carritos',
+            foreignKey:'id_carrito'
+        })
+        
+    }
+
 
     return CarritoProductoColorTalle;
 }

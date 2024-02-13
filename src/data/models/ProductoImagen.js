@@ -48,7 +48,8 @@ module.exports = (sequelize, DataTypes) =>{
         ProductoImagen.belongsTo(models.Imagenes, {
             as: 'imagenes',
             foreignKey:'id_imagen'
-        }),
+        })
+        
     }
 
 

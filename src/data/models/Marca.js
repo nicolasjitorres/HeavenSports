@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) =>{
             as: 'productos',
             foreignKey:'id_marca'
         })
+        
     }
 
 

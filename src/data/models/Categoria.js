@@ -39,7 +39,8 @@ module.exports = (sequelize, DataTypes) =>{
         Categoria.hasMany(models.ProductosCategorias, {
             as: 'productosCategorias',
             foreignKey:'id_categoria'
-        }),
+        })
+        
     }
 
 
