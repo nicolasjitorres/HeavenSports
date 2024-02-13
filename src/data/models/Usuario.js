@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     Usuario.associate = function(models){
 
-        Usuario.belongsTo(models.Imagenes, {
+        Usuario.hasOne(models.Imagenes, {
             as: 'imagenes',
             foreignKey: 'id_imagen_perfil'
         }),
@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) =>{
         })
 
     }
-    
+
 
     return Usuario;
 }
