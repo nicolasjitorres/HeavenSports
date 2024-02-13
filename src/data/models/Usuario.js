@@ -53,12 +53,12 @@ module.exports = (sequelize, DataTypes) =>{
     Usuario.associate = function(models){
 
         Usuario.hasOne(models.Imagenes, {
-            as: 'imagenes',
+            as: 'imagen',
             foreignKey: 'id_imagen_perfil'
         }),
 
         Usuario.belongsTo(models.Roles, {
-            as: 'roles',
+            as: 'rol',
             foreignKey: 'id_rol'
         }),
 

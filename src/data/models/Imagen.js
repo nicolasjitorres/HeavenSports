@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) =>{
 
     Imagen.associate = function(models){
 
-        Imagen.belongsTo(models.Usuarios, {
-            as: 'usuarios',
+        Imagen.hasOne(models.Usuarios, {
+            as: 'usuario',
             foreignKey:'id_imagen_perfil'
         }),
 
