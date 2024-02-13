@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) =>{
         },
         precio:{
             type: DataTypes.BIGINT,
+        },
+        descuento:{
+            type: DataTypes.INTEGER,
         }
     }
 

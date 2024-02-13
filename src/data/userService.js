@@ -39,6 +39,7 @@ const userService = {
                 let user = {
                     Id: this.generateId(),
                     Nombre: body.Nombre,
+                    Apellido: body.Apellido,
                     Telefono: parseInt(body.Telefono),
                     Email: body.Email,
                     Contrasena: Contrasena,
