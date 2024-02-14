@@ -4,9 +4,14 @@ const productService = require('../data/productService');
 const controller = {
     // Mostrar todos los productos
     index: (req, res) => {
+        let productos = productService.getAll()
+        .then((productos) => res.status(200).render('products/products', {productos: productos}))
+
+        /*
 		res.render('products/products', ({
 			productos: productService.getAll()
 		}));
+        */
 	},
     // Mostrar detalle producto por ID
     detail: (req, res) => {

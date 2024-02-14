@@ -3,7 +3,7 @@ const fs = require('fs');
 const userPath = path.resolve(__dirname, './userDatabase.json');
 const bcryptjs = require('bcryptjs');
 
-
+const db = require("./models");
 
 const userService = {
     users: JSON.parse(fs.readFileSync(userPath, 'utf-8')),
@@ -39,6 +39,7 @@ const userService = {
                 let user = {
                     Id: this.generateId(),
                     Nombre: body.Nombre,
+                    Apellido: body.Apellido,
                     Telefono: parseInt(body.Telefono),
                     Email: body.Email,
                     Contrasena: Contrasena,

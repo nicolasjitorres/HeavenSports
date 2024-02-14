@@ -1,3 +1,47 @@
+# SPRINT 6
+
+Reuniones semanales, con comunicacion continua por Whatsapp.
+
+## Reunion 1
+
+**Peralta Diego:**
+- Que se hizo ayer: 
+- Impedimentos: -
+- Que se hara: 
+
+**Torres Nicolas:**
+- Que se hizo ayer: 
+- Impedimentos:
+- Que se hara: 
+
+**Yacuk Maria:**
+- Que se hizo ayer: Resumen y carga de tareas en Trello.
+- Impedimentos: -
+- Que se hara: Creación de la carpeta database que incluye los archivos de configuracion de Sequelize y los archivos de modelos que representan a las tablas junto con sus relaciones.
+
+
+## Reunion 2:
+
+**Peralta Diego:**
+- Que se hizo ayer: 
+- Impedimentos: -
+- Que se hara: 
+
+**Torres Nicolas:**
+- Que se hizo ayer: 
+- Impedimentos:
+- Que se hara: 
+
+**Yacuk Maria:**
+- Que se hizo ayer: Script data.sql para poblar las tablas. Actualizacion del archivo structure.sql y DER. 
+- Impedimentos: -
+- Que se hara: Actualizacion de Trello.
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+
 # SPRINT 5
 
 Reuniones semanales, con comunicacion continua por Whatsapp.
