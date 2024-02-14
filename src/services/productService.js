@@ -1,17 +1,12 @@
-const path = require('path');
 const fs = require('fs');
-
-const productsFilePath = path.join(__dirname, './productDatabase.json');
-
-const db = require("./models");
+const db = require("../data/models");
 
 const capitalize = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
 }
 
-
 const productService = {
-    products: JSON.parse(fs.readFileSync(productsFilePath, 'utf-8')),
+    products: "",
 
     getAll: function () {
         return db.Productos.findAll()

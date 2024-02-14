@@ -1,12 +1,9 @@
-const path = require('path');
 const fs = require('fs');
-const userPath = path.resolve(__dirname, './userDatabase.json');
 const bcryptjs = require('bcryptjs');
-
-const db = require("./models");
+const db = require("../data/models");
 
 const userService = {
-    users: JSON.parse(fs.readFileSync(userPath, 'utf-8')),
+    users: "",
     getAll: function () {
         return this.users;
     },

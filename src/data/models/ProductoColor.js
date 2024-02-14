@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) =>{
 
-    let alias = 'ProductosColores';
+    let alias = 'ProductoColor';
 
     let columns = {
         id: {
@@ -46,27 +46,22 @@ module.exports = (sequelize, DataTypes) =>{
 
     ProductoColor.associate = function(models){
 
-        ProductoColor.belongsTo(models.Productos, {
+        ProductoColor.belongsTo(models.Producto, {
             as: 'producto',
             foreignKey:'id_producto'
         }),
 
-        ProductoColor.belongsTo(models.Colores, {
+        ProductoColor.belongsTo(models.Color, {
             as: 'color',
             foreignKey:'id_color'
         }),
 
-        ProductoColor.belongsToMany(models.Talles, {
+        ProductoColor.belongsToMany(models.Talle, {
             as: 'talles',
-            through: 'producto_color_talle',
+            through: 'ProductoColorTalle',
             foreignKey: 'id_producto_color',
             otherKey: 'id_talle',
             timestamps: false
-        }),
-
-        ProductoColor.hasMany(models.ProductosColoresTalles, {
-            as: 'productosColoresTalles',
-            foreignKey:'id_producto_color'
         })
         
     }

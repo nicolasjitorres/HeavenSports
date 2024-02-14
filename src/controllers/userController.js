@@ -1,4 +1,4 @@
-const userService = require('../data/userService');
+const userService = require('../services/userService');
 
 
 

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const productService = require('../data/productService');
+const productService = require('../services/productService');
 
 const controller = {
     index: (req, res) => {

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) =>{
 
-    let alias = 'Usuarios';
+    let alias = 'Usuario';
 
     let columns = {
         id: {
@@ -55,23 +55,22 @@ module.exports = (sequelize, DataTypes) =>{
 
     Usuario.associate = function(models){
 
-        Usuario.hasOne(models.Imagenes, {
+        Usuario.belongsTo(models.Imagen, {
             as: 'imagen',
             foreignKey: 'id_imagen_perfil'
         }),
 
-        Usuario.belongsTo(models.Roles, {
+        Usuario.belongsTo(models.Rol, {
             as: 'rol',
             foreignKey: 'id_rol'
         }),
 
-        Usuario.hasMany(models.Carritos, {
+        Usuario.hasOne(models.Carrito, {
             as: 'carritos',
             foreignKey:'id_usuario'
         })
 
     }
-
 
     return Usuario;
 }

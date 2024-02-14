@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) =>{
 
-    let alias = 'Marcas';
+    let alias = 'Marca';
     
     let columns = {
         id: {
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     Marca.associate = function(models){
 
-        Marca.hasMany(models.Productos, {
+        Marca.hasMany(models.Producto, {
             as: 'productos',
             foreignKey:'id_marca'
         })
