@@ -39,11 +39,11 @@ module.exports = (sequelize, DataTypes) =>{
             foreignKey:'id_usuario'
         }),
 
-        Carrito.belongsToMany(models.ProductoColorTalle, {
-            as: 'productosColoresTalles',
-            through: 'CarritoProductoColorTalle',
+        Carrito.belongsToMany(models.ProductoTalle, {
+            as: 'productosTalles',
+            through: 'CarritoProductoTalle',
             foreignKey: 'id_carrito',
-            otherKey: 'id_producto_color_talle',
+            otherKey: 'id_producto_talle',
             timestamps: false
         })
 

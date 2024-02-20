@@ -1,132 +1,210 @@
 const fs = require('fs');
 const db = require("../data/models");
 
+// Funcion que recibe una palabra sin importar como está escrita y la retorna capitalizada (ejemplo: hOlA => Hola)
 const capitalize = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
 }
 
 const productService = {
-    products: "",
-
-    getAll: function () {
-        return db.Productos.findAll()
-
-        /*
-        return this.products;
-        */
+    // Retorna todos los productos
+    getAll: async function () {
+        try {
+            return await db.Producto.findAll({
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles']
+            },{
+                where:{
+                    active: true
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
     },
+    // Retorna un producto en base a su id
+    getByPk: async function (id) {
+        try {
+            return await db.Producto.findByPk(id, {
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles']
+            });
+        } catch (error) {
+            console.log(error);
+            return {};
+        }
 
-    getOne: function (Id) {
-        let producto = {};
+        /* let producto = {};
         for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].Id == Id) {
                 producto = this.products[i];
             }
         }
-        return producto;
+        return producto; */
     },
-    saveProduct: function (productoEntrante, files) {
-        const productoNuevo = new Producto(productoEntrante, files)
-
-        productoNuevo.Nombre = capitalize(productoNuevo.Nombre);
-        productoNuevo.Marca = capitalize(productoNuevo.Marca);
-        productoNuevo.Descripcion = capitalize(productoNuevo.Descripcion);
-        productoNuevo.Precio = capitalize(productoNuevo.Precio);
-        productoNuevo.Descuento = capitalize(productoNuevo.Descuento);
-        productoNuevo.Color = productoNuevo.Color.split(" ").map(color => capitalize(color));
-        productoNuevo.Talle = productoNuevo.Talle.split(" ");
-        productoNuevo.Stock = capitalize(productoNuevo.Stock);
-        productoNuevo.Categoria = capitalize(productoNuevo.Categoria);
-        if (files.length) {
-            let imagenes = [];
-            for (let i = 0; i < files.length; i++) {
-                imagenes.push(files[i].filename);
+    // Retorna los registros de los modelos que se relacionan con Producto para mostrarlos en la vista
+    getCreateView: async function () {
+        try {
+            const categorias = await db.Categoria.findAll();
+            const colores = await db.Color.findAll();
+            const marcas = await db.Marca.findAll();
+            const talles = await db.Talle.findAll();
+            return {
+                categorias,
+                colores,
+                marcas,
+                talles
             }
-            productoNuevo.Imagen = imagenes;
-        } else {
-            productoNuevo.Imagen = ["default.png"];
+        } catch (error) {
+            console.log(error);
+            return {};
         }
 
-        db.Productos.create(productoNuevo);
-
-        /*
-        let idNuevo = this.products[this.products.length - 1].Id + 1;
-        productoNuevo.Id = idNuevo;
-        productoNuevo.Nombre = capitalize(productoNuevo.Nombre);
-        productoNuevo.Marca = capitalize(productoNuevo.Marca);
-        productoNuevo.Descripcion = capitalize(productoNuevo.Descripcion);
-        productoNuevo.Precio = parseFloat(productoNuevo.Precio);
-        productoNuevo.Descuento = parseFloat(productoNuevo.Descuento);
-        productoNuevo.Stock = parseFloat(productoNuevo.Stock);
-        if (files.length) {
-            let imagenes = [];
-            for (let i = 0; i < files.length; i++) {
-                imagenes.push(files[i].filename);
-            }
-            productoNuevo.Imagen = imagenes;
-        } else {
-            productoNuevo.Imagen = ["default.png"];
-        }
-        productoNuevo.Talle = productoNuevo.Talle.split(" ");
-        productoNuevo.Color = productoNuevo.Color.split(" ").map(color => capitalize(color));
-
-        this.products.push(productoNuevo);
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
-        */
     },
-    edit: function (productoEditado, id, files) {
-        productoEditado.Id = id;
-        productoEditado.Nombre = capitalize(productoEditado.Nombre);
-        productoNuevo.Marca = capitalize(productoNuevo.Marca);
-        productoEditado.Descripcion = capitalize(productoEditado.Descripcion);
-        productoEditado.Precio = parseFloat(productoEditado.Precio);
-        productoEditado.Descuento = parseFloat(productoEditado.Descuento);
-        productoEditado.Talle = productoEditado.Talle.split(" ");
-        productoEditado.Color = productoEditado.Color.split(" ").map(color => capitalize(color));
-        productoEditado.Stock = parseFloat(productoEditado.Stock);
+    // Guarda en la base de datos el nuevo producto
+    saveProduct: async function (data, files) {
+        try {
+            const newProducto = new Producto(data);
+            // Cargando el nuevo producto en la BD, y obtenemos su id
+            const {
+                id
+            } = await db.Producto.create(newProducto);
 
-        let indiceProducto = this.products.findIndex(producto => producto.Id == id);
-        if (files.length) {
-            let imagenes = [];
-            for (let i = 0; i < files.length; i++) {
-                imagenes.push(files[i].filename);
+            // Cargamos las relaciones producto-categoria
+            for (const id_categoria of data.categorias) {
+                const newProductoCategoria = new ProductoCategoria(id, id_categoria);
+                await db.ProductoCategoria.create(newProductoCategoria);
             }
-            productoEditado.Imagen = imagenes;
-        } else {
-            productoEditado.Imagen = this.products[indiceProducto].Imagen;
-        }
-        this.products[indiceProducto] = productoEditado;
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
+            // Cargamos la relacion producto-talle
+            // NOTA: solo podemos cargar un talle a la vez
+            const newProductoTalle = new ProductoTalle(id, data.id_talle, data.stock);
+            await db.ProductoTalle.create(newProductoTalle);
+
+            // Carga de imagenes
+            if (files) {
+                for (const file of files) {
+                    const newImagen = new Imagen(file.filename);
+                    const imagen = await db.Imagen.create(newImagen);
+                    const newProductoImagen = new ProductoImagen(id, imagen.id);
+                    await db.ProductoImagen.create(newProductoImagen);
+                }
+            }
+
+            return id;
+        } catch (error) {
+            console.log(error);
+        }
+
     },
-    delete: function (req) {
-        let idAEliminar = this.products.findIndex(producto => producto.id == req.params.id);
-        this.products.splice(idAEliminar, 1);
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
+    // Retorna los registros de los modelos que se relacionan con Producto para mostrarlos en la vista
+    getEditView: async function (id) {
+        try {
+            const producto = await this.getByPk(id);
+            const categorias = await db.Categoria.findAll();
+            const colores = await db.Color.findAll();
+            const marcas = await db.Marca.findAll();
+            return {
+                producto,
+                categorias,
+                colores,
+                marcas
+            }
+        } catch (error) {
+            console.log(error);
+            return {};
+        }
+
+    },
+    edit: async function (data, id) {
+        try {
+            const newProduct = new Producto(data);
+            await db.Producto.update(newProduct, {
+                where: {
+                    id: id
+                }
+            });
+
+            for (cat of data.categorias) {
+                if (!data.categoriasViejas.includes(cat)) {
+                    const newProductoCategoria = new ProductoCategoria(id, cat)
+                    await db.ProductoCategoria.create(newProductoCategoria);
+                }
+            }
+
+            for (catVieja of data.categoriasViejas) {
+                if (!data.categorias.includes(catVieja)) {
+                    await db.ProductoCategoria.destroy({
+                        where: {
+                            id_producto: id,
+                            id_categoria: catVieja
+                        }
+                    })
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    softDelete: async function (id) {
+        try {
+            await db.Producto.update( {active: false}, {
+                where: {
+                    id: id
+                }
+            });
+            console.log("producto eliminado con exito");
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        // let idAEliminar = this.products.findIndex(producto => producto.id == req.params.id);
+        // this.products.splice(idAEliminar, 1);
+        // fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
     }
 }
 
-function Producto({
-    Nombre,
-    Descripcion,
-    Precio,
-    Descuento,
-    Color,
-    Talle,
-    Stock,
-    Categoria,
-    Imagen
-}) {
-    this.Nombre = Nombre;
-    this.Descripcion = Descripcion;
-    this.Precio = Precio;
-    this.Descuento = Descuento;
-    this.Color = Color;
-    this.Talle = Talle;
-    this.Stock = Stock;
-    this.Categoria = Categoria;
-    this.Imagen = Imagen;
 
+// Constructor de Producto
+function Producto({
+    nombre,
+    descripcion,
+    precio,
+    descuento,
+    id_color,
+    id_marca
+}) {
+    this.nombre = nombre,
+        this.descripcion = descripcion,
+        this.precio = precio,
+        this.descuento = descuento,
+        this.id_color = id_color,
+        this.id_marca = id_marca
 }
+
+// Constructor de ProductoCategoria
+function ProductoCategoria(id_producto, id_categoria) {
+    this.id_producto = id_producto,
+        this.id_categoria = id_categoria
+}
+
+// Constructor de ProductoTalle
+function ProductoTalle(id_producto, id_talle, stock) {
+    this.id_producto = id_producto,
+        this.id_talle = id_talle,
+        this.stock = stock
+}
+
+// Constructor de Imagen
+function Imagen(filename) {
+    this.nombre = filename
+}
+
+// Constructor de ProductoImagen
+function ProductoImagen(id_producto, id_imagen) {
+    this.id_producto = id_producto,
+        this.id_imagen = id_imagen
+}
+
 
 module.exports = productService;

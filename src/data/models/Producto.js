@@ -16,6 +16,24 @@ module.exports = (sequelize, DataTypes) =>{
         descripcion:{
             type: DataTypes.STRING(200),
         },
+        precio: {
+            type: DataTypes.INTEGER
+        },
+        descuento: {
+            type: DataTypes.INTEGER
+        },
+        active:{
+            type: DataTypes.BOOLEAN
+        },
+        id_color: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: {
+                    tableName: 'colores',
+                    key: 'id'
+                }
+            }
+        },
         id_marca: {
             type: DataTypes.INTEGER,
             references: {
@@ -58,11 +76,15 @@ module.exports = (sequelize, DataTypes) =>{
             timestamps: false
         }),
 
-        Producto.belongsToMany(models.Color, {
-            as: 'colores',
-            through: 'ProductoColor',
+        Producto.belongsTo(models.Color, {
+            as: 'color',
+            foreignKey: 'id_color',
+        }),
+        Producto.belongsToMany(models.Talle, {
+            as: 'talles',
+            through: 'ProductoTalle',
             foreignKey: 'id_producto',
-            otherKey: 'id_color',
+            otherKey: 'id_talle',
             timestamps: false
         })
         

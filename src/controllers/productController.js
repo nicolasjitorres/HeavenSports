@@ -1,47 +1,73 @@
 const productService = require('../services/productService');
 
-
 const controller = {
     // Mostrar todos los productos
-    index: (req, res) => {
-        let productos = productService.getAll()
-        .then((productos) => res.status(200).render('products/products', {productos: productos}))
-
-        /*
-		res.render('products/products', ({
-			productos: productService.getAll()
-		}));
-        */
-	},
-    // Mostrar detalle producto por ID
-    detail: (req, res) => {
-		res.render('products/detail', ({
-			producto: productService.getOne(req.params.id), user: req.session.userLogged
-		}));
-	},
+    index: async (req, res) => {
+        try {
+            const productos = await productService.getAll();
+            res.status(200).render('products/products', {productos: productos});
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    // Mostrar detalle de un producto mediante su id
+    detail: async (req, res) => {
+        try {
+            const producto = await productService.getByPk(req.params.id);
+            res.status(200).render('products/detail', {producto: producto});
+        } catch (error) {
+            console.log(error);
+        }
+    },
     cart: (req, res) => {
         res.render('products/cart', {});
     },
-    create: (req, res) => {
-        res.render('products/create');
+    // Muestra el formulario de creacion de un producto
+    create: async (req, res) => {
+        try {
+            const { categorias, colores, marcas, talles } = await productService.getCreateView();
+            res.status(200).render('products/create', { cat: categorias, col: colores, mar: marcas, tal: talles});
+        } catch (error) {
+            console.log(error);
+        }
     },
-    save: (req, res) => {
-        productService.saveProduct(req.body, req.files);
-		res.redirect('/products');
+    // Metodo para almacenar el nuevo producto creado
+    save: async (req, res) => {
+        try {
+            const idProducto = await productService.saveProduct(req.body, req.files);
+            res.redirect(`/products/detail/${idProducto}`);
+        } catch (error) {
+            console.log(error);
+        }
     },
-    edit: (req, res) => {
-        res.render('products/productEdit', ({
-			producto: productService.getOne(req.params.id)
-		}));
+    // Muestra el formulario de edicion de un producto mediante su id
+    edit: async (req, res) => {
+        try {
+            const { producto, categorias, colores, marcas} = await productService.getEditView(req.params.id);
+            res.status(200).render('products/productEdit', { producto: producto, cat: categorias, col: colores, mar: marcas});
+        } catch (error) {
+            console.log(error);
+        }
+
+/*         res.render('products/productEdit', ({
+            producto: productService.getOne(req.params.id)
+        })); */
     },
-    update: (req, res) => {
-        productService.edit(req.body, req.params.id, req.files);
-        res.redirect('/products/'+ req.params.id + "/detail");
+    // Metodo para actualizar un determinado producto
+    update: async (req, res) => {
+        await productService.edit(req.body, req.params.id);
+        res.redirect(`/products/detail/${req.params.id}`);
     },
-    destroy: (req, res) => {
-		productService.delete(req);
-		res.redirect('/products')
-	}
+    logicDelete: async(req, res) => {
+        try {
+            await productService.softDelete(req.params.id);
+        } catch (error) {
+            console.log(error);
+        }
+
+        // productService.softDelete(req);
+        // res.redirect('/products')
+    }
 }
 
 module.exports = controller

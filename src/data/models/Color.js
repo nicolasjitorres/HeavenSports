@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) =>{
         },
         nombre:{
             type: DataTypes.STRING(50),
-        },
-        hexadecimal:{
-            type: DataTypes.STRING(50),
         }
     }
 
@@ -28,11 +25,9 @@ module.exports = (sequelize, DataTypes) =>{
 
     Color.associate = function(models){
 
-        Color.belongsToMany(models.Producto, {
+        Color.hasMany(models.Producto, {
             as: 'productos',
-            through: 'ProductoColor',
             foreignKey: 'id_color',
-            otherKey: 'id_producto',
             timestamps: false
         })
         

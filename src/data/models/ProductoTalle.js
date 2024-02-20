@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) =>{
 
-    let alias = 'ProductoColor';
+    let alias = 'ProductoTalle';
 
     let columns = {
         id: {
@@ -14,58 +14,55 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.INTEGER,
             references: {
                 model: {
-                    tableName: 'productos',
+                    tableName: 'producto',
                     key: 'id'
                 }
             }
         },
-        id_color:{
+        id_talle:{
             type: DataTypes.INTEGER,
             references: {
                 model: {
-                    tableName: 'colores',
+                    tableName: 'talles',
                     key: 'id'
                 }
             }
         },
-        precio:{
-            type: DataTypes.BIGINT,
-        },
-        descuento:{
+        stock:{
             type: DataTypes.INTEGER,
         }
     }
 
     let config = {
-        tableName: 'producto_color',
+        tableName: 'producto_talle',
         timestamps: false
     }
 
-    let ProductoColor = sequelize.define(alias, columns, config);
+    let ProductoTalle = sequelize.define(alias, columns, config);
 
 
-    ProductoColor.associate = function(models){
+    ProductoTalle.associate = function(models){
 
-        ProductoColor.belongsTo(models.Producto, {
+        ProductoTalle.belongsTo(models.Producto, {
             as: 'producto',
             foreignKey:'id_producto'
         }),
 
-        ProductoColor.belongsTo(models.Color, {
-            as: 'color',
-            foreignKey:'id_color'
+        ProductoTalle.belongsTo(models.Talle, {
+            as: 'talle',
+            foreignKey:'id_talle'
         }),
 
-        ProductoColor.belongsToMany(models.Talle, {
-            as: 'talles',
-            through: 'ProductoColorTalle',
-            foreignKey: 'id_producto_color',
-            otherKey: 'id_talle',
+        ProductoTalle.belongsToMany(models.Carrito, {
+            as: 'carritos',
+            through: 'CarritoProductoTalle',
+            foreignKey: 'id_producto_talle',
+            otherKey: 'id_carrito',
             timestamps: false
         })
-        
+
     }
 
-    
-    return ProductoColor;
+
+    return ProductoTalle;
 }

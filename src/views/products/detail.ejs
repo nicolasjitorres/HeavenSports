@@ -17,73 +17,75 @@
   <!-- PRINCIPAL -->
   <main>
 
-    <% if (producto.Imagen[0] != "default.png") { %>
-      <img class="background-image" src="/images/products/<%=producto.Imagen[0] %>">
+    <% if (producto.imagenes[0]) { %>
+    <img class="background-image" src="/images/products/<%=producto.imagenes[0].nombre %>">
     <% } %>
+
+
     <div class="contenedor-producto">
 
+      <% if (producto.imagenes[0]) { %>
+        <div class="imagenes-producto">
+          <div class="cont-imagen-principal">
+            <% let bandera = 0 %>
+            <% producto.imagenes.forEach(imagen => { %>
+            <input type="radio" name="radio-img" id="inp-<%= imagen.nombre %>" <%= bandera == 0 ? "checked" : "" %>>
+            <img class="img-principal-<%= imagen.nombre %>" src="/images/products/<%=imagen.nombre %>">
+            <% bandera++}) %>
+          </div>
+          <div class="cont-imagen-secundaria">
+            <% producto.imagenes.forEach(imagen => { %>
+            <label for="inp-<%= imagen.nombre %>"><img class="img-secundaria-<%= imagen.nombre %>"
+                src="/images/products/<%=imagen.nombre %>"></label>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
 
-      <div class="imagenes-producto">
-        <div class="cont-imagen-principal">
-          <% for (let i = 0; i < producto.Imagen.length; i++) { %>
-          <input type="radio" name="radio-img" id="inp-<%= i %>" <%= i == 0 ? "checked" : "" %>>
-          <img class="img-principal-<%= i %>" src="/images/products/<%=producto.Imagen[i] %>">
-          <% } %>
-        </div>
-        <div class="cont-imagen-secundaria">
-          <% for (let i = 0; i < producto.Imagen.length; i++) { %>
-          <label for="inp-<%= i %>"><img class="img-secundaria-<%= i %>" src="/images/products/<%=producto.Imagen[i] %>"></label>
-          <% } %>
-        </div>
-      </div>
 
 
 
       <div class="contenedor-datos">
-        <p class="nombre-producto"><%= producto.Nombre %></p>
+        <p class="nombre-producto"><%= producto.nombre %></p>
 
-        <% if (producto.Descuento != 0) { %>
-          <div class="contenedor-precio-desc">
-            <p class="precio-anterior">$<%= producto.Precio %></p>
-            <p class="descuento-producto"><%= producto.Descuento %>% OFF</p>
-          </div>
+        <% if (producto.descuento != 0) { %>
+        <div class="contenedor-precio-desc">
+          <p class="precio-anterior">$<%= producto.precio %></p>
+          <p class="descuento-producto"><%= producto.descuento %>% OFF</p>
+        </div>
         <% } %>
 
-        <p class="precio-producto">$<%= Math.floor(producto.Precio - (producto.Precio * (producto.Descuento / 100))) %>
+        <p class="precio-producto">$<%= Math.floor(producto.precio - (producto.precio * (producto.descuento / 100))) %>
         </p>
 
         <p class="descripcion-producto">
-          <%= producto.Descripcion %>
+          <%= producto.descripcion %>
         </p>
 
 
-        <% if(producto.Stock > 0){ %>
+
         <p class="stock-producto">
-          ¡Stock disponible! <%= producto.Stock  %> unidades
+          ¡Stock disponible! unidades
         </p>
 
         <div class="color-talle">
           <div class="color-producto">
             <p class="titulo-color">Color</p>
             <select class="select-colores" name="Color">
-              <% for (let i = 0; i < producto.Color.length; i++) { %>
-              <option value="<%= producto.Color[i] %>"><%= producto.Color[i] %></option>
-              <% } %>
+
             </select>
           </div>
 
           <div class="talle-producto">
             <p class="titulo-talle">Talle</p>
             <select class="select-talles" name="Talle">
-              <% for (let i = 0; i < producto.Talle.length; i++) { %>
-              <option value="<%= producto.Talle[i] %>"><%= producto.Talle[i] %></option>
-              <% } %>
+
             </select>
           </div>
         </div>
 
         <p class="descripcion-producto">
-          Categorias: <%= producto.Categoria.join(", ") %>
+
         </p>
 
 
@@ -91,14 +93,14 @@
           Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
         </a>
 
-        <% } else { %>
+        
 
         <p class="stock-producto">
           Sin stock disponible
         </p>
-        <% } %>
+        
 
-        <% if (user && user.Categoria == "Administrador") { %>
+        
         <a href="/products/<%= producto.Id %>/edit" class="boton-editar">
           Editar
         </a>
@@ -107,8 +109,7 @@
           <button type="submit" class="boton-eliminar">Eliminar</button>
         </form>
       </div>
-      
-      <% } %>
+
 
     </div>
 

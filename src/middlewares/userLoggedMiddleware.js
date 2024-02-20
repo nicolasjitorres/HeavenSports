@@ -1,7 +1,7 @@
 const userService = require('../services/userService');
 
 const userLoggedMiddleware = (req, res, next)=>{
-
+/* 
     let userEmailFromCookie = req.cookies.emailUserRemember;
     let userLogged = userService.findByField('Email', userEmailFromCookie);
 
@@ -19,7 +19,7 @@ const userLoggedMiddleware = (req, res, next)=>{
     }else{
         res.locals.userLogged = false;
     }
-
+ */
     next();
 }
 

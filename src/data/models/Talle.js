@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) =>{
 
     Talle.associate = function(models){
 
-        Talle.belongsToMany(models.ProductoColor, {
-            as: 'productosColores',
-            through: 'ProductoColorTalle',
+        Talle.belongsToMany(models.Producto, {
+            as: 'productos',
+            through: 'ProductoTalle',
             foreignKey: 'id_talle',
-            otherKey: 'id_producto_color',
+            otherKey: 'id_producto',
             timestamps: false
         })
         

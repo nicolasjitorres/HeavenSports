@@ -4,10 +4,11 @@ const userController = require('../controllers/userController');
 
 
 // Middlewares
-const upload = require('../middlewares/multerMiddleware');
 const guestUserMiddleware = require('../middlewares/guestUserMiddleware');
 const authUserMiddleware = require('../middlewares/authUserMiddleware');
 const adminMiddleware = require("../middlewares/adminMiddleware");
+const multerMiddleware = require('../middlewares/multerMiddleware');
+const upload = multerMiddleware('users');
 
 
 // LOGIN
@@ -19,7 +20,7 @@ router.get('/logout', authUserMiddleware, userController.logout);
 
 // REGISTRO
 router.get('/register', guestUserMiddleware, userController.register);
-router.post('/register', upload.single('Imagen'), userController.save); 
+router.post('/register', upload.single('imagen'), userController.save); 
 
 // ELIMINACION DE UNA CUENTA
 router.delete('/:id', userController.destroyUser); 

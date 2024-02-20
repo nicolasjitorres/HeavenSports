@@ -10,11 +10,8 @@ module.exports = (sequelize, DataTypes) =>{
             primaryKey: true,
             autoIncrement: true
         },
-        codigo: {
+        nombre: {
             type: DataTypes.STRING(100),
-        },
-        extension:{
-            type: DataTypes.STRING(10),
         }
     }
 
@@ -28,7 +25,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     Imagen.associate = function(models){
 
-        Imagen.belongsTo(models.Usuario, {
+        Imagen.hasOne(models.Usuario, {
             as: 'usuario',
             foreignKey:'id_imagen_perfil'
         }),

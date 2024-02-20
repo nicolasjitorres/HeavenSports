@@ -3,9 +3,8 @@ const bcryptjs = require('bcryptjs');
 const db = require("../data/models");
 
 const userService = {
-    users: "",
     getAll: function () {
-        return this.users;
+        return [];
     },
 
     generateId: function () {

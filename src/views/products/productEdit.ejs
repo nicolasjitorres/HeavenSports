@@ -1,7 +1,7 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/productEdit.css">
-<title>Cargar</title>
+<title>Editar producto</title>
 
 </head>
 
@@ -18,110 +18,88 @@
     <div class="contenedor-form">
       <h4 class="titulo">Edicion de producto</h4>
 
-      <form action="/products/<%= producto.Id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+      <form action="/products/<%= producto.id  %>?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box">
-          <input type="text" name="Nombre" id="nombre" required value="<%= producto.Nombre %>">
+          <input type="text" name="nombre" id="nombre" required value="<%= producto.nombre %>">
           <label for="nombre">Nombre</label>
         </div>
 
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box">
-          <input type="text" name="Descripcion" id="descripcion" required value="<%= producto.Descripcion %>"></input>
+          <input type="text" name="descripcion" id="descripcion" required value="<%= producto.descripcion %>"></input>
           <label for="descripcion">Descripción</label>
         </div>
 
         <!-- PRECIO PRODUCTO -->
         <div class="box">
-          <input type="number" name="Precio" id="precio" required value="<%= producto.Precio %>">
+          <input type="number" name="precio" id="precio" required value="<%= producto.precio %>">
           <label for="precio">Precio</label>
         </div>
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box">
-          <input type="number" name="Descuento" id="descuento" required value="<%= producto.Descuento %>">
+          <input type="number" name="descuento" id="descuento" required value="<%= producto.descuento %>">
           <label for="descuento">Descuento</label>
+        </div>
+
+        <!-- MARCA PRODUCTO -->
+        <div class="box">
+          <select name="id_marca" id="marca" required>
+            <% if (locals.mar) { %>
+            <% mar.forEach(marca => { %>
+            <option value=<%= marca.id %> <%= producto.id_marca == marca.id ? 'selected' : '' %>> <%= marca.nombre %>
+            </option>
+            <% }); %>
+            <% } %>
+          </select>
         </div>
 
         <!-- COLOR PRODUCTO -->
         <div class="box">
-          <input type="text" name="Color" id="color" required value="<%= producto.Color.join(" ") %>">
-          
-          <label for="color">Colores (separados por un espacio)</label>
+          <select name="id_color" id="color" required>
+            <% if (locals.col) { %>
+            <% col.forEach(color => { %>
+            <option value=<%= color.id %> <%= producto.id_color == color.id ? 'selected' : '' %>> <%= color.nombre %>
+            </option>
+            <% }); %>
+            <% } %>
+          </select>
         </div>
 
-        <!-- TALLE PRODUCTO -->
-        <div class="box">
-          <input type="text" name="Talle" id="talle" required value="<%= producto.Talle.join(" ") %>">
-          
-          <label for="talle">Talles (separados por un espacio)</label>
-        </div>
-        
-
-
-        <!-- STOCK PRODUCTO -->
-        <div class="box">
-          <input type="number" name="Stock" id="stock" required value="<%= producto.Stock %>">
-          <label for="stock">Stock</label>
+        <!-- CATEGORIAS VIEJAS PRODUCTO -->
+        <div class="box-check" style="display: none;">
+          <% if (locals.cat) { %>
+          <% cat.forEach(categoria => { %>
+          <input type="checkbox" name="categoriasViejas" value=<%= categoria.id %>
+            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>>
+          <% }); %>
+          <% } %>
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
         <div class="box-check">
-          <label class="box-check-titulo">Categoria</label>
-          <input type="checkbox" name="Categoria" id="Deportivo" value="Deportivo"
-            <% if (producto.Categoria.includes("Deportivo")) { %> checked <% } %>>
-          <label for="Deportivo" class="label-check">
-            Deportivo
+          <label class="box-check-titulo">Categorias</label>
+          <% if (locals.cat) { %>
+          <% cat.forEach(categoria => { %>
+          <input type="checkbox" name="categorias" id=<%=categoria.nombre %> value=<%= categoria.id %>
+            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>>
+          <label for=<%=categoria.nombre %> class="label-check">
+            <%= categoria.nombre %>
           </label>
-          <input type="checkbox" name="Categoria" id="Casual" value="Casual"
-            <% if (producto.Categoria.includes("Casual")) { %> checked <% } %>>
-          <label for="Casual" class="label-check">
-            Casual
-          </label>
-          <input type="checkbox" name="Categoria" id="Urbano" value="Urbano"
-            <% if (producto.Categoria.includes("Urbano")) { %> checked <% } %>>
-          <label for="Urbano" class="label-check">
-            Urbano
-          </label>
-          <input type="checkbox" name="Categoria" id="Formal" value="Formal"
-            <% if (producto.Categoria.includes("Formal")) { %> checked <% } %>>
-          <label for="Formal" class="label-check">
-            Formal
-          </label>
-          <input type="checkbox" name="Categoria" id="Niños" value="Niños"
-            <% if (producto.Categoria.includes("Niños")) { %> checked <% } %>>
-          <label for="Niños" class="label-check">
-            Niños
-          </label>
-        </div>
-
-        <!-- IMAGENES ANTERIORES PRODUCTO -->
-        <div class="box-img-ant">
-          <label class="box-check-titulo">Imagenes anteriores</label>
-          <% producto.Imagen.forEach(imagen => { %>
-            <img src="/images/products/<%= imagen %>" alt="img-anterior">
           <% }); %>
+          <% } %>
         </div>
 
-        <!-- CARGAR IMAGENES PRODUCTO -->
-        <div class="box-img">
-          <label for="img" class="label-img">Cargar imagenes nuevas</label>
-          <input class="input-image" type="file" id="img" name="Imagen" multiple accept=".jpg, .png">
-          <p>¡Atención! Esto sobreescrirá a las imagenes anteriores.</p>
-        </div>
-        
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Guardar</button>
-  
-          <!-- Boton de reset -->
-          <button type="reset" class="boton">Limpiar</button>
-
+          <a href="/products/detail/<%= producto.id %>" class="boton-cancelar">Cancelar</a>
         </div>
 
       </form>
-      
+
     </div>
   </main>
   <!-- PIE DE PAGINA -->
