@@ -11,8 +11,7 @@ const productService = {
     getAll: async function () {
         try {
             return await db.Producto.findAll({
-                include: ['marca', 'categorias', 'imagenes', 'color', 'talles']
-            },{
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
                 where:{
                     active: true
                 }

@@ -25,21 +25,21 @@
     <div class="contenedor-producto">
 
       <% if (producto.imagenes[0]) { %>
-        <div class="imagenes-producto">
-          <div class="cont-imagen-principal">
-            <% let bandera = 0 %>
-            <% producto.imagenes.forEach(imagen => { %>
-            <input type="radio" name="radio-img" id="inp-<%= imagen.nombre %>" <%= bandera == 0 ? "checked" : "" %>>
-            <img class="img-principal-<%= imagen.nombre %>" src="/images/products/<%=imagen.nombre %>">
-            <% bandera++}) %>
-          </div>
-          <div class="cont-imagen-secundaria">
-            <% producto.imagenes.forEach(imagen => { %>
-            <label for="inp-<%= imagen.nombre %>"><img class="img-secundaria-<%= imagen.nombre %>"
-                src="/images/products/<%=imagen.nombre %>"></label>
-            <% }) %>
-          </div>
+      <div class="imagenes-producto">
+        <div class="cont-imagen-principal">
+          <% let bandera = 0 %>
+          <% producto.imagenes.forEach(imagen => { %>
+          <input type="radio" name="radio-img" id="inp-<%= imagen.nombre %>" <%= bandera == 0 ? "checked" : "" %>>
+          <img class="img-principal-<%= imagen.nombre %>" src="/images/products/<%=imagen.nombre %>">
+          <% bandera++}) %>
         </div>
+        <div class="cont-imagen-secundaria">
+          <% producto.imagenes.forEach(imagen => { %>
+          <label for="inp-<%= imagen.nombre %>"><img class="img-secundaria-<%= imagen.nombre %>"
+              src="/images/products/<%=imagen.nombre %>"></label>
+          <% }) %>
+        </div>
+      </div>
       <% } %>
 
 
@@ -62,24 +62,22 @@
           <%= producto.descripcion %>
         </p>
 
-
-
-        <p class="stock-producto">
-          ¡Stock disponible! unidades
-        </p>
-
         <div class="color-talle">
           <div class="color-producto">
             <p class="titulo-color">Color</p>
-            <select class="select-colores" name="Color">
-
-            </select>
+            <p class="select-colores" name="Color">
+              <%= producto.color.nombre %>
+            </p>
           </div>
 
           <div class="talle-producto">
             <p class="titulo-talle">Talle</p>
             <select class="select-talles" name="Talle">
-
+              <% producto.talles.forEach(talle => { %>
+              <% if (talle.ProductoTalle.stock > 0) { %>
+              <option value=<%= talle.id %>> <%= talle.numero %></option>
+              <% } %>
+              <% }) %>
             </select>
           </div>
         </div>
@@ -93,21 +91,26 @@
           Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
         </a>
 
-        
+
 
         <p class="stock-producto">
           Sin stock disponible
         </p>
-        
 
-        
-        <a href="/products/<%= producto.Id %>/edit" class="boton-editar">
+
+
+        <a href="/products/edit/<%= producto.id %>" class="boton-editar">
           Editar
         </a>
 
-        <form action="/products/<%= producto.Id %>/?_method=DELETE" method="POST" class="form-eliminar">
-          <button type="submit" class="boton-eliminar">Eliminar</button>
+        <form action="/products/<%= producto.id %>/?_method=DELETE" method="POST" class="form-eliminar">
+          <button type="submit" class="boton-eliminar">Dar de baja</button>
         </form>
+
+        <a href="/products/edit/<%= producto.id %>/relations" class="boton-editar">
+          Editar relaciones
+        </a>
+
       </div>
 
 

@@ -48,10 +48,6 @@ const controller = {
         } catch (error) {
             console.log(error);
         }
-
-/*         res.render('products/productEdit', ({
-            producto: productService.getOne(req.params.id)
-        })); */
     },
     // Metodo para actualizar un determinado producto
     update: async (req, res) => {
@@ -61,12 +57,19 @@ const controller = {
     logicDelete: async(req, res) => {
         try {
             await productService.softDelete(req.params.id);
+            res.redirect('/products')
         } catch (error) {
             console.log(error);
         }
 
-        // productService.softDelete(req);
-        // res.redirect('/products')
+    },
+    relations: async(req, res) => {
+        try {
+            const producto = await productService.getByPk(req.params.id);
+            res.render('products/relations/relations.ejs', {producto: producto});
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
