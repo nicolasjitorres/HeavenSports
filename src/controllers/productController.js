@@ -51,8 +51,12 @@ const controller = {
     },
     // Metodo para actualizar un determinado producto
     update: async (req, res) => {
-        await productService.edit(req.body, req.params.id);
-        res.redirect(`/products/detail/${req.params.id}`);
+        try {
+            await productService.edit(req.body, req.params.id);
+            res.redirect(`/products/detail/${req.params.id}`);
+        } catch (error) {
+            console.log(error);
+        }
     },
     logicDelete: async(req, res) => {
         try {
@@ -67,6 +71,39 @@ const controller = {
         try {
             const producto = await productService.getByPk(req.params.id);
             res.render('products/relations/relations.ejs', {producto: producto});
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getAddImage: async (req, res) => {
+        try {
+            const producto = await productService.getByPk(req.params.id);
+            res.render('products/relations/addImage.ejs', {producto: producto});
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    addImage: async (req, res) => {
+        try {
+            await productService.saveImages(req.params.id, req.files);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    deleteImage: async (req, res) => {
+        try {
+            await productService.destroyImage(req.params.id, req.params.idImagen);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getAddSize: async(req, res) => {
+        try {
+            const talles = await productService.getAddSizeView();
+            const producto = await productService.getByPk(req.params.id);
+            res.render('products/relations/addSize.ejs', {producto: producto, talles: talles});
         } catch (error) {
             console.log(error);
         }

@@ -18,16 +18,30 @@ router.get('/cart', productController.cart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
-router.post('/', upload.array('imagenes'), productController.save); 
+router.post('/',adminMiddleware, upload.array('imagenes'), productController.save); 
 
 /* EDIT ONE PRODUCT */ 
 router.get('/edit/:id', adminMiddleware, productController.edit); 
-router.put('/:id', productController.update); 
+router.put('/:id',adminMiddleware, productController.update); 
 
 /* DELETE ONE PRODUCT */ 
 router.delete('/:id', adminMiddleware, productController.logicDelete); 
 
 /* GET ALL IMAGES AND SIZES BY ONE PRODUCT */
 router.get('/edit/:id/relations', adminMiddleware, productController.relations)
+
+/* GET VIEW FOR ADD IMAGES TO ONE PRODUCT */
+router.get('/edit/:id/relations/images/create', adminMiddleware, productController.getAddImage);
+
+/* ADD IMAGES TO ONE PRODUCT */
+router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), productController.addImage);
+
+/* DELETE ONE IMAGE OF ONE PRODUCT */
+router.delete('/edit/:id/relations/images/:idImagen', productController.deleteImage);
+
+/* GET VIEW FOR ADD ONE SIZE TO ONE PRODUCT */
+router.get('/edit/:id/relations/sizes/create', adminMiddleware, productController.getAddSize);
+
+
 
 module.exports = router;

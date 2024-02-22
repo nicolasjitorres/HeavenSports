@@ -21,8 +21,7 @@
         <!-- Imagenes -->
         <h3 class="titulo">
             Imagenes del producto
-            <a href="/products/edit/<%= producto.id %>/relations/images/create"
-                class="boton-imagen-cargar">
+            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="boton-imagen-cargar">
                 Agregar imagenes
             </a>
         </h3>
@@ -34,10 +33,9 @@
             <% for (imagen of producto.imagenes){ %>
             <div class="contenedor-imagen">
                 <img src=<%="/images/products/" + imagen.nombre %> alt=<%= imagen.nombre %>>
-                <a href="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE"
-                    class="boton-imagen-eliminar">
-                    Eliminar
-                </a>
+                <form action="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE" method="POST" class="form-eliminar">
+                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
+                </form>
             </div>
             <% } %>
             <% } %>
@@ -46,8 +44,7 @@
         <!-- Talles -->
         <h3 class="titulo">
             Talles del producto
-            <a href="/products/edit/<%= producto.id %>/relations/talles/create"
-                class="boton-talle-cargar">
+            <a href="/products/edit/<%= producto.id %>/relations/talles/create" class="boton-talle-cargar">
                 Agregar talle
             </a>
         </h3>
@@ -61,16 +58,14 @@
                     class="boton-talle-editar">
                     Editar
                 </a>
-                <a href="/products/edit/<%= producto.id %>/relations/images/<%= talle.id %>?_method=DELETE"
-                    class="boton-talle-eliminar">
-                    Eliminar
-                </a>
+                <form action="/products/edit/<%= producto.id %>/relations/talle/<%= talle.id %>?_method=DELETE" method="POST" class="form-eliminar">
+                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
+                </form>
             </div>
             <% } %>
             <% } %>
         </section>
 
-        </section>
 
     </main>
 

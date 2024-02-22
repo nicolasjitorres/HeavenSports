@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs');
 const db = require("../data/models");
 
@@ -12,7 +13,7 @@ const productService = {
         try {
             return await db.Producto.findAll({
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
-                where:{
+                where: {
                     active: true
                 }
             });
@@ -32,13 +33,14 @@ const productService = {
             return {};
         }
 
-        /* let producto = {};
-        for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].Id == Id) {
-                producto = this.products[i];
-            }
+
+    },
+    getAddSizeView: async function () {
+        try {
+            return await db.Talle.findAll();
+        } catch (error) {
+            console.log(error);
         }
-        return producto; */
     },
     // Retorna los registros de los modelos que se relacionan con Producto para mostrarlos en la vista
     getCreateView: async function () {
@@ -80,6 +82,17 @@ const productService = {
             await db.ProductoTalle.create(newProductoTalle);
 
             // Carga de imagenes
+            this.saveImages(id, files);
+
+            return id;
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
+    saveImages: async function (id, files) {
+        // Carga de imagenes
+        try {
             if (files) {
                 for (const file of files) {
                     const newImagen = new Imagen(file.filename);
@@ -88,12 +101,41 @@ const productService = {
                     await db.ProductoImagen.create(newProductoImagen);
                 }
             }
-
-            return id;
         } catch (error) {
             console.log(error);
         }
+    },
+    destroyImage: async function (id, idImagen) {
+        try {
+            const {nombre} = await db.Imagen.findByPk(idImagen);
+            const rutaDirectorio = '../../public/images/products';
+            const rutaImagen = path.join(__dirname, rutaDirectorio, nombre)
 
+            if (fs.existsSync(rutaImagen)) {
+                fs.unlinkSync(rutaImagen);
+                console.log(`Imagen ${nombre} eliminada correctamente`);
+            } else {
+                console.log(`La imagen ${nombre} no existe en el directorio`);
+            }
+
+            await db.ProductoImagen.destroy({
+                where: {
+                    id_producto: id,
+                    id_imagen: idImagen
+                }
+            });
+
+            await db.Imagen.destroy({
+                where: {
+                    id: idImagen
+                }
+            });
+
+            console.log('Eliminado correctamente de la BD');
+
+        } catch (error) {
+            console.log(error);
+        }
     },
     // Retorna los registros de los modelos que se relacionan con Producto para mostrarlos en la vista
     getEditView: async function (id) {
@@ -146,7 +188,9 @@ const productService = {
     },
     softDelete: async function (id) {
         try {
-            await db.Producto.update( {active: false}, {
+            await db.Producto.update({
+                active: false
+            }, {
                 where: {
                     id: id
                 }
@@ -155,11 +199,6 @@ const productService = {
         } catch (error) {
             console.log(error);
         }
-
-
-        // let idAEliminar = this.products.findIndex(producto => producto.id == req.params.id);
-        // this.products.splice(idAEliminar, 1);
-        // fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
     }
 }
 
