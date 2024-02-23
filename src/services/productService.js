@@ -32,12 +32,58 @@ const productService = {
             console.log(error);
             return {};
         }
-
-
     },
-    getAddSizeView: async function () {
+     // Retorna el producto y todos aquellos talles que no tienen relación alguna con el producto
+    getAddSizeView: async function (id) {
         try {
-            return await db.Talle.findAll();
+            const producto = await this.getByPk(id);
+
+            // Aqui se obtiene un array con todos los talles que se relacionan con el producto
+            const tallesProd = await producto.getTalles();
+
+            // Aqui lo que se hace es transformar el arreglo de objetos en un
+            // arreglo de ids de los talles asociados al producto
+            const tallesAsociados = tallesProd.map(talle => talle.id);
+
+            // Por ultimo realizamos la busqueda de todos aquellos talles que
+            // no tienen relacion alguna con el producto
+            const tallesNA = await db.Talle.findAll({
+                where: {
+                    id: {
+                        [db.Sequelize.Op.notIn]: tallesAsociados
+                    }
+                }
+            });
+
+            // Se retorna tanto el producto como los talles
+            return { producto, tallesNA };
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getEditSizeView: async function (params) {
+        try {
+            return prodTal = await db.ProductoTalle.findAll({
+                include: ['producto', 'talle']
+                ,where: {
+                    id_producto: params.id,
+                    id_talle: params.idTalle
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    updateSize: async function (params, data){
+        try {
+            await db.ProductoTalle.update({
+                stock: data.stock
+            },{
+                where:{
+                    id_producto: params.id,
+                    id_talle: params.idTalle
+                }
+            });
         } catch (error) {
             console.log(error);
         }
@@ -77,9 +123,7 @@ const productService = {
             }
 
             // Cargamos la relacion producto-talle
-            // NOTA: solo podemos cargar un talle a la vez
-            const newProductoTalle = new ProductoTalle(id, data.id_talle, data.stock);
-            await db.ProductoTalle.create(newProductoTalle);
+            this.saveSize(id, data)
 
             // Carga de imagenes
             this.saveImages(id, files);
@@ -101,6 +145,16 @@ const productService = {
                     await db.ProductoImagen.create(newProductoImagen);
                 }
             }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    saveSize: async function (id, data) {
+        try {
+            // Cargamos la relacion producto-talle
+            // NOTA: solo podemos cargar un talle a la vez
+            const newProductoTalle = new ProductoTalle(id, data.id_talle, data.stock);
+            await db.ProductoTalle.create(newProductoTalle);
         } catch (error) {
             console.log(error);
         }
@@ -132,6 +186,21 @@ const productService = {
             });
 
             console.log('Eliminado correctamente de la BD');
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    destroySize: async function (id, idTalle) {
+        try {
+            await db.ProductoTalle.destroy({
+                where: {
+                    id_producto: id,
+                    id_talle: idTalle
+                }
+            });
+
+            console.log('Relacion entre el producto y talle eliminada correctamente');
 
         } catch (error) {
             console.log(error);

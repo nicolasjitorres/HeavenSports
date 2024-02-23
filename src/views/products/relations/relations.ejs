@@ -44,7 +44,7 @@
         <!-- Talles -->
         <h3 class="titulo">
             Talles del producto
-            <a href="/products/edit/<%= producto.id %>/relations/talles/create" class="boton-talle-cargar">
+            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="boton-talle-cargar">
                 Agregar talle
             </a>
         </h3>
@@ -54,11 +54,11 @@
             <div class="contenedor-talle">
                 <p class="numero-talle">Númeracion: <%= talle.numero %></p>
                 <p class="stock">Stock: <%= talle.ProductoTalle.stock %></p>
-                <a href="/products/edit/<%= producto.id %>/relations/images/<%= talle.id %>?_method=PUT"
+                <a href="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>"
                     class="boton-talle-editar">
                     Editar
                 </a>
-                <form action="/products/edit/<%= producto.id %>/relations/talle/<%= talle.id %>?_method=DELETE" method="POST" class="form-eliminar">
+                <form action="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>?_method=DELETE" method="POST" class="form-eliminar">
                     <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
                 </form>
             </div>

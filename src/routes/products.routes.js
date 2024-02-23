@@ -37,10 +37,22 @@ router.get('/edit/:id/relations/images/create', adminMiddleware, productControll
 router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), productController.addImage);
 
 /* DELETE ONE IMAGE OF ONE PRODUCT */
-router.delete('/edit/:id/relations/images/:idImagen', productController.deleteImage);
+router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productController.deleteImage);
 
 /* GET VIEW FOR ADD ONE SIZE TO ONE PRODUCT */
 router.get('/edit/:id/relations/sizes/create', adminMiddleware, productController.getAddSize);
+
+/* ADD SIZE TO ONE PRODUCT */
+router.post('/edit/:id/relations/sizes', adminMiddleware, productController.addSize);
+
+/* EDIT ONE SIZE OF ONE PRODUCT */
+router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);
+
+/* EDIT ONE SIZE OF ONE PRODUCT */
+router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.editSize);
+
+/* DELETE ONE SIZE OF ONE PRODUCT */
+router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.deleteSize);
 
 
 

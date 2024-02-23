@@ -5,7 +5,9 @@ const controller = {
     index: async (req, res) => {
         try {
             const productos = await productService.getAll();
-            res.status(200).render('products/products', {productos: productos});
+            res.status(200).render('products/products', {
+                productos: productos
+            });
         } catch (error) {
             console.log(error);
         }
@@ -14,7 +16,9 @@ const controller = {
     detail: async (req, res) => {
         try {
             const producto = await productService.getByPk(req.params.id);
-            res.status(200).render('products/detail', {producto: producto});
+            res.status(200).render('products/detail', {
+                producto: producto
+            });
         } catch (error) {
             console.log(error);
         }
@@ -25,8 +29,18 @@ const controller = {
     // Muestra el formulario de creacion de un producto
     create: async (req, res) => {
         try {
-            const { categorias, colores, marcas, talles } = await productService.getCreateView();
-            res.status(200).render('products/create', { cat: categorias, col: colores, mar: marcas, tal: talles});
+            const {
+                categorias,
+                colores,
+                marcas,
+                talles
+            } = await productService.getCreateView();
+            res.status(200).render('products/create', {
+                cat: categorias,
+                col: colores,
+                mar: marcas,
+                tal: talles
+            });
         } catch (error) {
             console.log(error);
         }
@@ -43,8 +57,18 @@ const controller = {
     // Muestra el formulario de edicion de un producto mediante su id
     edit: async (req, res) => {
         try {
-            const { producto, categorias, colores, marcas} = await productService.getEditView(req.params.id);
-            res.status(200).render('products/productEdit', { producto: producto, cat: categorias, col: colores, mar: marcas});
+            const {
+                producto,
+                categorias,
+                colores,
+                marcas
+            } = await productService.getEditView(req.params.id);
+            res.status(200).render('products/productEdit', {
+                producto: producto,
+                cat: categorias,
+                col: colores,
+                mar: marcas
+            });
         } catch (error) {
             console.log(error);
         }
@@ -58,7 +82,7 @@ const controller = {
             console.log(error);
         }
     },
-    logicDelete: async(req, res) => {
+    logicDelete: async (req, res) => {
         try {
             await productService.softDelete(req.params.id);
             res.redirect('/products')
@@ -67,10 +91,12 @@ const controller = {
         }
 
     },
-    relations: async(req, res) => {
+    relations: async (req, res) => {
         try {
             const producto = await productService.getByPk(req.params.id);
-            res.render('products/relations/relations.ejs', {producto: producto});
+            res.render('products/relations/relations.ejs', {
+                producto: producto
+            });
         } catch (error) {
             console.log(error);
         }
@@ -78,7 +104,9 @@ const controller = {
     getAddImage: async (req, res) => {
         try {
             const producto = await productService.getByPk(req.params.id);
-            res.render('products/relations/addImage.ejs', {producto: producto});
+            res.render('products/relations/addImage.ejs', {
+                producto: producto
+            });
         } catch (error) {
             console.log(error);
         }
@@ -99,11 +127,51 @@ const controller = {
             console.log(error);
         }
     },
-    getAddSize: async(req, res) => {
+    getAddSize: async (req, res) => {
         try {
-            const talles = await productService.getAddSizeView();
-            const producto = await productService.getByPk(req.params.id);
-            res.render('products/relations/addSize.ejs', {producto: producto, talles: talles});
+            const {
+                producto,
+                tallesNA
+            } = await productService.getAddSizeView(req.params.id);
+            res.render('products/relations/addSize.ejs', {
+                producto: producto,
+                tal: tallesNA
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    addSize: async (req, res) => {
+        try {
+            await productService.saveSize(req.params.id, req.body);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getEditSize: async (req, res) => {
+        try {
+            const [prodTal] = await productService.getEditSizeView(req.params)
+            res.render('products/relations/editSize.ejs', {
+                prodTal: prodTal
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    editSize: async (req, res) => {
+        try {
+            await productService.updateSize(req.params, req.body);
+            res.redirect(`/products/edit/${req.params.id}/relations`)
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    deleteSize: async (req, res) => {
+        try {
+            await productService.destroySize(req.params.id, req.params.idTalle);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
         } catch (error) {
             console.log(error);
         }
