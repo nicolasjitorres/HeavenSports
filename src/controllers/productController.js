@@ -16,15 +16,43 @@ const controller = {
     detail: async (req, res) => {
         try {
             const producto = await productService.getByPk(req.params.id);
+            const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
             res.status(200).render('products/detail', {
-                producto: producto
+                producto: producto,
+                tal: talles
             });
         } catch (error) {
             console.log(error);
         }
     },
-    cart: (req, res) => {
-        res.render('products/cart', {});
+    addCart: async (req, res) => {
+        try {
+            if (!req.session.userLogged) {
+                req.session.productCart = {
+                    id: req.params.id,
+                    data: req.body
+                };
+                return res.render('users/login');
+            }
+            const data = await productService.addToCart(req.body, req.params.id, req.session.userLogged.id);
+            if (data) {
+                res.redirect('/products/cart');
+            } else{
+                res.redirect(`/products/detail/${req.params.id}`);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+        /* res.render('products/cart', {}); */
+    },
+    cart: async (req, res) => {
+        try {
+            const carrito = await productService.getCartView(req.session.userLogged.id);
+            // res.send(carrito)
+            res.render('products/cart', {carrito: carrito});
+        } catch (error) {
+            console.log(error.message);
+        }
     },
     // Muestra el formulario de creacion de un producto
     create: async (req, res) => {

@@ -6,95 +6,160 @@ const controller = {
     login: (req, res) => {
         res.render('users/login');
     },
-    signIn: (req, res) => {
+    signIn: async (req, res) => {
         try {
-            let usuario = userService.signIn(req.body);
+            const id = await userService.signIn(req.body);
+            console.log(id);
+            if (id) {
+                const user = await userService.getByPk(id);
+                console.log(user);
+                req.session.userLogged = {
+                    id: user.id,
+                    nombre: user.nombre,
+                    apellido: user.apellido,
+                    telefono: user.telefono,
+                    email: user.email,
+                    id_rol: user.id_rol,
+                    imagen: user.imagen.nombre
+                };
 
-            req.session.userLogged = {
-                ...usuario
-            };
-            delete req.session.userLogged.Contrasena;
-
-            if(req.body.Recordar){
-                res.cookie('emailUserRemember', req.body.Email, {httpOnly: true, secure: true});
+                if (req.body.recordar) {
+                    res.cookie('sesionUserRemember', user.sesion, {
+                        maxAge: 1000 * 60 * 15 /* 15 minutos */,
+                        httpOnly: true,
+                        secure: true
+                    });
+                }
+                res.redirect(`/users/profile`);
+            } else {
+                res.render('users/login', {
+                    error: "Credenciales invalidas"
+                });
             }
-
-            res.redirect(`/users/profile`);
         } catch (error) {
             console.log(error.message);
-            res.render('users/login', {
-                error: "Credenciales invalidas"
-            });
         }
     },
-    logout: (req, res) => {
-        res.clearCookie('emailUserRemember');
-        req.session.destroy();
-        res.redirect('/');
+    logout: async (req, res) => {
+        try {
+            await userService.logoutUser(req.cookies.sesionUserRemember)
+            res.clearCookie('sesionUserRemember');
+            req.session.destroy();
+            res.redirect('/');
+        } catch (error) {
+            console.log(error.message);
+        }
     },
     register: (req, res) => {
         res.render('users/register');
     },
-    save: (req, res) => {
+    save: async (req, res) => {
         // Devuelve true si el usuario pudo ser registrado, caso contrario devuelve false
-        let saveUser = userService.saveUser(req.body, req.file);
-        if (saveUser) {
-            res.redirect('/');
-        } else {
-            // Este es el caso en el que ya se encuentra el mail en uso
-            res.render('users/register', {})
+        try {
+            const user = await userService.saveUser(req.body, req.file);
+            if (user.userSaved) {
+                console.log('Usuario registrado correctamente');
+                res.redirect('/users/login');
+            } else {
+                res.render('users/register.ejs', {
+                    usuario: user.newData
+                })
+            }
+        } catch (error) {
+            console.log(error.message);
         }
-
     },
-    destroyUser: (req, res) => {
-        userService.deleteUser(req.params.id);
-        res.clearCookie('emailUserRemember');
-        req.session.destroy();
-        res.redirect('/');
+    destroyUser: async (req, res) => {
+        try {
+            await userService.deleteUser(req.params.id);
+            res.redirect('/users');
+        } catch (error) {
+            console.log(error.message);
+        }
     },
-    usuarios: (req, res) => {
-        res.render('users/usuarios', {
-            usuarios: userService.getAll(), admin: req.session.userLogged.Categoria
-        });
+    softDelete: async (req, res) => {
+        try {
+            await userService.softDelete(req.params.id);
+            res.clearCookie('emailUserRemember');
+            req.session.destroy();
+            res.redirect('/');
+        } catch (error) {
+            console.log(error.message);
+        }
     },
-    profile: (req, res) => {
-        res.render('users/profile', ({
-            usuario: userService.findByPk(req.session.userLogged.Id)
-        }));
+    usuarios: async (req, res) => {
+        try {
+            const usuarios = await userService.getAll();
+            res.render('users/usuarios', {
+                usuarios: usuarios
+            });
+        } catch (error) {
+            console.log(error);
+        }
     },
-    userEditAdmin: (req, res) => {
-        res.render('users/userEditAdmin', ({
-            usuario: userService.findByPk(req.params.id)
-        }));
+    profile: async (req, res) => {
+        try {
+            const usuario = await userService.getByPk(req.session.userLogged.id)
+            res.render('users/profile', {
+                usuario: usuario
+            });
+        } catch (error) {
+            console.log(error.message);
+            res.redirect('/404');
+        }
     },
-    changeCategory: (req, res) => {
-        userService.change(req.params.id);
-        res.render('users/userEditAdmin', {
-            usuario: userService.findByPk(req.params.id)
-        });
+    getAdminEditView: async (req, res) => {
+        try {
+            const usuario = await userService.getByPk(req.params.id);
+            res.render('users/userEditAdmin', {
+                usuario: usuario
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
     },
-    edit: (req, res) => {
-        res.render('users/userEdit', ({
-            usuario: userService.findByPk(req.session.userLogged.Id)
-        }));
+    changeCategory: async (req, res) => {
+        try {
+            await userService.change(req.params.id);
+            res.redirect(`/users/userEdit/${req.params.id}`);
+        } catch (error) {
+            console.log(error);
+        }
     },
-    update: (req, res) => {
-        userService.edit(req.body, req.session.userLogged.Id, req.file);
-        res.render('users/profile', ({
-            usuario: userService.findByPk(req.session.userLogged.Id)
-        }));
+    edit: async (req, res) => {
+        try {
+            const usuario = await userService.getByPk(req.session.userLogged.id);
+            res.render('users/userEdit', {
+                usuario: usuario
+            });
+        } catch (error) {
+            console.log(error.message);
+            res.redirect('/users/login')
+        }
+    },
+    update: async (req, res) => {
+        try {
+            await userService.edit(req.body, req.session.userLogged.id, req.file);
+            res.redirect('/users/profile');
+        } catch (error) {
+            console.log(error.message);
+        }
     },
     changePass: (req, res) => {
         res.render('users/changePass');
     },
-    updatePass: (req, res) => {
+    updatePass: async (req, res) => {
         try {
-            userService.updatePass(req.session.userLogged.Id, req.body);
+            await userService.updatePass(req.session.userLogged.id, req.body);
+            const usuario = await userService.getByPk(req.session.userLogged.id);
             res.render('users/profile', ({
-                usuario: userService.findByPk(req.session.userLogged.Id)
+                usuario: usuario,
+                message: 'Contraseña actualizada'
             }));
         } catch (error) {
-            res.render('users/changePass', { error: error.message});
+            res.render('users/changePass', {
+                error: error.message
+            });
         }
 
     }

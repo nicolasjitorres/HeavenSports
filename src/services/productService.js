@@ -8,6 +8,56 @@ const capitalize = (palabra) => {
 }
 
 const productService = {
+    addToCart: async function (data, idProd, idUser) {
+        try {
+            const productoTalle = await db.ProductoTalle.findOne({
+                where: {
+                    id_producto: idProd,
+                    id_talle: data.id_talle
+                }
+            });
+            if (productoTalle.stock >= data.cantidad_producto) {
+                const carrito = await db.Carrito.findOne({
+                    where: {
+                        id_usuario: idUser
+                    }
+                });
+                const carritoProductoTalle = await db.CarritoProductoTalle.findOne({
+                    where: {
+                        id_carrito: carrito.id,
+                        id_producto_talle: productoTalle.id
+                    }
+                });
+                if (carritoProductoTalle) {
+                    console.log(data);
+                    let newCantidad = carritoProductoTalle.cantidad_producto + parseInt(data.cantidad_producto);
+                    await db.CarritoProductoTalle.update({
+                        cantidad_producto: newCantidad
+                    }, {
+                        where: {
+                            id: carritoProductoTalle.id
+                        }
+                    });
+                } else {
+                    const newCarritoProductoTalle = new CarritoProductoTalle(carrito.id, productoTalle.id, data.cantidad_producto);
+                    await db.CarritoProductoTalle.create(newCarritoProductoTalle);
+                }
+                let newStock = productoTalle.stock - data.cantidad_producto;
+                await db.ProductoTalle.update({
+                    stock: newStock
+                }, {
+                    where: {
+                        id: productoTalle.id
+                    }
+                });
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
     // Retorna todos los productos
     getAll: async function () {
         try {
@@ -33,7 +83,7 @@ const productService = {
             return {};
         }
     },
-     // Retorna el producto y todos aquellos talles que no tienen relación alguna con el producto
+    // Retorna el producto y todos aquellos talles que no tienen relación alguna con el producto
     getAddSizeView: async function (id) {
         try {
             const producto = await this.getByPk(id);
@@ -56,7 +106,10 @@ const productService = {
             });
 
             // Se retorna tanto el producto como los talles
-            return { producto, tallesNA };
+            return {
+                producto,
+                tallesNA
+            };
         } catch (error) {
             console.log(error);
         }
@@ -64,8 +117,8 @@ const productService = {
     getEditSizeView: async function (params) {
         try {
             return prodTal = await db.ProductoTalle.findAll({
-                include: ['producto', 'talle']
-                ,where: {
+                include: ['producto', 'talle'],
+                where: {
                     id_producto: params.id,
                     id_talle: params.idTalle
                 }
@@ -74,18 +127,41 @@ const productService = {
             console.log(error);
         }
     },
-    updateSize: async function (params, data){
+    updateSize: async function (params, data) {
         try {
             await db.ProductoTalle.update({
                 stock: data.stock
-            },{
-                where:{
+            }, {
+                where: {
                     id_producto: params.id,
                     id_talle: params.idTalle
                 }
             });
         } catch (error) {
             console.log(error);
+        }
+    },
+    getCartView: async function (id) {
+        try {
+            return await db.Carrito.findOne({
+                where: {
+                    id_usuario: id
+                },
+                include: [{
+                    model: db.ProductoTalle,
+                    as: 'productosTalles',
+                    include: [{
+                        model: db.Producto,
+                        as: 'producto',
+                        include: [{
+                            model: db.Imagen,
+                            as: 'imagenes'
+                        }]
+                    }, 'talle']
+                }]
+            });
+        } catch (error) {
+            console.log(error.message);
         }
     },
     // Retorna los registros de los modelos que se relacionan con Producto para mostrarlos en la vista
@@ -161,7 +237,9 @@ const productService = {
     },
     destroyImage: async function (id, idImagen) {
         try {
-            const {nombre} = await db.Imagen.findByPk(idImagen);
+            const {
+                nombre
+            } = await db.Imagen.findByPk(idImagen);
             const rutaDirectorio = '../../public/images/products';
             const rutaImagen = path.join(__dirname, rutaDirectorio, nombre)
 
@@ -311,6 +389,13 @@ function Imagen(filename) {
 function ProductoImagen(id_producto, id_imagen) {
     this.id_producto = id_producto,
         this.id_imagen = id_imagen
+}
+
+// Constructor de CarritoProductoTalle
+function CarritoProductoTalle(id_carrito, id_producto_talle, cantidad_producto) {
+    this.id_carrito = id_carrito,
+        this.id_producto_talle = id_producto_talle,
+        this.cantidad_producto = cantidad_producto
 }
 
 

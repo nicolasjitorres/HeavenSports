@@ -11,21 +11,27 @@ module.exports = (sequelize, DataTypes) =>{
             autoIncrement: true
         },
         nombre:{
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(100)
         },
         apellido:{
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING(100)
         },
         telefono:{
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING(10)
         },
         email:{
-            type: DataTypes.STRING(150),
+            type: DataTypes.STRING(150)
         },
         contrasena:{
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING(150)
         },
-        id_imagen_perfil: {
+        active: {
+            type: DataTypes.BOOLEAN
+        },
+        sesion:{
+            type: DataTypes.STRING(150)
+        },
+        id_imagen: {
             type: DataTypes.INTEGER,
             references: {
                 model: {
@@ -57,19 +63,18 @@ module.exports = (sequelize, DataTypes) =>{
 
         Usuario.belongsTo(models.Imagen, {
             as: 'imagen',
-            foreignKey: 'id_imagen_perfil'
-        }),
+            foreignKey: 'id_imagen'
+        });
 
         Usuario.belongsTo(models.Rol, {
             as: 'rol',
             foreignKey: 'id_rol'
-        }),
+        });
 
         Usuario.hasOne(models.Carrito, {
-            as: 'carritos',
-            foreignKey:'id_usuario'
-        })
-
+            as: 'carrito',
+            foreignKey: 'id_usuario'
+        });
     }
 
     return Usuario;

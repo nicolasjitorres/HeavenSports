@@ -1,10 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+
 const productService = require('../services/productService');
 
 const controller = {
-    index: (req, res) => {
-        res.render('info/index.ejs', {productos: productService.getAll()});
+    index: async (req, res) => {
+        try {
+            const productos = await productService.getAll();
+            res.status(200).render('products/products', {
+                productos: productos
+            });
+        } catch (error) {
+            console.log(error);
+        }
     },
     about: (req, res) => {
         res.render('info/about.ejs', {});

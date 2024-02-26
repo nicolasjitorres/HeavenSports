@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 const adminMiddleware = require("../middlewares/adminMiddleware");
+const authUserMiddleware = require("../middlewares/authUserMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('products');
 
@@ -13,8 +14,11 @@ router.get('/', productController.index);
 // Ruta hacía el detalle del producto
 router.get('/detail/:id', productController.detail); 
 
-// Ruta hacía el carrito de compras
-router.get('/cart', productController.cart);
+// Ruta hacia el carrito de compras del usuario
+router.get('/cart', authUserMiddleware, productController.cart);
+
+// Agrega un producto al carrito
+router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 

@@ -34,10 +34,10 @@ module.exports = (sequelize, DataTypes) =>{
 
     Carrito.associate = function(models){
 
-        Carrito.hasOne(models.Usuario, {
+        Carrito.belongsTo(models.Usuario, {
             as: 'usuario',
             foreignKey:'id_usuario'
-        }),
+        });
 
         Carrito.belongsToMany(models.ProductoTalle, {
             as: 'productosTalles',
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) =>{
             foreignKey: 'id_carrito',
             otherKey: 'id_producto_talle',
             timestamps: false
-        })
+        });
 
     }
 

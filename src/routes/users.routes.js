@@ -13,17 +13,17 @@ const upload = multerMiddleware('users');
 
 // LOGIN
 router.get('/login', guestUserMiddleware, userController.login);
-router.post('/signIn', userController.signIn);
+router.post('/signIn', guestUserMiddleware, userController.signIn);
 
 // LOGOUT
 router.get('/logout', authUserMiddleware, userController.logout);
 
 // REGISTRO
 router.get('/register', guestUserMiddleware, userController.register);
-router.post('/register', upload.single('imagen'), userController.save); 
+router.post('/register',guestUserMiddleware, upload.single('imagen'), userController.save); 
 
-// ELIMINACION DE UNA CUENTA
-router.delete('/:id', userController.destroyUser); 
+// ELIMINACION DE UNA CUENTA (SOLO ADMINISTRADOR)
+router.delete('/:id',adminMiddleware, userController.destroyUser); 
 
 // TODOS LOS USUARIOS
 router.get('/', adminMiddleware, userController.usuarios);
@@ -32,17 +32,19 @@ router.get('/', adminMiddleware, userController.usuarios);
 router.get('/profile', authUserMiddleware, userController.profile);
 
 // PERFIL DEL USUARIO (vista de administrador)
-router.get('/userEdit/:id', adminMiddleware, userController.userEditAdmin);
-router.put('/changeCategory/:id', adminMiddleware, userController.changeCategory)
+router.get('/userEdit/:id', adminMiddleware, userController.getAdminEditView);
+router.patch('/changeCategory/:id', adminMiddleware, userController.changeCategory)
 
 // EDICION DEL USUARIO
 router.get('/edit', authUserMiddleware, userController.edit);
-router.put('/edit', upload.single('Imagen'), userController.update);
+router.put('/edit', authUserMiddleware, upload.single('imagen'), userController.update);
 
 // CAMBIO DE CONTRASEÑA
 router.get('/changePass', authUserMiddleware, userController.changePass);
-router.put('/changePass', userController.updatePass);
+router.put('/changePass', authUserMiddleware, userController.updatePass);
 
+// DARSE DE BAJA (SOLO USUARIOS)
+router.delete('/softDelete/:id', authUserMiddleware, userController.softDelete);
 
 
 

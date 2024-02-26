@@ -16,56 +16,55 @@
     
     <!-- Formulario registro -->
     <div class="contenedor-form">
-      <h4 class="titulo">Registrarte</h4>
+      <h4 class="titulo">Registrate</h4>
       <form action="/users/register" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE USUARIO -->
         <div class="box">
-          <input type="text" name="Nombre" id="nombre" required>
+          <input type="text" name="nombre" id="nombre" required value=<%= locals.usuario ? usuario.nombre : "" %>>
           <label for="nombre">Nombre</label>
         </div>
 
         <!-- APELLIDO USUARIO -->
         <div class="box">
-          <input type="text" name="Apellido" id="apellido" required>
+          <input type="text" name="apellido" id="apellido" required value=<%= locals.usuario ? usuario.apellido : "" %>>
           <label for="apellido">Apellido</label>
         </div>
 
         <!-- TELEFONO USUARIO -->
         <div class="box">
-          <input type="number" name="Telefono" id="telefono" required>
+          <input type="number" name="telefono" id="telefono" required value=<%= locals.usuario ? usuario.telefono : "" %>>
           <label for="telefono">Telefono</label>
         </div>
 
         <!-- EMAIL USUARIO -->
         <div class="box">
-          <input type="email" name="Email" id="email" required>
+          <input type="email" name="email" id="email" required value=<%= locals.usuario ? usuario.email : "" %>>
           <label for="email">Email</label>
         </div>
 
         <!-- CONTRASEÑA USUARIO -->
         <div class="box">
-          <input type="password" name="Contrasena" id="contrasena" required>
+          <input type="password" name="contrasena" id="contrasena" required>
           <label for="contrasena">Contraseña</label>
         </div>
 
         <!-- CONTRASEÑA CONFIRMADA USUARIO -->
         <div class="box">
-          <input type="password" name="ReContrasena" id="re-contrasena" required>
+          <input type="password" name="reContrasena" id="re-contrasena" required>
           <label for="re-contrasena">Repetir contraseña</label>
         </div>
 
         <!-- CARGAR IMAGENE PERFIL -->
         <div class="box box-img">
           <label for="img" class="label-img">Cargar foto de perfil</label>
-          <input class="input-image" type="file" id="img" name="Imagen" multiple accept=".jpeg">
+          <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
         </div>
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Guardar</button>
     
-          <!-- Boton de reset -->
-          <button type="reset" class="boton">Limpiar</button>
+          <a href="/">Cancelar</a>
         </div>
 
       </form>

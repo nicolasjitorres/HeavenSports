@@ -36,10 +36,28 @@ main {
     font-size: 1.1rem;
 }
 
+.contenedor-usuarios{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(150px, 250px));
+}
 
-.contenedor-usuario {
-    width: 90%;
-    max-width: 300px;
+.informacion{
+    font-size: 12px;
+    padding: 2px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.verde{
+    color: var(--discount);
+}
+
+.gris{
+    color: var(--secondary-text);
+}
+
+.activo,
+.inactivo {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
@@ -47,20 +65,30 @@ main {
     background-color: var(--light);
     margin: 5px;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 5px;
     text-decoration: none;
 }
 
+.activo{
+    border: 1px solid var(--discount);
+}
+
+.inactivo{
+    border: 1px solid var(--secondary-text);
+}
 
 .foto-perfil {
-    width: 60px;
+    width: 100%;
     opacity: 90%;
+    border-radius: 50%;
 }
 
 
 .dato {
     color: var(--dark);
-    font-size: 13px;
+    font-size: 12px;
+    width: 100%;
+    font-weight: bold;
 }
 
 
@@ -83,8 +111,6 @@ main {
     .titulo {
         font-size: 1.4rem;
     }
-
-
 
 
 

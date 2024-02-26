@@ -1,133 +1,282 @@
 const fs = require('fs');
+const path = require('path');
 const bcryptjs = require('bcryptjs');
 const db = require("../data/models");
 
 const userService = {
-    getAll: function () {
-        return [];
-    },
-
-    generateId: function () {
-        if (this.users == '') {
-            return parseInt(1, 10);
-        } else {
-            return this.users[this.users.length - 1].Id + 1;
+    getAll: async function () {
+        try {
+            return await db.Usuario.findAll({
+                include: ['rol', 'imagen', 'carrito']
+            });
+        } catch (error) {
+            console.log(error);
         }
     },
-    signIn: function (body) {
-        let usuario = this.users.find(user => user.Email == body.Email);
-        if (usuario) {
-            if (bcryptjs.compareSync(body.Contrasena, usuario.Contrasena)) {
-                console.log("Usuario logueado correctamente!");
-                return usuario;
-            } else {
-                throw new Error('Credenciales invalidas')
-            }
-        } else {
-            throw new Error('Credenciales invalidas')
+    getByPk: async function (id) {
+        try {
+            return await db.Usuario.findByPk(id, {
+                include: ['rol', 'imagen', 'carrito']
+            });
+        } catch (error) {
+            console.log(error);
         }
     },
-    saveUser: function (body, file) {
-        if (!this.users.find(user => user.Email == body.Email)) {
-
-            if (body.Contrasena == body.ReContrasena) {
-                let Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
-                let user = {
-                    Id: this.generateId(),
-                    Nombre: body.Nombre,
-                    Apellido: body.Apellido,
-                    Telefono: parseInt(body.Telefono),
-                    Email: body.Email,
-                    Contrasena: Contrasena,
-                    Categoria: "Usuario",
-                    FotoPerfil: "default.png"
+    findByField: async function (field, value) {
+        try {
+            let whereClause = {};
+            whereClause[field] = value;
+            return await db.Usuario.findOne({
+                where: whereClause,
+                include: ['rol', 'imagen', 'carrito']
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    saveUser: async function (data, file) {
+        try {
+            const user = await this.findByField('email', data.email);
+            if (!user) {
+                if (data.contrasena == data.reContrasena) {
+                    let idFile = 1;
+                    if (file) {
+                        const newImagen = new Imagen(file.filename);
+                        const {
+                            id
+                        } = await db.Imagen.create(newImagen);
+                        idFile = id;
+                    }
+                    const newUsuario = new Usuario(data, idFile);
+                    const { id } = await db.Usuario.create(newUsuario);
+                    await db.Carrito.create({
+                        id_usuario : id
+                    })
+                    return {
+                        userSaved: true
+                    };
+                } else {
+                    throw new Error('Las contraseñas no coinciden');
                 }
-                if (file) {
-                    user.FotoPerfil = file.filename;
-                }
-
-                this.users.push(user);
-                fs.writeFileSync(userPath, JSON.stringify(this.users, null, ' '), 'utf-8');
-                return true;
             } else {
-                console.log("las contraseñas no coinciden");
+                throw new Error('Este email ya se encuentra registrado');
             }
-        } else {
-            console.log("Este email ya está registrado");
+        } catch (error) {
+            console.log(error.message);
+            const {
+                contrasena,
+                reContrasena,
+                ...newData
+            } = data;
+            return {
+                newData,
+                userSaved: false
+            };
+        }
+    },
+    generateRandomNumber: function () {
+        let randomNumber = '';
+        for (let i = 0; i < 10; i++) {
+            randomNumber += Math.floor(Math.random() * 10);
+        }
+        return bcryptjs.hashSync(randomNumber, 15);
+    },
+    signIn: async function (data) {
+
+        try {
+            let user = await this.findByField('email', data.email);
+            if (user && user.active) {
+                let pass = bcryptjs.compareSync(data.contrasena, user.contrasena);
+                if (pass) {
+                    console.log('Usuario logueado correctamente');
+                    const sesion = this.generateRandomNumber();
+                    await db.Usuario.update({
+                        sesion: sesion
+                    }, {
+                        where: {
+                            id: user.id
+                        }
+                    });
+                    return user.id;
+                } else {
+                    throw new Error('Credenciales invalidas');
+                }
+            } else {
+                throw new Error('Usuario inexistente');
+            }
+        } catch (error) {
+            console.log(error.message);
             return false;
         }
     },
-    findByPk: function (id) {
-        let allUsers = this.getAll();
-        let userFound = allUsers.find(user => user.Id == id);
-        return userFound;
-    },
-
-    findByField: function (field, need) {
-        let allUsers = this.getAll();
-        let userFound = allUsers.find(user => user[field] == need);
-        return userFound;
-    },
-    edit: function (body, id, file) {
-        let userOld = this.findByPk(id);
-        let filename;
-        if (file) {
-            filename = file.filename;
-        } else {
-            filename = userOld.FotoPerfil;
+    logoutUser: async function(sesion){
+        try {
+            await db.Usuario.update({
+                sesion: null
+            }, {
+                where: {
+                    sesion: sesion 
+                }
+            });
+        } catch (error) {
+            console.log(error.message);
         }
-        let userEdited = new Usuario(body, userOld.Contrasena, id, filename);
-        let idUser = this.users.findIndex(user => user.Id == id);
-        this.users[idUser] = userEdited;
-        fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
     },
-    deleteUser: function (id) {
-        let idAEliminar = this.users.findIndex(user => user.Id == id);
-        this.users.splice(idAEliminar, 1);
-        fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
+    deleteImagen: async function(usuario){
+        if (usuario.imagen.nombre != 'default.png') {
+            const rutaDirectorio = '../../public/images/users';
+            const rutaImagen = path.join(__dirname, rutaDirectorio, usuario.imagen.nombre)
 
-    },
-    updatePass: function (id, body) {
-        let user = this.findByPk(id);
-        if (body.Contrasena == body.ReContrasena) {
-            if (bcryptjs.compareSync(body.ContrasenaActual, user.Contrasena)) {
-                user.Contrasena = bcryptjs.hashSync(body.Contrasena, 15);
-                let idUser = this.users.findIndex(user => user.Id == id);
-                this.users[idUser] = user;
-                fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
+            if (fs.existsSync(rutaImagen)) {
+                fs.unlinkSync(rutaImagen);
+                console.log(`Imagen ${usuario.imagen.nombre} eliminada correctamente`);
             } else {
-                throw new Error("Contraseña actual incorrecta.")
+                console.log(`La imagen ${usuario.imagen.nombre} no existe en el directorio`);
             }
-        } else {
-            throw new Error("Las contraseñas nuevas no coinciden.")
+            await db.Imagen.destroy({
+                where: {
+                    id: usuario.imagen.id
+                }
+            });
         }
     },
-    change: function (id) {
-        let user = this.findByPk(id);
-        if (user.Categoria == "Usuario") {
-            user.Categoria = "Administrador";
-        } else {
-            user.Categoria = "Usuario";
+    edit: async function (data, idUser, file) {
+        try {
+            const user = await this.findByField('email', data.email);
+            const usuario = await this.getByPk(idUser);
+            if (JSON.stringify(user) == JSON.stringify(usuario) || user == null) {
+                let {
+                    id_imagen
+                } = usuario;
+                if (file) {
+                    const newImagen = new Imagen(file.filename);
+                    const {
+                        id
+                    } = await db.Imagen.create(newImagen);
+                    await this.deleteImagen(usuario);
+                    id_imagen = id;
+                }
+                await db.Usuario.update({
+                    nombre: data.nombre,
+                    apellido: data.apellido,
+                    telefono: data.telefono,
+                    email: data.email,
+                    id_imagen: id_imagen
+                }, {
+                    where: {
+                        id: idUser
+                    }
+                });
+            } else {
+                throw new Error('El email ingresado ya existe')
+            }
+        } catch (error) {
+            console.log(error.message);
+            return {
+                data
+            }
         }
-        let idUser = this.users.findIndex(user => user.Id == id);
-        this.users[idUser] = user;
-        fs.writeFileSync(userPath, JSON.stringify(this.users), 'utf-8');
+
+    },
+    deleteUser: async function (id) {
+        try {
+            const usuario = await this.getByPk(id);
+            await db.Carrito.destroy({
+                where: {
+                    id_usuario: id
+                }
+            });
+            await db.Usuario.destroy({
+                where: {
+                    id: id
+                }
+            });
+            await this.deleteImagen(usuario);
+            console.log('usuario eliminado');
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    softDelete: async function (id) {
+        try {
+            await db.Usuario.update({
+                active: false
+            }, {
+                where: {
+                    id: id
+                }
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    updatePass: async function (id, data) {
+        try {
+            const user = await this.getByPk(id);
+            if (data.contrasena == data.reContrasena) {
+                if (bcryptjs.compareSync(data.contrasenaActual, user.contrasena)) {
+                    const newContrasena = bcryptjs.hashSync(data.contrasena, 15);
+                    await db.Usuario.update({
+                        contrasena: newContrasena
+                    }, {
+                        where: {
+                            id: id
+                        }
+                    });
+                } else {
+                    throw new Error("Contraseña actual incorrecta")
+                }
+            } else {
+                throw new Error("Las contraseñas nuevas no coinciden")
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+    change: async function (id) {
+        try {
+            const usuario = await this.getByPk(id);
+            let rol;
+            console.log(usuario);
+            if (usuario.id_rol == 1) {
+                rol = 2;
+            } else {
+                rol = 1;
+            }
+            await db.Usuario.update({
+                id_rol: rol
+            }, {
+                where: {
+                    id: id
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
+// Constructor de usuario
 function Usuario({
-    Nombre,
-    Telefono,
-    Email,
-    Categoria
-}, contrasena, id, FotoPerfil) {
-    this.Id = id;
-    this.Nombre = Nombre;
-    this.Telefono = Telefono;
-    this.Email = Email;
-    this.Contrasena = contrasena;
-    this.Categoria = Categoria;
-    this.FotoPerfil = FotoPerfil;
+    nombre,
+    apellido,
+    telefono,
+    email,
+    contrasena
+}, id_imagen) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.telefono = telefono;
+    this.email = email;
+    this.contrasena = bcryptjs.hashSync(contrasena, 15);
+    this.active = true;
+    this.id_imagen = id_imagen;
+    this.id_rol = 1;
+}
+
+// Constructor de Imagen
+function Imagen(filename) {
+    this.nombre = filename
 }
 
 module.exports = userService;

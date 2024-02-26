@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) =>{
 
         Imagen.hasOne(models.Usuario, {
             as: 'usuario',
-            foreignKey:'id_imagen_perfil'
+            foreignKey:'id_imagen'
         }),
 
         Imagen.belongsToMany(models.Producto, {

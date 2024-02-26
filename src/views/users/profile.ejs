@@ -17,8 +17,13 @@
   <main>
 
       <div class="contenedor-datos">
-        <img class="imagen" src="/images/users/<%= usuario.FotoPerfil %>" alt="foto_perfil">
-        <p class="dato">¡Estás de vuelta,  <%= usuario.Nombre %>!</p>
+
+        <% if (locals.message) { %>
+          <p style="color: green; text-align: center; width: 100%; text-align: center;"><%= message%></p>
+        <% } %>
+
+        <img class="imagen" src="/images/users/<%= usuario.imagen.nombre %>" alt="foto_perfil">
+        <p class="dato">¡Estás de vuelta, <%= usuario.nombre + " " + usuario.apellido %>!</p>
 
         <a href="/users/edit" class="boton-editar">
           Editar mi perfil
@@ -28,7 +33,7 @@
           Cambiar contraseña
         </a>
 
-        <form action="/users/<%= usuario.Id %>/?_method=DELETE" method="POST" class="form-eliminar">
+        <form action="/users/softDelete/<%= usuario.id %>/?_method=DELETE" method="POST" class="form-eliminar">
           <button type="submit" class="boton-eliminar">Darme de baja</button>
         </form>
 
