@@ -12,15 +12,13 @@ CREATE TABLE categorias (
 /* Creacion de la tabla de colores de productos */
 CREATE TABLE colores (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre varchar(50),
-    hexadecimal varchar(50)
+    nombre varchar(50)
 );
 
 /* Creacion de la tabla de imagenes tanto de usuarios como productos */
 CREATE TABLE imagenes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    codigo varchar(100),
-    extension varchar(10)
+    nombre varchar(100)
 );
 
 /* Creacion de la tabla de marcas de productos */
@@ -50,10 +48,12 @@ CREATE TABLE usuarios (
     apellido VARCHAR(100),
     telefono VARCHAR(10),
     email VARCHAR(150),
-    contrasena VARCHAR(20),
-    id_imagen_perfil INT,
+    contrasena VARCHAR(150),
+    active TINYINT,
+    sesion VARCHAR(150),
+    id_imagen INT,
     id_rol INT,
-    FOREIGN KEY (id_imagen_perfil) REFERENCES imagenes(id),
+    FOREIGN KEY (id_imagen) REFERENCES imagenes(id),
     FOREIGN KEY (id_rol) REFERENCES roles(id)
 ); 
 
@@ -70,8 +70,13 @@ CREATE TABLE productos (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nombre VARCHAR(100),
     descripcion VARCHAR(200),
+    precio INT,
+    descuento INT,
+    active TINYINT,
     id_marca INT,
-    FOREIGN KEY (id_marca) REFERENCES marcas(id)
+    id_color INT,
+    FOREIGN KEY (id_marca) REFERENCES marcas(id),
+    FOREIGN KEY (id_color) REFERENCES colores(id)
 );
 
 /* Creacion de la tabla intermedia que relaciona productos con categorias */
@@ -83,24 +88,14 @@ CREATE TABLE producto_categoria (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id)
 );
 
-/* Creacion de la tabla intermedia que relaciona productos con colores */
-CREATE TABLE producto_color (
+
+/* Creacion de la tabla intermedia que relaciona un producto con los talles */
+CREATE TABLE producto_talle (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_producto INT,
-    id_color INT,
-    precio BIGINT,
-    descuento INT,
-    FOREIGN KEY (id_producto) REFERENCES productos(id),
-    FOREIGN KEY (id_color) REFERENCES colores(id)
-);
-
-/* Creacion de la tabla intermedia que relaciona un producto con un color con los talles */
-CREATE TABLE producto_color_talle (
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_producto_color INT,
     id_talle INT,
     stock INT,
-    FOREIGN KEY (id_producto_color) REFERENCES producto_color(id),
+    FOREIGN KEY (id_producto) REFERENCES productos(id),
     FOREIGN KEY (id_talle) REFERENCES talles(id)
 );
 
@@ -113,12 +108,14 @@ CREATE TABLE producto_imagen (
     FOREIGN KEY (id_imagen) REFERENCES imagenes(id)
 );
 
-/* Creacion de la tabla intermedia que relaciona un producto con un color y un talle con el carrito del usuario */
-CREATE TABLE carrito_producto_color_talle (
+/* Creacion de la tabla intermedia que relaciona un producto con un talle con el carrito del usuario */
+CREATE TABLE carrito_producto_talle (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_carrito INT,
-    id_producto_color_talle INT,
+    id_producto_talle INT,
     cantidad_producto INT,
     FOREIGN KEY (id_carrito) REFERENCES carritos(id),
-    FOREIGN KEY (id_producto_color_talle) REFERENCES producto_color_talle(id)
+    FOREIGN KEY (id_producto_talle) REFERENCES producto_talle(id)
 );
+
+
