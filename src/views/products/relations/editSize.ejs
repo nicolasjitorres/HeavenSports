@@ -1,0 +1,77 @@
+<%- include ('../../partials/head')%>
+
+<link rel="stylesheet" href="/css/createRelations.css">
+
+<title>Agregar talles</title>
+</head>
+
+<body id="body">
+
+    <!-- ENCABEZADO -->
+
+    <%- include ('../../partials/header')%>
+
+
+
+
+    <!-- PRINCIPAL -->
+    <main>
+
+
+        <!-- Imagenes -->
+        <h3 class="titulo">
+            Editar stock del talle
+        </h3>
+
+
+
+        <section class="main-section">
+            <form action="/products/edit/<%= prodTal.producto.id %>/relations/sizes/<%= prodTal.talle.id %>?_method=PUT" method="POST"
+                class="contenedor-form">
+
+                <!-- NOMBRE PRODUCTO -->
+                <div class="box">
+                    <input type="text" name="nombre" id="nombre" value=<%= prodTal.producto.nombre %> readonly>
+                    <label for="nombre">Nombre del producto</label>
+                </div>
+
+
+                <!-- TALLE PRODUCTO -->
+                <div class="box">
+                    <input type="text" name="talle" id="talle" value=<%= prodTal.talle.numero %> readonly>
+                    <label for="talle">Talle del producto</label>
+                </div>
+
+
+
+                <!-- STOCK PRODUCTO (CON ESE TALLE) -->
+                <div class="box">
+                    <input type="number" name="stock" value=<%= prodTal.stock %> id="stock" required class="input-stock">
+                    <label for="stock">Stock</label>
+                </div>
+
+
+                <div class="botones">
+                    <!-- Boton carga -->
+                    <button type="submit" class="boton-cargar">Editar</button>
+                    <a href="/products/edit/<%= prodTal.producto.id %>/relations" class="boton-cancelar">Cancelar</a>
+                </div>
+
+            </form>
+        </section>
+
+
+
+    </main>
+
+
+
+
+
+    <!-- PIE DE PAGINA -->
+
+    <%- include ('../../partials/footer')%>
+
+</body>
+
+</html>

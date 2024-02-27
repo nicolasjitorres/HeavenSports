@@ -1,16 +1,22 @@
 const path = require('path');
 const multer = require('multer');
 
-const imgStorage = path.join(__dirname, '../../public/images/users');
-var mDStorage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, imgStorage);
-	},
-	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
+const multerMiddleware = (name) => {
+	const imgStorage = path.join(__dirname, `../../public/images/${name}`);
+	var mDStorage = multer.diskStorage({
+		destination: function (req, file, cb) {
+			cb(null, imgStorage);
+		},
+		filename: function (req, file, cb) {
+			const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+			cb(null, name + '-' + uniqueSuffix + path.extname(file.originalname));
+		}
+	});
 
-const upload = multer({ storage: mDStorage});
+	return multer({
+		storage: mDStorage
+	});
+}
 
-module.exports = upload;
+
+module.exports = multerMiddleware;

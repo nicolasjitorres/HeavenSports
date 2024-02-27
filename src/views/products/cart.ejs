@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="/css/cart.css">
 
-<title>Carrito</title>
+<title>Carrito de compras</title>
 </head>
 
 <body>
@@ -11,50 +11,37 @@
 
   <%- include ('../partials/header')%>
 
-  <!-- CARRITO -->
+  <!-- MAIN -->
   <main>
-    <main>
-      <div class="cajaProducto">
-        <div class="tituloCart">
-            <h1>Heaven Sport</h1>
-            <p>Tienda Oficial</p>
+
+    <p class="titulo">Tu carrito!</p>
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <div class="contenedor-productos">
+
+      <% if (carrito) { %>
+      <% for( dato of carrito.productosTalles ) { %>
+      <div class="producto">
+        <img class="producto-imagen"
+          src=<%= "/images/products/" + (dato.producto.imagenes[0].nombre || "default.png") %> alt="">
+        <div class="producto-datos">
+          <p class="nombre"><%= dato.producto.nombre %></p>
+          <p class="precio">$<%= dato.producto.precio %></p>
+          <p class="talle">Talle <%= dato.talle.numero %></p>
+          <p class="cantidad">Cantidad: <%= dato.CarritoProductoTalle.cantidad_producto %></p>
         </div>
-        <img src="/images/products/ProductoA_0.jpg" alt="imagen-referencia">
-        <div class="descripcion-producto">
-            <p>Zapatillas Plataforma Botita Star Dama</p>
-            <p>Precio: $16000</p>
-            <p>Talle: 39</p>
-        </div>
-        <div class="cantidad">
-            <button><i class="fa-solid fa-minus"></i>1<i class="fa-solid fa-plus"></i></button>
-            <p>Disponibles: 5</p>
-        </div>
-        <div class="botonesCart">
-            <button>Eliminar</button>
-            <button>Guardar</button>
-            <button>Modificar</button>
-            <button>Comprar ahora</button>
-        </div>
+
       </div>
-        <div class="compra">
-            <h1>Resumen de compra:</h1>
-            <p>Zapatillas Plataforma Botita Star Dama</p>
-            <p>$16000</p>
-            <p>Envio</p>
-            <p>Gratis</p>
-            <p><input type="text" name="cupon" placeholder="Cupon dcto"></p>
-            <p>Desc %</p>
-            <p class="total">Total</p>
-            <p class="total">$16000</p>
-        </div>
-        <div class="botones">
-          <button>Cancelar Compra</button>
-          <button>Comprar</button>
-        </div>
-        <div class="volver">
-             <a href="/">Volver a la Página principal</a>
-        </div>
-    </main>
+      <% } %>
+      <% } %>
+
+
+    </div>
+
+    <a class="boton-volver" href="/">Volver a la Página principal</a>
+
+
+  </main>
 
   <!-- PIE DE PAGINA -->
 

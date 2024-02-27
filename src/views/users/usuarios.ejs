@@ -1,7 +1,7 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/users.css">
-<title>Ver Usuarios</title>
+<title>Usuarios</title>
 
 </head>
 
@@ -16,19 +16,20 @@
     <!-- Lista de todos los usuarios -->
 
 
-    <h3 class="titulo">Usuarios registrados:</h3>
+    <h3 class="titulo">Usuarios registrados</h3>
+    <p class="informacion verde">---Activos---</p>
+    <p class="informacion gris">---Inactivos---</p>
 
-    <% for (let i= 0; i< usuarios.length; i++) {%>
-    <!--<a class="oferta" href="/users/%= usuarios[i].Id %>/detail">-->
-    <a class="contenedor-usuario" href="/users/userEdit/<%= usuarios[i].Id %>">
+    <div class="contenedor-usuarios">
+      <% for (usuario of usuarios) {%>
+      <a class=<%= usuario.active ? "activo" : "inactivo" %> href="/users/userEdit/<%= usuario.id %>">
+          <img src="/images/users/<%= usuario.imagen.nombre %>" alt="" class="foto-perfil">
+          <p class="dato"><%= usuario.nombre + " " + usuario.apellido %></p>
+          <p class="dato"><%= usuario.email %></p>
+      </a>
+      <%} %>
+    </div>
 
-      <div class="contenedor-precio-descripcion">
-        <img src="/images/users/<%= usuarios[i].FotoPerfil  %>" alt="" class="foto-perfil">
-        <p class="dato">Nombre: <%= usuarios[i].Nombre %></p>
-        <p class="dato">Email: <%= usuarios[i].Email %></p>
-      </div>
-    </a>
-    <%} %>
 
   </main>
   <!-- PIE DE PAGINA -->

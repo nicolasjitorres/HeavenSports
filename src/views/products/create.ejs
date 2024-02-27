@@ -13,7 +13,7 @@
   <!-- PRINCIPAL -->
   <main>
 
-    
+
     <!-- Formulario registro -->
     <div class="contenedor-form">
       <h4 class="titulo">Nuevo producto</h4>
@@ -21,83 +21,95 @@
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box">
-          <input type="text" name="Nombre" id="nombre" required>
+          <input type="text" name="nombre" id="nombre" required>
           <label for="nombre">Nombre</label>
         </div>
 
+
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box">
-          <input type="text" name="Descripcion" id="descripcion"required></input>
+          <input type="text" name="descripcion" id="descripcion" required></input>
           <label for="descripcion">Descripción</label>
         </div>
 
         <!-- PRECIO PRODUCTO -->
         <div class="box">
-          <input type="number" name="Precio" id="precio" required>
+          <input type="number" name="precio" id="precio" required>
           <label for="precio">Precio</label>
         </div>
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box">
-          <input type="number" name="Descuento" id="descuento" required>
+          <input type="number" name="descuento" id="descuento" required>
           <label for="descuento">Descuento</label>
+        </div>
+
+        <!-- MARCA PRODUCTO -->
+        <div class="box">
+          <select name="id_marca" id="marca" required>
+            <option selected disabled>- Seleccione la marca -</option>
+            <% if (locals.mar) { %>
+            <% mar.forEach(marca => { %>
+            <option value=<%= marca.id %>> <%= marca.nombre %> </option>
+            <% }); %>
+            <% } %>
+          </select>
         </div>
 
         <!-- COLOR PRODUCTO -->
         <div class="box">
-          <input type="text" name="Color" id="color" required>
-          <label for="color">Colores (separados por un espacio)</label>
+          <select name="id_color" id="color" required>
+            <option selected disabled>- Seleccione el color -</option>
+            <% if (locals.col) { %>
+            <% col.forEach(color => { %>
+            <option value=<%= color.id %>> <%= color.nombre %> </option>
+            <% }); %>
+            <% } %>
+          </select>
         </div>
 
         <!-- TALLE PRODUCTO -->
         <div class="box">
-          <input type="text" name="Talle" id="talle" required>
-          <label for="talle">Talles (separados por un espacio)</label>
+          <select name="id_talle" id="talle" required>
+            <option selected disabled>- Seleccione el talle -</option>
+            <% if (locals.tal) { %>
+            <% tal.forEach(talle => { %>
+            <option value=<%= talle.id %>> <%= talle.numero %> </option>
+            <% }); %>
+            <% } %>
+          </select>
         </div>
 
-        
-        <!-- STOCK PRODUCTO -->
+        <!-- STOCK PRODUCTO (CON ESE TALLE) -->
         <div class="box">
-          <input type="number" name="Stock" id="stock" required>
+          <input type="number" name="stock" id="stock" required>
           <label for="stock">Stock</label>
         </div>
-        
+
         <!-- CATEGORIA PRODUCTO -->
         <div class="box-check">
-          <label class="box-check-titulo">Categoria</label>
-          <input type="checkbox" name="Categoria" id="Deportivo" value="Deportivo"> 
-          <label for="Deportivo" class="label-check">
-            Deportivo
+          <label class="box-check-titulo">Selecciona las categorias</label>
+          <% if (locals.cat) { %>
+          <% cat.forEach(categoria => { %>
+          <input type="checkbox" name="categorias" id=<%=categoria.nombre %> value=<%= categoria.id %>>
+          <label for=<%=categoria.nombre %> class="label-check">
+            <%= categoria.nombre %>
           </label>
-          <input type="checkbox" name="Categoria" id="Casual" value="Casual"> 
-          <label for="Casual" class="label-check">
-            Casual
-          </label>
-          <input type="checkbox" name="Categoria" id="Urbano" value="Urbano">
-          <label for="Urbano" class="label-check">
-            Urbano
-          </label>
-          <input type="checkbox" name="Categoria" id="Formal" value="Formal"> 
-          <label for="Formal" class="label-check">
-            Formal
-          </label>
-          <input type="checkbox" name="Categoria" id="Niños" value="Niños"> 
-          <label for="Niños" class="label-check">
-            Niños
-          </label>
+          <% }); %>
+          <% } %>
         </div>
 
         <!-- CARGAR IMAGENES PRODUCTO -->
         <div class="box box-img">
           <label for="img" class="label-img">Cargar imagenes</label>
-          <input class="input-image" type="file" id="img" name="Imagen" multiple accept=".jpg, .png">
+          <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png">
         </div>
+
+        
         <div class="botones">
           <!-- Boton carga -->
-          <button type="submit" class="boton">Guardar</button>
-    
-          <!-- Boton de reset -->
-          <button type="reset" class="boton">Limpiar</button>
+          <button type="submit" class="boton">Cargar</button>
+          <a href="/products" class="boton-cancelar">Cancelar</a>
         </div>
 
       </form>

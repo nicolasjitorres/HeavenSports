@@ -1,0 +1,67 @@
+<%- include ('../../partials/head')%>
+
+<link rel="stylesheet" href="/css/createRelations.css">
+
+<title>Agregar imagenes</title>
+</head>
+
+<body id="body">
+
+    <!-- ENCABEZADO -->
+
+    <%- include ('../../partials/header')%>
+
+
+
+
+    <!-- PRINCIPAL -->
+    <main>
+
+
+        <!-- Imagenes -->
+        <h3 class="titulo">
+            Cargar imagenes al producto
+        </h3>
+
+
+
+        <section class="main-section">
+            <form action="/products/edit/<%= producto.id %>/relations/images" method="POST" enctype="multipart/form-data" class="contenedor-form">
+
+                <!-- NOMBRE PRODUCTO -->
+                <div class="box">
+                  <input type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
+                  <label for="nombre">Nombre del producto</label>
+                </div>
+        
+                <!-- CARGAR IMAGENES PRODUCTO -->
+                <div class="box box-img">
+                  <label for="img" class="label-img">Subir imagenes</label>
+                  <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png">
+                </div>
+        
+                
+                <div class="botones">
+                  <!-- Boton carga -->
+                  <button type="submit" class="boton-cargar">Cargar</button>
+                  <a href="/products/edit/<%= producto.id %>/relations" class="boton-cancelar">Cancelar</a>
+                </div>
+        
+              </form>
+        </section>
+
+
+
+    </main>
+
+
+
+
+
+    <!-- PIE DE PAGINA -->
+
+    <%- include ('../../partials/footer')%>
+
+</body>
+
+</html>

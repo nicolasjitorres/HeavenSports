@@ -1,0 +1,80 @@
+<%- include ('../../partials/head')%>
+
+<link rel="stylesheet" href="/css/createRelations.css">
+
+<title>Agregar talles</title>
+</head>
+
+<body id="body">
+
+    <!-- ENCABEZADO -->
+
+    <%- include ('../../partials/header')%>
+
+
+
+
+    <!-- PRINCIPAL -->
+    <main>
+
+
+        <!-- Imagenes -->
+        <h3 class="titulo">
+            Cargar talle al producto
+        </h3>
+
+
+
+        <section class="main-section">
+            <form action="/products/edit/<%= producto.id %>/relations/sizes" method="POST"
+                class="contenedor-form">
+
+                <!-- NOMBRE PRODUCTO -->
+                <div class="box">
+                    <input type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
+                    <label for="nombre">Nombre del producto</label>
+                </div>
+
+                <!-- TALLE A CARGAR AL PRODUCTO -->
+                <div class="box">
+                    <select name="id_talle" id="talle" required>
+                        <option selected disabled>- Seleccione el talle -</option>
+                        <% if (locals.tal) { %>
+                        <% tal.forEach(talle => { %>
+                        <option value=<%= talle.id %>> <%= talle.numero %> </option>
+                        <% }); %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <!-- STOCK PRODUCTO (CON ESE TALLE) -->
+                <div class="box">
+                    <input type="number" name="stock" id="stock" required>
+                    <label for="stock">Stock</label>
+                </div>
+
+
+                <div class="botones">
+                    <!-- Boton carga -->
+                    <button type="submit" class="boton-cargar">Cargar</button>
+                    <a href="/products/edit/<%= producto.id %>/relations" class="boton-cancelar">Cancelar</a>
+                </div>
+
+            </form>
+        </section>
+
+
+
+    </main>
+
+
+
+
+
+    <!-- PIE DE PAGINA -->
+
+    <%- include ('../../partials/footer')%>
+
+</body>
+
+</html>

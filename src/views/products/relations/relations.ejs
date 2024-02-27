@@ -1,0 +1,88 @@
+<%- include ('../../partials/head')%>
+
+<link rel="stylesheet" href="/css/relations.css">
+
+<title>Productos</title>
+</head>
+
+<body id="body">
+
+    <!-- ENCABEZADO -->
+
+    <%- include ('../../partials/header')%>
+
+
+
+
+    <!-- PRINCIPAL -->
+    <main>
+
+
+        <!-- Imagenes -->
+        <h3 class="titulo">
+            Imagenes del producto
+            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="boton-imagen-cargar">
+                Agregar imagenes
+            </a>
+        </h3>
+
+
+
+        <section class="main-section">
+            <% if (producto.imagenes) { %>
+            <% for (imagen of producto.imagenes){ %>
+            <div class="contenedor-imagen">
+                <img src=<%="/images/products/" + imagen.nombre %> alt=<%= imagen.nombre %>>
+                <form action="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE" method="POST" class="form-eliminar">
+                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
+                </form>
+            </div>
+            <% } %>
+            <% } %>
+        </section>
+
+        <!-- Talles -->
+        <h3 class="titulo">
+            Talles del producto
+            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="boton-talle-cargar">
+                Agregar talle
+            </a>
+        </h3>
+        <section class="main-section">
+            <% if (producto.talles) { %>
+            <% for (talle of producto.talles){ %>
+            <div class="contenedor-talle">
+                <p class="numero-talle">Númeracion: <%= talle.numero %></p>
+                <p class="stock">Stock: <%= talle.ProductoTalle.stock %></p>
+                <a href="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>"
+                    class="boton-talle-editar">
+                    Editar
+                </a>
+                <form action="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>?_method=DELETE" method="POST" class="form-eliminar">
+                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
+                </form>
+            </div>
+            <% } %>
+            <% } %>
+        </section>
+
+
+        <a href="/products/detail/<%= producto.id %>"
+            class="boton-talle-editar boton-volver">
+            Volver al producto
+        </a>
+
+
+    </main>
+
+
+
+
+
+    <!-- PIE DE PAGINA -->
+
+    <%- include ('../../partials/footer')%>
+
+</body>
+
+</html>

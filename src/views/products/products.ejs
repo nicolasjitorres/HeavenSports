@@ -38,22 +38,22 @@
       <h3 class="titulo">TODOS LOS PRODUCTOS</h3>
 
       <% for (let i= 0; i< productos.length; i++) {%>
-      <a class="oferta" href="/products/<%= productos[i].Id %>/detail">
+      <a class="oferta" href="/products/detail/<%= productos[i].id %>">
         <p class="envio-gratis">ENVIO GRATIS</p>
         <div class="contenedor-img">
-          <img src="/images/products/<%= productos[i].Imagen[0] %>" alt="Ejemplo2">
+          <img src="/images/products/<%= (productos[i].imagenes[0] && productos[i].imagenes[0].nombre) ? productos[i].imagenes[0].nombre : 'default.png' %>" alt="Ejemplo2">
         </div>
         <div class="contenedor-precio-descripcion">
-          <% if (productos[i].Descuento != 0) { %>
-          <p class="precio-anterior">$<%= productos[i].Precio %></p>
+          <% if (productos[i].descuento != 0) { %>
+          <p class="precio-anterior">$<%= productos[i].precio %></p>
           <p class="precio">
-            $<%= (productos[i].Precio - (productos[i].Precio * (productos[i].Descuento / 100))).toFixed(2) %>
-            <span class="descuento"><%= productos[i].Descuento %>% descuento</span>
+            $<%= (productos[i].precio - (productos[i].precio * (productos[i].descuento / 100))).toFixed(0) %>
+            <span class="descuento"><%= productos[i].descuento %>% descuento</span>
           </p>
           <% } else { %>
-          <p class="precio">$<%= productos[i].Precio%>
+          <p class="precio">$<%= productos[i].precio%>
             <% } %>
-            <p class="descripcion"><%= productos[i].Nombre %></p>
+            <p class="descripcion"><%= productos[i].nombre %></p>
         </div>
       </a>
       <%} %>

@@ -1,42 +1,63 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
-const path = require('path');
-const multer = require('multer');
 const adminMiddleware = require("../middlewares/adminMiddleware");
+const authUserMiddleware = require("../middlewares/authUserMiddleware");
+const multerMiddleware = require('../middlewares/multerMiddleware');
+const upload = multerMiddleware('products');
 
-const imgStorage = path.join(__dirname, '../../public/images/products');
-var mDStorage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, imgStorage);
-	},
-	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-const upload = multer({ storage: mDStorage});
-
-/*** GET ALL PRODUCTS ***/ 
-/*** Obtener todos los productos ***/ 
+/* GET ALL PRODUCTS */ 
+/* Obtener todos los productos */ 
 router.get('/', productController.index); 
 
-/*** GET ONE PRODUCT ***/ 
+/* GET ONE PRODUCT */ 
 // Ruta hacía el detalle del producto
-router.get('/:id/detail', productController.detail); 
+router.get('/detail/:id', productController.detail); 
 
-// Ruta hacía el carrito de compras
-router.get('/cart', productController.cart);
+// Ruta hacia el carrito de compras del usuario
+router.get('/cart', authUserMiddleware, productController.cart);
 
-/*** CREATE ONE PRODUCT ***/ 
+// Agrega un producto al carrito
+router.post('/cart/:id', productController.addCart);
+
+/* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
-router.post('/', upload.array('Imagen'), productController.save); 
+router.post('/',adminMiddleware, upload.array('imagenes'), productController.save); 
 
-/*** EDIT ONE PRODUCT ***/ 
-router.get('/:id/edit', adminMiddleware, productController.edit); 
-router.put('/:id', upload.array('Imagen'), productController.update); 
+/* EDIT ONE PRODUCT */ 
+router.get('/edit/:id', adminMiddleware, productController.edit); 
+router.put('/:id',adminMiddleware, productController.update); 
 
-/*** DELETE ONE PRODUCT***/ 
-router.delete('/:id', adminMiddleware, productController.destroy); 
+/* DELETE ONE PRODUCT */ 
+router.delete('/:id', adminMiddleware, productController.logicDelete); 
+
+/* GET ALL IMAGES AND SIZES BY ONE PRODUCT */
+router.get('/edit/:id/relations', adminMiddleware, productController.relations)
+
+/* GET VIEW FOR ADD IMAGES TO ONE PRODUCT */
+router.get('/edit/:id/relations/images/create', adminMiddleware, productController.getAddImage);
+
+/* ADD IMAGES TO ONE PRODUCT */
+router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), productController.addImage);
+
+/* DELETE ONE IMAGE OF ONE PRODUCT */
+router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productController.deleteImage);
+
+/* GET VIEW FOR ADD ONE SIZE TO ONE PRODUCT */
+router.get('/edit/:id/relations/sizes/create', adminMiddleware, productController.getAddSize);
+
+/* ADD SIZE TO ONE PRODUCT */
+router.post('/edit/:id/relations/sizes', adminMiddleware, productController.addSize);
+
+/* EDIT ONE SIZE OF ONE PRODUCT */
+router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);
+
+/* EDIT ONE SIZE OF ONE PRODUCT */
+router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.editSize);
+
+/* DELETE ONE SIZE OF ONE PRODUCT */
+router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.deleteSize);
+
+
 
 module.exports = router;
