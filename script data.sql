@@ -43,7 +43,9 @@ INSERT INTO talles (numero, descripcion) VALUES
 (41, 'Talle 41 para zapatillas'),
 (42, 'Talle 42 para zapatillas');
 
+INSERT INTO imagenes (nombre) VALUES
+('default.png');
 
 -- Luego de cargar estos datos, entrar en la pagina y cargar un usuario (random), entrar en la base de datos y ejecutar lo siguiente:
--- update usuarios set id_rol = 2 where id = 1
+-- update usuarios set id_rol = 2;
 -- Esto convertira al usuario creado en administrador, luego de esto cargar un producto de prueba usando la pagina
