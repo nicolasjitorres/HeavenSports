@@ -5,14 +5,17 @@ Reuniones semanales, con comunicacion continua por Whatsapp.
 ## Reunion 1
 
 **Peralta Diego:**
+
+**Por motivos de salud no pude realizar las tareas que se me asignaron (-Scipt de datos y -CRUD) los cuales fueron realizados por Yacuk Maria y Torres Nicolas**
+
 - Que se hizo ayer: 
 - Impedimentos: -
-- Que se hara: 
+- Que se hara:                            
 
 **Torres Nicolas:**
-- Que se hizo ayer: 
-- Impedimentos:
-- Que se hara: 
+- Que se hizo ayer: Creacion del esquema de la base de datos, dibujo del modelo relacional y carga del script de datos.
+- Impedimentos: Las relaciones se complicaron bastante, aunque se pre-supone que puede haber cambios mas adelante, por lo que tomamos esta BD como "prueba".                             
+- Que se hara: Diseño del CRUD de productos, implementando sequelize.              
 
 **Yacuk Maria:**
 - Que se hizo ayer: Resumen y carga de tareas en Trello.
@@ -25,12 +28,12 @@ Reuniones semanales, con comunicacion continua por Whatsapp.
 **Peralta Diego:**
 - Que se hizo ayer: 
 - Impedimentos: -
-- Que se hara: 
+- Que se hara: Actualizacion del retro.md y el daily/weekly.md.
 
 **Torres Nicolas:**
-- Que se hizo ayer: 
-- Impedimentos:
-- Que se hara: 
+- Que se hizo ayer: Implementar sequelize en el CRUD de usuarios y productos, creacion de nuevas vistas que sirven para la edicion de productos ( y sus relacions), y para la edicion de usuarios. Se implemento la funcionalidad del carrito de compras. Se actualizaron algunos diseños e implementaron nuevas disposiciones de elementos. Se actualizo la forma de trabajar con cookies, porque se encontro una vulnerabilidad por la que podrian peligrar los datos de los usuarios.
+- Impedimentos: Mas que nada a la hora de implementar el CRUD utilizando sequelize, los async await y  try-catch, generaron bastantes incovenientes a la hora de realizar las tareas acordadas, por lo que se puso en primer lugar el backend. Mas adelante se realizaran las correcciones competentes en cuanto al frontend.
+- Que se hara: Terminar de pulir detalles y realizar unas cuantas pruebas de software para verificar el funcionamiento.
 
 **Yacuk Maria:**
 - Que se hizo ayer: Script data.sql para poblar las tablas. Actualizacion del archivo structure.sql y DER. 

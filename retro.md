@@ -17,6 +17,7 @@ https://miro.com/welcomeonboard/ajZlNENVZEpmWURUcTBYYlB1aXNkMjdXS25qM1JGNktmelE5
 - Empezar el trabajo lo antes posible.
 - Completar todos los ejercicios de las clases.
 - Consultas a profesores.
+- Pair programming incluso para tareas individuales.
 
 **More of:**
 - Aprender Git y GitHub.
@@ -28,7 +29,6 @@ https://miro.com/welcomeonboard/ajZlNENVZEpmWURUcTBYYlB1aXNkMjdXS25qM1JGNktmelE5
 - Estar a disposicion para ayudar a los demás.
 - Comunicacion continua del equipo.
 - Programar y coordinar mejor los trabajos de cada uno.
-- Pair programming incluso para tareas individuales.
 - Usar Trello de manera adecuada.
 - Dividir trabajos pesados.
 - 1 reunion por semana.
@@ -37,6 +37,7 @@ https://miro.com/welcomeonboard/ajZlNENVZEpmWURUcTBYYlB1aXNkMjdXS25qM1JGNktmelE5
 
 **Less of:**
 - No practicar todos los dias, al menos un poco.
+- Dejar las cosas para ultimo momento.
 
 **Stop Doing:**
 - Descoordinación.
@@ -44,7 +45,6 @@ https://miro.com/welcomeonboard/ajZlNENVZEpmWURUcTBYYlB1aXNkMjdXS25qM1JGNktmelE5
 - No dedicar tiempo a los trabajos y la programación.
 - No colaborar en equipo.
 - Confiarse con los tiempos.
-- Dejar las cosas para ultimo momento.
 
 
 -------------------------------------------------------------------------------------------------------
