@@ -21,27 +21,47 @@
       <form action="/users/edit?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE -->
-        <div class="box">
-          <input type="text" name="nombre" id="nombre" required value="<%= usuario.nombre %>">
+        <div class="box <%= locals.errors && errors.nombre ? 'errorBox' : null %>">
+          <input type="text" name="nombre" id="nombre" required value="<%= locals.old && old.nombre ? old.nombre : usuario.nombre %>">
           <label for="nombre">Nombre</label>
+          <% if (locals.errors && errors.nombre) { %>
+            <div class="msgError">
+              <%= errors.nombre.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- APELLIDO -->
-        <div class="box">
-          <input type="text" name="apellido" id="apellido" required value="<%= usuario.apellido %>">
+        <div class="box <%= locals.errors && errors.apellido ? 'errorBox' : null %>">
+          <input type="text" name="apellido" id="apellido" required value="<%= locals.old && old.apellido ? old.apellido : usuario.apellido %>">
           <label for="apellido">Apellido</label>
+          <% if (locals.errors && errors.apellido) { %>
+            <div class="msgError">
+              <%= errors.apellido.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- TELEFONO -->
-        <div class="box">
-          <input type="text" name="telefono" id="telefono" required value="<%= usuario.telefono %>">
+        <div class="box <%= locals.errors && errors.telefono ? 'errorBox' : null %>">
+          <input type="text" name="telefono" id="telefono" required value="<%= locals.old && old.telefono ? old.telefono : usuario.telefono %>">
           <label for="telefono">Telefono</label>
+          <% if (locals.errors && errors.telefono) { %>
+            <div class="msgError">
+              <%= errors.telefono.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- EMAIL -->
-        <div class="box">
-          <input type="email" name="email" id="email" required value="<%= usuario.email %>">
+        <div class="box <%= locals.errors && errors.email ? 'errorBox' : null %>">
+          <input type="email" name="email" id="email" required value="<%= locals.old && old.email ? old.email : usuario.email %>">
           <label for="email">Email</label>
+          <% if (locals.errors && errors.email) { %>
+            <div class="msgError">
+              <%= errors.email.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- IMAGEN ANTERIOR USUARIO -->
@@ -52,9 +72,14 @@
 
 
         <!-- CARGAR IMAGEN USUARIO -->
-        <div class="box-img">
+        <div class="box-img <%= locals.errors && errors.imagen ? 'errorBox' : null %>">
           <label for="img" class="label-img">Cargar nueva foto de perfil</label>
           <input class="input-image" type="file" id="img" name="imagen" accept=".jpg, .png, .jpeg">
+          <% if (locals.errors && errors.imagen) { %>
+            <div class="msgError">
+              <%= errors.imagen.msg %>
+            </div>
+          <% } %>
         </div>
 
 

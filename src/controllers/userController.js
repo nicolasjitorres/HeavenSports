@@ -161,8 +161,20 @@ const controller = {
     },
     update: async (req, res) => {
         try {
-            await userService.edit(req.body, req.session.userLogged.id, req.file);
-            res.redirect('/users/profile');
+
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+                await userService.edit(req.body, req.session.userLogged.id, req.file);
+                res.redirect('/users/profile');
+            } else {
+                const usuario = await userService.getByPk(req.session.userLogged.id);
+                res.render('users/userEdit', {
+                    usuario: usuario,
+                    errors: errors.array(),
+                    old: req.body 
+                });
+            }
         } catch (error) {
             console.log(error.message);
         }

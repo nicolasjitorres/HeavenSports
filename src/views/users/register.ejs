@@ -84,12 +84,12 @@
         <div class="box box-img <%= locals.errors && errors.imagen ? 'errorBox' : null %>">
           <label for="img" class="label-img">Cargar foto de perfil</label>
           <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
+          <% if (locals.errors && errors.imagen) { %>
+            <div class="msgError">
+              <%= errors.imagen.msg %>
+            </div>
+          <% } %>
         </div>
-        <% if (locals.errors && errors.imagen) { %>
-          <div class="msgError">
-            <%= errors.imagen.msg %>
-          </div>
-        <% } %>
 
         <div class="botones">
           <!-- Boton carga -->

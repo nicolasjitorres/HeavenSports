@@ -11,6 +11,7 @@ const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('users');
 const ValUserRegister = require('../middlewares/validations/ValUserRegister');
 const ValUserLogin = require('../middlewares/validations/ValUserLogin');
+const ValUserEditProfile = require('../middlewares/validations/ValUserEditProfile');
 
 
 // LOGIN
@@ -39,7 +40,7 @@ router.patch('/changeCategory/:id', adminMiddleware, userController.changeCatego
 
 // EDICION DEL USUARIO
 router.get('/edit', authUserMiddleware, userController.edit);
-router.put('/edit', authUserMiddleware, upload.single('imagen'), userController.update);
+router.put('/edit', authUserMiddleware, upload.single('imagen'), ValUserEditProfile, userController.update);
 
 // CAMBIO DE CONTRASEÑA
 router.get('/changePass', authUserMiddleware, userController.changePass);
