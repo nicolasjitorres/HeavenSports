@@ -56,7 +56,7 @@ router.post('/edit/:id/relations/sizes', adminMiddleware, ValEditSizeProduct, pr
 router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
-router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.editSize);
+router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, ValEditSizeProduct, productController.editSize);
 
 /* DELETE ONE SIZE OF ONE PRODUCT */
 router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.deleteSize);

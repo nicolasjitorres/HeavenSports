@@ -84,10 +84,20 @@ const controller = {
                 const idProducto = await productService.saveProduct(req.body, req.files);
                 res.redirect(`/products/detail/${idProducto}`);
             } else {
-                res.render('products/create', { 
+                const {
+                    categorias,
+                    colores,
+                    marcas,
+                    talles
+                } = await productService.getCreateView();
+                res.render('products/create', {
+                    cat: categorias,
+                    col: colores,
+                    mar: marcas,
+                    tal: talles,
                     errors: errors.array(),
                     old: req.body 
-                })
+                });
             }
         } catch (error) {
             console.log(error);
@@ -122,10 +132,20 @@ const controller = {
                 await productService.edit(req.body, req.params.id);
                 res.redirect(`/products/detail/${req.params.id}`);
             } else {
-                res.render('products/edit/:id', { 
+                const {
+                    producto,
+                    categorias,
+                    colores,
+                    marcas
+                } = await productService.getEditView(req.params.id);
+                res.render('products/productEdit', {
+                    producto: producto,
+                    cat: categorias,
+                    col: colores,
+                    mar: marcas,
                     errors: errors.array(),
                     old: req.body 
-                })
+                });
             }
         } catch (error) {
             console.log(error);
