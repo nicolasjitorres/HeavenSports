@@ -9,6 +9,7 @@ const { body } = require('express-validator');
 const ValCreateEditProduct = require('../middlewares/validations/ValCreateEditProduct');
 const ValEditSizeProduct = require('../middlewares/validations/ValEditSizeProduct');
 const ValCartProduct = require('../middlewares/validations/ValCartProduct');
+const ValAddImageProduct = require('../middlewares/validations/ValAddImageProduct');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -42,7 +43,7 @@ router.get('/edit/:id/relations', adminMiddleware, productController.relations)
 router.get('/edit/:id/relations/images/create', adminMiddleware, productController.getAddImage);
 
 /* ADD IMAGES TO ONE PRODUCT */
-router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), productController.addImage);
+router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), ValAddImageProduct, productController.addImage);
 
 /* DELETE ONE IMAGE OF ONE PRODUCT */
 router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productController.deleteImage);

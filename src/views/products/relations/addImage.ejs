@@ -38,6 +38,11 @@
                 <div class="box box-img">
                   <label for="img" class="label-img">Subir imagenes</label>
                   <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png">
+                  <% if (locals.errors && errors.imagenes) { %>
+                    <div class="msgError">
+                      <%= errors.imagenes.msg %>
+                    </div>
+                  <% } %>
                 </div>
         
                 

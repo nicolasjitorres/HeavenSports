@@ -193,8 +193,19 @@ const controller = {
     },
     addImage: async (req, res) => {
         try {
-            await productService.saveImages(req.params.id, req.files);
-            res.redirect(`/products/edit/${req.params.id}/relations`);
+
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+                await productService.saveImages(req.params.id, req.files);
+                res.redirect(`/products/edit/${req.params.id}/relations`);
+            } else {
+                const producto = await productService.getByPk(req.params.id);
+                res.render('products/relations/addImage.ejs', {
+                    producto: producto,
+                    errors: errors.array(),
+                });
+            }
         } catch (error) {
             console.log(error);
         }
