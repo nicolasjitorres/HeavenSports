@@ -19,15 +19,6 @@
       <h4 class="titulo">Nuevo producto</h4>
 
 
-      <% if (locals.errors) {
-        errors.forEach(error => { %>
-          <p class=""><%= error.msg %> </p>
-      <% 
-        })
-      }
-      %>
-
-
       <form action="/products" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
@@ -127,7 +118,7 @@
         </div>
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
-        <div class="box <%= locals.errors && errors.stock ? 'errorBox' : null %>>
+        <div class="box <%= locals.errors && errors.stock ? 'errorBox' : null %>">
           <input type="number" name="stock" id="stock" value="<%= locals.old && old.stock ? old.stock : "" %>" required>
           <label for="stock">Stock</label>
           <% if (locals.errors && errors.stock) { %>
