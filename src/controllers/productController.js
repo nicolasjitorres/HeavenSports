@@ -225,8 +225,19 @@ const controller = {
     },
     editSize: async (req, res) => {
         try {
-            await productService.updateSize(req.params, req.body);
-            res.redirect(`/products/edit/${req.params.id}/relations`)
+            let errors = validationResult(req);
+
+            if (errors.isEmpty()) {
+                await productService.updateSize(req.params, req.body);
+                res.redirect(`/products/edit/${req.params.id}/relations`)
+            } else {
+                const [prodTal] = await productService.getEditSizeView(req.params)
+                res.render('products/relations/editSize.ejs', {
+                    prodTal: prodTal,
+                    errors: errors.array(),
+                });
+            }
+            
         } catch (error) {
             console.log(error);
         }

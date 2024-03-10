@@ -45,9 +45,14 @@
 
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
-                <div class="box">
+                <div class="box <%= locals.errors && errors.stock ? 'errorBox' : null %>">
                     <input type="number" name="stock" value=<%= prodTal.stock %> id="stock" required class="input-stock">
                     <label for="stock">Stock</label>
+                    <% if (locals.errors && errors.stock) { %>
+                        <div class="msgError">
+                          <%= errors.stock.msg %>
+                        </div>
+                    <% } %>
                 </div>
 
 
