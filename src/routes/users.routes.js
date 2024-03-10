@@ -9,6 +9,7 @@ const authUserMiddleware = require('../middlewares/authUserMiddleware');
 const adminMiddleware = require("../middlewares/adminMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('users');
+const ValUserRegister = require('../middlewares/validations/ValUserRegister');
 
 
 // LOGIN
@@ -20,7 +21,7 @@ router.get('/logout', authUserMiddleware, userController.logout);
 
 // REGISTRO
 router.get('/register', guestUserMiddleware, userController.register);
-router.post('/register',guestUserMiddleware, upload.single('imagen'), userController.save); 
+router.post('/register',guestUserMiddleware, upload.single('imagen'), ValUserRegister, userController.save); 
 
 // ELIMINACION DE UNA CUENTA (SOLO ADMINISTRADOR)
 router.delete('/:id',adminMiddleware, userController.destroyUser); 

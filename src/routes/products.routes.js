@@ -6,10 +6,10 @@ const authUserMiddleware = require("../middlewares/authUserMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('products');
 const { body } = require('express-validator');
-const ValCreateEditProduct = require('../middlewares/validations/ValCreateEditProduct');
-const ValEditSizeProduct = require('../middlewares/validations/ValEditSizeProduct');
-const ValCartProduct = require('../middlewares/validations/ValCartProduct');
-const ValAddImageProduct = require('../middlewares/validations/ValAddImageProduct');
+const ValProductCreateEdit = require('../middlewares/validations/ValProductCreateEdit');
+const ValProductEditSize = require('../middlewares/validations/ValProductEditSize');
+const ValProductCart = require('../middlewares/validations/ValProductCart');
+const ValProductAddImage = require('../middlewares/validations/ValProductAddImage');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -23,15 +23,15 @@ router.get('/detail/:id', productController.detail);
 router.get('/cart', authUserMiddleware, productController.cart);
 
 // Agrega un producto al carrito
-router.post('/cart/:id', ValCartProduct, productController.addCart);
+router.post('/cart/:id', ValProductCart, productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
-router.post('/',adminMiddleware, upload.array('imagenes'), ValCreateEditProduct, productController.save); 
+router.post('/',adminMiddleware, upload.array('imagenes'), ValProductCreateEdit, productController.save); 
 
 /* EDIT ONE PRODUCT */ 
 router.get('/edit/:id', adminMiddleware, productController.edit); 
-router.put('/:id',adminMiddleware, ValCreateEditProduct, productController.update); 
+router.put('/:id',adminMiddleware, ValProductCreateEdit, productController.update); 
 
 /* DELETE ONE PRODUCT */ 
 router.delete('/:id', adminMiddleware, productController.logicDelete); 
@@ -43,7 +43,7 @@ router.get('/edit/:id/relations', adminMiddleware, productController.relations)
 router.get('/edit/:id/relations/images/create', adminMiddleware, productController.getAddImage);
 
 /* ADD IMAGES TO ONE PRODUCT */
-router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), ValAddImageProduct, productController.addImage);
+router.post('/edit/:id/relations/images', adminMiddleware, upload.array('imagenes'), ValProductAddImage, productController.addImage);
 
 /* DELETE ONE IMAGE OF ONE PRODUCT */
 router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productController.deleteImage);
@@ -52,13 +52,13 @@ router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productCo
 router.get('/edit/:id/relations/sizes/create', adminMiddleware, productController.getAddSize);
 
 /* ADD SIZE TO ONE PRODUCT */
-router.post('/edit/:id/relations/sizes', adminMiddleware, ValEditSizeProduct, productController.addSize);
+router.post('/edit/:id/relations/sizes', adminMiddleware, ValProductEditSize, productController.addSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
 router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
-router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, ValEditSizeProduct, productController.editSize);
+router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, ValProductEditSize, productController.editSize);
 
 /* DELETE ONE SIZE OF ONE PRODUCT */
 router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.deleteSize);

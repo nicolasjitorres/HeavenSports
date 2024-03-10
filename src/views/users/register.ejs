@@ -20,33 +20,58 @@
       <form action="/users/register" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE USUARIO -->
-        <div class="box">
-          <input type="text" name="nombre" id="nombre" required value=<%= locals.usuario ? usuario.nombre : "" %>>
+        <div class="box <%= locals.errors && errors.nombre ? 'errorBox' : null %>">
+          <input type="text" name="nombre" id="nombre" required value=<%= locals.usuario ? usuario.nombre : (locals.old && old.nombre ? old.nombre : "") %>>
           <label for="nombre">Nombre</label>
+          <% if (locals.errors && errors.nombre) { %>
+            <div class="msgError">
+              <%= errors.nombre.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- APELLIDO USUARIO -->
-        <div class="box">
-          <input type="text" name="apellido" id="apellido" required value=<%= locals.usuario ? usuario.apellido : "" %>>
+        <div class="box <%= locals.errors && errors.apellido ? 'errorBox' : null %>">
+          <input type="text" name="apellido" id="apellido" required value=<%= locals.usuario ? usuario.apellido : (locals.old && old.apellido ? old.apellido : "") %>>
           <label for="apellido">Apellido</label>
+          <% if (locals.errors && errors.apellido) { %>
+            <div class="msgError">
+              <%= errors.apellido.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- TELEFONO USUARIO -->
-        <div class="box">
-          <input type="number" name="telefono" id="telefono" required value=<%= locals.usuario ? usuario.telefono : "" %>>
+        <div class="box <%= locals.errors && errors.telefono ? 'errorBox' : null %>">
+          <input type="number" name="telefono" id="telefono" required value=<%= locals.usuario ? usuario.telefono : (locals.old && old.telefono ? old.telefono : "") %>>
           <label for="telefono">Telefono</label>
+          <% if (locals.errors && errors.telefono) { %>
+            <div class="msgError">
+              <%= errors.telefono.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- EMAIL USUARIO -->
-        <div class="box">
-          <input type="email" name="email" id="email" required value=<%= locals.usuario ? usuario.email : "" %>>
+        <div class="box <%= locals.errors && errors.email ? 'errorBox' : null %>">
+          <input type="email" name="email" id="email" required value=<%= locals.usuario ? usuario.email : (locals.old && old.email ? old.email : "") %>>
           <label for="email">Email</label>
+          <% if (locals.errors && errors.email) { %>
+            <div class="msgError">
+              <%= errors.email.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.contrasena ? 'errorBox' : null %>">
           <input type="password" name="contrasena" id="contrasena" required>
           <label for="contrasena">Contraseña</label>
+          <% if (locals.errors && errors.contrasena) { %>
+            <div class="msgError">
+              <%= errors.contrasena.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- CONTRASEÑA CONFIRMADA USUARIO -->
@@ -55,11 +80,17 @@
           <label for="re-contrasena">Repetir contraseña</label>
         </div>
 
-        <!-- CARGAR IMAGENE PERFIL -->
-        <div class="box box-img">
+        <!-- CARGAR IMAGEN PERFIL -->
+        <div class="box box-img <%= locals.errors && errors.imagen ? 'errorBox' : null %>">
           <label for="img" class="label-img">Cargar foto de perfil</label>
           <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
         </div>
+        <% if (locals.errors && errors.imagen) { %>
+          <div class="msgError">
+            <%= errors.imagen.msg %>
+          </div>
+        <% } %>
+
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Guardar</button>

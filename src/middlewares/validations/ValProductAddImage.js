@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 
 const path = require('path');
 
-let ValAddImageProduct = [
+let ValProductAddImage = [
     body('imagenes').custom((value, { req }) => {
         let file = req.file;
         let acceptedExtensions = [".jpg, .png"];
@@ -20,4 +20,4 @@ let ValAddImageProduct = [
     })
 ]
 
-module.exports = ValAddImageProduct;
+module.exports = ValProductAddImage;

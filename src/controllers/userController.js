@@ -1,6 +1,6 @@
 const userService = require('../services/userService');
 
-
+const { validationResult } = require('express-validator')
 
 const controller = {
     login: (req, res) => {
@@ -56,14 +56,25 @@ const controller = {
     save: async (req, res) => {
         // Devuelve true si el usuario pudo ser registrado, caso contrario devuelve false
         try {
-            const user = await userService.saveUser(req.body, req.file);
-            if (user.userSaved) {
-                console.log('Usuario registrado correctamente');
-                res.redirect('/users/login');
+
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+
+                const user = await userService.saveUser(req.body, req.file);
+                if (user.userSaved) {
+                    console.log('Usuario registrado correctamente');
+                    res.redirect('/users/login');
+                } else {
+                    res.render('users/register.ejs', {
+                        usuario: user.newData
+                    })
+                }
             } else {
-                res.render('users/register.ejs', {
-                    usuario: user.newData
-                })
+                res.render('users/register', {
+                    errors: errors.array(),
+                    old: req.body 
+                });
             }
         } catch (error) {
             console.log(error.message);
