@@ -79,7 +79,6 @@ const controller = {
     save: async (req, res) => {
         try {
             let errors = validationResult(req);
-            //res.send(errors);
             
             if (errors.isEmpty()) {
                 const idProducto = await productService.saveProduct(req.body, req.files);
