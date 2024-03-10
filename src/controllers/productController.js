@@ -1,5 +1,7 @@
 const productService = require('../services/productService');
 
+const { validationResult } = require('express-validator')
+
 const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
@@ -76,8 +78,18 @@ const controller = {
     // Metodo para almacenar el nuevo producto creado
     save: async (req, res) => {
         try {
-            const idProducto = await productService.saveProduct(req.body, req.files);
-            res.redirect(`/products/detail/${idProducto}`);
+            let errors = validationResult(req);
+            //res.send(errors);
+            
+            if (errors.isEmpty()) {
+                const idProducto = await productService.saveProduct(req.body, req.files);
+                res.redirect(`/products/detail/${idProducto}`);
+            } else {
+                res.render('products/create', { 
+                    errors: errors.array(),
+                    old: req.body 
+                })
+            }
         } catch (error) {
             console.log(error);
         }

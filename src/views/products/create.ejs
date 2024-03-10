@@ -17,73 +17,124 @@
     <!-- Formulario registro -->
     <div class="contenedor-form">
       <h4 class="titulo">Nuevo producto</h4>
+
+
+      <% if (locals.errors) {
+        errors.forEach(error => { %>
+          <p class=""><%= error.msg %> </p>
+      <% 
+        })
+      }
+      %>
+
+
       <form action="/products" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
-        <div class="box">
-          <input type="text" name="nombre" id="nombre" required>
+        <div class="box <%= locals.errors && errors.nombre ? 'errorBox' : null %>">
+          <input type="text" name="nombre" id="nombre" value="<%= locals.old && old.nombre ? old.nombre : "" %>" required>
           <label for="nombre">Nombre</label>
+          <% if (locals.errors && errors.nombre) { %>
+            <div class="msgError">
+              <%= errors.nombre.msg %>
+            </div>
+          <% } %>
         </div>
 
 
         <!-- DESCRIPCION PRODUCTO -->
-        <div class="box">
-          <input type="text" name="descripcion" id="descripcion" required></input>
+        <div class="box <%= locals.errors && errors.descripcion ? 'errorBox' : null %>">
+          <input type="text" name="descripcion" id="descripcion" value="<%= locals.old && old.descripcion ? old.descripcion : "" %>" required></input>
           <label for="descripcion">Descripción</label>
+          <% if (locals.errors && errors.descripcion) { %>
+            <div class="msgError">
+              <%= errors.descripcion.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- PRECIO PRODUCTO -->
-        <div class="box">
-          <input type="number" name="precio" id="precio" required>
+        <div class="box <%= locals.errors && errors.precio ? 'errorBox' : null %>">
+          <input type="number" name="precio" id="precio" value="<%= locals.old && old.precio ? old.precio : "" %>" required>
           <label for="precio">Precio</label>
+          <% if (locals.errors && errors.precio) { %>
+            <div class="msgError">
+              <%= errors.precio.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- DESCUENTO PRODUCTO -->
-        <div class="box">
-          <input type="number" name="descuento" id="descuento" required>
+        <div class="box <%= locals.errors && errors.descuento ? 'errorBox' : null %>">
+          <input type="number" name="descuento" id="descuento" value="<%= locals.old && old.descuento ? old.descuento : "" %>" required>
           <label for="descuento">Descuento</label>
+          <% if (locals.errors && errors.descuento) { %>
+            <div class="msgError">
+              <%= errors.descuento.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
           <select name="id_marca" id="marca" required>
             <option selected disabled>- Seleccione la marca -</option>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
-            <option value=<%= marca.id %>> <%= marca.nombre %> </option>
+            <option value=<%= marca.id %> <%= locals.old && old.id_marca === marca.id ? 'selected' : ''; %> > <%= marca.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
+          <% if (locals.errors && errors.id_marca) { %>
+            <div class="msgError">
+              <%= errors.id_marca.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
           <select name="id_color" id="color" required>
             <option selected disabled>- Seleccione el color -</option>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
-            <option value=<%= color.id %>> <%= color.nombre %> </option>
+            <option value=<%= color.id %> <%= locals.old && old.id_color === color.id ? 'selected' : ''; %> > <%= color.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
+          <% if (locals.errors && errors.id_color) { %>
+            <div class="msgError">
+              <%= errors.id_color.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- TALLE PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_talle ? 'errorBox' : null %>">
           <select name="id_talle" id="talle" required>
             <option selected disabled>- Seleccione el talle -</option>
             <% if (locals.tal) { %>
             <% tal.forEach(talle => { %>
-            <option value=<%= talle.id %>> <%= talle.numero %> </option>
+            <option value=<%= talle.id %> <%= locals.old && old.id_talle === talle.id ? 'selected' : ''; %> > <%= talle.numero %> </option>
             <% }); %>
             <% } %>
           </select>
+          <% if (locals.errors && errors.id_talle) { %>
+            <div class="msgError">
+              <%= errors.id_talle.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
-        <div class="box">
-          <input type="number" name="stock" id="stock" required>
+        <div class="box <%= locals.errors && errors.stock ? 'errorBox' : null %>>
+          <input type="number" name="stock" id="stock" value="<%= locals.old && old.stock ? old.stock : "" %>" required>
           <label for="stock">Stock</label>
+          <% if (locals.errors && errors.stock) { %>
+            <div class="msgError">
+              <%= errors.stock.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
@@ -102,7 +153,12 @@
         <!-- CARGAR IMAGENES PRODUCTO -->
         <div class="box box-img">
           <label for="img" class="label-img">Cargar imagenes</label>
-          <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png">
+          <input class="input-image" type="file" id="img" name="imagenes" required multiple accept=".jpg, .png">
+          <% if (locals.errors && errors.imagenes) { %>
+            <div class="msgError">
+              <%= errors.imagenes.msg %>
+            </div>
+          <% } %>
         </div>
 
         

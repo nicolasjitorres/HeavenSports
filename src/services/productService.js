@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const db = require("../data/models");
 
+const { validationResult } = require('express-validator')
+
 // Funcion que recibe una palabra sin importar como está escrita y la retorna capitalizada (ejemplo: hOlA => Hola)
 const capitalize = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
@@ -185,7 +187,7 @@ const productService = {
     },
     // Guarda en la base de datos el nuevo producto
     saveProduct: async function (data, files) {
-        try {
+        try {           
             const newProducto = new Producto(data);
             // Cargando el nuevo producto en la BD, y obtenemos su id
             const {
@@ -205,6 +207,7 @@ const productService = {
             this.saveImages(id, files);
 
             return id;
+            
         } catch (error) {
             console.log(error);
         }

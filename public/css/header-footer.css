@@ -219,6 +219,12 @@ footer input:checked+.info {
 
 
 
+.msgError {
+  color: red;
+  font-weight: bold;
+}
+
+
 
 
 /* MEDIA QUERYS */

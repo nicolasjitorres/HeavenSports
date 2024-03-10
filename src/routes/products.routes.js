@@ -5,6 +5,8 @@ const adminMiddleware = require("../middlewares/adminMiddleware");
 const authUserMiddleware = require("../middlewares/authUserMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('products');
+const { body } = require('express-validator');
+const ValCreateProduct = require('../middlewares/Validations/ValCreateProduct');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -22,7 +24,7 @@ router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
-router.post('/',adminMiddleware, upload.array('imagenes'), productController.save); 
+router.post('/',adminMiddleware, upload.array('imagenes'), ValCreateProduct, productController.save); 
 
 /* EDIT ONE PRODUCT */ 
 router.get('/edit/:id', adminMiddleware, productController.edit); 

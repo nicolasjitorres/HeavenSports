@@ -216,6 +216,12 @@ input[type="checkbox"]{
 }
 
 
+/********************/
+.errorBox {
+  border: 1px red solid;
+  border-radius: 5%;
+}
+
 
 /* MEDIA QUERYS */
 
