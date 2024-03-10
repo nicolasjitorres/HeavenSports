@@ -41,21 +41,26 @@
                         <option selected disabled>- Seleccione el talle -</option>
                         <% if (locals.tal) { %>
                         <% tal.forEach(talle => { %>
-                        <option value=<%= talle.id %>> <%= talle.numero %> </option>
+                        <option value=<%= talle.id %> <%= locals.old && old.id_talle === talle.id ? 'selected' : '' %>> <%= talle.numero %> </option>
                         <% }); %>
                         <% } %>
                     </select>
+                    <% if (locals.errors && errors.id_talle) { %>
+                        <div class="msgError">
+                          <%= errors.id_talle.msg %>
+                        </div>
+                    <% } %>
                 </div>
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
                 <div class="box <%= locals.errors && errors.stock ? 'errorBox' : null %>">
-                    <input type="number" name="stock" id="stock" required>
+                    <input type="number" name="stock" id="stock" value="<%= locals.old && old.stock ? old.stock : "" %>" required>
                     <label for="stock">Stock</label>
                     <% if (locals.errors && errors.stock) { %>
                         <div class="msgError">
                           <%= errors.stock.msg %>
                         </div>
-                      <% } %>
+                    <% } %>
                 </div>
 
 

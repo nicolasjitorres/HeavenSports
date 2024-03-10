@@ -67,7 +67,7 @@
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
           <select name="id_marca" id="marca" required>
             <option selected disabled>- Seleccione la marca -</option>
             <% if (locals.mar) { %>
@@ -84,7 +84,7 @@
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
           <select name="id_color" id="color" required>
             <option selected disabled>- Seleccione el color -</option>
             <% if (locals.col) { %>
@@ -101,7 +101,7 @@
         </div>
 
         <!-- TALLE PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_talle ? 'errorBox' : null %>">
           <select name="id_talle" id="talle" required>
             <option selected disabled>- Seleccione el talle -</option>
             <% if (locals.tal) { %>
@@ -129,15 +129,20 @@
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
-        <div class="box-check">
+        <div class="box-check <%= locals.errors && errors.categorias ? 'errorBox' : null %>">
           <label class="box-check-titulo">Selecciona las categorias</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input type="checkbox" name="categorias" id=<%=categoria.nombre %> value=<%= categoria.id %>>
+          <input type="checkbox" name="categorias" id=<%=categoria.nombre %> value=<%= locals.old && old.categorias ? old.categorias : categoria.id %>>
           <label for=<%=categoria.nombre %> class="label-check">
             <%= categoria.nombre %>
           </label>
           <% }); %>
+          <% } %>
+          <% if (locals.errors && errors.categorias) { %>
+            <div class="msgError">
+              <%= errors.categorias.msg %>
+            </div>
           <% } %>
         </div>
 

@@ -65,7 +65,7 @@
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
           <select name="id_marca" id="marca" required>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
@@ -74,10 +74,15 @@
             <% }); %>
             <% } %>
           </select>
+          <% if (locals.errors && errors.id_marca) { %>
+            <div class="msgError">
+              <%= errors.id_marca.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
           <select name="id_color" id="color" required>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
@@ -86,6 +91,11 @@
             <% }); %>
             <% } %>
           </select>
+          <% if (locals.errors && errors.id_color) { %>
+            <div class="msgError">
+              <%= errors.id_color.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- CATEGORIAS VIEJAS PRODUCTO -->
@@ -99,7 +109,7 @@
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
-        <div class="box-check">
+        <div class="box-check <%= locals.errors && errors.categorias ? 'errorBox' : null %>">
           <label class="box-check-titulo">Categorias</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
@@ -109,6 +119,11 @@
             <%= categoria.nombre %>
           </label>
           <% }); %>
+          <% } %>
+          <% if (locals.errors && errors.categorias) { %>
+            <div class="msgError">
+              <%= errors.categorias.msg %>
+            </div>
           <% } %>
         </div>
 
