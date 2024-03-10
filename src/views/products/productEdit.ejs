@@ -21,31 +21,51 @@
       <form action="/products/<%= producto.id  %>?_method=PUT" method="POST">
 
         <!-- NOMBRE PRODUCTO -->
-        <div class="box">
-          <input type="text" name="nombre" id="nombre" required value="<%= producto.nombre %>">
+        <div class="box <%= locals.errors && errors.nombre ? 'errorBox' : null %>">
+          <input type="text" name="nombre" id="nombre" required value="<%= locals.old && old.nombre ? old.nombre : producto.nombre %>">
           <label for="nombre">Nombre</label>
+          <% if (locals.errors && errors.nombre) { %>
+            <div class="msgError">
+              <%= errors.nombre.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- DESCRIPCION PRODUCTO -->
-        <div class="box">
-          <input type="text" name="descripcion" id="descripcion" required value="<%= producto.descripcion %>"></input>
+        <div class="box <%= locals.errors && errors.descripcion ? 'errorBox' : null %>">
+          <input type="text" name="descripcion" id="descripcion" required value="<%= locals.old && old.descripcion ? old.descripcion : producto.descripcion %>"></input>
           <label for="descripcion">Descripción</label>
+          <% if (locals.errors && errors.descripcion) { %>
+            <div class="msgError">
+              <%= errors.descripcion.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- PRECIO PRODUCTO -->
-        <div class="box">
-          <input type="number" name="precio" id="precio" required value="<%= producto.precio %>">
+        <div class="box <%= locals.errors && errors.precio ? 'errorBox' : null %>">
+          <input type="number" name="precio" id="precio" required value="<%= locals.old && old.precio ? old.precio : producto.precio %>">
           <label for="precio">Precio</label>
+          <% if (locals.errors && errors.precio) { %>
+            <div class="msgError">
+              <%= errors.precio.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- DESCUENTO PRODUCTO -->
-        <div class="box">
-          <input type="number" name="descuento" id="descuento" required value="<%= producto.descuento %>">
+        <div class="box <%= locals.errors && errors.descuento ? 'errorBox' : null %>">
+          <input type="number" name="descuento" id="descuento" required value="<%= locals.old && old.descuento ? old.descuento : producto.descuento %>">
           <label for="descuento">Descuento</label>
+          <% if (locals.errors && errors.descuento) { %>
+            <div class="msgError">
+              <%= errors.descuento.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
           <select name="id_marca" id="marca" required>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
@@ -57,7 +77,7 @@
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
           <select name="id_color" id="color" required>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>

@@ -115,8 +115,18 @@ const controller = {
     // Metodo para actualizar un determinado producto
     update: async (req, res) => {
         try {
-            await productService.edit(req.body, req.params.id);
-            res.redirect(`/products/detail/${req.params.id}`);
+            
+            let errors = validationResult(req);
+            
+            if (errors.isEmpty()) {
+                await productService.edit(req.body, req.params.id);
+                res.redirect(`/products/detail/${req.params.id}`);
+            } else {
+                res.render('products/edit/:id', { 
+                    errors: errors.array(),
+                    old: req.body 
+                })
+            }
         } catch (error) {
             console.log(error);
         }

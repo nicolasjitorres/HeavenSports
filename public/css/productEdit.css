@@ -254,12 +254,12 @@ input[type="checkbox"] {
 /* Por validaciones */
 
 .errorBox {
-  border: 1px red solid;
+  border: 2px red solid;
   border-radius: 5%;
 }
 
 .box input:invalid {
-  border: 1px red solid;
+  border: 2px red solid;
   border-radius: 5%;
 }
 

@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 
 const path = require('path');
 
-let ValCreateProduct = [
+let ValCreateEditProduct = [
     body('nombre')
         .notEmpty().withMessage('Se debe completar este campo con el nombre del producto.')
         .isLength({ min: 5}, {max: 100}).withMessage('El nombre debe contener entre 5 y 100 caracteres.'),
@@ -36,4 +36,4 @@ let ValCreateProduct = [
     })
 ]
 
-module.exports = ValCreateProduct;
+module.exports = ValCreateEditProduct;

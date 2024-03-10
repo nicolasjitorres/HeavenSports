@@ -6,7 +6,7 @@ const authUserMiddleware = require("../middlewares/authUserMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('products');
 const { body } = require('express-validator');
-const ValCreateProduct = require('../middlewares/Validations/ValCreateProduct');
+const ValCreateEditProduct = require('../middlewares/validations/ValCreateEditProduct');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -24,11 +24,11 @@ router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
-router.post('/',adminMiddleware, upload.array('imagenes'), ValCreateProduct, productController.save); 
+router.post('/',adminMiddleware, upload.array('imagenes'), ValCreateEditProduct, productController.save); 
 
 /* EDIT ONE PRODUCT */ 
 router.get('/edit/:id', adminMiddleware, productController.edit); 
-router.put('/:id',adminMiddleware, productController.update); 
+router.put('/:id',adminMiddleware, ValCreateEditProduct, productController.update); 
 
 /* DELETE ONE PRODUCT */ 
 router.delete('/:id', adminMiddleware, productController.logicDelete); 
