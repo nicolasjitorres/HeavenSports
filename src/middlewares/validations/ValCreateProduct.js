@@ -15,6 +15,9 @@ let ValCreateProduct = [
     body('descuento')
         .notEmpty().withMessage('Si no se aplica descuento, completar con "0".')
         .isInt().withMessage('Se debe ingresar un numero entero'),
+    body('stock')
+        .notEmpty().withMessage('Ingresar un numero para indicar el Stock de este producto.')
+        .isInt().withMessage('Se debe ingresar un numero entero'),
 
     body('imagenes').custom((value, { req }) => {
         let file = req.file;
