@@ -10,10 +10,10 @@ let ValUserRegister = [
         .notEmpty().withMessage('Debe completar este campo con su apellido.')
         .isLength({ min: 2}, {max: 100}).withMessage('El campo debe contener entre 2 y 100 caracteres.'),
     body('telefono')
-        .notEmpty().isMobilePhone().withMessage('Debe completar este campo un numero de telefono movil.')
+        .notEmpty().isMobilePhone().withMessage('Debe completar este campo con un numero de telefono movil.')
         .isLength({max: 10}).withMessage('Maximo permitido: 10 numeros.'),
     body('email')
-        .notEmpty().isEmail().withMessage('Debe completar este campo un email valido.'),
+        .notEmpty().isEmail().withMessage('Debe completar este campo con un email valido.'),
     body('contrasena')
         .notEmpty().withMessage('Este campo no puede quedar vacio.')
         .isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}).withMessage('Se deben introducir al menos 8 caracteres, con al menos una miniscula, una mayuscula, un número y un simbolo.'),

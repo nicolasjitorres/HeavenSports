@@ -8,32 +8,43 @@ const controller = {
     },
     signIn: async (req, res) => {
         try {
-            const id = await userService.signIn(req.body);
-            console.log(id);
-            if (id) {
-                const user = await userService.getByPk(id);
-                console.log(user);
-                req.session.userLogged = {
-                    id: user.id,
-                    nombre: user.nombre,
-                    apellido: user.apellido,
-                    telefono: user.telefono,
-                    email: user.email,
-                    id_rol: user.id_rol,
-                    imagen: user.imagen.nombre
-                };
 
-                if (req.body.recordar) {
-                    res.cookie('sesionUserRemember', user.sesion, {
-                        maxAge: 1000 * 60 * 15 /* 15 minutos */,
-                        httpOnly: true,
-                        secure: true
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+
+                const id = await userService.signIn(req.body);
+                console.log(id);
+                if (id) {
+                    const user = await userService.getByPk(id);
+                    console.log(user);
+                    req.session.userLogged = {
+                        id: user.id,
+                        nombre: user.nombre,
+                        apellido: user.apellido,
+                        telefono: user.telefono,
+                        email: user.email,
+                        id_rol: user.id_rol,
+                        imagen: user.imagen.nombre
+                    };
+
+                    if (req.body.recordar) {
+                        res.cookie('sesionUserRemember', user.sesion, {
+                            maxAge: 1000 * 60 * 15 /* 15 minutos */,
+                            httpOnly: true,
+                            secure: true
+                        });
+                    }
+                    res.redirect(`/users/profile`);
+                } else {
+                    res.render('users/login', {
+                        error: "Credenciales invalidas"
                     });
                 }
-                res.redirect(`/users/profile`);
             } else {
-                res.render('users/login', {
-                    error: "Credenciales invalidas"
+                res.render('users/login', { 
+                    errors: errors.array(),
+                    old: req.body 
                 });
             }
         } catch (error) {

@@ -10,11 +10,12 @@ const adminMiddleware = require("../middlewares/adminMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('users');
 const ValUserRegister = require('../middlewares/validations/ValUserRegister');
+const ValUserLogin = require('../middlewares/validations/ValUserLogin');
 
 
 // LOGIN
 router.get('/login', guestUserMiddleware, userController.login);
-router.post('/signIn', guestUserMiddleware, userController.signIn);
+router.post('/signIn', guestUserMiddleware, ValUserLogin, userController.signIn);
 
 // LOGOUT
 router.get('/logout', authUserMiddleware, userController.logout);

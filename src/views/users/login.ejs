@@ -21,15 +21,25 @@
       <form action="/users/signIn" method="POST">
 
         <!-- EMAIL USUARIO -->
-        <div class="box">
-          <input type="email" name="email" id="email" required>
+        <div class="box <%= locals.errors && errors.email ? 'errorBox' : null %>">
+          <input type="email" name="email" id="email" value="<%= locals.old && old.email ? old.email : "" %>" required>
           <label for="email">Email</label>
+          <% if (locals.errors && errors.email) { %>
+            <div class="msgError">
+              <%= errors.email.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.contrasena ? 'errorBox' : null %>">
           <input type="password" name="contrasena" id="contrasena" required>
           <label for="contrasena">Contraseña</label>
+          <% if (locals.errors && errors.contrasena) { %>
+            <div class="msgError">
+              <%= errors.contrasena.msg %>
+            </div>
+          <% } %>
         </div>
 
         <% if (locals.error) { %>
