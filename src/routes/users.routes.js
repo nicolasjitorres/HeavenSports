@@ -12,6 +12,7 @@ const upload = multerMiddleware('users');
 const ValUserRegister = require('../middlewares/validations/ValUserRegister');
 const ValUserLogin = require('../middlewares/validations/ValUserLogin');
 const ValUserEditProfile = require('../middlewares/validations/ValUserEditProfile');
+const ValUserChangePass = require('../middlewares/validations/ValUserChangePass');
 
 
 // LOGIN
@@ -44,7 +45,7 @@ router.put('/edit', authUserMiddleware, upload.single('imagen'), ValUserEditProf
 
 // CAMBIO DE CONTRASEÑA
 router.get('/changePass', authUserMiddleware, userController.changePass);
-router.put('/changePass', authUserMiddleware, userController.updatePass);
+router.put('/changePass', authUserMiddleware, ValUserChangePass, userController.updatePass);
 
 // DARSE DE BAJA (SOLO USUARIOS)
 router.delete('/softDelete/:id', authUserMiddleware, userController.softDelete);

@@ -184,12 +184,21 @@ const controller = {
     },
     updatePass: async (req, res) => {
         try {
-            await userService.updatePass(req.session.userLogged.id, req.body);
-            const usuario = await userService.getByPk(req.session.userLogged.id);
-            res.render('users/profile', ({
-                usuario: usuario,
-                message: 'Contraseña actualizada'
-            }));
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+
+                await userService.updatePass(req.session.userLogged.id, req.body);
+                const usuario = await userService.getByPk(req.session.userLogged.id);
+                res.render('users/profile', ({
+                    usuario: usuario,
+                    message: 'Contraseña actualizada'
+                }));
+            } else {
+                res.render('users/changePass', { 
+                    errors: errors.array(),
+                });
+            }
         } catch (error) {
             res.render('users/changePass', {
                 error: error.message

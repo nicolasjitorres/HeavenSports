@@ -21,15 +21,20 @@
       <form action="/users/changePass?_method=PUT" method="POST">
 
         <!-- CONTRASEÑA ACTUAL -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.contrasenaActual ? 'errorBox' : null %>">
           <input type="password" name="contrasenaActual" id="ContrasenaActual" required>
           <label for="ContrasenaActual">Contraseña actual</label>
         </div>
 
         <!-- NUEVA CONTRASEÑA -->
-        <div class="box">
+        <div class="box <%= locals.errors && errors.contrasena ? 'errorBox' : null %>">
           <input type="password" name="contrasena" id="Contrasena" required>
           <label for="Contrasena">Nueva contraseña</label>
+          <% if (locals.errors && errors.contrasena) { %>
+            <div class="msgError">
+              <%= errors.contrasena.msg %>
+            </div>
+          <% } %>
         </div>
 
         <!-- REPETIR NUEVA CONTRASEÑA -->

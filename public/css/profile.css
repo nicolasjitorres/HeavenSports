@@ -92,6 +92,22 @@ main {
   background-color: var(--delete-light);
 }
 
+
+/********************/
+/* Por validaciones */
+
+.errorBox {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+
+.box input:invalid {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+
+
+
 /* MEDIA QUERYS */
 
 /* DISEÑOS PARA TABLETS */
