@@ -29,19 +29,30 @@ const controller = {
     },
     addCart: async (req, res) => {
         try {
-            if (!req.session.userLogged) {
-                req.session.productCart = {
-                    id: req.params.id,
-                    data: req.body
-                };
-                return res.render('users/login');
-            }
-            const data = await productService.addToCart(req.body, req.params.id, req.session.userLogged.id);
-            if (data) {
-                res.redirect('/products/cart');
-            } else{
-                res.redirect(`/products/detail/${req.params.id}`);
-            }
+            let errors = validationResult(req);
+        
+            if (errors.isEmpty()) {
+                if (!req.session.userLogged) {
+                    req.session.productCart = {
+                        id: req.params.id,
+                        data: req.body
+                    };
+                    return res.render('users/login');
+                }
+                const data = await productService.addToCart(req.body, req.params.id, req.session.userLogged.id);
+                if (data) {
+                    res.redirect('/products/cart');
+                } else{
+                    res.redirect(`/products/detail/${req.params.id}`);
+                } } else {
+                    const carrito = await productService.getCartView(req.session.userLogged.id);
+                    // res.send(carrito)
+                    res.render('products/cart', {
+                        carrito: carrito,
+                        errors: errors.array(),
+                        old: req.body 
+                    });
+                }
         } catch (error) {
             console.log(error.message);
         }

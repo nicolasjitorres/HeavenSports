@@ -8,6 +8,7 @@ const upload = multerMiddleware('products');
 const { body } = require('express-validator');
 const ValCreateEditProduct = require('../middlewares/validations/ValCreateEditProduct');
 const ValEditSizeProduct = require('../middlewares/validations/ValEditSizeProduct');
+const ValCartProduct = require('../middlewares/validations/ValCartProduct');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -21,7 +22,7 @@ router.get('/detail/:id', productController.detail);
 router.get('/cart', authUserMiddleware, productController.cart);
 
 // Agrega un producto al carrito
-router.post('/cart/:id', productController.addCart);
+router.post('/cart/:id', ValCartProduct, productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
 router.get('/create', adminMiddleware, productController.create); 
