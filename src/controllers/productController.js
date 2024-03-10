@@ -191,9 +191,23 @@ const controller = {
         }
     },
     addSize: async (req, res) => {
+        let errors = validationResult(req);
+
         try {
-            await productService.saveSize(req.params.id, req.body);
-            res.redirect(`/products/edit/${req.params.id}/relations`);
+            if (errors.isEmpty()) {
+                await productService.saveSize(req.params.id, req.body);
+                res.redirect(`/products/edit/${req.params.id}/relations`);
+            } else {
+                const {
+                    producto,
+                    tallesNA
+                } = await productService.getAddSizeView(req.params.id);
+                res.render('products/relations/addSize.ejs', {
+                    producto: producto,
+                    tal: tallesNA,
+                    errors: errors.array(),
+                });
+            }
         } catch (error) {
             console.log(error);
         }

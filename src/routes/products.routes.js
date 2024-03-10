@@ -7,6 +7,7 @@ const multerMiddleware = require('../middlewares/multerMiddleware');
 const upload = multerMiddleware('products');
 const { body } = require('express-validator');
 const ValCreateEditProduct = require('../middlewares/validations/ValCreateEditProduct');
+const ValEditSizeProduct = require('../middlewares/validations/ValEditSizeProduct');
 
 /* GET ALL PRODUCTS */ 
 /* Obtener todos los productos */ 
@@ -49,7 +50,7 @@ router.delete('/edit/:id/relations/images/:idImagen', adminMiddleware, productCo
 router.get('/edit/:id/relations/sizes/create', adminMiddleware, productController.getAddSize);
 
 /* ADD SIZE TO ONE PRODUCT */
-router.post('/edit/:id/relations/sizes', adminMiddleware, productController.addSize);
+router.post('/edit/:id/relations/sizes', adminMiddleware, ValEditSizeProduct, productController.addSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
 router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);

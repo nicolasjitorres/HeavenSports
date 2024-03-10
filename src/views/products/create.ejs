@@ -67,12 +67,12 @@
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
+        <div class="box">
           <select name="id_marca" id="marca" required>
             <option selected disabled>- Seleccione la marca -</option>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
-            <option value=<%= marca.id %> <%= locals.old && old.id_marca === marca.id ? 'selected' : ''; %> > <%= marca.nombre %> </option>
+            <option value=<%= marca.id %> <%= locals.old && old.id_marca === marca.id ? 'selected' : '' %> > <%= marca.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
@@ -84,12 +84,12 @@
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
+        <div class="box">
           <select name="id_color" id="color" required>
             <option selected disabled>- Seleccione el color -</option>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
-            <option value=<%= color.id %> <%= locals.old && old.id_color === color.id ? 'selected' : ''; %> > <%= color.nombre %> </option>
+            <option value=<%= color.id %> <%= locals.old && old.id_color === color.id ? 'selected' : '' %> > <%= color.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
@@ -101,12 +101,12 @@
         </div>
 
         <!-- TALLE PRODUCTO -->
-        <div class="box <%= locals.errors && errors.id_talle ? 'errorBox' : null %>">
+        <div class="box">
           <select name="id_talle" id="talle" required>
             <option selected disabled>- Seleccione el talle -</option>
             <% if (locals.tal) { %>
             <% tal.forEach(talle => { %>
-            <option value=<%= talle.id %> <%= locals.old && old.id_talle === talle.id ? 'selected' : ''; %> > <%= talle.numero %> </option>
+            <option value=<%= talle.id %> <%= locals.old && old.id_talle === talle.id ? 'selected' : '' %> > <%= talle.numero %> </option>
             <% }); %>
             <% } %>
           </select>

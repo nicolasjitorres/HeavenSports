@@ -65,7 +65,7 @@
         </div>
 
         <!-- MARCA PRODUCTO -->
-        <div class="box <%= locals.errors && errors.id_marca ? 'errorBox' : null %>">
+        <div class="box">
           <select name="id_marca" id="marca" required>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
@@ -77,7 +77,7 @@
         </div>
 
         <!-- COLOR PRODUCTO -->
-        <div class="box <%= locals.errors && errors.id_color ? 'errorBox' : null %>">
+        <div class="box">
           <select name="id_color" id="color" required>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
