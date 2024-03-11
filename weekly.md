@@ -1,3 +1,23 @@
+# SPRINT 7
+
+Una reunion para distribucion de las tareas, con comunicacion continua por Whatsapp.
+
+**Torres Nicolas:**
+- Que se hizo ayer: Validaciones de productos en el Back-End.
+- Impedimentos: -                             
+- Que se hara: Validaciones de usuarios en el Back-End. Correcciones y ajustes varios.              
+
+**Yacuk Maria:**
+- Que se hizo ayer: Validaciones de productos en el Front-End.
+- Impedimentos: No encontrar la falla al no reflejarse en el navegador los cambios.
+- Que se hara: Validaciones de usuarios en el Front-End. Actualizacion de Retro y weekly.
+
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+
 # SPRINT 6
 
 Reuniones semanales, con comunicacion continua por Whatsapp.
