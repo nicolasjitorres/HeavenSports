@@ -8,6 +8,52 @@ https://miro.com/welcomeonboard/ajZlNENVZEpmWURUcTBYYlB1aXNkMjdXS25qM1JGNktmelE5
 
 ***(Ultima edicion del Miro: Sprint 5. No se puede editar posteriormente por haberse cumplido los 3 meses de prueba.)***
 
+![alt text](image.png)
+
+
+# SPRINT 7
+
+
+**Start Doing:**
+- Retroalimentación de los trabajos de los demás compañeros.
+- Empezar el trabajo lo antes posible.
+- Consultas a profesores.
+- Pair programming incluso para tareas individuales.
+- Comunicarse mejor. No dar por sentado que el otro sabe lo que pensamos.
+
+**More of:**
+- Aprender Git y GitHub.
+- Practicar conceptos de las clases.
+- Ayudar a los demas con los temas vistos.
+- Completar todos los ejercicios de las clases.
+- Dar una mano al que está atrasado.
+- Comunicacion continua del equipo.
+- Ayuda al compañero cuando se necesita.
+
+**Keep Doing:**
+- Estar a disposicion para ayudar a los demás.
+- Programar y coordinar mejor los trabajos de cada uno.
+- Usar Trello de manera adecuada.
+- Dividir trabajos pesados.
+- 1 reunion por semana.
+- Mantener actualizado el tablero de Trello periodicamente.
+
+**Less of:**
+- No practicar todos los dias, al menos un poco.
+- Dejar las cosas para ultimo momento.
+- No dedicar tiempo a los trabajos y la programación.
+
+**Stop Doing:**
+- Descoordinación.
+- No poner fechas limites.
+- No colaborar en equipo.
+- Confiarse con los tiempos.
+
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
 
 # SPRINT 6
 
