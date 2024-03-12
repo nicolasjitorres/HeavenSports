@@ -36,7 +36,7 @@ router.put('/:id', adminMiddleware, validationProductEditMiddleware.validation, 
 router.delete('/:id', adminMiddleware, productController.logicDelete);
 
 /* GET ALL IMAGES AND SIZES BY ONE PRODUCT */
-router.get('/edit/:id/relations', productController.relations)
+router.get('/edit/:id/relations', adminMiddleware, productController.relations)
 
 /* GET VIEW FOR ADD IMAGES TO ONE PRODUCT */
 router.get('/edit/:id/relations/images/create', adminMiddleware, productController.getAddImage);
@@ -54,10 +54,10 @@ router.get('/edit/:id/relations/sizes/create', adminMiddleware, productControlle
 router.post('/edit/:id/relations/sizes', adminMiddleware, validationAddSizeMiddleware.validation, validationAddSizeMiddleware.result, productController.addSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
-router.get('/edit/:id/relations/sizes/:idTalle', productController.getEditSize);
+router.get('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.getEditSize);
 
 /* EDIT ONE SIZE OF ONE PRODUCT */
-router.put('/edit/:id/relations/sizes/:idTalle', validationEditSizeMiddleware.validation, validationEditSizeMiddleware.result, productController.editSize);
+router.put('/edit/:id/relations/sizes/:idTalle', adminMiddleware, validationEditSizeMiddleware.validation, validationEditSizeMiddleware.result, productController.editSize);
 
 /* DELETE ONE SIZE OF ONE PRODUCT */
 router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productController.deleteSize);
