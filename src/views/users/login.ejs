@@ -7,7 +7,7 @@
 
 <body>
 
-  <script src="/js/user_login.js" type="text/javascript"></script> 
+  <script src="/js/user_login.js" type="text/javascript"></script>
 
   <!-- ENCABEZADO -->
 
@@ -27,6 +27,12 @@
           <input type="email" name="email" id="email" value="<%= locals.email ? email : ""  %>">
           <label for="email">Email</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const emailError = errors.find(error => error.path == 'email'); %>
+        <% if (emailError) { %>
+        <h6 style="color: red;"><%= emailError.msg %></h6>
+        <% } %>
+        <% } %>
 
         <!-- CONTRASEÑA USUARIO -->
         <div class="box">

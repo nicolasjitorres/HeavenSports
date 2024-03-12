@@ -7,7 +7,7 @@
 
 <body>
 
-  <script src="/js/product_create.js" type="text/javascript"></script> 
+  <script src="/js/product_create.js" type="text/javascript"></script>
 
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
@@ -23,7 +23,8 @@
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box">
-          <input type="text" name="nombre" id="nombre" value="<%= locals.product && product.nombre ? product.nombre : "" %>">
+          <input type="text" name="nombre" id="nombre"
+            value="<%= locals.product && product.nombre ? product.nombre : "" %>">
           <label for="nombre">Nombre</label>
         </div>
         <% if (locals.errors) { %>
@@ -36,7 +37,8 @@
 
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box">
-          <input type="text" name="descripcion" id="descripcion" value="<%= locals.product && product.descripcion ? product.descripcion : "" %>">
+          <input type="text" name="descripcion" id="descripcion"
+            value="<%= locals.product && product.descripcion ? product.descripcion : "" %>">
           <label for="descripcion">Descripción</label>
         </div>
         <% if (locals.errors) { %>
@@ -49,7 +51,8 @@
 
         <!-- PRECIO PRODUCTO -->
         <div class="box">
-          <input type="number" name="precio" id="precio" value="<%= locals.product && product.precio ? product.precio : "" %>">
+          <input type="number" name="precio" id="precio"
+            value="<%= locals.product && product.precio ? product.precio : "" %>">
           <label for="precio">Precio</label>
         </div>
         <% if (locals.errors) { %>
@@ -62,7 +65,8 @@
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box">
-          <input type="number" name="descuento" id="descuento" value="<%= locals.product && product.descuento ? product.descuento : "" %>">
+          <input type="number" name="descuento" id="descuento"
+            value="<%= locals.product && product.descuento ? product.descuento : "" %>">
           <label for="descuento">Descuento (%)</label>
         </div>
         <% if (locals.errors) { %>
@@ -79,7 +83,8 @@
             <option selected disabled>- Seleccione la marca -</option>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
-            <option value=<%= marca.id %> <%= locals.product && product.id_marca == marca.id ? "selected" : ""  %>> <%= marca.nombre %> </option>
+            <option value=<%= marca.id %> <%= locals.product && product.id_marca == marca.id ? "selected" : ""  %>>
+              <%= marca.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
@@ -98,7 +103,8 @@
             <option selected disabled>- Seleccione el color -</option>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
-            <option value=<%= color.id %> <%= locals.product && product.id_color == color.id ? "selected" : ""  %>> <%= color.nombre %> </option>
+            <option value=<%= color.id %> <%= locals.product && product.id_color == color.id ? "selected" : ""  %>>
+              <%= color.nombre %> </option>
             <% }); %>
             <% } %>
           </select>
@@ -117,7 +123,8 @@
             <option selected disabled>- Seleccione el talle -</option>
             <% if (locals.tal) { %>
             <% tal.forEach(talle => { %>
-            <option value=<%= talle.id %> <%= locals.product && product.id_talle == talle.id ? "selected" : ""  %>> <%= talle.numero %> </option>
+            <option value=<%= talle.id %> <%= locals.product && product.id_talle == talle.id ? "selected" : ""  %>>
+              <%= talle.numero %> </option>
             <% }); %>
             <% } %>
           </select>
@@ -132,7 +139,8 @@
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
         <div class="box">
-          <input type="number" name="stock" id="stock" value="<%= locals.product && product.stock ? product.stock : "" %>">
+          <input type="number" name="stock" id="stock"
+            value="<%= locals.product && product.stock ? product.stock : "" %>">
           <label for="stock">Stock</label>
         </div>
         <% if (locals.errors) { %>
@@ -148,7 +156,8 @@
           <label class="box-check-titulo">Selecciona las categorias</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value="<%= categoria.id %>" <%= locals.product && product.categorias && product.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
+          <input type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value="<%= categoria.id %>"
+            <%= locals.product && product.categorias && product.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
           <label for=<%=categoria.nombre %> class="label-check">
             <%= categoria.nombre %>
           </label>
