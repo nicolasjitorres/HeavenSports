@@ -175,6 +175,26 @@ input[type="number"]::-webkit-outer-spin-button {
 
 
 
+/********************/
+/* Por validaciones front*/
+
+.errorBox {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+
+.errorMsg {
+  color: red;
+  font-weight: bolder;
+  margin-top: -10%;
+  display: none
+}
+/*
+.box input:invalid {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+*/
 
 /* MEDIA QUERYS */
 

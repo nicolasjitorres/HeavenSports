@@ -26,8 +26,8 @@
 
 
         <section class="main-section">
-            <form action="/products/edit/<%= prodTal.producto.id %>/relations/sizes/<%= prodTal.talle.id %>?_method=PUT" method="POST"
-                class="contenedor-form">
+            <form action="/products/edit/<%= prodTal.producto.id %>/relations/sizes/<%= prodTal.talle.id %>?_method=PUT"
+                method="POST" class="contenedor-form">
 
                 <!-- NOMBRE PRODUCTO -->
                 <div class="box">
@@ -46,9 +46,15 @@
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
                 <div class="box">
-                    <input type="number" name="stock" value=<%= prodTal.stock %> id="stock" required class="input-stock">
+                    <input type="number" name="stock" value=<%= prodTal.stock %> id="stock" class="input-stock">
                     <label for="stock">Stock</label>
                 </div>
+                <% if (locals.errors) { %>
+                <% const stockError = errors.find(error => error.path == 'stock'); %>
+                <% if (stockError) { %>
+                <h6 style="color: red;"><%= stockError.msg %></h6>
+                <% } %>
+                <% } %>
 
 
                 <div class="botones">

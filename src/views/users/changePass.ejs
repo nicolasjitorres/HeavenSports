@@ -22,30 +22,44 @@
 
         <!-- CONTRASEÑA ACTUAL -->
         <div class="box">
-          <input type="password" name="contrasenaActual" id="ContrasenaActual" required>
+          <input type="number" name="id" value="<%= locals.idUsuario %>" style="display: none;">
+          <input type="password" name="contrasenaActual" id="ContrasenaActual">
           <label for="ContrasenaActual">Contraseña actual</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const contrasenaActualError = errors.find(error => error.path == 'contrasenaActual'); %>
+        <% if (contrasenaActualError) { %>
+        <h6 style="color: red;"><%= contrasenaActualError.msg %></h6>
+        <% } %>
+        <% } %>
 
         <!-- NUEVA CONTRASEÑA -->
         <div class="box">
-          <input type="password" name="contrasena" id="Contrasena" required>
+          <input type="password" name="contrasena" id="Contrasena">
           <label for="Contrasena">Nueva contraseña</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
+        <% if (contrasenaError) { %>
+        <h6 style="color: red;"><%= contrasenaError.msg %></h6>
+        <% } %>
+        <% } %>
 
         <!-- REPETIR NUEVA CONTRASEÑA -->
         <div class="box">
-          <input type="password" name="reContrasena" id="ReContrasena" required>
+          <input type="password" name="reContrasena" id="ReContrasena">
           <label for="ReContrasena">Repetir nueva contraseña</label>
         </div>
 
         <% if (locals.error) { %>
-          <p style="color: red; text-align: center;"><%= error%></p>
+        <p style="color: red; text-align: center;"><%= error%></p>
         <% } %>
 
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Actualizar</button>
 
+          <a href="/users/profile">Cancelar</a>
         </div>
 
       </form>
