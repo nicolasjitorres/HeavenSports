@@ -23,21 +23,22 @@
       <form action="/users/signIn" method="POST">
 
         <!-- EMAIL USUARIO -->
-        <div class="box email">
-          <input type="email" name="email" id="email" required>
+        <div class="box">
+          <input type="email" name="email" id="email" value="<%= locals.email ? email : ""  %>">
           <label for="email">Email</label>
         </div>
-        <div class="errorMsg email"> Este campo es obligatorio</div>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box ">
+        <div class="box">
           <input type="password" name="contrasena" id="contrasena" required>
           <label for="contrasena">Contraseña</label>
         </div>
-
-        <% if (locals.error) { %>
-          <p style="color: red; text-align: center; padding: 0 0 15px;"><%= error %></p>
-        <%} %>
+        <% if (locals.errors) { %>
+        <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
+        <% if (contrasenaError) { %>
+        <h6 style="color: red;"><%= contrasenaError.msg %></h6>
+        <% } %>
+        <% } %>
 
         <!-- RECORDAR USUARIO -->
         <div class="box-recordar">
@@ -45,13 +46,13 @@
           <label for="recordar" class="label-recordar">Recuérdame</label>
         </div>
 
-        
+
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Ingresar</button>
         </div>
 
-        
+
         <!-- RECORDAR USUARIO -->
         <a class="link-registro" href="/users/register">¿Todavía no tienes una cuenta? Registrate</a>
 

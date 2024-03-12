@@ -9,10 +9,8 @@ const controller = {
     signIn: async (req, res) => {
         try {
             const id = await userService.signIn(req.body);
-            console.log(id);
             if (id) {
                 const user = await userService.getByPk(id);
-                console.log(user);
                 req.session.userLogged = {
                     id: user.id,
                     nombre: user.nombre,
@@ -146,7 +144,7 @@ const controller = {
         }
     },
     changePass: (req, res) => {
-        res.render('users/changePass');
+        res.render('users/changePass', { idUsuario: req.session.userLogged.id });
     },
     updatePass: async (req, res) => {
         try {
