@@ -46,6 +46,8 @@ INSERT INTO talles (numero, descripcion) VALUES
 INSERT INTO imagenes (nombre) VALUES
 ('default.png');
 
--- Luego de cargar estos datos, entrar en la pagina y cargar un usuario (random), entrar en la base de datos y ejecutar lo siguiente:
--- update usuarios set id_rol = 2;
+INSERT INTO usuarios (nombre, apellido, telefono, email, contrasena, active, id_imagen, id_rol) VALUES
+('usuario', 'random', '12345', 'user@gmail.com', '$2a$15$5aPiEot.OLFZzvJx7ZTpF.RrN0/9sytluoIBmim1ueHyKdapSIsuu', '1', '1', '2')
+
+-- email: user@gmail.com contraseña: 1234 este es el usuario admin
 -- Esto convertira al usuario creado en administrador, luego de esto cargar un producto de prueba usando la pagina
