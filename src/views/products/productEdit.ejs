@@ -22,31 +22,59 @@
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box">
-          <input type="text" name="nombre" id="nombre" required value="<%= producto.nombre %>">
+          <input type="text" name="nombre" id="nombre" value="<%= producto.nombre %>">
           <label for="nombre">Nombre</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const nombreError = errors.find(error => error.path == 'nombre'); %>
+        <% if (nombreError) { %>
+        <h6 style="color: red;"><%= nombreError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box">
-          <input type="text" name="descripcion" id="descripcion" required value="<%= producto.descripcion %>"></input>
+          <input type="text" name="descripcion" id="descripcion" value="<%= producto.descripcion %>"></input>
           <label for="descripcion">Descripción</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const descError = errors.find(error => error.path == 'descripcion'); %>
+        <% if (descError) { %>
+        <h6 style="color: red;"><%= descError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- PRECIO PRODUCTO -->
         <div class="box">
-          <input type="number" name="precio" id="precio" required value="<%= producto.precio %>">
+          <input type="number" name="precio" id="precio" value="<%= producto.precio %>">
           <label for="precio">Precio</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const precioError = errors.find(error => error.path == 'precio'); %>
+        <% if (precioError) { %>
+        <h6 style="color: red;"><%= precioError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box">
-          <input type="number" name="descuento" id="descuento" required value="<%= producto.descuento %>">
+          <input type="number" name="descuento" id="descuento" value="<%= producto.descuento %>">
           <label for="descuento">Descuento</label>
         </div>
+        <% if (locals.errors) { %>
+        <% const descError = errors.find(error => error.path == 'descuento'); %>
+        <% if (descError) { %>
+        <h6 style="color: red;"><%= descError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- MARCA PRODUCTO -->
         <div class="box">
-          <select name="id_marca" id="marca" required>
+          <select name="id_marca" id="marca">
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
             <option value=<%= marca.id %> <%= producto.id_marca == marca.id ? 'selected' : '' %>> <%= marca.nombre %>
@@ -55,10 +83,17 @@
             <% } %>
           </select>
         </div>
+        <% if (locals.errors) { %>
+        <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
+        <% if (marcaError) { %>
+        <h6 style="color: red;"><%= marcaError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- COLOR PRODUCTO -->
         <div class="box">
-          <select name="id_color" id="color" required>
+          <select name="id_color" id="color">
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
             <option value=<%= color.id %> <%= producto.id_color == color.id ? 'selected' : '' %>> <%= color.nombre %>
@@ -67,13 +102,21 @@
             <% } %>
           </select>
         </div>
+        <% if (locals.errors) { %>
+        <% const colorError = errors.find(error => error.path == 'id_color'); %>
+        <% if (colorError) { %>
+        <h6 style="color: red;"><%= colorError.msg %></h6>
+        <% } %>
+        <% } %>
+
 
         <!-- CATEGORIAS VIEJAS PRODUCTO -->
         <div class="box-check" style="display: none;">
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input type="checkbox" name="categoriasViejas" value=<%= categoria.id %>
-            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>>
+          <input type="checkbox" name="categoriasViejas[]" value=<%= categoria.id %>
+            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>
+            <%= locals.producto && producto.categorias && producto.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
           <% }); %>
           <% } %>
         </div>
@@ -83,8 +126,9 @@
           <label class="box-check-titulo">Categorias</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input type="checkbox" name="categorias" id=<%=categoria.nombre %> value=<%= categoria.id %>
-            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>>
+          <input type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value=<%= categoria.id %>
+            <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>
+            <%= locals.producto && producto.categorias && producto.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
           <label for=<%=categoria.nombre %> class="label-check">
             <%= categoria.nombre %>
           </label>

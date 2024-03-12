@@ -26,8 +26,7 @@
 
 
         <section class="main-section">
-            <form action="/products/edit/<%= producto.id %>/relations/sizes" method="POST"
-                class="contenedor-form">
+            <form action="/products/edit/<%= producto.id %>/relations/sizes" method="POST" class="contenedor-form">
 
                 <!-- NOMBRE PRODUCTO -->
                 <div class="box">
@@ -37,21 +36,34 @@
 
                 <!-- TALLE A CARGAR AL PRODUCTO -->
                 <div class="box">
-                    <select name="id_talle" id="talle" required>
+                    <select name="id_talle" id="talle">
                         <option selected disabled>- Seleccione el talle -</option>
                         <% if (locals.tal) { %>
                         <% tal.forEach(talle => { %>
-                        <option value=<%= talle.id %>> <%= talle.numero %> </option>
+                        <option value=<%= talle.id %> <%= locals.producto && producto.id_talle == talle.id ? "selected" : "" %>> <%= talle.numero %> </option>
                         <% }); %>
                         <% } %>
                     </select>
                 </div>
+                <% if (locals.errors) { %>
+                <% const talleError = errors.find(error => error.path == 'id_talle'); %>
+                <% if (talleError) { %>
+                <h6 style="color: red;"><%= talleError.msg %></h6>
+                <% } %>
+                <% } %>
+
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
                 <div class="box">
-                    <input type="number" name="stock" id="stock" required>
+                    <input type="number" name="stock" id="stock" value="<%= locals.producto && producto.stock ? producto.stock : "" %>">
                     <label for="stock">Stock</label>
                 </div>
+                <% if (locals.errors) { %>
+                <% const stockError = errors.find(error => error.path == 'stock'); %>
+                <% if (stockError) { %>
+                <h6 style="color: red;"><%= stockError.msg %></h6>
+                <% } %>
+                <% } %>
 
 
                 <div class="botones">
