@@ -21,8 +21,12 @@ router.get('/cart', authUserMiddleware, productController.cart);
 router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */ 
+router.get('/create', productController.create); 
+router.post('/', upload.array('imagenes'), productController.save); 
+/*
 router.get('/create', adminMiddleware, productController.create); 
 router.post('/',adminMiddleware, upload.array('imagenes'), productController.save); 
+*/
 
 /* EDIT ONE PRODUCT */ 
 router.get('/edit/:id', adminMiddleware, productController.edit); 

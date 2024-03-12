@@ -7,6 +7,8 @@
 
 <body>
 
+  <script src="/js/product_create.js" type="text/javascript"></script> 
+
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
 
@@ -20,7 +22,7 @@
       <form action="/products" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE PRODUCTO -->
-        <div class="box">
+        <div class="box nombre">
           <input type="text" name="nombre" id="nombre" required>
           <label for="nombre">Nombre</label>
         </div>
@@ -117,7 +119,6 @@
   </main>
   <!-- PIE DE PAGINA -->
   <%- include ('../partials/footer')%>
-
 
 </body>
 
