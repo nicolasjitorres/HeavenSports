@@ -11,10 +11,10 @@ window.addEventListener('load', function() {
     email.addEventListener('blur', () => {
         if (!email.value) {
             divEmail.classList.add('errorBox');
-            divErrorMsgEmail.style.display = "block"
+            divErrorMsgEmail.style.display = "block";
         } else {
-            if (!email.contains("Z")) {
-                divErrorMsgEmail.innerHTML += " Introduzca un email valido";
+            if (!email.validity.valid) {
+                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
                 divErrorMsgEmail.style.display = "block";
                 console.log(email.value);
             } else {
@@ -25,8 +25,13 @@ window.addEventListener('load', function() {
 
     email.addEventListener('focus', () => {
         divEmail.classList.remove('errorBox');
-        if (!email.contains("Z")) {
-            divErrorMsgEmail.innerHTML = "Introduzca al menos 8 caracteres";
+        if (!email.value) {
+            divEmail.classList.add('errorBox');
+            divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
+
+            divErrorMsgEmail.style.display = "block";
+        } else if (!email.validity.valid) {
+            divErrorMsgEmail.innerHTML = "Introduzca un email valido";
             divErrorMsgEmail.style.display = "block";
         } else {
             divErrorMsgEmail.style.display = "none"
@@ -35,7 +40,7 @@ window.addEventListener('load', function() {
 
     email.addEventListener('change', () => {
         
-            if (!email.contains("Z")) {
+            if (!email.validity.valid) {
                 divErrorMsgEmail.innerHTML = "Introduzca un email valido";
                 divErrorMsgEmail.style.display = "block";
                 console.log(email.value);
@@ -45,6 +50,20 @@ window.addEventListener('load', function() {
         
     }); 
 
+/*********/
+/*
+    email.addEventListener('focus', () => {
+        if (!email.validity.valid) {
+            divErrorMsgEmail.innerHTML = "Introduzca al menos 8 caracteres";
+            divErrorMsgEmail.style.display = "block";
+        } else {
+            divErrorMsgEmail.innerHTML = "sdwedwes";
+
+            divErrorMsgEmail.style.display = "none"
+        }
+    });
+    
+*/
 
 });
 
