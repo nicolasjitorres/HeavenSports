@@ -10,6 +10,8 @@ window.addEventListener('load', function() {
     let divContrasena = document.querySelector("div.contrasena");
     let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
 
+    let form = document.querySelector(".loginForm")
+
 
     /* EMAIL */
     email.addEventListener('blur', () => {
@@ -30,13 +32,7 @@ window.addEventListener('load', function() {
 
     email.addEventListener('focus', () => {
         divEmail.classList.remove('errorBox');
-        /*if (email.value.trim().length == 0) {
-            console.log(email.value);
-            divEmail.classList.add('errorBox');
-            divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-
-            divErrorMsgEmail.style.display = "block";
-        } else */if (email.value.trim().length !== 0 && !email.validity.valid) {
+        if (email.value.trim().length !== 0 && !email.validity.valid) {
             divErrorMsgEmail.innerHTML = "Introduzca un email valido";
             divErrorMsgEmail.style.display = "block";
         } else {
@@ -68,15 +64,26 @@ window.addEventListener('load', function() {
     contrasena.addEventListener('focus', () => {
         divContrasena.classList.remove('errorBox');
         divErrorMsgContrasena.style.display = "none"
-        /*
-        if (contrasena.value.trim().length == 0) {
-            divContrasena.classList.add('errorBox');
-            divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-            divErrorMsgContrasena.style.display = "block";
-        } else {
-            divErrorMsgContrasena.style.display = "none"
-        };*/
     });
+
+
+    /* BOTON DE CARGA */
+    form.addEventListener('submit', (event) => {
+        if (email.value.trim().length == 0 || contrasena.value.trim().length == 0) {
+            event.preventDefault();
+            if (email.value.trim().length == 0) {
+                divEmail.classList.add('errorBox');
+                divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
+                divErrorMsgEmail.style.display = "block";
+            }
+            if (contrasena.value.trim().length == 0) {
+                divContrasena.classList.add('errorBox');
+                divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
+                divErrorMsgContrasena.style.display = "block";
+            }
+        }
+    })
     
+
 });
 

@@ -214,13 +214,14 @@ input[type="checkbox"]{
 .errorBox {
   border: 2px red solid;
   border-radius: 5%;
+  box-shadow: 0 0 5px red;
 }
 
 .errorMsg {
   color: red;
   font-weight: bolder;
-  margin-top: -7%;
-  display: none
+  margin-top: -5%;
+  display: none;
 }
 
 .errorMsg.img {

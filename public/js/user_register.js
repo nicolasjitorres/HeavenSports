@@ -26,6 +26,8 @@ window.addEventListener('load', function() {
     let divImagen = document.querySelector("div.box-img");
     let divErrorMsgImagen = document.querySelector("div.errorMsg.img");
 
+    let form = document.querySelector(".registerForm")
+
 
     /* NOMBRE */
     nombre.addEventListener('blur', () => {
@@ -105,15 +107,17 @@ window.addEventListener('load', function() {
 
     /* CONTRASENA */
     contrasena.addEventListener('blur', () => {
+        const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
+        contrasenaRegex.test(contrasena.value);
         if (contrasena.value.trim().length == 0) {
             divContrasena.classList.add('errorBox');
             divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
             divErrorMsgContrasena.style.display = "block";
-        } else if (contrasena.value.trim().length < 8) {
+        } else if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
             divContrasena.classList.add('errorBox');
-            divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres";
+            divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
             divErrorMsgContrasena.style.display = "block";
-        }
+        } 
     });
     
     contrasena.addEventListener('focus', () => {
@@ -147,8 +151,57 @@ window.addEventListener('load', function() {
         let imagenExt = event.target.files[0].name.split(".").pop().toLowerCase();
         if (!ExtPermitidas.includes(imagenExt)) {
             divImagen.classList.add('errorBox');
-            divErrorMsgImagen.innerHTML = 'Las extensiones permitidas son ".jpeg", ".png" y ".jpg"';
+            divErrorMsgImagen.innerHTML = `Las extensiones permitidas son ${ExtPermitidas.join(", ")}.`;
             divErrorMsgImagen.style.display = "block";
+        } else {
+            divImagen.classList.remove('errorBox');
+            divErrorMsgImagen.style.display = "none"
+        }
+    })
+
+
+    /* BOTON DE CARGA */
+    form.addEventListener('submit', (event) => {
+        const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
+        contrasenaRegex.test(contrasena.value);
+        if (nombre.value.trim().length == 0 || apellido.value.trim().length == 0 || email.value.trim().length == 0 || contrasena.value.trim().length == 0 || !contrasenaRegex.test(contrasena.value) || reContrasena.value.trim().length == 0 || !imagen.value) {
+            event.preventDefault();
+            if (nombre.value.trim().length == 0) {
+                divNombre.classList.add('errorBox');
+                divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
+                divErrorMsgNombre.style.display = "block";
+            };
+            if (apellido.value.trim().length == 0) {
+                divApellido.classList.add('errorBox');
+                divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
+                divErrorMsgApellido.style.display = "block";
+            };
+            if (email.value.trim().length == 0) {
+                divEmail.classList.add('errorBox');
+                divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
+                divErrorMsgEmail.style.display = "block";
+            };
+            
+            if (contrasena.value.trim().length == 0) {
+                divContrasena.classList.add('errorBox');
+                divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
+                divErrorMsgContrasena.style.display = "block";
+            }
+            if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
+                divContrasena.classList.add('errorBox');
+                divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
+                divErrorMsgContrasena.style.display = "block";
+            };
+            if (reContrasena.value.trim().length == 0) {
+                divReContrasena.classList.add('errorBox');
+                divErrorMsgReContrasena.innerHTML = "Este campo es obligatorio";
+                divErrorMsgReContrasena.style.display = "block";
+            };
+            if (!imagen.value) {
+                divImagen.classList.add('errorBox');
+                divErrorMsgImagen.innerHTML = "Este campo es obligatorio";
+                divErrorMsgImagen.style.display = "block";
+            }
         }
     })
     
