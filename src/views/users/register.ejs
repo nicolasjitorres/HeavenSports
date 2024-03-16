@@ -7,6 +7,8 @@
 
 <body>
 
+  <script src="/js/user_register.js" type="text/javascript"></script>
+
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
 
@@ -20,10 +22,11 @@
       <form action="/users/register" method="POST" enctype="multipart/form-data">
 
         <!-- NOMBRE USUARIO -->
-        <div class="box">
+        <div class="box nombre">
           <input type="text" name="nombre" id="nombre" value=<%= locals.usuario ? usuario.nombre : "" %>>
           <label for="nombre">Nombre</label>
         </div>
+        <div class="errorMsg nombre"></div>
         <% if (locals.errors) { %>
         <% const nombreError = errors.find(error => error.path == 'nombre'); %>
         <% if (nombreError) { %>
@@ -32,10 +35,11 @@
         <% } %>
 
         <!-- APELLIDO USUARIO -->
-        <div class="box">
+        <div class="box apellido">
           <input type="text" name="apellido" id="apellido" value=<%= locals.usuario ? usuario.apellido : "" %>>
           <label for="apellido">Apellido</label>
         </div>
+        <div class="errorMsg apellido"></div>
         <% if (locals.errors) { %>
         <% const apellidoError = errors.find(error => error.path == 'apellido'); %>
         <% if (apellidoError) { %>
@@ -44,16 +48,17 @@
         <% } %>
 
         <!-- TELEFONO USUARIO -->
-        <div class="box">
+        <div class="box telefono">
           <input type="number" name="telefono" id="telefono" value=<%= locals.usuario ? usuario.telefono : "" %>>
           <label for="telefono">Telefono</label>
         </div>
 
         <!-- EMAIL USUARIO -->
-        <div class="box">
+        <div class="box email">
           <input type="email" name="email" id="email" value=<%= locals.usuario ? usuario.email : "" %>>
           <label for="email">Email</label>
         </div>
+        <div class="errorMsg email"></div>
         <% if (locals.errors) { %>
         <% const emailError = errors.find(error => error.path == 'email'); %>
         <% if (emailError) { %>
@@ -62,10 +67,11 @@
         <% } %>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box">
+        <div class="box contrasena">
           <input type="password" name="contrasena" id="contrasena">
           <label for="contrasena">Contraseña</label>
         </div>
+        <div class="errorMsg contrasena"></div>
         <% if (locals.errors) { %>
         <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
         <% if (contrasenaError) { %>
@@ -74,16 +80,21 @@
         <% } %>
 
         <!-- CONTRASEÑA CONFIRMADA USUARIO -->
-        <div class="box">
+        <div class="box reContrasena">
           <input type="password" name="reContrasena" id="re-contrasena">
           <label for="re-contrasena">Repetir contraseña</label>
         </div>
+        <div class="errorMsg reContrasena"></div>
+
 
         <!-- CARGAR IMAGENE PERFIL -->
         <div class="box box-img">
           <label for="img" class="label-img">Cargar foto de perfil</label>
-          <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
+          <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">>
         </div>
+        <div class="errorMsg img"></div>
+
+
         <div class="botones">
           <!-- Boton carga -->
           <button type="submit" class="boton">Guardar</button>

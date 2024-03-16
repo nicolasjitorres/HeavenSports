@@ -208,6 +208,33 @@ input[type="checkbox"]{
 
 
 
+/********************/
+/* Por validaciones front*/
+
+.errorBox {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+
+.errorMsg {
+  color: red;
+  font-weight: bolder;
+  margin-top: -7%;
+  display: none
+}
+
+.errorMsg.img {
+  margin-top: -4%;
+}
+
+/*
+.box input:invalid {
+  border: 2px red solid;
+  border-radius: 5%;
+}
+*/
+
+
 
 /* MEDIA QUERYS */
 

@@ -10,9 +10,12 @@ window.addEventListener('load', function() {
     let divContrasena = document.querySelector("div.contrasena");
     let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
 
+
+    /* EMAIL */
     email.addEventListener('blur', () => {
         if (email.value.trim().length == 0) {
             divEmail.classList.add('errorBox');
+            divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
             divErrorMsgEmail.style.display = "block";
         } else {
             if (!email.validity.valid) {
@@ -42,7 +45,6 @@ window.addEventListener('load', function() {
     });
 
     email.addEventListener('change', () => {
-        
             if (!email.validity.valid) {
                 divErrorMsgEmail.innerHTML = "Introduzca un email valido";
                 divErrorMsgEmail.style.display = "block";
@@ -52,9 +54,12 @@ window.addEventListener('load', function() {
             };
     }); 
 
+
+    /* CONTRASENA */
     contrasena.addEventListener('blur', () => {
         if (contrasena.value.trim().length == 0) {
             divContrasena.classList.add('errorBox');
+            divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
             divErrorMsgContrasena.style.display = "block";
         }
     });
