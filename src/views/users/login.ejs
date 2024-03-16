@@ -23,7 +23,7 @@
       <form action="/users/signIn" method="POST">
 
         <!-- EMAIL USUARIO -->
-        <div class="box">
+        <div class="box email">
           <input type="email" name="email" id="email" value="<%= locals.email ? email : ""  %>">
           <label for="email">Email</label>
         </div>
@@ -35,7 +35,7 @@
         <% } %>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box">
+        <div class="box contrasena">
           <input type="password" name="contrasena" id="contrasena">
           <label for="contrasena">Contraseña</label>
         </div>

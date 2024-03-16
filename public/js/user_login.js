@@ -10,8 +10,6 @@ window.addEventListener('load', function() {
     let divContrasena = document.querySelector("div.contrasena");
     let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
 
-    console.log(divErrorMsgEmail);
-
     email.addEventListener('blur', () => {
         if (email.value.trim().length == 0) {
             divEmail.classList.add('errorBox');
@@ -75,7 +73,5 @@ window.addEventListener('load', function() {
         };*/
     });
     
-
-
 });
 
