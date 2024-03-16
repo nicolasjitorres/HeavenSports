@@ -171,17 +171,31 @@ window.addEventListener('load', function() {
                 divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
                 divErrorMsgNombre.style.display = "block";
             };
+            if (nombre.value.trim().length < 2) {
+                divNombre.classList.add('errorBox');
+                divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 2 caracteres";
+                divErrorMsgNombre.style.display = "block";
+            };    
             if (apellido.value.trim().length == 0) {
                 divApellido.classList.add('errorBox');
                 divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
                 divErrorMsgApellido.style.display = "block";
             };
+            if (apellido.value.trim().length < 2) {
+                divApellido.classList.add('errorBox');
+                divErrorMsgApellido.innerHTML = "El campo deberá tener al menos 2 caracteres";
+                divErrorMsgApellido.style.display = "block";
+            };    
             if (email.value.trim().length == 0) {
                 divEmail.classList.add('errorBox');
                 divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
                 divErrorMsgEmail.style.display = "block";
             };
-            
+            if (!email.validity.valid) {
+                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
+                divErrorMsgEmail.style.display = "block";
+                console.log(email.value);
+            };            
             if (contrasena.value.trim().length == 0) {
                 divContrasena.classList.add('errorBox');
                 divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
