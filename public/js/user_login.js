@@ -6,10 +6,14 @@ window.addEventListener('load', function() {
     let divEmail = document.querySelector("div.email");
     let divErrorMsgEmail = document.querySelector("div.errorMsg.email");
 
+    let contrasena = document.querySelector("input#contrasena");
+    let divContrasena = document.querySelector("div.contrasena");
+    let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
+
     console.log(divErrorMsgEmail);
 
     email.addEventListener('blur', () => {
-        if (!email.value) {
+        if (email.value.trim().length == 0) {
             divEmail.classList.add('errorBox');
             divErrorMsgEmail.style.display = "block";
         } else {
@@ -25,12 +29,13 @@ window.addEventListener('load', function() {
 
     email.addEventListener('focus', () => {
         divEmail.classList.remove('errorBox');
-        if (!email.value) {
+        /*if (email.value.trim().length == 0) {
+            console.log(email.value);
             divEmail.classList.add('errorBox');
             divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
 
             divErrorMsgEmail.style.display = "block";
-        } else if (!email.validity.valid) {
+        } else */if (email.value.trim().length !== 0 && !email.validity.valid) {
             divErrorMsgEmail.innerHTML = "Introduzca un email valido";
             divErrorMsgEmail.style.display = "block";
         } else {
@@ -47,23 +52,30 @@ window.addEventListener('load', function() {
             } else {
                 divErrorMsgEmail.style.display = "none"
             };
-        
     }); 
 
-/*********/
-/*
-    email.addEventListener('focus', () => {
-        if (!email.validity.valid) {
-            divErrorMsgEmail.innerHTML = "Introduzca al menos 8 caracteres";
-            divErrorMsgEmail.style.display = "block";
-        } else {
-            divErrorMsgEmail.innerHTML = "sdwedwes";
-
-            divErrorMsgEmail.style.display = "none"
+    contrasena.addEventListener('blur', () => {
+        if (contrasena.value.trim().length == 0) {
+            divContrasena.classList.add('errorBox');
+            divErrorMsgContrasena.style.display = "block";
         }
     });
+
     
-*/
+    contrasena.addEventListener('focus', () => {
+        divContrasena.classList.remove('errorBox');
+        divErrorMsgContrasena.style.display = "none"
+        /*
+        if (contrasena.value.trim().length == 0) {
+            divContrasena.classList.add('errorBox');
+            divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
+            divErrorMsgContrasena.style.display = "block";
+        } else {
+            divErrorMsgContrasena.style.display = "none"
+        };*/
+    });
+    
+
 
 });
 

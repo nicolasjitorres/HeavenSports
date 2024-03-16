@@ -30,10 +30,12 @@
         <div class="errorMsg email">Este campo es obligatorio</div>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box ">
+        <div class="box contrasena">
           <input type="password" name="contrasena" id="contrasena" required>
           <label for="contrasena">Contraseña</label>
         </div>
+        <div class="errorMsg contrasena">Este campo es obligatorio</div>
+
 
         <% if (locals.error) { %>
           <p style="color: red; text-align: center; padding: 0 0 15px;"><%= error %></p>
