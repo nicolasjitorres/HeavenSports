@@ -226,10 +226,18 @@ window.addEventListener('load', function() {
             divNombre.classList.add('errorBox');
             divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
             divErrorMsgNombre.style.display = "block";
+        } else if (nombre.value.trim().length < 5) {
+            divNombre.classList.add('errorBox');
+            divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 5 caracteres";
+            divErrorMsgNombre.style.display = "block";
         };
         if (descripcion.value.trim().length == 0) {
             divDescripcion.classList.add('errorBox');
             divErrorMsgDescripcion.innerHTML = "Este campo es obligatorio";
+            divErrorMsgDescripcion.style.display = "block";
+        } else if (descripcion.value.length < 20) {
+            divDescripcion.classList.add('errorBox');
+            divErrorMsgDescripcion.innerHTML = "El campo deberá tener al menos 20 caracteres";
             divErrorMsgDescripcion.style.display = "block";
         };
         if (precio.value.trim().length == 0) {
@@ -273,69 +281,14 @@ window.addEventListener('load', function() {
     }
     
     form.addEventListener('submit', (event) => {
-
-        if (formC) {
-            if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione") || talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value) {
-                event.preventDefault();
-                accionesPreventFormE();
-                accionesPreventFormCAdic();
-            }
-        } else {
-            if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione")) {
-                event.preventDefault();
-                accionesPreventFormE();
-            }
-        }
-
-        /*
-        if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione") || talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value) {
+        if (nombre.value.trim().length == 0 || nombre.value.trim().length < 5 || descripcion.value.trim().length == 0 || descripcion.value.length < 20 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione")) {
             event.preventDefault();
-            if (nombre.value.trim().length == 0) {
-                divNombre.classList.add('errorBox');
-                divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
-                divErrorMsgNombre.style.display = "block";
-            };
-            if (descripcion.value.trim().length == 0) {
-                divDescripcion.classList.add('errorBox');
-                divErrorMsgDescripcion.innerHTML = "Este campo es obligatorio";
-                divErrorMsgDescripcion.style.display = "block";
-            };
-            if (precio.value.trim().length == 0) {
-                divPrecio.classList.add('errorBox');
-                divErrorMsgPrecio.innerHTML = "Este campo es obligatorio y debe ser numerico";
-                divErrorMsgPrecio.style.display = "block";
-            };    
-            if (descuento.value.trim().length == 0) {
-                divDescuento.classList.add('errorBox');
-                divErrorMsgDescuento.innerHTML = "Este campo es obligatorio y debe ser numerico";
-                divErrorMsgDescuento.style.display = "block";
-            };
-            if (marca.value == "- Seleccione la marca -") {
-                divMarca.classList.add('errorBox');
-                divErrorMsgMarca.innerHTML = "Seleccione una marca";
-                divErrorMsgMarca.style.display = "block";
-            };
-            if (color.value == "- Seleccione el color -") {
-                divColor.classList.add('errorBox');
-                divErrorMsgColor.innerHTML = "Seleccione un color";
-                divErrorMsgColor.style.display = "block";
-            };
-            if (talle.value == "- Seleccione el talle -") {
-                divTalle.classList.add('errorBox');
-                divErrorMsgTalle.innerHTML = "Seleccione un talle";
-                divErrorMsgTalle.style.display = "block";
-            };
-            if (stock.value.trim().length == 0) {
-                divStock.classList.add('errorBox');
-                divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
-                divErrorMsgStock.style.display = "block";
-            };
-            if (!imagen.value) {
-                divImagen.classList.add('errorBox');
-                divErrorMsgImagen.innerHTML = "Este campo es obligatorio";
-                divErrorMsgImagen.style.display = "block";
-            }
-        }*/
+            accionesPreventFormE();
+        } 
+        if (talle && (talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value)) {
+            event.preventDefault();
+            accionesPreventFormCAdic();
+        }
     })
     
 });
