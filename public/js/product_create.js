@@ -6,27 +6,39 @@ window.addEventListener('load', function() {
     let divNombre = document.querySelector("div.nombre");
     let divErrorMsgNombre = document.querySelector("div.errorMsg.nombre");
 
-    let apellido = document.querySelector("input#apellido");
-    let divApellido = document.querySelector("div.apellido");
-    let divErrorMsgApellido = document.querySelector("div.errorMsg.apellido");
+    let descripcion = document.querySelector("input#descripcion");
+    let divDescripcion = document.querySelector("div.descripcion");
+    let divErrorMsgDescripcion = document.querySelector("div.errorMsg.descripcion");
 
-    let email = document.querySelector("input#email");
-    let divEmail = document.querySelector("div.email");
-    let divErrorMsgEmail = document.querySelector("div.errorMsg.email");
+    let precio = document.querySelector("input#precio");
+    let divPrecio = document.querySelector("div.precio");
+    let divErrorMsgPrecio = document.querySelector("div.errorMsg.precio");
 
-    let contrasena = document.querySelector("input#contrasena");
-    let divContrasena = document.querySelector("div.contrasena");
-    let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
+    let descuento = document.querySelector("input#descuento");
+    let divDescuento = document.querySelector("div.descuento");
+    let divErrorMsgDescuento = document.querySelector("div.errorMsg.descuento");
 
-    let reContrasena = document.querySelector("input#re-contrasena");
-    let divReContrasena = document.querySelector("div.reContrasena");
-    let divErrorMsgReContrasena = document.querySelector("div.errorMsg.reContrasena");
+    let marca = document.querySelector("select#marca");
+    let divMarca = document.querySelector("div.marca");
+    let divErrorMsgMarca = document.querySelector("div.errorMsg.marca");
+    
+    let color = document.querySelector("select#color");
+    let divColor = document.querySelector("div.color");
+    let divErrorMsgColor = document.querySelector("div.errorMsg.color");
+
+    let talle = document.querySelector("select#talle");
+    let divTalle = document.querySelector("div.talle");
+    let divErrorMsgTalle = document.querySelector("div.errorMsg.talle");
+
+    let stock = document.querySelector("input#stock");
+    let divStock = document.querySelector("div.stock");
+    let divErrorMsgStock = document.querySelector("div.errorMsg.stock");
 
     let imagen = document.querySelector("input#img");
     let divImagen = document.querySelector("div.box-img");
     let divErrorMsgImagen = document.querySelector("div.errorMsg.img");
 
-    let form = document.querySelector(".registerForm")
+    let form = document.querySelector(".createProductForm")
 
 
     /* NOMBRE */
@@ -35,9 +47,9 @@ window.addEventListener('load', function() {
             divNombre.classList.add('errorBox');
             divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
             divErrorMsgNombre.style.display = "block";
-        } else if (nombre.value.trim().length < 2) {
+        } else if (nombre.value.trim().length < 5) {
             divNombre.classList.add('errorBox');
-            divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 2 caracteres";
+            divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 5 caracteres";
             divErrorMsgNombre.style.display = "block";
         }
     });
@@ -48,100 +60,130 @@ window.addEventListener('load', function() {
     });
 
 
-    /* APELLIDO */
-    apellido.addEventListener('blur', () => {
-        if (apellido.value.trim().length == 0) {
-            divApellido.classList.add('errorBox');
-            divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
-            divErrorMsgApellido.style.display = "block";
-        } else if (apellido.value.trim().length < 2) {
-            divApellido.classList.add('errorBox');
-            divErrorMsgApellido.innerHTML = "El campo deberá tener al menos 2 caracteres";
-            divErrorMsgApellido.style.display = "block";
+    /* DESCRIPCION */
+    descripcion.addEventListener('blur', () => {
+        if (descripcion.value.trim().length == 0) {
+            divDescripcion.classList.add('errorBox');
+            divErrorMsgDescripcion.innerHTML = "Este campo es obligatorio";
+            divErrorMsgDescripcion.style.display = "block";
+        } else if (descripcion.value.length < 20) {
+            divDescripcion.classList.add('errorBox');
+            divErrorMsgDescripcion.innerHTML = "El campo deberá tener al menos 20 caracteres";
+            divErrorMsgDescripcion.style.display = "block";
         }
     });
 
-    apellido.addEventListener('focus', () => {
-        divApellido.classList.remove('errorBox');
-        divErrorMsgApellido.style.display = "none"
+    descripcion.addEventListener('focus', () => {
+        divDescripcion.classList.remove('errorBox');
+        divErrorMsgDescripcion.style.display = "none"
     });
 
 
-    /* EMAIL */
-    email.addEventListener('blur', () => {
-        if (email.value.trim().length == 0) {
-            divEmail.classList.add('errorBox');
-            divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-            divErrorMsgEmail.style.display = "block";
-        } else {
-            if (!email.validity.valid) {
-                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-                divErrorMsgEmail.style.display = "block";
-                console.log(email.value);
-            } else {
-                divErrorMsgEmail.style.display = "none"
-            };
-        }
+    /* PRECIO */
+    precio.addEventListener('blur', () => {
+        /*const precioRegex = /^(?=.*\d)(?=.*[,])(?!\s)[\d.]{8,20}$/;
+        precioRegex.test(precio.value);*/
+        if (precio.value.trim().length == 0) {
+            divPrecio.classList.add('errorBox');
+            divErrorMsgPrecio.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgPrecio.style.display = "block";
+        } /*else if (!precioRegex.test(precio.value)) {
+            divPrecio.classList.add('errorBox');
+            divErrorMsgPrecio.innerHTML = "Solo caracteres numericos, con coma como separador decimal";
+            divErrorMsgPrecio.style.display = "block";
+        }*/
     });
 
-    email.addEventListener('focus', () => {
-        divEmail.classList.remove('errorBox');
-        if (email.value.trim().length !== 0 && !email.validity.valid) {
-            divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-            divErrorMsgEmail.style.display = "block";
-        } else {
-            divErrorMsgEmail.style.display = "none"
-        }
+    precio.addEventListener('focus', () => {
+        divPrecio.classList.remove('errorBox');
+        divErrorMsgPrecio.style.display = "none"
     });
 
-    email.addEventListener('change', () => {
-            if (!email.validity.valid) {
-                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-                divErrorMsgEmail.style.display = "block";
-                console.log(email.value);
-            } else {
-                divErrorMsgEmail.style.display = "none"
-            };
-    }); 
+
+    /* DESCUENTO */
+    descuento.addEventListener('blur', () => {
+        /*const precioRegex = /^(?=.*\d)(?=.*[,])(?!\s)[\d.]{8,20}$/;
+        precioRegex.test(precio.value);*/
+        if (descuento.value.trim().length == 0) {
+            divDescuento.classList.add('errorBox');
+            divErrorMsgDescuento.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgDescuento.style.display = "block";
+        } /*else if (!precioRegex.test(precio.value)) {
+            divPrecio.classList.add('errorBox');
+            divErrorMsgPrecio.innerHTML = "Solo caracteres numericos, con coma como separador decimal";
+            divErrorMsgPrecio.style.display = "block";
+        }*/
+    });
+
+    descuento.addEventListener('focus', () => {
+        divDescuento.classList.remove('errorBox');
+        divErrorMsgDescuento.style.display = "none"
+    });
 
 
-    /* CONTRASENA */
-    contrasena.addEventListener('blur', () => {
-        const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
-        contrasenaRegex.test(contrasena.value);
-        if (contrasena.value.trim().length == 0) {
-            divContrasena.classList.add('errorBox');
-            divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-            divErrorMsgContrasena.style.display = "block";
-        } else if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
-            divContrasena.classList.add('errorBox');
-            divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
-            divErrorMsgContrasena.style.display = "block";
+    /* MARCA */
+    marca.addEventListener('blur', () => {
+        if (marca.value == "- Seleccione la marca -") {
+            divMarca.classList.add('errorBox');
+            divErrorMsgMarca.innerHTML = "Seleccione una marca";
+            divErrorMsgMarca.style.display = "block";
         } 
     });
-    
-    contrasena.addEventListener('focus', () => {
-        divContrasena.classList.remove('errorBox');
-        divErrorMsgContrasena.style.display = "none"
+
+    marca.addEventListener('focus', () => {
+        divMarca.classList.remove('errorBox');
+        divErrorMsgMarca.style.display = "none"
     });
 
 
-    /* REPETIR CONTRASENA */
-    reContrasena.addEventListener('blur', () => {
-        if (reContrasena.value.trim().length == 0) {
-            divReContrasena.classList.add('errorBox');
-            divErrorMsgReContrasena.innerHTML = "Este campo es obligatorio";
-            divErrorMsgReContrasena.style.display = "block";
-        } else if (reContrasena.value.trim().length < 8) {
-            divReContrasena.classList.add('errorBox');
-            divErrorMsgReContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres";
-            divErrorMsgReContrasena.style.display = "block";
-        }
+    /* COLOR */
+    color.addEventListener('blur', () => {
+        if (color.value == "- Seleccione el color -") {
+            divColor.classList.add('errorBox');
+            divErrorMsgColor.innerHTML = "Seleccione un color";
+            divErrorMsgColor.style.display = "block";
+        } 
     });
+
+    color.addEventListener('focus', () => {
+        divColor.classList.remove('errorBox');
+        divErrorMsgColor.style.display = "none"
+    });
+
+
+    /* TALLE */
+    talle.addEventListener('blur', () => {
+        if (talle.value == "- Seleccione el talle -") {
+            divTalle.classList.add('errorBox');
+            divErrorMsgTalle.innerHTML = "Seleccione un talle";
+            divErrorMsgTalle.style.display = "block";
+        } 
+    });
+
+    talle.addEventListener('focus', () => {
+        divTalle.classList.remove('errorBox');
+        divErrorMsgTalle.style.display = "none"
+    });
+
     
-    reContrasena.addEventListener('focus', () => {
-        divReContrasena.classList.remove('errorBox');
-        divErrorMsgReContrasena.style.display = "none"
+    /* STOCK */
+    stock.addEventListener('blur', () => {
+        /*const precioRegex = /^(?=.*\d)(?=.*[,])(?!\s)[\d.]{8,20}$/;
+        precioRegex.test(precio.value);*/
+        if (stock.value.trim().length == 0) {
+            divStock.classList.add('errorBox');
+            divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgStock.style.display = "block";
+        } /*else if (!precioRegex.test(precio.value)) {
+            divPrecio.classList.add('errorBox');
+            divErrorMsgPrecio.innerHTML = "Solo caracteres numericos, con coma como separador decimal";
+            divErrorMsgPrecio.style.display = "block";
+        }*/
+    });
+
+    stock.addEventListener('focus', () => {
+        divStock.classList.remove('errorBox');
+        divErrorMsgStock.style.display = "none"
     });
 
 
@@ -159,43 +201,53 @@ window.addEventListener('load', function() {
         }
     })
 
+   
+
 
     /* BOTON DE CARGA */
+    
     form.addEventListener('submit', (event) => {
-        const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
-        contrasenaRegex.test(contrasena.value);
-        if (nombre.value.trim().length == 0 || apellido.value.trim().length == 0 || email.value.trim().length == 0 || contrasena.value.trim().length == 0 || !contrasenaRegex.test(contrasena.value) || reContrasena.value.trim().length == 0 || !imagen.value) {
+        if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione") || talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value) {
             event.preventDefault();
             if (nombre.value.trim().length == 0) {
                 divNombre.classList.add('errorBox');
                 divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
                 divErrorMsgNombre.style.display = "block";
             };
-            if (apellido.value.trim().length == 0) {
-                divApellido.classList.add('errorBox');
-                divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
-                divErrorMsgApellido.style.display = "block";
+            if (descripcion.value.trim().length == 0) {
+                divDescripcion.classList.add('errorBox');
+                divErrorMsgDescripcion.innerHTML = "Este campo es obligatorio";
+                divErrorMsgDescripcion.style.display = "block";
             };
-            if (email.value.trim().length == 0) {
-                divEmail.classList.add('errorBox');
-                divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-                divErrorMsgEmail.style.display = "block";
+            if (precio.value.trim().length == 0) {
+                divPrecio.classList.add('errorBox');
+                divErrorMsgPrecio.innerHTML = "Este campo es obligatorio y debe ser numerico";
+                divErrorMsgPrecio.style.display = "block";
+            };    
+            if (descuento.value.trim().length == 0) {
+                divDescuento.classList.add('errorBox');
+                divErrorMsgDescuento.innerHTML = "Este campo es obligatorio y debe ser numerico";
+                divErrorMsgDescuento.style.display = "block";
             };
-            
-            if (contrasena.value.trim().length == 0) {
-                divContrasena.classList.add('errorBox');
-                divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-                divErrorMsgContrasena.style.display = "block";
-            }
-            if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
-                divContrasena.classList.add('errorBox');
-                divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
-                divErrorMsgContrasena.style.display = "block";
+            if (marca.value == "- Seleccione la marca -") {
+                divMarca.classList.add('errorBox');
+                divErrorMsgMarca.innerHTML = "Seleccione una marca";
+                divErrorMsgMarca.style.display = "block";
             };
-            if (reContrasena.value.trim().length == 0) {
-                divReContrasena.classList.add('errorBox');
-                divErrorMsgReContrasena.innerHTML = "Este campo es obligatorio";
-                divErrorMsgReContrasena.style.display = "block";
+            if (color.value == "- Seleccione el color -") {
+                divColor.classList.add('errorBox');
+                divErrorMsgColor.innerHTML = "Seleccione un color";
+                divErrorMsgColor.style.display = "block";
+            };
+            if (talle.value == "- Seleccione el talle -") {
+                divTalle.classList.add('errorBox');
+                divErrorMsgTalle.innerHTML = "Seleccione un talle";
+                divErrorMsgTalle.style.display = "block";
+            };
+            if (stock.value.trim().length == 0) {
+                divStock.classList.add('errorBox');
+                divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
+                divErrorMsgStock.style.display = "block";
             };
             if (!imagen.value) {
                 divImagen.classList.add('errorBox');
