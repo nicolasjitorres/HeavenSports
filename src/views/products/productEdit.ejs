@@ -7,6 +7,8 @@
 
 <body>
 
+  <script src="/js/product_create-edit.js" type="text/javascript"></script>
+
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
 
@@ -18,13 +20,14 @@
     <div class="contenedor-form">
       <h4 class="titulo">Edicion de producto</h4>
 
-      <form action="/products/<%= producto.id  %>?_method=PUT" method="POST">
+      <form action="/products/<%= producto.id  %>?_method=PUT" method="POST" class="editProductForm">
 
         <!-- NOMBRE PRODUCTO -->
-        <div class="box">
+        <div class="box nombre">
           <input type="text" name="nombre" id="nombre" value="<%= producto.nombre %>">
           <label for="nombre">Nombre</label>
         </div>
+        <div class="errorMsg nombre"></div>
         <% if (locals.errors) { %>
         <% const nombreError = errors.find(error => error.path == 'nombre'); %>
         <% if (nombreError) { %>
@@ -34,10 +37,11 @@
 
 
         <!-- DESCRIPCION PRODUCTO -->
-        <div class="box">
+        <div class="box descripcion">
           <input type="text" name="descripcion" id="descripcion" value="<%= producto.descripcion %>"></input>
           <label for="descripcion">Descripción</label>
         </div>
+        <div class="errorMsg descripcion"></div>
         <% if (locals.errors) { %>
         <% const descError = errors.find(error => error.path == 'descripcion'); %>
         <% if (descError) { %>
@@ -47,10 +51,11 @@
 
 
         <!-- PRECIO PRODUCTO -->
-        <div class="box">
+        <div class="box precio">
           <input type="number" name="precio" id="precio" value="<%= producto.precio %>">
           <label for="precio">Precio</label>
         </div>
+        <div class="errorMsg precio"></div>
         <% if (locals.errors) { %>
         <% const precioError = errors.find(error => error.path == 'precio'); %>
         <% if (precioError) { %>
@@ -60,10 +65,11 @@
 
 
         <!-- DESCUENTO PRODUCTO -->
-        <div class="box">
+        <div class="box descuento">
           <input type="number" name="descuento" id="descuento" value="<%= producto.descuento %>">
           <label for="descuento">Descuento</label>
         </div>
+        <div class="errorMsg descuento"></div>
         <% if (locals.errors) { %>
         <% const descError = errors.find(error => error.path == 'descuento'); %>
         <% if (descError) { %>
@@ -73,7 +79,7 @@
 
 
         <!-- MARCA PRODUCTO -->
-        <div class="box">
+        <div class="box marca">
           <select name="id_marca" id="marca">
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
@@ -83,6 +89,7 @@
             <% } %>
           </select>
         </div>
+        <div class="errorMsg marca"></div>
         <% if (locals.errors) { %>
         <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
         <% if (marcaError) { %>
@@ -92,7 +99,7 @@
 
 
         <!-- COLOR PRODUCTO -->
-        <div class="box">
+        <div class="box color">
           <select name="id_color" id="color">
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
@@ -102,6 +109,7 @@
             <% } %>
           </select>
         </div>
+        <div class="errorMsg color"></div>
         <% if (locals.errors) { %>
         <% const colorError = errors.find(error => error.path == 'id_color'); %>
         <% if (colorError) { %>

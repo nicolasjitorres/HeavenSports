@@ -38,7 +38,14 @@ window.addEventListener('load', function() {
     let divImagen = document.querySelector("div.box-img");
     let divErrorMsgImagen = document.querySelector("div.errorMsg.img");
 
-    let form = document.querySelector(".createProductForm")
+    let formC = document.querySelector(".createProductForm")
+    let formE = document.querySelector(".editProductForm")
+    let form
+    if (formC) {
+        form = formC
+    } else {
+        form = formE
+    }
 
 
     /* NOMBRE */
@@ -152,61 +159,135 @@ window.addEventListener('load', function() {
 
 
     /* TALLE */
-    talle.addEventListener('blur', () => {
-        if (talle.value == "- Seleccione el talle -") {
-            divTalle.classList.add('errorBox');
-            divErrorMsgTalle.innerHTML = "Seleccione un talle";
-            divErrorMsgTalle.style.display = "block";
-        } 
-    });
+    if (talle) {
+        talle.addEventListener('blur', () => {
+            if (talle.value == "- Seleccione el talle -") {
+                divTalle.classList.add('errorBox');
+                divErrorMsgTalle.innerHTML = "Seleccione un talle";
+                divErrorMsgTalle.style.display = "block";
+            } 
+        });
+    
+        talle.addEventListener('focus', () => {
+            divTalle.classList.remove('errorBox');
+            divErrorMsgTalle.style.display = "none"
+        });
 
-    talle.addEventListener('focus', () => {
-        divTalle.classList.remove('errorBox');
-        divErrorMsgTalle.style.display = "none"
-    });
+    }
 
     
     /* STOCK */
-    stock.addEventListener('blur', () => {
-        /*const precioRegex = /^(?=.*\d)(?=.*[,])(?!\s)[\d.]{8,20}$/;
-        precioRegex.test(precio.value);*/
-        if (stock.value.trim().length == 0) {
-            divStock.classList.add('errorBox');
-            divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
-            divErrorMsgStock.style.display = "block";
-        } /*else if (!precioRegex.test(precio.value)) {
-            divPrecio.classList.add('errorBox');
-            divErrorMsgPrecio.innerHTML = "Solo caracteres numericos, con coma como separador decimal";
-            divErrorMsgPrecio.style.display = "block";
-        }*/
-    });
+    if (stock) {
+        stock.addEventListener('blur', () => {
+            /*const precioRegex = /^(?=.*\d)(?=.*[,])(?!\s)[\d.]{8,20}$/;
+            precioRegex.test(precio.value);*/
+            if (stock.value.trim().length == 0) {
+                divStock.classList.add('errorBox');
+                divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
+                divErrorMsgStock.style.display = "block";
+            } /*else if (!precioRegex.test(precio.value)) {
+                divPrecio.classList.add('errorBox');
+                divErrorMsgPrecio.innerHTML = "Solo caracteres numericos, con coma como separador decimal";
+                divErrorMsgPrecio.style.display = "block";
+            }*/
+        });
 
-    stock.addEventListener('focus', () => {
-        divStock.classList.remove('errorBox');
-        divErrorMsgStock.style.display = "none"
-    });
+        stock.addEventListener('focus', () => {
+            divStock.classList.remove('errorBox');
+            divErrorMsgStock.style.display = "none"
+        });
+    }
 
 
     /* IMAGEN */
-    imagen.addEventListener('change', (event) => {
-        let ExtPermitidas = ["jpeg", "png", "jpg"];
-        let imagenExt = event.target.files[0].name.split(".").pop().toLowerCase();
-        if (!ExtPermitidas.includes(imagenExt)) {
-            divImagen.classList.add('errorBox');
-            divErrorMsgImagen.innerHTML = `Las extensiones permitidas son ${ExtPermitidas.join(", ")}.`;
-            divErrorMsgImagen.style.display = "block";
-        } else {
-            divImagen.classList.remove('errorBox');
-            divErrorMsgImagen.style.display = "none"
-        }
-    })
+    if (imagen) {
+        imagen.addEventListener('change', (event) => {
+            let ExtPermitidas = ["jpeg", "png", "jpg"];
+            let imagenExt = event.target.files[0].name.split(".").pop().toLowerCase();
+            if (!ExtPermitidas.includes(imagenExt)) {
+                divImagen.classList.add('errorBox');
+                divErrorMsgImagen.innerHTML = `Las extensiones permitidas son ${ExtPermitidas.join(", ")}.`;
+                divErrorMsgImagen.style.display = "block";
+            } else {
+                divImagen.classList.remove('errorBox');
+                divErrorMsgImagen.style.display = "none"
+            }
+        });
+    }
+
 
    
 
 
     /* BOTON DE CARGA */
+
+    let accionesPreventFormE = () => {
+        if (nombre.value.trim().length == 0) {
+            divNombre.classList.add('errorBox');
+            divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
+            divErrorMsgNombre.style.display = "block";
+        };
+        if (descripcion.value.trim().length == 0) {
+            divDescripcion.classList.add('errorBox');
+            divErrorMsgDescripcion.innerHTML = "Este campo es obligatorio";
+            divErrorMsgDescripcion.style.display = "block";
+        };
+        if (precio.value.trim().length == 0) {
+            divPrecio.classList.add('errorBox');
+            divErrorMsgPrecio.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgPrecio.style.display = "block";
+        };    
+        if (descuento.value.trim().length == 0) {
+            divDescuento.classList.add('errorBox');
+            divErrorMsgDescuento.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgDescuento.style.display = "block";
+        };
+        if (marca.value == "- Seleccione la marca -") {
+            divMarca.classList.add('errorBox');
+            divErrorMsgMarca.innerHTML = "Seleccione una marca";
+            divErrorMsgMarca.style.display = "block";
+        };
+        if (color.value == "- Seleccione el color -") {
+            divColor.classList.add('errorBox');
+            divErrorMsgColor.innerHTML = "Seleccione un color";
+            divErrorMsgColor.style.display = "block";
+        };
+    };
+
+    let accionesPreventFormCAdic = () => {
+        if (talle.value == "- Seleccione el talle -") {
+            divTalle.classList.add('errorBox');
+            divErrorMsgTalle.innerHTML = "Seleccione un talle";
+            divErrorMsgTalle.style.display = "block";
+        };
+        if (stock.value.trim().length == 0) {
+            divStock.classList.add('errorBox');
+            divErrorMsgStock.innerHTML = "Este campo es obligatorio y debe ser numerico";
+            divErrorMsgStock.style.display = "block";
+        };
+        if (!imagen.value) {
+            divImagen.classList.add('errorBox');
+            divErrorMsgImagen.innerHTML = "Este campo es obligatorio";
+            divErrorMsgImagen.style.display = "block";
+        }
+    }
     
     form.addEventListener('submit', (event) => {
+
+        if (formC) {
+            if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione") || talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value) {
+                event.preventDefault();
+                accionesPreventFormE();
+                accionesPreventFormCAdic();
+            }
+        } else {
+            if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione")) {
+                event.preventDefault();
+                accionesPreventFormE();
+            }
+        }
+
+        /*
         if (nombre.value.trim().length == 0 || descripcion.value.trim().length == 0 || precio.value.trim().length == 0 || descuento.value.trim().length == 0 || marca.value.includes("seleccione") || color.value.includes("seleccione") || talle.value.includes("seleccione") || stock.value.trim().length == 0 || !imagen.value) {
             event.preventDefault();
             if (nombre.value.trim().length == 0) {
@@ -254,7 +335,7 @@ window.addEventListener('load', function() {
                 divErrorMsgImagen.innerHTML = "Este campo es obligatorio";
                 divErrorMsgImagen.style.display = "block";
             }
-        }
+        }*/
     })
     
 });
