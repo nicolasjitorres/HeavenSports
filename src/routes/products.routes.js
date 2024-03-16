@@ -25,22 +25,14 @@ router.get('/cart', authUserMiddleware, productController.cart);
 router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */
-/*
 router.get('/create', adminMiddleware, productController.create);
 router.post('/create', adminMiddleware, upload.array('imagenes'), validationCreateMiddleware.validation, validationCreateMiddleware.result, productController.save);
-*/
-router.get('/create', productController.create);
-router.post('/create', upload.array('imagenes'), validationCreateMiddleware.validation, validationCreateMiddleware.result, productController.save);
 
 
 /* EDIT ONE PRODUCT */
-/*
 router.get('/edit/:id', adminMiddleware, productController.edit);
 router.put('/:id', adminMiddleware, validationProductEditMiddleware.validation, validationProductEditMiddleware.result, productController.update);
-*/
 
-router.get('/edit/:id', productController.edit);
-router.put('/:id', validationProductEditMiddleware.validation, validationProductEditMiddleware.result, productController.update);
 
 /* DELETE ONE PRODUCT */
 router.delete('/:id', adminMiddleware, productController.logicDelete);
