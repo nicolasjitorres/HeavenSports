@@ -1,8 +1,9 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/general.css">
 
-<title>Login</title>
+<title>Iniciá sesión</title>
 </head>
 
 <body>
@@ -19,50 +20,46 @@
 
     <!-- Formulario registro -->
     <div class="contenedor-form">
-      <h4 class="titulo">Iniciá Sesión</h4>
+      <h4 class="titulo">Iniciá sesión</h4>
       <form action="/users/signIn" method="POST" class="loginForm">
 
         <!-- EMAIL USUARIO -->
         <div class="box email">
-          <input type="email" name="email" id="email" value="<%= locals.email ? email : ""  %>">
-          <label for="email">Email</label>
+          <label for="email" class="lbl">Email*</label>
+          <input type="email" name="email" id="email" value="<%= locals.email ? email : ""  %>" class="inp">
+          <% if (locals.errors) { %>
+          <% const emailError = errors.find(error => error.path == 'email'); %>
+          <% if (emailError) { %>
+          <p class="error"><%= emailError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg email"></div>
-        <% if (locals.errors) { %>
-        <% const emailError = errors.find(error => error.path == 'email'); %>
-        <% if (emailError) { %>
-        <h6 style="color: red;"><%= emailError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- CONTRASEÑA USUARIO -->
-        <div class="box contrasena">
-          <input type="password" name="contrasena" id="contrasena">
-          <label for="contrasena">Contraseña</label>
+        <div class="box pass">
+          <label for="contrasena" class="lbl">Contraseña*</label>
+          <input type="password" name="contrasena" id="contrasena" class="inp">
+          <% if (locals.errors) { %>
+          <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
+          <% if (contrasenaError) { %>
+          <p class="error"><%= contrasenaError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg contrasena"></div>
-        <% if (locals.errors) { %>
-        <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
-        <% if (contrasenaError) { %>
-        <h6 style="color: red;"><%= contrasenaError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- RECORDAR USUARIO -->
-        <div class="box-recordar">
-          <input type="checkbox" name="recordar" id="recordar">
-          <label for="recordar" class="label-recordar">Recuérdame</label>
+        <div class="box">
+          <input type="checkbox" name="recordar" id="recordar" class="inp-check">
+          <label for="recordar" class="lbl">Mantener sesión iniciada</label>
         </div>
 
 
-        <div class="botones">
-          <!-- Boton carga -->
-          <button type="submit" class="boton">Ingresar</button>
-        </div>
+        <!-- Boton carga -->
+        <button type="submit" class="btn btn-primary">Ingresar</button>
 
 
         <!-- RECORDAR USUARIO -->
-        <a class="link-registro" href="/users/register">¿Todavía no tienes una cuenta? Registrate</a>
+        <a class="color-primary link" href="/users/register">Registrate</a>
 
       </form>
     </div>

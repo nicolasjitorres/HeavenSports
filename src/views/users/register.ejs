@@ -1,7 +1,8 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/register.css">
-<title>Registrarme</title>
+<link rel="stylesheet" href="/css/general.css">
+<title>Registro</title>
 
 </head>
 
@@ -18,89 +19,104 @@
 
     <!-- Formulario registro -->
     <div class="contenedor-form">
-      <h4 class="titulo">Registrate</h4>
+      <h4 class="titulo">¡Abrí tu cuenta!</h4>
       <form action="/users/register" method="POST" enctype="multipart/form-data" class="registerForm">
 
         <!-- NOMBRE USUARIO -->
         <div class="box nombre">
-          <input type="text" name="nombre" id="nombre" value=<%= locals.usuario ? usuario.nombre : "" %>>
-          <label for="nombre">Nombre</label>
+          <label class="lbl" for="nombre">Nombre*</label>
+          <input class="inp" type="text" name="nombre" id="nombre" value=<%= locals.usuario ? usuario.nombre : "" %>>
+          <% if (locals.errors) { %>
+          <% const nombreError = errors.find(error => error.path == 'nombre'); %>
+          <% if (nombreError) { %>
+          <p class="error"><%= nombreError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg nombre"></div>
-        <% if (locals.errors) { %>
-        <% const nombreError = errors.find(error => error.path == 'nombre'); %>
-        <% if (nombreError) { %>
-        <h6 style="color: red;"><%= nombreError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- APELLIDO USUARIO -->
         <div class="box apellido">
-          <input type="text" name="apellido" id="apellido" value=<%= locals.usuario ? usuario.apellido : "" %>>
-          <label for="apellido">Apellido</label>
+          <label class="lbl" for="apellido">Apellido*</label>
+          <input class="inp" type="text" name="apellido" id="apellido"
+            value=<%= locals.usuario ? usuario.apellido : "" %>>
+          <% if (locals.errors) { %>
+          <% const apellidoError = errors.find(error => error.path == 'apellido'); %>
+          <% if (apellidoError) { %>
+          <p class="error"><%= apellidoError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg apellido"></div>
-        <% if (locals.errors) { %>
-        <% const apellidoError = errors.find(error => error.path == 'apellido'); %>
-        <% if (apellidoError) { %>
-        <h6 style="color: red;"><%= apellidoError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- TELEFONO USUARIO -->
         <div class="box telefono">
-          <input type="number" name="telefono" id="telefono" value=<%= locals.usuario ? usuario.telefono : "" %>>
-          <label for="telefono">Telefono</label>
+          <label class="lbl" for="telefono">Telefono</label>
+          <input class="inp" type="number" name="telefono" id="telefono"
+            value=<%= locals.usuario ? usuario.telefono : "" %>>
         </div>
 
         <!-- EMAIL USUARIO -->
         <div class="box email">
-          <input type="email" name="email" id="email" value=<%= locals.usuario ? usuario.email : "" %>>
-          <label for="email">Email</label>
+          <label class="lbl" for="email">Email*</label>
+          <input class="inp" type="email" name="email" id="email" value=<%= locals.usuario ? usuario.email : "" %>>
+          <div class="errorMsg email"></div>
+          <% if (locals.errors) { %>
+          <% const emailError = errors.find(error => error.path == 'email'); %>
+          <% if (emailError) { %>
+          <p class="error"><%= emailError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg email"></div>
-        <% if (locals.errors) { %>
-        <% const emailError = errors.find(error => error.path == 'email'); %>
-        <% if (emailError) { %>
-        <h6 style="color: red;"><%= emailError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- CONTRASEÑA USUARIO -->
         <div class="box contrasena">
-          <input type="password" name="contrasena" id="contrasena">
-          <label for="contrasena">Contraseña</label>
+          <label class="lbl" for="contrasena">Contraseña*</label>
+          <input class="inp" type="password" name="contrasena" id="contrasena">
+          <div class="errorMsg contrasena"></div>
+          <% if (locals.errors) { %>
+          <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
+          <% if (contrasenaError) { %>
+          <p class="error"><%= contrasenaError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg contrasena"></div>
-        <% if (locals.errors) { %>
-        <% const contrasenaError = errors.find(error => error.path == 'contrasena'); %>
-        <% if (contrasenaError) { %>
-        <h6 style="color: red;"><%= contrasenaError.msg %></h6>
-        <% } %>
-        <% } %>
 
         <!-- CONTRASEÑA CONFIRMADA USUARIO -->
         <div class="box reContrasena">
-          <input type="password" name="reContrasena" id="re-contrasena">
-          <label for="re-contrasena">Repetir contraseña</label>
+          <label class="lbl" for="re-contrasena">Repetir contraseña*</label>
+          <input class="inp" type="password" name="reContrasena" id="re-contrasena">
+          <% if (locals.errors) { %>
+          <% const reContrasenaError = errors.find(error => error.path == 'reContrasena'); %>
+          <% if (reContrasenaError) { %>
+          <p class="error"><%= reContrasenaError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg reContrasena"></div>
 
 
         <!-- CARGAR IMAGENE PERFIL -->
-        <div class="box box-img">
-          <label for="img" class="label-img">Cargar foto de perfil</label>
-          <input class="input-image" type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
+        <div class="box image">
+          <label class="lbl">Foto de perfil (Vista previa)</label>
+          <img src="/images/users/default.png" alt="foto perfil usuario" class="file-image">
+          <input type="file" id="img" name="imagen" accept=".jpeg, .png, .jpg">
+
+          <div id="num-files" class="file-info">
+            <label for="img" class="btn btn-upload">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              Subir una imagen
+            </label>
+            <p class="file-info-p">Ningun archivo seleccionado.</p>
+          </div>
+          <p class="file-info-p">Archivos permitidos: .jpeg, .png, .jpg, Tamaño máximo 10Mb.</p>
+
         </div>
         <div class="errorMsg img"></div>
 
 
-        <div class="botones">
-          <!-- Boton carga -->
-          <button type="submit" class="boton">Guardar</button>
+        <!-- Boton carga -->
+        <button type="submit" class="btn btn-primary">¡Registrarte!</button>
 
-          <a href="/">Cancelar</a>
-        </div>
+        <!-- Boton de cancelar -->
+        <a href="/" class="link color-primary">Cancelar</a>
 
       </form>
     </div>

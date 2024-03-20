@@ -1,66 +1,91 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
-    console.log('Vinculado exitosamente');
+    let boxEmail = document.querySelector(".email");
+    let inpEmail = document.querySelector(".email .inp");
+    let lblEmail = document.querySelector(".email .lbl");
+    let errorEmail = document.querySelector(".email .error");
 
-    let email = document.querySelector("input#email");
-    let divEmail = document.querySelector("div.email");
-    let divErrorMsgEmail = document.querySelector("div.errorMsg.email");
+    let boxPass = document.querySelector(".pass");
+    let inpPass = document.querySelector(".pass .inp");
+    let lblPass = document.querySelector(".pass .lbl");
+    let errorPass = document.querySelector(".pass .error");
 
-    let contrasena = document.querySelector("input#contrasena");
-    let divContrasena = document.querySelector("div.contrasena");
-    let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
+    let form = document.querySelector(".loginForm");
 
-    let form = document.querySelector(".loginForm")
+    function validar({
+        box,
+        input,
+        label,
+        error,
+        msg
+    }) {
+        if (error) {
+            error.style.display = "block";
+            error.textContent = msg;
+        } else {
+            error = document.createElement("p");
+            error.classList.add("error");
+            error.textContent = msg;
+            box.appendChild(error);
+        }
+        input.classList.add("inp-error");
+        label.classList.add("lbl-error");
+        input.classList.remove("inp-valid");
+        label.classList.remove("lbl-valid");
 
+        return error;
+    }
 
     /* EMAIL */
     email.addEventListener('blur', () => {
-        if (email.value.trim().length == 0) {
-            divEmail.classList.add('errorBox');
-            divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-            divErrorMsgEmail.style.display = "block";
+        if (inpEmail.value.trim().length == 0) {
+            errorEmail = validar({
+                box: boxEmail,
+                input: inpEmail,
+                label: lblEmail,
+                error: errorEmail,
+                msg: "Este campo es obligatorio"
+            });
         } else {
-            if (!email.validity.valid) {
-                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-                divErrorMsgEmail.style.display = "block";
-                console.log(email.value);
+            if (!inpEmail.validity.valid) {
+                errorEmail = validar({
+                    box: boxEmail,
+                    input: inpEmail,
+                    label: lblEmail,
+                    error: errorEmail,
+                    msg: "Introduzca un email valido"
+                });
             } else {
-                divErrorMsgEmail.style.display = "none"
+                errorEmail.style.display = "none"
+                inpEmail.classList.add("inp-valid");
+                lblEmail.classList.add("lbl-valid");
+                inpEmail.classList.remove("inp-error");
+                lblEmail.classList.remove("lbl-error");
             };
         }
     });
-
-    email.addEventListener('focus', () => {
-        divEmail.classList.remove('errorBox');
-        if (email.value.trim().length !== 0 && !email.validity.valid) {
-            divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-            divErrorMsgEmail.style.display = "block";
-        } else {
-            divErrorMsgEmail.style.display = "none"
-        }
-    });
-
-    email.addEventListener('change', () => {
-            if (!email.validity.valid) {
-                divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-                divErrorMsgEmail.style.display = "block";
-                console.log(email.value);
-            } else {
-                divErrorMsgEmail.style.display = "none"
-            };
-    }); 
 
 
     /* CONTRASENA */
     contrasena.addEventListener('blur', () => {
-        if (contrasena.value.trim().length == 0) {
-            divContrasena.classList.add('errorBox');
-            divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-            divErrorMsgContrasena.style.display = "block";
+        if (inpPass.value.trim().length == 0) {
+            errorPass = validar({
+                box: boxPass,
+                input: inpPass,
+                label: lblPass,
+                error: errorPass,
+                msg: "Este campo es obligatorio"
+            })
+        } else {
+            errorPass.style.display = "none"
+            inpPass.classList.add("inp-valid");
+            lblPass.classList.add("lbl-valid");
+            inpPass.classList.remove("inp-error");
+            lblPass.classList.remove("lbl-error");
         }
     });
 
-    
+
     contrasena.addEventListener('focus', () => {
         divContrasena.classList.remove('errorBox');
         divErrorMsgContrasena.style.display = "none"
@@ -69,21 +94,28 @@ window.addEventListener('load', function() {
 
     /* BOTON DE CARGA */
     form.addEventListener('submit', (event) => {
-        if (email.value.trim().length == 0 || contrasena.value.trim().length == 0) {
+        if (inpEmail.value.trim().length == 0 || inpPass.value.trim().length == 0) {
             event.preventDefault();
-            if (email.value.trim().length == 0) {
-                divEmail.classList.add('errorBox');
-                divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-                divErrorMsgEmail.style.display = "block";
+            if (inpEmail.value.trim().length == 0) {
+                errorEmail = validar({
+                    box: boxEmail,
+                    input: inpEmail,
+                    label: lblEmail,
+                    error: errorEmail,
+                    msg: "Este campo es obligatorio"
+                });
             }
-            if (contrasena.value.trim().length == 0) {
-                divContrasena.classList.add('errorBox');
-                divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-                divErrorMsgContrasena.style.display = "block";
+            if (inpPass.value.trim().length == 0) {
+                errorPass = validar({
+                    box: boxPass,
+                    input: inpPass,
+                    label: lblPass,
+                    error: errorPass,
+                    msg: "Este campo es obligatorio"
+                })
             }
         }
     })
-    
+
 
 });
-
