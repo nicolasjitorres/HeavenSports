@@ -10,6 +10,8 @@ window.addEventListener('load', function () {
     let lblPass = document.querySelector(".pass .lbl");
     let errorPass = document.querySelector(".pass .error");
 
+    const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     let form = document.querySelector(".loginForm");
 
     function validar({
@@ -36,60 +38,73 @@ window.addEventListener('load', function () {
         return error;
     }
 
-    /* EMAIL */
+
+    // Si todo es correcto, se ejecuta esta funcion
+    function datosCorrectos({
+        input,
+        label,
+        error
+    }) {
+        if (error) {
+            error.style.display = "none"
+        }
+        input.classList.add("inp-valid");
+        label.classList.add("lbl-valid");
+        input.classList.remove("inp-error");
+        label.classList.remove("lbl-error");
+    }
+
+
+    /* Validacion email */
     email.addEventListener('blur', () => {
         if (inpEmail.value.trim().length == 0) {
-            errorEmail = validar({
+            return errorEmail = validar({
                 box: boxEmail,
                 input: inpEmail,
                 label: lblEmail,
                 error: errorEmail,
-                msg: "Este campo es obligatorio"
+                msg: "Este campo es obligatorio."
             });
-        } else {
-            if (!inpEmail.validity.valid) {
-                errorEmail = validar({
-                    box: boxEmail,
-                    input: inpEmail,
-                    label: lblEmail,
-                    error: errorEmail,
-                    msg: "Introduzca un email valido"
-                });
-            } else {
-                errorEmail.style.display = "none"
-                inpEmail.classList.add("inp-valid");
-                lblEmail.classList.add("lbl-valid");
-                inpEmail.classList.remove("inp-error");
-                lblEmail.classList.remove("lbl-error");
-            };
         }
+
+        if (!expRegEmail.test(inpEmail.value)) {
+            return errorEmail = validar({
+                box: boxEmail,
+                input: inpEmail,
+                label: lblEmail,
+                error: errorEmail,
+                msg: "Introduzca un email valido."
+            });
+        }
+
+        return datosCorrectos({
+            input: inpEmail,
+            label: lblEmail,
+            error: errorEmail
+        });
+
     });
 
 
     /* CONTRASENA */
     contrasena.addEventListener('blur', () => {
         if (inpPass.value.trim().length == 0) {
-            errorPass = validar({
+            return errorPass = validar({
                 box: boxPass,
                 input: inpPass,
                 label: lblPass,
                 error: errorPass,
                 msg: "Este campo es obligatorio"
             })
-        } else {
-            errorPass.style.display = "none"
-            inpPass.classList.add("inp-valid");
-            lblPass.classList.add("lbl-valid");
-            inpPass.classList.remove("inp-error");
-            lblPass.classList.remove("lbl-error");
         }
+
+        return datosCorrectos({
+            input: inpPass,
+            label: lblPass,
+            error: errorPass
+        });
     });
 
-
-    contrasena.addEventListener('focus', () => {
-        divContrasena.classList.remove('errorBox');
-        divErrorMsgContrasena.style.display = "none"
-    });
 
 
     /* BOTON DE CARGA */
@@ -104,7 +119,16 @@ window.addEventListener('load', function () {
                     error: errorEmail,
                     msg: "Este campo es obligatorio"
                 });
+            } else if(!expRegEmail.test(inpEmail.value)) {
+                errorEmail = validar({
+                    box: boxEmail,
+                    input: inpEmail,
+                    label: lblEmail,
+                    error: errorEmail,
+                    msg: "Introduzca un email valido."
+                });
             }
+
             if (inpPass.value.trim().length == 0) {
                 errorPass = validar({
                     box: boxPass,

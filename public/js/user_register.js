@@ -29,6 +29,9 @@ window.addEventListener('load', function () {
     let fileList = document.querySelector('.file-info-p');
     let fileImg = document.querySelector('.file-image');
 
+    const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const expRegContrasena = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
 
     // Valida los datos 
     function validar({
@@ -132,6 +135,16 @@ window.addEventListener('load', function () {
             })
         }
 
+        if (!expRegEmail.test(inputEmail.value)) {
+            return errorEmail = validar({
+                box: boxEmail,
+                input: inputEmail,
+                label: labelEmail,
+                error: errorEmail,
+                msg: "Introduzca un email valido."
+            })
+        }
+
         return datosCorrectos({
             input: inputEmail,
             label: labelEmail,
@@ -161,6 +174,16 @@ window.addEventListener('load', function () {
             })
         }
 
+        if (!expRegContrasena.test(inputContrasena.value)) {
+            return errorContrasena = validar({
+                box: boxContrasena,
+                input: inputContrasena,
+                label: labelContrasena,
+                error: errorContrasena,
+                msg: "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial."
+            })
+        }
+
         return datosCorrectos({
             input: inputContrasena,
             label: labelContrasena,
@@ -177,6 +200,16 @@ window.addEventListener('load', function () {
                 label: labelReContrasena,
                 error: errorReContrasena,
                 msg: "Este campo es obligatorio."
+            })
+        }
+
+        if (inputContrasena.value != inputReContrasena.value) {
+            return errorReContrasena = validar({
+                box: boxReContrasena,
+                input: inputReContrasena,
+                label: labelReContrasena,
+                error: errorReContrasena,
+                msg: "Las contraseñas no coinciden."
             })
         }
 
