@@ -1,6 +1,7 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/create.css">
+<link rel="stylesheet" href="/css/general.css">
 <title>Cargar</title>
 
 </head>
@@ -23,62 +24,59 @@
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box nombre">
-          <input type="text" name="nombre" id="nombre"
+          <label class="lbl" for="nombre">Nombre</label>
+          <input class="inp" type="text" name="nombre" id="nombre"
             value="<%= locals.product && product.nombre ? product.nombre : "" %>">
-          <label for="nombre">Nombre</label>
+          <% if (locals.errors) { %>
+          <% const nombreError = errors.find(error => error.path == 'nombre'); %>
+          <% if (nombreError) { %>
+          <p class="error"><%= nombreError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg nombre"></div>
-        <% if (locals.errors) { %>
-        <% const nombreError = errors.find(error => error.path == 'nombre'); %>
-        <% if (nombreError) { %>
-        <h6 style="color: red;"><%= nombreError.msg %></h6>
-        <% } %>
-        <% } %>
+
 
 
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box descripcion">
-          <input type="text" name="descripcion" id="descripcion"
+          <label class="lbl" for="descripcion">Descripción</label>
+          <input class="inp" type="text" name="descripcion" id="descripcion"
             value="<%= locals.product && product.descripcion ? product.descripcion : "" %>">
-          <label for="descripcion">Descripción</label>
+          <% if (locals.errors) { %>
+          <% const descError = errors.find(error => error.path == 'descripcion'); %>
+          <% if (descError) { %>
+          <p class="error"><%= descError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg descripcion"></div>
-        <% if (locals.errors) { %>
-        <% const descError = errors.find(error => error.path == 'descripcion'); %>
-        <% if (descError) { %>
-        <h6 style="color: red;"><%= descError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- PRECIO PRODUCTO -->
         <div class="box precio">
-          <input type="number" name="precio" id="precio"
+          <label class="lbl" for="precio">Precio</label>
+          <input class="inp" type="number" name="precio" id="precio"
             value="<%= locals.product && product.precio ? product.precio : "" %>">
-          <label for="precio">Precio</label>
+          <% if (locals.errors) { %>
+          <% const precioError = errors.find(error => error.path == 'precio'); %>
+          <% if (precioError) { %>
+          <p class="error"><%= precioError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg precio"></div>
-        <% if (locals.errors) { %>
-        <% const precioError = errors.find(error => error.path == 'precio'); %>
-        <% if (precioError) { %>
-        <h6 style="color: red;"><%= precioError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box descuento">
-          <input type="number" name="descuento" id="descuento"
+          <label class="lbl" for="descuento">Descuento (%)</label>
+          <input class="inp" type="number" name="descuento" id="descuento"
             value="<%= locals.product && product.descuento ? product.descuento : "" %>">
-          <label for="descuento">Descuento (%)</label>
+          <% if (locals.errors) { %>
+          <% const descError = errors.find(error => error.path == 'descuento'); %>
+          <% if (descError) { %>
+          <p class="error"><%= descError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg descuento"></div>
-        <% if (locals.errors) { %>
-        <% const descError = errors.find(error => error.path == 'descuento'); %>
-        <% if (descError) { %>
-        <h6 style="color: red;"><%= descError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- MARCA PRODUCTO -->
@@ -97,7 +95,7 @@
         <% if (locals.errors) { %>
         <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
         <% if (marcaError) { %>
-        <h6 style="color: red;"><%= marcaError.msg %></h6>
+        <p style="color: red;"><%= marcaError.msg %></p>
         <% } %>
         <% } %>
 
@@ -118,7 +116,7 @@
         <% if (locals.errors) { %>
         <% const colorError = errors.find(error => error.path == 'id_color'); %>
         <% if (colorError) { %>
-        <h6 style="color: red;"><%= colorError.msg %></h6>
+        <p style="color: red;"><%= colorError.msg %></p>
         <% } %>
         <% } %>
 
@@ -139,32 +137,31 @@
         <% if (locals.errors) { %>
         <% const talleError = errors.find(error => error.path == 'id_talle'); %>
         <% if (talleError) { %>
-        <h6 style="color: red;"><%= talleError.msg %></h6>
+        <p style="color: red;"><%= talleError.msg %></p>
         <% } %>
         <% } %>
 
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
         <div class="box stock">
-          <input type="number" name="stock" id="stock"
+          <label class="lbl" for="stock">Stock</label>
+          <input class="inp" type="number" name="stock" id="stock"
             value="<%= locals.product && product.stock ? product.stock : "" %>">
-          <label for="stock">Stock</label>
+          <% if (locals.errors) { %>
+          <% const stockError = errors.find(error => error.path == 'stock'); %>
+          <% if (stockError) { %>
+          <p class="error"><%= stockError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg stock"></div>
-        <% if (locals.errors) { %>
-        <% const stockError = errors.find(error => error.path == 'stock'); %>
-        <% if (stockError) { %>
-        <h6 style="color: red;"><%= stockError.msg %></h6>
-        <% } %>
-        <% } %>
-
 
         <!-- CATEGORIA PRODUCTO -->
         <div class="box-check">
-          <label class="box-check-titulo">Selecciona las categorias</label>          
+          <label class="box-check-titulo">Selecciona las categorias</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input class="checkCateg" type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value="<%= categoria.id %>"
+          <input class="checkCateg" type="checkbox" name="categorias[]" id=<%=categoria.nombre %>
+            value="<%= categoria.id %>"
             <%= locals.product && product.categorias && product.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
           <label for=<%=categoria.nombre %> class="label-check">
             <%= categoria.nombre %>

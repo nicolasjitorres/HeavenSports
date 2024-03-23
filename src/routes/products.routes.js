@@ -25,8 +25,8 @@ router.get('/cart', authUserMiddleware, productController.cart);
 router.post('/cart/:id', productController.addCart);
 
 /* CREATE ONE PRODUCT */
-router.get('/create', adminMiddleware, productController.create);
-router.post('/create', adminMiddleware, upload.array('imagenes'), validationCreateMiddleware.validation, validationCreateMiddleware.result, productController.save);
+router.get('/create', productController.create);
+router.post('/create', upload.array('imagenes'), validationCreateMiddleware.validation, validationCreateMiddleware.result, productController.save);
 
 
 /* EDIT ONE PRODUCT */

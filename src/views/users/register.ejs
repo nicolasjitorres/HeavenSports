@@ -107,9 +107,14 @@
             <p class="file-info-p">Ningun archivo seleccionado.</p>
           </div>
           <p class="file-info-p">Archivos permitidos: .jpeg, .png, .jpg, Tamaño máximo 10Mb.</p>
-
+          <% if (locals.errors) { %>
+          <% const reImageError = errors.find(error => error.path == 'image'); %>
+          <% if (reImageError) { %>
+          <p class="error"><%= reImageError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg img"></div>
+
 
 
         <!-- Boton carga -->

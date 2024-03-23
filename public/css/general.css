@@ -136,7 +136,7 @@ body {
     max-height: 100vh;
 }
 
-.file-info{ 
+.file-info {
     width: 100%;
     display: grid;
     grid: "label p p p p p p";
@@ -211,8 +211,8 @@ body {
 /* Esto para eliminar el estilo por defecto de los inputs de tipo number */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Esto para ocultar todos los inputs de tipo file */
@@ -252,4 +252,12 @@ input[type="file"] {
 .link:hover {
     color: var(--dark-primary);
     text-decoration: underline;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--secondary);
 }

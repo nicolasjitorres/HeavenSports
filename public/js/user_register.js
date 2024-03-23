@@ -25,22 +25,20 @@ window.addEventListener('load', function () {
     let labelReContrasena = document.querySelector('.reContrasena .lbl');
     let errorReContrasena = document.querySelector(".reContrasena .error");
 
+    let fileBox = document.querySelector('.image');
     let fileInput = document.querySelector("#img");
+    let fileInfo = document.querySelector('.file-info');
     let fileList = document.querySelector('.file-info-p');
     let fileImg = document.querySelector('.file-image');
+    let fileError = document.querySelector('.image .error');
 
     const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const expRegContrasena = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
+    let form = document.querySelector('.registerForm');
 
     // Valida los datos 
-    function validar({
-        box,
-        input,
-        label,
-        error,
-        msg
-    }) {
+    function validarError(box, input, label, error, msg) {
         if (error) {
             error.style.display = "block";
             error.textContent = msg;
@@ -60,7 +58,7 @@ window.addEventListener('load', function () {
 
 
     // Si todo es correcto, se ejecuta esta funcion
-    function datosCorrectos({input, label, error}) {
+    function datosCorrectos(input, label, error) {
         if (error) {
             error.style.display = "none"
         }
@@ -70,388 +68,178 @@ window.addEventListener('load', function () {
         label.classList.remove("lbl-error");
     }
 
-
-    // Evento que escuchara si hay algun cambio en el input de imagen de perfil
-    fileInput.addEventListener('change', () => {
-        fileList.textContent = fileInput.files[0].name;
-        let reader = new FileReader();
-
-        reader.onload = function (event) {
-            fileImg.src = event.target.result;
+    function validarImg(input) {
+        let imagen = input.files[0];
+        let extension = imagen.name.split('.').pop().toLowerCase();
+        let extensionesValidas = ['jpg', 'png', 'jpeg'];
+        if (!extensionesValidas.includes(extension)) {
+            return 'La extensión es invalida.';
         }
 
-        reader.readAsDataURL(fileInput.files[0]);
-    });
+        let size = imagen.size / (1024 * 1024);
+        if (size > 10) {
+            return 'El tamaño supera los 10Mb.';
+        }
 
+        return null;
+    }
+
+
+    // VALIDACIONES DE LOS CAMPOS
 
     // Evento para validar el campo nombre
     inputNombre.addEventListener('blur', () => {
         if (inputNombre.value.trim().length == 0) {
-            return errorNombre = validar({
-                box: boxNombre,
-                input: inputNombre,
-                label: labelNombre,
-                error: errorNombre,
-                msg: "Este campo es obligatorio."
-            })
+            return errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "Este campo es obligatorio.")
         }
 
-        return datosCorrectos({
-            input: inputNombre,
-            label: labelNombre,
-            error: errorNombre
-        });
-        
+        if (inputNombre.value.length < 2) {
+            return errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "El nombre debe tener al menos 2 caracteres.")
+        }
+
+        return datosCorrectos(inputNombre, labelNombre, errorNombre);
     })
 
     // Evento para validar el campo apellido
     inputApellido.addEventListener('blur', () => {
         if (inputApellido.value.length == 0) {
-            return errorApellido = validar({
-                box: boxApellido,
-                input: inputApellido,
-                label: labelApellido,
-                error: errorApellido,
-                msg: "Este campo es obligatorio."
-            })
+            return errorApellido = validarError(boxApellido, inputApellido, labelApellido, errorApellido, "Este campo es obligatorio.")
         }
 
-        return datosCorrectos({
-            input: inputApellido,
-            label: labelApellido,
-            error: errorApellido
-        });
+        if (inputApellido.value.length < 2) {
+            return errorApellido = validarError(boxApellido, inputApellido, labelApellido, errorApellido, "El apellido debe tener al menos 2 caracteres.")
+        }
+
+        return datosCorrectos(inputApellido, labelApellido, errorApellido);
     })
 
     // Evento para validar el campo email
     inputEmail.addEventListener('blur', () => {
         if (inputEmail.value.length == 0) {
-            return errorEmail = validar({
-                box: boxEmail,
-                input: inputEmail,
-                label: labelEmail,
-                error: errorEmail,
-                msg: "Este campo es obligatorio."
-            })
+            return errorEmail = validarError(boxEmail, inputEmail, labelEmail, errorEmail, "Este campo es obligatorio.")
         }
 
         if (!expRegEmail.test(inputEmail.value)) {
-            return errorEmail = validar({
-                box: boxEmail,
-                input: inputEmail,
-                label: labelEmail,
-                error: errorEmail,
-                msg: "Introduzca un email valido."
-            })
+            return errorEmail = validarError(boxEmail, inputEmail, labelEmail, errorEmail, "Introduzca un email valido.")
         }
 
-        return datosCorrectos({
-            input: inputEmail,
-            label: labelEmail,
-            error: errorEmail
-        });
+        return datosCorrectos(inputEmail, labelEmail, errorEmail);
     })
 
     // Evento para validar el campo contraseña
     inputContrasena.addEventListener('blur', () => {
         if (inputContrasena.value.length == 0) {
-            return errorContrasena = validar({
-                box: boxContrasena,
-                input: inputContrasena,
-                label: labelContrasena,
-                error: errorContrasena,
-                msg: "Este campo es obligatorio."
-            })
+            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "Este campo es obligatorio.")
         }
 
         if (inputContrasena.value.length < 8) {
-            return errorContrasena = validar({
-                box: boxContrasena,
-                input: inputContrasena,
-                label: labelContrasena,
-                error: errorContrasena,
-                msg: "La contraseña debe tener al menos 8 caracteres."
-            })
+            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe tener al menos 8 caracteres.")
         }
 
         if (!expRegContrasena.test(inputContrasena.value)) {
-            return errorContrasena = validar({
-                box: boxContrasena,
-                input: inputContrasena,
-                label: labelContrasena,
-                error: errorContrasena,
-                msg: "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial."
-            })
+            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial.")
         }
 
-        return datosCorrectos({
-            input: inputContrasena,
-            label: labelContrasena,
-            error: errorContrasena
-        });
+        return datosCorrectos(inputContrasena, labelContrasena, errorContrasena);
     })
 
     // Evento para validar el campo reContraseña
     inputReContrasena.addEventListener('blur', () => {
         if (inputReContrasena.value.length == 0) {
-            return errorReContrasena = validar({
-                box: boxReContrasena,
-                input: inputReContrasena,
-                label: labelReContrasena,
-                error: errorReContrasena,
-                msg: "Este campo es obligatorio."
-            })
+            return errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Este campo es obligatorio.")
         }
 
         if (inputContrasena.value != inputReContrasena.value) {
-            return errorReContrasena = validar({
-                box: boxReContrasena,
-                input: inputReContrasena,
-                label: labelReContrasena,
-                error: errorReContrasena,
-                msg: "Las contraseñas no coinciden."
-            })
+            return errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Las contraseñas no coinciden.")
         }
 
-        return datosCorrectos({
-            input: inputReContrasena,
-            label: labelReContrasena,
-            error: errorReContrasena
-        });
+        return datosCorrectos(inputReContrasena, labelReContrasena, errorReContrasena);
+    });
+
+
+    // Validacion del input de imagen
+    fileInput.addEventListener('change', () => {
+        const result = validarImg(fileInput);
+
+        if (result) {
+            fileError = validarError(fileBox, fileInfo, fileList, fileError, result);
+            fileList.textContent = 'Ningun archivo seleccionado.';
+            fileInput.value = '';
+            return;
+        }
+
+        fileList.textContent = fileInput.files[0].name;
+        let reader = new FileReader();
+        reader.onload = function (event) {
+            fileImg.src = event.target.result;
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+        if (fileError) {
+            fileError.style.display = 'none';
+        }
+        fileInfo.classList.add('inp-valid');
+        fileList.classList.add('lbl-valid');
+        fileInfo.classList.remove('inp-error');
+        fileList.classList.remove('lbl-error');
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let validado = true;
+
+        // Valida el campo nombre
+        if (inputNombre.value.trim().length == 0) {
+            errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "Este campo es obligatorio.")
+            validado = false;
+        } else if (inputNombre.value.length < 2) {
+            errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "El nombre debe tener al menos 2 caracteres.")
+            validado = false;
+        }
+
+        // Valida el campo apellido
+        if (inputApellido.value.length == 0) {
+            errorApellido = validarError(boxApellido, inputApellido, labelApellido, errorApellido, "Este campo es obligatorio.")
+            validado = false;
+        } else if (inputApellido.value.length < 2) {
+            errorApellido = validarError(boxApellido, inputApellido, labelApellido, errorApellido, "El apellido debe tener al menos 2 caracteres.")
+            validado = false;
+        }
+
+        // Valida el campo email
+        if (inputEmail.value.length == 0) {
+            errorEmail = validarError(boxEmail, inputEmail, labelEmail, errorEmail, "Este campo es obligatorio.")
+            validado = false;
+        } else if (!expRegEmail.test(inputEmail.value)) {
+            errorEmail = validarError(boxEmail, inputEmail, labelEmail, errorEmail, "Introduzca un email valido.")
+            validado = false;
+        }
+
+        // Valida el campo contrasena
+        if (inputContrasena.value.length == 0) {
+            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "Este campo es obligatorio.")
+            validado = false;
+        } else if (inputContrasena.value.length < 8) {
+            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe tener al menos 8 caracteres.")
+            validado = false;
+        } else if (!expRegContrasena.test(inputContrasena.value)) {
+            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial.")
+            validado = false;
+        }
+
+        // Valida el campo reContrasena
+        if (inputReContrasena.value.length == 0) {
+            errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Este campo es obligatorio.")
+            validado = false;
+        } else if (inputContrasena.value != inputReContrasena.value) {
+            errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Las contraseñas no coinciden.")
+            validado = false;
+        }
+
+
+        // En caso de que todo sea correcto
+        if (validado) {
+            form.submit();
+        }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // let nombre = document.querySelector("input#nombre");
-    // let divNombre = document.querySelector("div.nombre");
-    // let divErrorMsgNombre = document.querySelector("div.errorMsg.nombre");
-
-    // let apellido = document.querySelector("input#apellido");
-    // let divApellido = document.querySelector("div.apellido");
-    // let divErrorMsgApellido = document.querySelector("div.errorMsg.apellido");
-
-    // let email = document.querySelector("input#email");
-    // let divEmail = document.querySelector("div.email");
-    // let divErrorMsgEmail = document.querySelector("div.errorMsg.email");
-
-    // let contrasena = document.querySelector("input#contrasena");
-    // let divContrasena = document.querySelector("div.contrasena");
-    // let divErrorMsgContrasena = document.querySelector("div.errorMsg.contrasena");
-
-    // let reContrasena = document.querySelector("input#re-contrasena");
-    // let divReContrasena = document.querySelector("div.reContrasena");
-    // let divErrorMsgReContrasena = document.querySelector("div.errorMsg.reContrasena");
-
-    // let imagen = document.querySelector("input#img");
-    // let divImagen = document.querySelector("div.box-img");
-    // let divErrorMsgImagen = document.querySelector("div.errorMsg.img");
-
-    // let form = document.querySelector(".registerForm")
-
-
-    // /* NOMBRE */
-    // nombre.addEventListener('blur', () => {
-    //     if (nombre.value.trim().length == 0) {
-    //         divNombre.classList.add('errorBox');
-    //         divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
-    //         divErrorMsgNombre.style.display = "block";
-    //     } else if (nombre.value.trim().length < 2) {
-    //         divNombre.classList.add('errorBox');
-    //         divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 2 caracteres";
-    //         divErrorMsgNombre.style.display = "block";
-    //     }
-    // });
-
-    // nombre.addEventListener('focus', () => {
-    //     divNombre.classList.remove('errorBox');
-    //     divErrorMsgNombre.style.display = "none"
-    // });
-
-
-    // /* APELLIDO */
-    // apellido.addEventListener('blur', () => {
-    //     if (apellido.value.trim().length == 0) {
-    //         divApellido.classList.add('errorBox');
-    //         divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
-    //         divErrorMsgApellido.style.display = "block";
-    //     } else if (apellido.value.trim().length < 2) {
-    //         divApellido.classList.add('errorBox');
-    //         divErrorMsgApellido.innerHTML = "El campo deberá tener al menos 2 caracteres";
-    //         divErrorMsgApellido.style.display = "block";
-    //     }
-    // });
-
-    // apellido.addEventListener('focus', () => {
-    //     divApellido.classList.remove('errorBox');
-    //     divErrorMsgApellido.style.display = "none"
-    // });
-
-
-    // /* EMAIL */
-    // email.addEventListener('blur', () => {
-    //     if (email.value.trim().length == 0) {
-    //         divEmail.classList.add('errorBox');
-    //         divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-    //         divErrorMsgEmail.style.display = "block";
-    //     } else {
-    //         if (!email.validity.valid) {
-    //             divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-    //             divErrorMsgEmail.style.display = "block";
-    //             console.log(email.value);
-    //         } else {
-    //             divErrorMsgEmail.style.display = "none"
-    //         };
-    //     }
-    // });
-
-    // email.addEventListener('focus', () => {
-    //     divEmail.classList.remove('errorBox');
-    //     if (email.value.trim().length !== 0 && !email.validity.valid) {
-    //         divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-    //         divErrorMsgEmail.style.display = "block";
-    //     } else {
-    //         divErrorMsgEmail.style.display = "none"
-    //     }
-    // });
-
-    // email.addEventListener('change', () => {
-    //     if (!email.validity.valid) {
-    //         divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-    //         divErrorMsgEmail.style.display = "block";
-    //         console.log(email.value);
-    //     } else {
-    //         divErrorMsgEmail.style.display = "none"
-    //     };
-    // });
-
-
-    // /* CONTRASENA */
-    // contrasena.addEventListener('blur', () => {
-    //     const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
-    //     contrasenaRegex.test(contrasena.value);
-    //     if (contrasena.value.trim().length == 0) {
-    //         divContrasena.classList.add('errorBox');
-    //         divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-    //         divErrorMsgContrasena.style.display = "block";
-    //     } else if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
-    //         divContrasena.classList.add('errorBox');
-    //         divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
-    //         divErrorMsgContrasena.style.display = "block";
-    //     }
-    // });
-
-    // contrasena.addEventListener('focus', () => {
-    //     divContrasena.classList.remove('errorBox');
-    //     divErrorMsgContrasena.style.display = "none"
-    // });
-
-
-    // /* REPETIR CONTRASENA */
-    // reContrasena.addEventListener('blur', () => {
-    //     if (reContrasena.value.trim().length == 0) {
-    //         divReContrasena.classList.add('errorBox');
-    //         divErrorMsgReContrasena.innerHTML = "Este campo es obligatorio";
-    //         divErrorMsgReContrasena.style.display = "block";
-    //     } else if (reContrasena.value.trim().length < 8) {
-    //         divReContrasena.classList.add('errorBox');
-    //         divErrorMsgReContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres";
-    //         divErrorMsgReContrasena.style.display = "block";
-    //     }
-    // });
-
-    // reContrasena.addEventListener('focus', () => {
-    //     divReContrasena.classList.remove('errorBox');
-    //     divErrorMsgReContrasena.style.display = "none"
-    // });
-
-
-    // /* IMAGEN */
-    // imagen.addEventListener('change', (event) => {
-    //     let ExtPermitidas = ["jpeg", "png", "jpg"];
-    //     let imagenExt = event.target.files[0].name.split(".").pop().toLowerCase();
-    //     if (!ExtPermitidas.includes(imagenExt)) {
-    //         divImagen.classList.add('errorBox');
-    //         divErrorMsgImagen.innerHTML = `Las extensiones permitidas son ${ExtPermitidas.join(", ")}.`;
-    //         divErrorMsgImagen.style.display = "block";
-    //     } else {
-    //         divImagen.classList.remove('errorBox');
-    //         divErrorMsgImagen.style.display = "none"
-    //     }
-    // })
-
-
-    // /* BOTON DE CARGA */
-    // form.addEventListener('submit', (event) => {
-    //     const contrasenaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[=+-_*/¡!¿?()@#$%&^.,:;])(?!\s)[a-zA-Z\d=+-_*/¡!¿?()@#$%&^.,:;]{8,20}$/;
-    //     contrasenaRegex.test(contrasena.value);
-    //     if (nombre.value.trim().length == 0 || apellido.value.trim().length == 0 || email.value.trim().length == 0 || contrasena.value.trim().length == 0 || !contrasenaRegex.test(contrasena.value) || reContrasena.value.trim().length == 0 || !imagen.value) {
-    //         event.preventDefault();
-    //         if (nombre.value.trim().length == 0) {
-    //             divNombre.classList.add('errorBox');
-    //             divErrorMsgNombre.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgNombre.style.display = "block";
-    //         };
-    //         if (nombre.value.trim().length < 2) {
-    //             divNombre.classList.add('errorBox');
-    //             divErrorMsgNombre.innerHTML = "El campo deberá tener al menos 2 caracteres";
-    //             divErrorMsgNombre.style.display = "block";
-    //         };
-    //         if (apellido.value.trim().length == 0) {
-    //             divApellido.classList.add('errorBox');
-    //             divErrorMsgApellido.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgApellido.style.display = "block";
-    //         };
-    //         if (apellido.value.trim().length < 2) {
-    //             divApellido.classList.add('errorBox');
-    //             divErrorMsgApellido.innerHTML = "El campo deberá tener al menos 2 caracteres";
-    //             divErrorMsgApellido.style.display = "block";
-    //         };
-    //         if (email.value.trim().length == 0) {
-    //             divEmail.classList.add('errorBox');
-    //             divErrorMsgEmail.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgEmail.style.display = "block";
-    //         };
-    //         if (!email.validity.valid) {
-    //             divErrorMsgEmail.innerHTML = "Introduzca un email valido";
-    //             divErrorMsgEmail.style.display = "block";
-    //             console.log(email.value);
-    //         };
-    //         if (contrasena.value.trim().length == 0) {
-    //             divContrasena.classList.add('errorBox');
-    //             divErrorMsgContrasena.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgContrasena.style.display = "block";
-    //         }
-    //         if (contrasena.value.trim().length <= 8 || !contrasenaRegex.test(contrasena.value)) {
-    //             divContrasena.classList.add('errorBox');
-    //             divErrorMsgContrasena.innerHTML = "El campo deberá tener al menos 8 caracteres con una mayuscula, una minuscula, un digito y un caracter especial";
-    //             divErrorMsgContrasena.style.display = "block";
-    //         };
-    //         if (reContrasena.value.trim().length == 0) {
-    //             divReContrasena.classList.add('errorBox');
-    //             divErrorMsgReContrasena.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgReContrasena.style.display = "block";
-    //         };
-    //         if (!imagen.value) {
-    //             divImagen.classList.add('errorBox');
-    //             divErrorMsgImagen.innerHTML = "Este campo es obligatorio";
-    //             divErrorMsgImagen.style.display = "block";
-    //         }
-    //     }
-    // })
 
 });

@@ -31,7 +31,7 @@ const userService = {
                 include: ['rol', 'imagen', 'carrito']
             })
         } catch (error) {
-            console.log(error.message);
+            return null;
         }
     },
     saveUser: async function (data, file) {

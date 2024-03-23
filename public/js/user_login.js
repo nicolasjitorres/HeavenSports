@@ -85,8 +85,28 @@ window.addEventListener('load', function () {
 
     });
 
+    // Validacion en tiempo real para email
+    inpEmail.addEventListener('input', () => {
+        if (!expRegEmail.test(inpEmail.value)) {
+            return errorEmail = validar({
+                box: boxEmail,
+                input: inpEmail,
+                label: lblEmail,
+                error: errorEmail,
+                msg: "Introduzca un email valido."
+            });
+        }
 
-    /* CONTRASENA */
+        return datosCorrectos({
+            input: inpEmail,
+            label: lblEmail,
+            error: errorEmail
+        });
+    })
+
+
+
+    // Validacion para contraseña
     contrasena.addEventListener('blur', () => {
         if (inpPass.value.trim().length == 0) {
             return errorPass = validar({
@@ -119,7 +139,7 @@ window.addEventListener('load', function () {
                     error: errorEmail,
                     msg: "Este campo es obligatorio"
                 });
-            } else if(!expRegEmail.test(inpEmail.value)) {
+            } else if (!expRegEmail.test(inpEmail.value)) {
                 errorEmail = validar({
                     box: boxEmail,
                     input: inpEmail,
