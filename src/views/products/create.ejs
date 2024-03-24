@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="/css/create.css">
 <link rel="stylesheet" href="/css/general.css">
-<title>Cargar</title>
+<title>Cargar nuevo producto</title>
 
 </head>
 
@@ -16,7 +16,6 @@
   <!-- PRINCIPAL -->
   <main>
 
-
     <!-- Formulario registro -->
     <div class="contenedor-form">
       <h4 class="titulo">Nuevo producto</h4>
@@ -24,7 +23,7 @@
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box nombre">
-          <label class="lbl" for="nombre">Nombre</label>
+          <label class="lbl" for="nombre">Nombre*</label>
           <input class="inp" type="text" name="nombre" id="nombre"
             value="<%= locals.product && product.nombre ? product.nombre : "" %>">
           <% if (locals.errors) { %>
@@ -53,7 +52,7 @@
 
         <!-- PRECIO PRODUCTO -->
         <div class="box precio">
-          <label class="lbl" for="precio">Precio</label>
+          <label class="lbl" for="precio">Precio*</label>
           <input class="inp" type="number" name="precio" id="precio"
             value="<%= locals.product && product.precio ? product.precio : "" %>">
           <% if (locals.errors) { %>
@@ -81,7 +80,8 @@
 
         <!-- MARCA PRODUCTO -->
         <div class="box marca">
-          <select name="id_marca" id="marca">
+          <label class="lbl">Marca*</label>
+          <select name="id_marca" id="marca" class="select">
             <option selected disabled>- Seleccione la marca -</option>
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
@@ -90,6 +90,7 @@
             <% }); %>
             <% } %>
           </select>
+          <i class="select-arrow"></i>
         </div>
         <div class="errorMsg marca"></div>
         <% if (locals.errors) { %>
@@ -102,7 +103,8 @@
 
         <!-- COLOR PRODUCTO -->
         <div class="box color">
-          <select name="id_color" id="color">
+          <label class="lbl">Color*</label>
+          <select name="id_color" id="color" class="select">
             <option selected disabled>- Seleccione el color -</option>
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
@@ -111,6 +113,7 @@
             <% }); %>
             <% } %>
           </select>
+          <i class="select-arrow"></i>
         </div>
         <div class="errorMsg color"></div>
         <% if (locals.errors) { %>
@@ -123,7 +126,8 @@
 
         <!-- TALLE PRODUCTO -->
         <div class="box talle">
-          <select name="id_talle" id="talle">
+          <label class="lbl">Talle*</label>
+          <select name="id_talle" id="talle" class="select">
             <option selected disabled>- Seleccione el talle -</option>
             <% if (locals.tal) { %>
             <% tal.forEach(talle => { %>
@@ -132,6 +136,7 @@
             <% }); %>
             <% } %>
           </select>
+          <i class="select-arrow"></i>
         </div>
         <div class="errorMsg talle"></div>
         <% if (locals.errors) { %>
@@ -144,7 +149,7 @@
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
         <div class="box stock">
-          <label class="lbl" for="stock">Stock</label>
+          <label class="lbl" for="stock">Stock*</label>
           <input class="inp" type="number" name="stock" id="stock"
             value="<%= locals.product && product.stock ? product.stock : "" %>">
           <% if (locals.errors) { %>
@@ -156,35 +161,46 @@
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
-        <div class="box-check">
-          <label class="box-check-titulo">Selecciona las categorias</label>
+        <div class="box">
+          <label class="lbl">Categorias (seleccione)</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input class="checkCateg" type="checkbox" name="categorias[]" id=<%=categoria.nombre %>
-            value="<%= categoria.id %>"
+          <input class="check" type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value="<%= categoria.id %>"
             <%= locals.product && product.categorias && product.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
-          <label for=<%=categoria.nombre %> class="label-check">
+          <label for=<%=categoria.nombre %> class="check-lbl">
             <%= categoria.nombre %>
           </label>
           <% }); %>
           <% } %>
         </div>
 
-
         <!-- CARGAR IMAGENES PRODUCTO -->
-        <div class="box box-img">
-          <label for="img" class="label-img">Cargar imagenes</label>
-          <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png, .jpeg">
+        <div class="box image">
+          <label class="lbl">Fotos del producto (Vista previa)</label>
+          <img src="/images/products/default.png" alt="foto perfil usuario" class="file-image">
+          <input type="file" id="img" name="imagen" multiple accept=".jpeg, .png, .jpg">
+
+          <div id="num-files" class="file-info">
+            <label for="img" class="btn btn-upload">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              Subir imagenes
+            </label>
+            <p class="file-info-p">Ningun archivo seleccionado.</p>
+          </div>
+          <p class="file-info-p">Archivos permitidos: .jpeg, .png, .jpg, Tamaño máximo 10Mb.</p>
+          <% if (locals.errors) { %>
+          <% const reImageError = errors.find(error => error.path == 'image'); %>
+          <% if (reImageError) { %>
+          <p class="error"><%= reImageError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg img"></div>
 
+        <!-- Boton carga -->
+        <button type="submit" class="btn btn-primary">¡Cargar producto!</button>
 
-
-        <div class="botones">
-          <!-- Boton carga -->
-          <button type="submit" class="boton">Cargar</button>
-          <a href="/products" class="boton-cancelar">Cancelar</a>
-        </div>
+        <!-- Boton de cancelar -->
+        <a href="/products" class="link color-primary">Cancelar</a>
 
       </form>
     </div>

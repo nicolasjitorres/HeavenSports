@@ -84,6 +84,29 @@ body {
     color: var(--upload);
 }
 
+/* Estilo de los checks */
+.check{ 
+    display: none;
+}
+
+.check-lbl{
+    font-size: 16px;
+    border: 1px solid var(--dark-secondary);
+    color: var(--dark-secondary);
+    padding: 0px 8px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.check:checked + .check-lbl{
+    color: var(--light);
+    border-color: var(--dark-primary);
+    background-color: var(--dark-primary);
+}
+
 /* Colores de textos */
 .color-dark {
     color: var(--dark);
@@ -227,7 +250,7 @@ input[type="file"] {
     color: var(--dark-secondary);
     font-size: 13px;
     transition: all 250ms ease;
-    width: 80%;
+    width: 100%;
 }
 
 .lbl-error {
@@ -260,4 +283,42 @@ main {
     justify-content: center;
     width: 100%;
     background-color: var(--secondary);
+}
+
+.select {
+    appearance: none;
+    background-color: transparent;
+    width: 100%;
+    cursor: pointer;
+    padding: 8px;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid var(--dark-secondary);
+    border-radius: 7px;
+    position: relative;
+    color: var(--dark-secondary);
+    transition: all 0.25s ease;
+}
+
+.select:hover {
+    border-color: var(--dark-primary);
+    color: var(--dark-primary);
+}
+
+.select-arrow {
+    position: absolute;
+	right: 13px;
+	top: 41px;
+	width: 12px;
+	height: 12px;
+	display: block;
+	border-left: 3px solid var(--dark-secondary);
+	border-bottom: 3px solid var(--dark-secondary);
+	transform: rotate(-45deg);
+	transition: all 0.25s ease;
+}
+
+.select:hover + .select-arrow{
+    margin-top: 2px;
+    border-color: var(--dark-primary);
 }
