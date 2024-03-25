@@ -30,8 +30,8 @@ router.post('/create', upload.array('imagenes'), validationCreateMiddleware.vali
 
 
 /* EDIT ONE PRODUCT */
-router.get('/edit/:id', adminMiddleware, productController.edit);
-router.put('/:id', adminMiddleware, validationProductEditMiddleware.validation, validationProductEditMiddleware.result, productController.update);
+router.get('/edit/:id', productController.edit);
+router.put('/:id', validationProductEditMiddleware.validation, validationProductEditMiddleware.result, productController.update);
 
 
 /* DELETE ONE PRODUCT */

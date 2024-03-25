@@ -12,11 +12,6 @@ const validationProductEditMiddleware = {
             min: 5
         }).withMessage('Debe tener como mínimo 5 caracteres.'),
 
-        body('descripcion')
-        .isLength({
-            min: 20
-        }).withMessage('Debe tener como mínimo 20 caracteres.'),
-
         body('precio')
         .notEmpty().withMessage('El campo precio es obligatorio.').bail()
         .isInt({

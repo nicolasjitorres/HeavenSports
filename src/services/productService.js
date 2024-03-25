@@ -312,15 +312,24 @@ const productService = {
                 }
             });
 
-            for (cat of data.categorias) {
-                if (!data.categoriasViejas.includes(cat)) {
+            let categorias = data.categorias;
+            let categoriasViejas = data.categoriasViejas;
+            if (!categorias) {
+                categorias = [];
+            }
+            if (!categoriasViejas) {
+                categoriasViejas = [];
+            }
+
+            for (cat of categorias) {
+                if (!categoriasViejas.includes(cat)) {
                     const newProductoCategoria = new ProductoCategoria(id, cat)
                     await db.ProductoCategoria.create(newProductoCategoria);
                 }
             }
 
-            for (catVieja of data.categoriasViejas) {
-                if (!data.categorias.includes(catVieja)) {
+            for (catVieja of categoriasViejas) {
+                if (!categorias.includes(catVieja)) {
                     await db.ProductoCategoria.destroy({
                         where: {
                             id_producto: id,
