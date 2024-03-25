@@ -1,77 +1,61 @@
-:root {
-    --dark-primary: #132c3a;
-    --delete: #8f0000;
-    --delete-light: #d30000;
-    --primary: #4b858d;
-    --light-primary: #a2cadf;
-    --secondary-text: #666;
-    --secondary: #ebebeb;
-    --light: #fff;
-    --dark: #000;
-    --discount: #008f39;
-}
-
-
-
-/* Configuracion general */
-
-* {
-    box-sizing: border-box;
-    font-family: poppins, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-
-body {
-    min-height: 100vh;
-}
-
-
-
-
-
 /* MAIN */
 
-main {
-    height: 100%;
+.div-image form {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--secondary);
-    padding-bottom: 50px;
 }
 
+.div-link-volver {
+    margin: 60px auto;
+}
 
-/* Titulos de las secciones */
-.titulo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    width: 80%;
+.tabla-talle {
+    width: 250px;
+    border-collapse: collapse;
     text-align: center;
-    padding: 30px 0 20px;
-    color: var(--dark);
-    font-size: 1.3rem;
+    margin-top: 5px;
 }
+
+.tabla-talle th,
+.tabla-talle td {
+    border: 1px solid var(--dark-secondary);
+    padding: 0 8px;
+}
+
+.tabla-talle .columna-datos{
+    width: 10%;
+}
+
+.tabla-talle .columna-funciones {
+    width: auto;
+}
+
+.dato-info {
+    color: var(--dark-secondary);
+}
+
+.dato-funciones{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+
+#btn-edit, #btn-delete {
+    padding: 0;
+    width: 30px;
+    margin: 4px 0 ;
+}
+
+
 
 /* Secciones */
 .main-section {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(200px, 350px));
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
     width: 90%;
     justify-content: center;
 }
 
-.contenedor-imagen {
-    display: flex;
-    flex-wrap: wrap;
-    height: 250px;
-}
 
 .contenedor-talle {
     display: flex;
@@ -152,7 +136,7 @@ main {
     background-color: var(--primary);
 }
 
-.numero-talle{
+.numero-talle {
     font-size: 16px;
     font-weight: bold;
     border: 1px solid black;
@@ -160,7 +144,7 @@ main {
     width: 100%;
 }
 
-.stock{
+.stock {
     font-size: 14px;
     border: 1px solid black;
     border-top: none;
@@ -169,7 +153,7 @@ main {
     width: 100%;
 }
 
-.boton-volver{
+.boton-volver {
     margin: 80px 0 0;
 }
 
@@ -200,15 +184,6 @@ main {
         font-size: 1.5rem;
     }
 
-    .main-section {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(200px, 350px));
-        gap: 20px;
-        width: 90%;
-        justify-content: center;
-    }
-
-
 
 
 }
@@ -229,14 +204,6 @@ main {
         font-size: 26px;
     }
 
-    .main-section {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(200px, 350px));
-        gap: 20px;
-        width: 90%;
-        justify-content: center;
-      }
-    
 
 
 }

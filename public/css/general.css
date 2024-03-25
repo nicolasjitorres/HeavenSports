@@ -140,6 +140,24 @@ body {
     color: var(--secondary-text);
 }
 
+/* Estilo para el contenedor con una imagen */
+.div-image {
+    width: 130px;
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.div-image .image {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: 0 10px 10px;
+}
+
 /* Estilo para el contenedor de varias imagenes */
 .div-images {
     width: 100%;
@@ -331,6 +349,20 @@ main {
 .select:hover + .select-arrow{
     margin-top: 2px;
     border-color: var(--dark-primary);
+}
+
+/* Estilo para los titulos */
+.titulo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    text-align: center;
+    padding: 30px 0 20px;
+    color: var(--dark);
+    font-size: 1.3rem;
 }
 
 

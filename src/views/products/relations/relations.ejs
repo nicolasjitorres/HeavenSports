@@ -1,6 +1,7 @@
 <%- include ('../../partials/head')%>
 
 <link rel="stylesheet" href="/css/relations.css">
+<link rel="stylesheet" href="/css/general.css">
 
 <title>Productos</title>
 </head>
@@ -11,9 +12,6 @@
 
     <%- include ('../../partials/header')%>
 
-
-
-
     <!-- PRINCIPAL -->
     <main>
 
@@ -21,56 +19,83 @@
         <!-- Imagenes -->
         <h3 class="titulo">
             Imagenes del producto
-            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="boton-imagen-cargar">
-                Agregar imagenes
-            </a>
         </h3>
 
-
+        <div class="div-link">
+            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="link color-primary">
+                Agregar imagenes
+            </a>
+        </div>
 
         <section class="main-section">
             <% if (producto.imagenes) { %>
             <% for (imagen of producto.imagenes){ %>
-            <div class="contenedor-imagen">
-                <img src=<%="/images/products/" + imagen.nombre %> alt=<%= imagen.nombre %>>
-                <form action="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE" method="POST" class="form-eliminar">
-                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
+            <div class="div-image">
+                <img class="image" src=<%="/images/products/" + imagen.nombre %> alt=<%= imagen.nombre %>>
+                <form action="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE"
+                    method="POST">
+                    <button type="submit" class="btn btn-delete">Eliminar</button>
                 </form>
             </div>
             <% } %>
             <% } %>
         </section>
+
 
         <!-- Talles -->
         <h3 class="titulo">
             Talles del producto
-            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="boton-talle-cargar">
+        </h3>
+
+        <div class="div-link">
+            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="link color-primary">
                 Agregar talle
             </a>
-        </h3>
+        </div>
+
         <section class="main-section">
-            <% if (producto.talles) { %>
-            <% for (talle of producto.talles){ %>
-            <div class="contenedor-talle">
-                <p class="numero-talle">Númeracion: <%= talle.numero %></p>
-                <p class="stock">Stock: <%= talle.ProductoTalle.stock %></p>
-                <a href="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>"
-                    class="boton-talle-editar">
-                    Editar
-                </a>
-                <form action="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>?_method=DELETE" method="POST" class="form-eliminar">
-                    <button type="submit" class="boton-imagen-eliminar">Eliminar</button>
-                </form>
-            </div>
-            <% } %>
-            <% } %>
+            <table class="tabla-talle">
+                <thead>
+                    <tr>
+                        <th class="columna-datos color-dark-primary">Talle</th>
+                        <th class="columna-datos color-dark-primary">Stock</th>
+                        <th class="columna-funciones color-dark-primary">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (producto.talles) { %>
+                    <% for (talle of producto.talles){ %>
+
+                    <tr class="tabla-talle-fila">
+                        <td class="dato-info"><%= talle.numero %></td>
+                        <td class="dato-info"><%= talle.ProductoTalle.stock %></td>
+                        <td>
+                            <div class="dato-funciones">
+                                <a class="btn btn-primary" style="text-decoration: none;" id="btn-edit"
+                                    href="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                                <form
+                                    action="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>?_method=DELETE"
+                                    method="POST" class="form-eliminar">
+                                    <button type="submit" class="btn btn-delete" id="btn-delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <% } %>
+                    <% } %>
+                </tbody>
+            </table>
         </section>
 
-
-        <a href="/products/detail/<%= producto.id %>"
-            class="boton-talle-editar boton-volver">
-            Volver al producto
-        </a>
+        <div class="div-link-volver">
+            <a href="/products/detail/<%= producto.id %>" class="btn btn-primary" style="text-decoration: none;">
+                Volver al producto
+            </a>
+        </div>
 
 
     </main>
