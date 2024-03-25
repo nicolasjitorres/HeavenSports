@@ -68,17 +68,18 @@ window.addEventListener('load', function () {
         label.classList.remove("lbl-error");
     }
 
+    // Valida si los elementos cargados mediante el input de tipo file son correctos
     function validarImg(input) {
         let imagen = input.files[0];
         let extension = imagen.name.split('.').pop().toLowerCase();
         let extensionesValidas = ['jpg', 'png', 'jpeg'];
         if (!extensionesValidas.includes(extension)) {
-            return 'La extensión es invalida.';
+            return 'La extensión del archivo no está permitida.';
         }
 
         let size = imagen.size / (1024 * 1024);
         if (size > 10) {
-            return 'El tamaño supera los 10Mb.';
+            return 'El tamaño del archivo supera los 10Mb.';
         }
 
         return null;

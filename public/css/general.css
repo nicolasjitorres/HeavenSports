@@ -90,7 +90,7 @@ body {
 }
 
 .check-lbl{
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid var(--dark-secondary);
     color: var(--dark-secondary);
     padding: 0px 8px;
@@ -140,6 +140,24 @@ body {
     color: var(--secondary-text);
 }
 
+/* Estilo para el contenedor de varias imagenes */
+.div-images {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.div-images .images {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
 /* Estilo para los errores */
 .error {
     width: 100%;
@@ -176,6 +194,14 @@ body {
     text-align: center;
 }
 
+.file-multiple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 5px 5px;
+    text-align: start;
+}
+
 /* Estilo para los checkbox */
 .inp-check {
     -moz-appearance: none;
@@ -184,15 +210,16 @@ body {
     border: 1px solid var(--dark-secondary);
     border-radius: 2px;
     content: "";
-    height: 13px;
     margin-right: 5px;
     transform: translateY(-1px);
     transition: all 250ms ease;
     width: 13px;
+    height: 13px;
     cursor: pointer;
 }
 
 .inp-check+.lbl {
+    width: 80%;
     cursor: pointer;
 }
 
@@ -223,14 +250,6 @@ body {
     border-color: var(--dark-primary);
 }
 
-.inp-error {
-    border-color: var(--delete-light);
-}
-
-.inp-valid {
-    border-color: var(--dark-primary);
-}
-
 /* Esto para eliminar el estilo por defecto de los inputs de tipo number */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -251,14 +270,6 @@ input[type="file"] {
     font-size: 13px;
     transition: all 250ms ease;
     width: 100%;
-}
-
-.lbl-error {
-    color: var(--delete-light);
-}
-
-.lbl-valid {
-    color: var(--dark-primary);
 }
 
 /* Estilo para los links */
@@ -290,7 +301,7 @@ main {
     background-color: transparent;
     width: 100%;
     cursor: pointer;
-    padding: 8px;
+    padding: 7px;
     outline: none;
     font-size: 16px;
     border: 1px solid var(--dark-secondary);
@@ -322,3 +333,27 @@ main {
     margin-top: 2px;
     border-color: var(--dark-primary);
 }
+
+
+
+
+
+/* Clases que se agregaran o quitaran en el archivo js, aparecen al ultimo para tener prioridad */
+.inp-error {
+    border-color: var(--delete-light);
+}
+
+.inp-valid {
+    border-color: var(--dark-primary);
+}
+
+.lbl-error {
+    color: var(--delete-light);
+}
+
+.lbl-valid {
+    color: var(--dark-primary);
+}
+
+
+

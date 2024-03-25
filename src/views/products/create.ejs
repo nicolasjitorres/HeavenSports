@@ -91,14 +91,13 @@
             <% } %>
           </select>
           <i class="select-arrow"></i>
+          <% if (locals.errors) { %>
+          <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
+          <% if (marcaError) { %>
+          <p class="error"><%= marcaError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg marca"></div>
-        <% if (locals.errors) { %>
-        <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
-        <% if (marcaError) { %>
-        <p style="color: red;"><%= marcaError.msg %></p>
-        <% } %>
-        <% } %>
 
 
         <!-- COLOR PRODUCTO -->
@@ -114,14 +113,13 @@
             <% } %>
           </select>
           <i class="select-arrow"></i>
+          <% if (locals.errors) { %>
+          <% const colorError = errors.find(error => error.path == 'id_color'); %>
+          <% if (colorError) { %>
+          <p class="error"><%= colorError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg color"></div>
-        <% if (locals.errors) { %>
-        <% const colorError = errors.find(error => error.path == 'id_color'); %>
-        <% if (colorError) { %>
-        <p style="color: red;"><%= colorError.msg %></p>
-        <% } %>
-        <% } %>
 
 
         <!-- TALLE PRODUCTO -->
@@ -137,14 +135,13 @@
             <% } %>
           </select>
           <i class="select-arrow"></i>
+          <% if (locals.errors) { %>
+          <% const talleError = errors.find(error => error.path == 'id_talle'); %>
+          <% if (talleError) { %>
+          <p class="error"><%= talleError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg talle"></div>
-        <% if (locals.errors) { %>
-        <% const talleError = errors.find(error => error.path == 'id_talle'); %>
-        <% if (talleError) { %>
-        <p style="color: red;"><%= talleError.msg %></p>
-        <% } %>
-        <% } %>
 
 
         <!-- STOCK PRODUCTO (CON ESE TALLE) -->
@@ -161,7 +158,7 @@
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
-        <div class="box">
+        <div class="box cat">
           <label class="lbl">Categorias (seleccione)</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
@@ -177,10 +174,12 @@
         <!-- CARGAR IMAGENES PRODUCTO -->
         <div class="box image">
           <label class="lbl">Fotos del producto (Vista previa)</label>
-          <img src="/images/products/default.png" alt="foto perfil usuario" class="file-image">
+          <div class="div-images">
+            <img src="/images/products/default.png" alt="foto perfil usuario" class="file-image">
+          </div>
           <input type="file" id="img" name="imagen" multiple accept=".jpeg, .png, .jpg">
 
-          <div id="num-files" class="file-info">
+          <div id="num-files" class="file-info file-multiple">
             <label for="img" class="btn btn-upload">
               <i class="fa-solid fa-arrow-up-from-bracket"></i>
               Subir imagenes

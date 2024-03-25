@@ -9,6 +9,9 @@
 
 /* FORMULARIO */
 
+.cat {
+  justify-content: space-between;
+}
 
 .contenedor-form {
   max-width: 800px;
