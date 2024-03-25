@@ -16,6 +16,9 @@
     
     <!-- MENSAJE ERROR -->
     <div class="contenedor-error">
+      <% if (locals.error) { %>
+       <p>Hola, error: <%= error %></p>
+      <% } %>
         <p>¡UPS! Parece que ocurrío un error... :(</p>
         <a class ="linkError" href="/">Volver a la página principal</a>
     </div>

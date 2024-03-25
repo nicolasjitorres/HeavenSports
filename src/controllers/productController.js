@@ -37,7 +37,7 @@ const controller = {
             const data = await productService.addToCart(req.body, req.params.id, req.session.userLogged.id);
             if (data) {
                 res.redirect('/products/cart');
-            } else{
+            } else {
                 res.redirect(`/products/detail/${req.params.id}`);
             }
         } catch (error) {
@@ -49,7 +49,9 @@ const controller = {
         try {
             const carrito = await productService.getCartView(req.session.userLogged.id);
             // res.send(carrito)
-            res.render('products/cart', {carrito: carrito});
+            res.render('products/cart', {
+                carrito: carrito
+            });
         } catch (error) {
             console.log(error.message);
         }
@@ -77,9 +79,15 @@ const controller = {
     save: async (req, res) => {
         try {
             const idProducto = await productService.saveProduct(req.body, req.files);
-            res.redirect(`/products/detail/${idProducto}`);
+            if (idProducto) {
+                res.redirect(`/products/detail/${idProducto}`);
+            } else {
+                throw new Error('No se pudo cargar el producto en la base de datos.')
+            }
         } catch (error) {
-            console.log(error);
+            res.render('/info/error.ejs', {
+                error: error
+            })
         }
     },
     // Muestra el formulario de edicion de un producto mediante su id

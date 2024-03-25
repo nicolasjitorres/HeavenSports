@@ -12,11 +12,6 @@ const validationCreateMiddleware = {
             min: 5
         }).withMessage('Debe tener como mínimo 5 caracteres.'),
 
-        body('descripcion')
-        .isLength({
-            min: 20
-        }).withMessage('Debe tener como mínimo 20 caracteres.'),
-
         body('precio')
         .notEmpty().withMessage('El campo precio es obligatorio.').bail()
         .isInt({
@@ -31,10 +26,8 @@ const validationCreateMiddleware = {
         }).withMessage('Debe tener un valor entre 0 y 100.'),
 
         body('id_marca')
-        .custom(async (value, {
-            req
-        }) => {
-            if (value == '- Seleccione la marca -') {
+        .custom(async (value) => {
+            if (value == undefined) {
                 throw new Error('Debe seleccionar una marca.');
             }
             const {
@@ -47,10 +40,8 @@ const validationCreateMiddleware = {
         }),
 
         body('id_color')
-        .custom(async (value, {
-            req
-        }) => {
-            if (value == '- Seleccione el color -') {
+        .custom(async (value) => {
+            if (value == undefined) {
                 throw new Error('Debe seleccionar un color.');
             }
             const {
@@ -63,10 +54,8 @@ const validationCreateMiddleware = {
         }),
 
         body('id_talle')
-        .custom(async (value, {
-            req
-        }) => {
-            if (value == '- Seleccione el talle -') {
+        .custom(async (value) => {
+            if (value == undefined) {
                 throw new Error('Debe seleccionar un talle.');
             }
             const {
@@ -94,6 +83,25 @@ const validationCreateMiddleware = {
                     throw new Error('La categoria no es valida.');
                 }
             });
+            return true;
+        }),
+
+        body('imagenes')
+        .custom((value, {
+            req
+        }) => {
+            if (req.files) {
+                const extensionesValidas = ['jpg', 'png', 'jpeg'];
+                for (const image of req.files) {
+                    if (!extensionesValidas.includes(image.mimetype.split('/').pop())) {
+                        throw new Error(`La imagen ${image.filename} tiene una extensión inválida.`);
+                    }
+                    const size = image.size / (1024 * 1024);
+                    if(size > 10){
+                        throw new Error(`La imagen ${image.filename} tiene un peso mayor a 10Mb.`);
+                    }
+                }
+            }
             return true;
         })
     ],

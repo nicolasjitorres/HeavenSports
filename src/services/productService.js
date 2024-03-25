@@ -206,7 +206,7 @@ const productService = {
 
             return id;
         } catch (error) {
-            console.log(error);
+            return null;
         }
 
     },
@@ -359,13 +359,13 @@ function Producto({
     id_color,
     id_marca
 }) {
-    this.nombre = nombre,
-        this.descripcion = descripcion,
-        this.precio = precio,
-        this.descuento = descuento,
-        this.active = true,
-        this.id_color = id_color,
-        this.id_marca = id_marca
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precio = precio;
+    this.descuento = descuento;
+    this.active = true;
+    this.id_color = id_color;
+    this.id_marca = id_marca;
 }
 
 // Constructor de ProductoCategoria

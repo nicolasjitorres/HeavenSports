@@ -9,6 +9,11 @@ window.addEventListener('load', function () {
     let labelPrecio = document.querySelector('.precio .lbl');
     let errorPrecio = document.querySelector(".precio .error");
 
+    let boxDescuento = document.querySelector('.descuento');
+    let inputDescuento = document.querySelector('.descuento .inp');
+    let labelDescuento = document.querySelector('.descuento .lbl');
+    let errorDescuento = document.querySelector(".descuento .error");
+
     let boxMarca = document.querySelector('.marca');
     let selectMarca = document.querySelector('.marca .select');
     let labelMarca = document.querySelector('.marca .lbl');
@@ -144,7 +149,7 @@ window.addEventListener('load', function () {
             return errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "Este campo es obligatorio.")
         }
 
-        if (inputNombre.value.length < 2) {
+        if (inputNombre.value.length < 5) {
             return errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "El nombre debe tener al menos 2 caracteres.")
         }
 
@@ -163,6 +168,20 @@ window.addEventListener('load', function () {
 
         return datosCorrectos(inputPrecio, labelPrecio, errorPrecio);
     })
+
+    // Evento para validar el campo descuento
+    inputDescuento.addEventListener('blur', () => {
+        if (inputDescuento.value.length == 0) {
+            return errorDescuento = validarError(boxDescuento, inputDescuento, labelDescuento, errorDescuento, "Este campo es obligatorio.")
+        }
+
+        if (inputDescuento.value < 0 || inputDescuento.value > 100) {
+            return errorDescuento = validarError(boxDescuento, inputDescuento, labelDescuento, errorDescuento, "El precio debe tener un valor entre 0 y 100.")
+        }
+
+        return datosCorrectos(inputDescuento, labelDescuento, errorDescuento);
+    })
+
 
     // Evento para validar el campo marca
     selectMarca.addEventListener('blur', () => {
@@ -254,7 +273,7 @@ window.addEventListener('load', function () {
         if (inputNombre.value.trim().length == 0) {
             errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "Este campo es obligatorio.")
             validado = false;
-        } else if (inputNombre.value.length < 2) {
+        } else if (inputNombre.value.length < 5) {
             errorNombre = validarError(boxNombre, inputNombre, labelNombre, errorNombre, "El nombre debe tener al menos 2 caracteres.")
             validado = false;
         }
@@ -265,6 +284,15 @@ window.addEventListener('load', function () {
             validado = false;
         } else if (inputPrecio.value < 0) {
             errorPrecio = validarError(boxPrecio, inputPrecio, labelPrecio, errorPrecio, "El precio debe ser mayor o igual a 0..")
+            validado = false;
+        }
+
+        // Valida el campo descuento
+        if (inputDescuento.value.length == 0) {
+            errorDescuento = validarError(boxDescuento, inputDescuento, labelDescuento, errorDescuento, "Este campo es obligatorio.")
+            validado = false;
+        } else if (inputDescuento.value < 0 || inputDescuento.value > 100) {
+            errorDescuento = validarError(boxDescuento, inputDescuento, labelDescuento, errorDescuento, "El precio debe tener un valor entre 0 y 100.")
             validado = false;
         }
 

@@ -8,7 +8,7 @@
 
 <body>
 
-  <script src="/js/product_create-edit.js" type="text/javascript"></script>
+  <script src="/js/products/create.js" type="text/javascript"></script>
 
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
@@ -66,7 +66,7 @@
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box descuento">
-          <label class="lbl" for="descuento">Descuento (%)</label>
+          <label class="lbl" for="descuento">Descuento (%)*</label>
           <input class="inp" type="number" name="descuento" id="descuento"
             value="<%= locals.product && product.descuento ? product.descuento : "" %>">
           <% if (locals.errors) { %>
@@ -177,7 +177,7 @@
           <div class="div-images">
             <img src="/images/products/default.png" alt="foto perfil usuario" class="file-image">
           </div>
-          <input type="file" id="img" name="imagen" multiple accept=".jpeg, .png, .jpg">
+          <input type="file" id="img" name="imagenes" multiple accept=".jpeg, .png, .jpg">
 
           <div id="num-files" class="file-info file-multiple">
             <label for="img" class="btn btn-upload">
