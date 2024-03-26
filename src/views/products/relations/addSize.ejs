@@ -1,76 +1,76 @@
 <%- include ('../../partials/head')%>
 
 <link rel="stylesheet" href="/css/createRelations.css">
+<link rel="stylesheet" href="/css/general.css">
 
-<title>Agregar talles</title>
+<title>Cargar talle</title>
 </head>
 
 <body id="body">
 
+    <script src="/js/products/relations/sizes.js" type="text/javascript"></script>
     <!-- ENCABEZADO -->
 
     <%- include ('../../partials/header')%>
 
-
-
-
     <!-- PRINCIPAL -->
     <main>
 
-
-        <!-- Imagenes -->
-        <h3 class="titulo">
-            Cargar talle al producto
-        </h3>
-
-
-
-        <section class="main-section">
-            <form action="/products/edit/<%= producto.id %>/relations/sizes" method="POST" class="contenedor-form">
+        <section class="contenedor-form">
+            <form class="createSizeForm" action="/products/edit/<%= producto.id %>/relations/sizes" method="POST">
+                <h3 class="titulo">
+                    Cargar talle al producto
+                </h3>
 
                 <!-- NOMBRE PRODUCTO -->
-                <div class="box">
-                    <input type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
-                    <label for="nombre">Nombre del producto</label>
+                <div class="box nombre">
+                    <label for="nombre" class="lbl">Nombre del producto</label>
+                    <input class="inp" type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
                 </div>
 
+
                 <!-- TALLE A CARGAR AL PRODUCTO -->
-                <div class="box">
-                    <select name="id_talle" id="talle">
+                <div class="box talle">
+                    <label class="lbl" for="stock">Talle</label>
+                    <select name="id_talle" id="talle" class="select">
                         <option selected disabled>- Seleccione el talle -</option>
                         <% if (locals.tal) { %>
                         <% tal.forEach(talle => { %>
-                        <option value=<%= talle.id %> <%= locals.producto && producto.id_talle == talle.id ? "selected" : "" %>> <%= talle.numero %> </option>
+                        <option value=<%= talle.id %>
+                            <%= locals.producto && producto.id_talle == talle.id ? "selected" : "" %>>
+                            <%= talle.numero %> </option>
                         <% }); %>
                         <% } %>
                     </select>
+                    <i class="select-arrow"></i>
+                    <% if (locals.errors) { %>
+                    <% const talleError = errors.find(error => error.path == 'id_talle'); %>
+                    <% if (talleError) { %>
+                    <p class="error"><%= talleError.msg %></p>
+                    <% } %>
+                    <% } %>
                 </div>
-                <% if (locals.errors) { %>
-                <% const talleError = errors.find(error => error.path == 'id_talle'); %>
-                <% if (talleError) { %>
-                <h6 style="color: red;"><%= talleError.msg %></h6>
-                <% } %>
-                <% } %>
 
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
-                <div class="box">
-                    <input type="number" name="stock" id="stock" value="<%= locals.producto && producto.stock ? producto.stock : "" %>">
-                    <label for="stock">Stock</label>
+                <div class="box stock">
+                    <label class="lbl" for="stock">Stock</label>
+                    <input class="inp" type="number" name="stock" id="stock"
+                        value="<%= locals.producto && producto.stock ? producto.stock : "" %>">
+                    <% if (locals.errors) { %>
+                    <% const stockError = errors.find(error => error.path == 'stock'); %>
+                    <% if (stockError) { %>
+                    <p class="error"><%= stockError.msg %></p>
+                    <% } %>
+                    <% } %>
                 </div>
-                <% if (locals.errors) { %>
-                <% const stockError = errors.find(error => error.path == 'stock'); %>
-                <% if (stockError) { %>
-                <h6 style="color: red;"><%= stockError.msg %></h6>
-                <% } %>
-                <% } %>
 
+                <!-- Boton carga -->
+                <button type="submit" class="btn btn-primary">Cargar</button>
 
-                <div class="botones">
-                    <!-- Boton carga -->
-                    <button type="submit" class="boton-cargar">Cargar</button>
-                    <a href="/products/edit/<%= producto.id %>/relations" class="boton-cancelar">Cancelar</a>
-                </div>
+                <!-- Boton de cancelar -->
+                <a href="/products/edit/<%= producto.id %>/relations" class="link color-primary">Cancelar</a>
+
 
             </form>
         </section>

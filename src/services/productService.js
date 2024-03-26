@@ -68,7 +68,6 @@ const productService = {
                 }
             });
         } catch (error) {
-            console.log(error);
             return [];
         }
     },

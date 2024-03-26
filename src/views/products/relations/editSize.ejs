@@ -1,79 +1,60 @@
 <%- include ('../../partials/head')%>
 
 <link rel="stylesheet" href="/css/createRelations.css">
+<link rel="stylesheet" href="/css/general.css">
 
 <title>Agregar talles</title>
 </head>
 
 <body id="body">
 
+    <script src="/js/products/relations/editSizes.js" type="text/javascript"></script>
     <!-- ENCABEZADO -->
-
     <%- include ('../../partials/header')%>
-
-
-
 
     <!-- PRINCIPAL -->
     <main>
-
-
         <!-- Imagenes -->
         <h3 class="titulo">
             Editar stock del talle
         </h3>
 
-
-
-        <section class="main-section">
+        <section class="contenedor-form">
             <form action="/products/edit/<%= prodTal.producto.id %>/relations/sizes/<%= prodTal.talle.id %>?_method=PUT"
-                method="POST" class="contenedor-form">
+                method="POST" class="editSizeForm">
 
                 <!-- NOMBRE PRODUCTO -->
-                <div class="box">
-                    <input type="text" name="nombre" id="nombre" value=<%= prodTal.producto.nombre %> readonly>
-                    <label for="nombre">Nombre del producto</label>
+                <div class="box nombre">
+                    <label class="lbl" for="nombre">Nombre del producto</label>
+                    <input class="inp" type="text" name="nombre" id="nombre" value=<%= prodTal.producto.nombre %>
+                        readonly>
                 </div>
-
 
                 <!-- TALLE PRODUCTO -->
-                <div class="box">
-                    <input type="text" name="talle" id="talle" value=<%= prodTal.talle.numero %> readonly>
-                    <label for="talle">Talle del producto</label>
+                <div class="box nombre">
+                    <label class="lbl" for="talle">Talle del producto</label>
+                    <input class="inp" type="text" name="talle" id="talle" value=<%= prodTal.talle.numero %> readonly>
                 </div>
-
-
 
                 <!-- STOCK PRODUCTO (CON ESE TALLE) -->
-                <div class="box">
-                    <input type="number" name="stock" value=<%= prodTal.stock %> id="stock" class="input-stock">
-                    <label for="stock">Stock</label>
-                </div>
-                <% if (locals.errors) { %>
-                <% const stockError = errors.find(error => error.path == 'stock'); %>
-                <% if (stockError) { %>
-                <h6 style="color: red;"><%= stockError.msg %></h6>
-                <% } %>
-                <% } %>
-
-
-                <div class="botones">
-                    <!-- Boton carga -->
-                    <button type="submit" class="boton-cargar">Editar</button>
-                    <a href="/products/edit/<%= prodTal.producto.id %>/relations" class="boton-cancelar">Cancelar</a>
+                <div class="box stock">
+                    <label class="lbl" for="stock">Stock</label>
+                    <input class="inp" type="number" name="stock" value=<%= prodTal.stock %> id="stock"
+                        class="input-stock">
+                    <% if (locals.errors) { %>
+                    <% const stockError = errors.find(error => error.path == 'stock'); %>
+                    <% if (stockError) { %>
+                    <h6 style="color: red;"><%= stockError.msg %></h6>
+                    <% } %>
+                    <% } %>
                 </div>
 
+                <!-- Boton carga -->
+                <button type="submit" class="btn btn-primary">Editar</button>
+                <a href="/products/edit/<%= prodTal.producto.id %>/relations" class="link color-primary">Cancelar</a>
             </form>
         </section>
-
-
-
     </main>
-
-
-
-
-
     <!-- PIE DE PAGINA -->
 
     <%- include ('../../partials/footer')%>

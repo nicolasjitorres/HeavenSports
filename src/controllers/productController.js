@@ -9,7 +9,7 @@ const controller = {
                 productos: productos
             });
         } catch (error) {
-            console.log(error);
+            
         }
     },
     // Mostrar detalle de un producto mediante su id
@@ -211,6 +211,15 @@ const controller = {
         } catch (error) {
             console.log(error);
         }
+    },
+
+
+
+
+
+
+    sendAllAPI: async (req, res) => {
+        res.send('Hola mundo');
     }
 }
 

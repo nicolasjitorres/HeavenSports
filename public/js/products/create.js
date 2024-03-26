@@ -45,9 +45,6 @@ window.addEventListener('load', function () {
     let fileImg = document.querySelector('.file-image');
     let fileError = document.querySelector('.image .error');
 
-    const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const expRegContrasena = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-
     let form = document.querySelector('.createProductForm');
 
     // Valida los datos 
@@ -300,7 +297,7 @@ window.addEventListener('load', function () {
         if (inputStock.value.length == 0) {
             errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "Este campo es obligatorio.")
             validado = false;
-        } else if (inputPrecio.value < 0) {
+        } else if (inputStock.value < 0) {
             errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "El stock debe ser mayor o igual a 0.")
             validado = false;
         }

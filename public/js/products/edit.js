@@ -26,10 +26,6 @@ window.addEventListener('load', function () {
     let arrowColor = document.querySelector('.color .select-arrow');
     let errorColor = document.querySelector(".color .error");
 
-    let boxStock = document.querySelector('.stock');
-    let inputStock = document.querySelector('.stock .inp');
-    let labelStock = document.querySelector('.stock .lbl');
-    let errorStock = document.querySelector(".stock .error");
 
     let form = document.querySelector('.editProductForm');
 
