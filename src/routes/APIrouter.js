@@ -23,7 +23,7 @@ router.get('/products/:id', APIproductController.detail);
 router.get('/users/', APIuserController.usuarios);
 
 // PERFIL DEL USUARIO 
-router.get('/:id', APIuserController.getAdminEditView);
+router.get('/users/:id', APIuserController.getOneUser);
 
 
 module.exports = router;

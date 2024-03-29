@@ -108,10 +108,10 @@ const controller = {
             res.redirect('/404');
         }
     },
-    getAdminEditView: async (req, res) => {
+    getOneUser: async (req, res) => {
         try {
-            const usuario = await userService.getByPk(req.params.id);
-            res.render('users/userEditAdmin', {
+            const usuario = await APIuserService.getByPk(req.params.id);
+            return res.status(200).json({
                 usuario: usuario
             });
         } catch (error) {
