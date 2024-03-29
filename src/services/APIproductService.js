@@ -63,6 +63,33 @@ const productService = {
         try {
             return await db.Producto.findAll({
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+
+                attributes: [             
+                    [db.sequelize.fn('concat', 'http://localhost:3000/API/products/', db.sequelize.col('id')),' url']             
+                ], 
+
+                where: {
+                    active: true
+                },
+
+                       
+
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    /*
+    getAllCategories: async function () {
+        try {
+            return await db.Categoria.findAll({
+                attributes: [             
+                    'nombre',        
+                ], 
+
+/*
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
                 where: {
                     active: true
                 },
@@ -71,15 +98,72 @@ const productService = {
                     'id',
                     [sequelize.fn('concat', 'http://localhost:3200/api/users/', sequelize.col('id')),' url']             
                 ],        
+*/
+/*
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },*/
+    getAllCategories: async function () {
+        try {
+            return await db.ProductoCategoria.findAll({
+                //include: ['categoria'],
+                attributes: [             
+                    ['id_categoria','cantidad por id_categoria'],   
+                    
+                    //[sequelize.fn('COUNT', sequelize.col('id_producto')), 'cantidad_productos']      
+                ], 
+               group: ['id_categoria']
+                
+/*
+                
+                where: {
+                    active: true
+                },
 
+                attributes: [             
+                    'id',
+                    [sequelize.fn('concat', 'http://localhost:3200/api/users/', sequelize.col('id')),' url']             
+                ],        
+*/
             });
         } catch (error) {
             console.log(error);
             return [];
         }
     },
-    getAllCategories: async function () {
+    getCategories: async function () {
         try {
+
+            
+            // let cantCat = await this.getAllCategories.length
+            //let cantCat = await db.Categoria.findAll().length
+/*
+            let unaCat
+            let todasCat = []
+            for (i = 1; i <= 5; i++ ) {
+                
+                 unaCat = await db.ProductoCategoria.count({
+                    where: {
+                        id_categoria: i
+                    }
+                  });
+                  console.log(unaCat);
+                  todasCat.push(unaCat)
+                  todasCat2 = [...unaCat]
+                  
+            };
+            console.log(todasCat);
+            console.log(todasCat2);
+            
+            return todasCat2
+            
+*/
+                            
+   
+
             let categorias = {}
             let Deportivo = await db.ProductoCategoria.count({
                 distinct: true,
@@ -123,6 +207,7 @@ const productService = {
                 Baloncesto,
                 Ninos
             }
+            
         } catch (error) {
             console.log(error);
             return [];
