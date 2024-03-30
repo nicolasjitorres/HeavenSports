@@ -78,16 +78,23 @@ const controller = {
     softDelete: async (req, res) => {
         try {
             await userService.softDelete(req.params.id);
-            res.clearCookie('emailUserRemember');
-            req.session.destroy();
-            res.redirect('/');
+            if (req.session.userLogged && req.session.userLogged.id_rol == 1) {
+                res.clearCookie('emailUserRemember');
+                req.session.destroy();
+                res.redirect('/');
+            } else {
+                res.redirect('/users');
+            }
         } catch (error) {
             console.log(error.message);
         }
     },
     usuarios: async (req, res) => {
         try {
-            const usuarios = await userService.getAll();
+            let usuarios = await userService.getAll();
+            if (req.session.userLogged) {
+                usuarios = usuarios.filter(usuario => usuario.id != req.session.userLogged.id)
+            }
             res.render('users/usuarios', {
                 usuarios: usuarios
             });
@@ -106,20 +113,10 @@ const controller = {
             res.redirect('/404');
         }
     },
-    getAdminEditView: async (req, res) => {
-        try {
-            const usuario = await userService.getByPk(req.params.id);
-            res.render('users/userEditAdmin', {
-                usuario: usuario
-            });
-        } catch (error) {
-            console.log(error.message);
-        }
-    },
     changeCategory: async (req, res) => {
         try {
             await userService.change(req.params.id);
-            res.redirect(`/users/userEdit/${req.params.id}`);
+            res.redirect(`/users`);
         } catch (error) {
             console.log(error);
         }

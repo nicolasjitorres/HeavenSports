@@ -1,8 +1,9 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/detail.css">
+<link rel="stylesheet" href="/css/general.css">
 
-<title>Detalle del producto</title>
+<title><%= producto.nombre %></title>
 </head>
 
 
@@ -17,102 +18,80 @@
   <!-- PRINCIPAL -->
   <main>
 
-    <% if (producto.imagenes[0]) { %>
-    <img class="background-image" src="/images/products/<%=producto.imagenes[0].nombre %>">
-    <% } %>
+    <div class="div-product">
+      <div class="selector-main">
+        <img class="selector-main-image" src=<%= '/images/products/' + producto.imagenes[0].nombre %> alt="">
+      </div>
 
+      <% if (producto.imagenes.length > 1) { %>
+      <div class="selector-images">
+        <% for( imagen of producto.imagenes) {%>
+        <img class="selector-image <%= producto.imagenes[0] == imagen ? 'selector-active' : '' %>"
+          src="<%='/images/products/' + imagen.nombre %>" alt="<%= imagen.nombre %>">
+        <% } %>
+      </div>
+      <% } %>
 
-    <div class="contenedor-producto">
+      <h1 class="product-name"><%= producto.nombre + " - " + producto.color.nombre %></h1>
 
-      <% if (producto.imagenes[0]) { %>
-      <div class="imagenes-producto">
-        <div class="cont-imagen-principal">
-          <% let bandera = 0 %>
-          <% producto.imagenes.forEach(imagen => { %>
-          <input type="radio" name="radio-img" id="inp-<%= imagen.nombre %>" <%= bandera == 0 ? "checked" : "" %>>
-          <img class="img-principal-<%= imagen.nombre %>" src="/images/products/<%=imagen.nombre %>">
-          <% bandera++}) %>
-        </div>
-        <div class="cont-imagen-secundaria">
-          <% producto.imagenes.forEach(imagen => { %>
-          <label for="inp-<%= imagen.nombre %>"><img class="img-secundaria-<%= imagen.nombre %>"
-              src="/images/products/<%=imagen.nombre %>"></label>
-          <% }) %>
-        </div>
+      <% if (producto.descuento > 0) { %>
+      <h4 class="product-old-price color-secondary-text">$<%= producto.precio %></h4>
+      <div class="product-price">
+        <h4 class="product-new-price color-dark">
+          $<%= Math.floor(producto.precio - (producto.precio * (producto.descuento / 100))) %></h4>
+        <h4 class="product-discount color-discount"><%= producto.descuento %>% OFF</h4>
+      </div>
+      <% } else { %>
+      <div class="product-price">
+        <h4 class="product-new-price color-dark">
+          $<%= producto.precio %></h4>
       </div>
       <% } %>
 
 
 
+      <% if (tal.length > 0) { %>
 
-      <div class="contenedor-datos">
-        <p class="nombre-producto"><%= producto.nombre %></p>
+      <form action="/products/cart/<%= producto.id %>" method="POST" class="formCartProduct form-product">
 
-        <% if (producto.descuento != 0) { %>
-        <div class="contenedor-precio-desc">
-          <p class="precio-anterior">$<%= producto.precio %></p>
-          <p class="descuento-producto"><%= producto.descuento %>% OFF</p>
-        </div>
-        <% } %>
+        <label class="product-lbl">Talle</label>
+        <select class="select" name="id_talle" required>
+          <option value="" selected disabled>- Seleccione un talle -</option>
+          <% tal.forEach(talle => { %>
+          <% if (talle.ProductoTalle.stock > 0) { %>
+          <option value=<%= talle.id %>> <%= talle.numero %> -
+            <%= talle.ProductoTalle.stock > 1 ? talle.ProductoTalle.stock +" disponibles" : "Último disponible" %>
+          </option>
+          <% } %>
+          <% }) %>
+        </select>
+        <i class="select-arrow" id="arrow"></i>
 
-        <p class="precio-producto">$<%= Math.floor(producto.precio - (producto.precio * (producto.descuento / 100))) %>
-        </p>
+        <label for="cantidad_producto" class="product-lbl">Cantidad</label>
+        <input class="inp" type="number" id="cantidad_producto" name="cantidad_producto">
 
-        <p class="descripcion-producto">
-          <%= producto.descripcion %>
-        </p>
+        <button type="submit" class="btn btn-primary" id="btn">
+          <i class="iconoBoton fa-solid fa-cart-plus"></i> Agregar al Carrito
+        </button>
+      </form>
+
+      <% }else{ %>
+      <p class="product-stock">
+        Sin stock disponible.
+      </p>
+      <% } %>
 
 
-        <div class="color-producto">
-          <p class="titulo-color">Color</p>
-          <p class="select-colores" name="Color">
-            <%= producto.color.nombre %>
-          </p>
-        </div>
-
-        <% if (tal.length > 0) { %>
-
-        <form action="/products/cart/<%= producto.id %>" method="POST">
-          <select class="select-talles" name="id_talle" required>
-            <option value="" selected disabled>- Seleccione un talle -</option>
-            <% tal.forEach(talle => { %>
-            <% if (talle.ProductoTalle.stock > 0) { %>
-            <option value=<%= talle.id %> > <%= talle.numero %> -
-              <%= talle.ProductoTalle.stock > 1 ? talle.ProductoTalle.stock +" disponibles" : "Último disponible" %>
-            </option>
-            <% } %>
-            <% }) %>
-          </select>
-          <label for="cantidad_producto">Ingrese la cantidad</label>
-          <input type="number" id="cantidad_producto" name="cantidad_producto" required>
-          <button type="submit" class="boton-carrito">
-            Agregar al Carrito<i class="iconoBoton fa-solid fa-cart-plus"></i>
-          </button>
-        </form>
-
-        <% }else{ %>
-        <p class="stock-producto">
-          Sin stock disponible
-        </p>
-        <% } %>
+      <% if (producto.descripcion) { %>
+      <h5 class="product-title-description">Descripción</h5>
+      <h5 class="product-description"><%= producto.descripcion %></h5>
+      <% } else { %>
+      <h5 class="product-description">Sin descripción...</h5>
+      <% } %>
 
 
 
 
-        <% if (locals.userLogged && locals.admin) { %>
-        <a href="/products/edit/<%= producto.id %>" class="boton-editar">
-          Editar
-        </a>
-
-        <form action="/products/<%= producto.id %>/?_method=DELETE" method="POST" class="form-eliminar">
-          <button type="submit" class="boton-eliminar">Dar de baja</button>
-        </form>
-
-        <a href="/products/edit/<%= producto.id %>/relations" class="boton-editar">
-          Editar relaciones
-        </a>
-        <% } %>
-      </div>
     </div>
 
   </main>

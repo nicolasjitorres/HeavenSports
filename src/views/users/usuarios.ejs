@@ -1,6 +1,8 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/users.css">
+<link rel="stylesheet" href="/css/general.css">
+
 <title>Usuarios</title>
 
 </head>
@@ -17,19 +19,43 @@
 
 
     <h3 class="titulo">Usuarios registrados</h3>
-    <p class="informacion verde">---Activos---</p>
-    <p class="informacion gris">---Inactivos---</p>
 
-    <div class="contenedor-usuarios">
+    <section class="section">
       <% for (usuario of usuarios) {%>
-      <a class=<%= usuario.active ? "activo" : "inactivo" %> href="/users/userEdit/<%= usuario.id %>">
-          <img src="/images/users/<%= usuario.imagen.nombre %>" alt="" class="foto-perfil">
-          <p class="dato"><%= usuario.nombre + " " + usuario.apellido %></p>
-          <p class="dato"><%= usuario.email %></p>
-      </a>
-      <%} %>
-    </div>
 
+      <div class="user-card">
+        <img src="/images/users/<%= usuario.imagen.nombre %>" alt="" class="user-card-photo">
+        <div class="user-card-description">
+          <p class="user-card-info"><%= usuario.nombre + " " + usuario.apellido %></p>
+          <p class="user-card-info"><%= usuario.email %></p>
+          <p class="user-card-info"><%= usuario.rol.nombre %></p>
+          <p class="user-card-info"><%= usuario.active ? "Activo" : "Inactivo" %></p>
+        </div>
+        <div class="user-card-buttons">
+          <form action="/users/changeCategory/<%= usuario.id %>?_method=PATCH" method="POST">
+            <button type="submit" class="btn btn-dark-primary" id="user-card-btn">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i>
+              Cambiar rol
+            </button>
+          </form>
+
+          <form action="/users/softDelete/<%= usuario.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-primary" id="user-card-btn">
+              <i class="fa-solid fa-rectangle-xmark"></i>
+              Dar de <%= usuario.active ? "baja" : "alta" %>
+            </button>
+          </form>
+
+          <form action="/users/<%= usuario.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-delete" id="user-card-btn">
+              <i class="fa-solid fa-trash"></i>
+              Eliminar
+            </button>
+          </form>
+        </div>
+      </div>
+      <%} %>
+    </section>
 
   </main>
   <!-- PIE DE PAGINA -->

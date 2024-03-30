@@ -1,335 +1,41 @@
-  /* Configuracion general */
-  :root {
-    --dark-primary: #132c3a;
-    --delete: #8f0000;
-    --delete-light: #d30000;
-    --primary: #4b858d;
-    --light-primary: #a2cadf;
-    --secondary-text: #666;
-    --secondary: #ebebeb;
-    --light: #fff;
-    --dark: #000;
-    --discount: #008f39;
-  }
-
-
-
-  /*------------------------------------------------------*/
-  /*------------------------------------------------------*/
-  /*------------------------------------------------------*/
-
-
-  /* MAIN */
-
-  main {
-    width: 100vw;
+.form-product {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    min-height: 100vh;
-    align-items: center;
+    margin: 10px 0;
     position: relative;
-    overflow: hidden;
-    padding-bottom: 50px;
-  }
+}
 
-  .background-image {
-    position: absolute;
-    z-index: -1;
-    top: -10px;
-    height: 100vh;
-    filter: blur(5px);
-    min-width: 110vw;
-  }
+#arrow {
+    top: 47px
+}
 
-  .contenedor-producto {
+#btn {
+    margin: 30px 0 0 ;
+}
+
+.product-lbl{
+    color: var(--dark-secondary);
+    padding: 20px 0 2px;
+}
+
+.product-stock {
+    color: var(--dark-secondary);
+    font-size: 18px;
+    font-style: italic;
+}
+
+.product-title-description{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: transparent;
-
-  }
-
-  .imagenes-producto {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .imagenes-producto img {
-    width: 100%;
-  }
-
-  .cont-imagen-principal {
-    width: 100%;
-    max-width: 300px;
-    margin: 30px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cont-imagen-principal input {
-    display: none;
-  }
-
-  .cont-imagen-secundaria {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: var(--light);
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    padding: 20px 10px;
-  }
-
-  .cont-imagen-secundaria label {
-    width: 21%;
-    margin: 0px 5px;
-    cursor: pointer;
-  }
-  
-  .cont-imagen-principal img{
-    position: absolute;
-    top: -100vh;
-    transition: all 500ms ease;
-  }
-
-  .cont-imagen-principal input:checked + img{
-    position: relative;
-    top: 0;
-  }
-
-
-
-
-
-  .contenedor-datos {
-    width: 100%;
-    background-color: var(--light);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-  }
-  
-  .nombre-producto {
-    width: 100%;
-    text-align: center;
-    padding: 30px 0 20px;
+    padding-top: 30px;
     font-size: 20px;
-    font-weight: 600;
-  }
+    font-weight: normal;
+    color: var(--dark-primary);
+}
 
-
-  .precio-producto {
-    width: 65%;
-    max-width: 200px;
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-  }
-
-
-  .contenedor-precio-desc {
-    width: 30%;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 14px;
-    align-content: center;
-  }
-
-  .precio-anterior {
-    text-decoration: line-through;
+.product-description {
     width: 100%;
-    text-align: center;
-  }
-
-  .descuento-producto {
-    width: 100%;
-    text-align: center;
-    color: var(--discount);
-  }
-
-  .descripcion-producto {
+    font-size: 18px;
+    font-weight: normal;
     color: var(--secondary-text);
-    width: 100%;
-    text-align: center;
-    padding: 30px 0;
-    font-size: 12px;
-    line-height: 15px;
-  }
-
-  .stock-producto{
-    width: 100%;
-    text-align: center;
-    padding-bottom: 20px;
-  }
-
-  .color-talle{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .talle-producto, 
-  .color-producto {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    border-radius: 5px;
-    background-color: var(--secondary);
-    margin: 5px 10px;
-    width: 150px;
-  }
-
-  .titulo-color,
-  .titulo-talle{
-    font-size: 14px;
-    padding-right: 20px;
-  }
-
-  .select-colores,
-  .select-talles{
-    border: none;
-    outline: none;
-    background-color: var(--secondary);
-    font-size: 12px;
-  }
-
-  select option{
-    font-size: 12px;
-    padding: 5px;
-    background-color: #ecf0f1;
-    color: #333;
-    cursor: pointer;
-  }
-
-  .boton-carrito {
-    width: 100%;
-    padding: 10px;
-    margin: 20px 50px;
-    background-color: var(--dark-primary);
-    border: none;
-    color: var(--light);
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    transition: all 200ms ease-in-out;
-  }
-
-
-  .boton-editar,
-  .form-eliminar{
-    width: 40%;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--light);
-    margin: 20px 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 200ms ease-in-out;
-  }
-
-  .boton-editar{
-    background-color: var(--primary);
-  }
-
-  .form-eliminar{
-    background-color: var(--delete);
-  }
-
-  .boton-eliminar{
-    background-color: transparent;
-    border: none;
-    color: var(--light);
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .boton-carrito:hover{
-    background-color: var(--primary);
-  }
-
-  .boton-editar:hover{
-    background-color: var(--light-primary);
-  }
-
-  .form-eliminar:hover{
-    background-color: var(--delete-light);
-  }
-
-  /* MEDIA QUERYS */
-
-  /* DISEÑOS PARA TABLETS */
-
-  @media (min-width:768px) {
-
-
-    /* MAIN */
-    main{
-      min-height: 50vh;
-      padding-bottom: 0;
-    }
-
-    .background-image{
-      display: none;
-    }
-
-    .contenedor-producto{
-      background-color: var(--secondary);
-      width: 90%;
-      max-width: 700px;
-      justify-content: space-between;
-      margin: 40px;
-    }
-
-    .imagenes-producto{
-      width: 35%;
-      margin:0;
-      background-color: var(--secondary);
-    }
-
-    .cont-imagen-principal{
-      margin: 0;
-      padding: 30px;
-      display: flex;
-      align-items: center;
-    }
-
-    .cont-imagen-secundaria{
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      padding: 0;
-      background-color: transparent;
-    }
-    
-    .contenedor-datos{
-      width: 56%;
-      margin: 30px;
-      padding: 20px;
-    }
-
-
-
-  }
-
-
-
-
-
-
-
-  /* Resolucion para PC */
-  @media(min-width: 1024px) {}
+    padding: 5px 0 20px
+}

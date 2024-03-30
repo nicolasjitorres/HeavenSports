@@ -1,6 +1,7 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/general.css">
 
 <title>Productos</title>
 </head>
@@ -28,42 +29,60 @@
       </div>
     </div>
 
-
-
-
-
-    <!-- Ofertas -->
-    <section class="main-section">
+    <section class="section">
 
       <h3 class="titulo">TODOS LOS PRODUCTOS</h3>
 
-      <% for (let i= 0; i< productos.length; i++) {%>
-      <a class="oferta" href="/products/detail/<%= productos[i].id %>">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <div class="contenedor-img">
-          <img src="/images/products/<%= (productos[i].imagenes[0] && productos[i].imagenes[0].nombre) ? productos[i].imagenes[0].nombre : 'default.png' %>" alt="Ejemplo2">
+      <div class="div-link">
+        <a class="card-btn card-btn-add">
+          <i class="fa-solid fa-plus"></i> Agregar producto
+        </a>
+      </div>
+
+      <% for (producto of productos) {%>
+      <div class="product-card">
+
+        <p class="product-card-free">ENVIO GRATIS</p>
+
+        <a href="/products/detail/<%= producto.id %>" style="text-decoration: none;">
+          <div class="product-card-div-img">
+            <img
+              src="/images/products/<%= (producto.imagenes[0] && producto.imagenes[0].nombre) ? producto.imagenes[0].nombre : 'default.png' %>"
+              alt="Ejemplo2">
+          </div>
+
+          <div class="product-card-description">
+            <p class="card-name"><%= producto.nombre %> - <%= producto.color.nombre %></p>
+            <% if (producto.descuento != 0) { %>
+            <p class="card-old-price">$<%= producto.precio %></p>
+            <p class="card-new-price">
+              $<%= (producto.precio - (producto.precio * (producto.descuento / 100))).toFixed(0) %>
+              <span class="card-discount"><%= producto.descuento %>% OFF</span>
+            </p>
+            <% } else { %>
+            <p class="card-new-price">$<%= producto.precio%>
+              <% } %>
+          </div>
+        </a>
+
+        <div class="card-buttons">
+
+          <a href="/products/edit/<%= producto.id %>/relations" class="card-btn card-btn-edit">
+            <i class="fa-sharp fa-solid fa-pen"></i> Editar
+          </a>
+
+          <form action="/products/<%= producto.id %>/?_method=DELETE" method="POST">
+            <button type="submit" class="card-btn card-btn-delete">Dar de baja</button>
+          </form>
+
         </div>
-        <div class="contenedor-precio-descripcion">
-          <% if (productos[i].descuento != 0) { %>
-          <p class="precio-anterior">$<%= productos[i].precio %></p>
-          <p class="precio">
-            $<%= (productos[i].precio - (productos[i].precio * (productos[i].descuento / 100))).toFixed(0) %>
-            <span class="descuento"><%= productos[i].descuento %>% descuento</span>
-          </p>
-          <% } else { %>
-          <p class="precio">$<%= productos[i].precio%>
-            <% } %>
-            <p class="descripcion"><%= productos[i].nombre %></p>
-        </div>
-      </a>
-      <%} %>
+
+      </div>
+
+      <% } %>
     </section>
 
   </main>
-
-
-
-
 
   <!-- PIE DE PAGINA -->
 

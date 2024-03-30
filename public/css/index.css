@@ -1,48 +1,6 @@
-:root {
-  --dark-primary: #132c3a;
-  --primary: #4b858d;
-  --light-primary: #a2cadf;
-  --secondary-text: #666;
-  --secondary: #ebebeb;
-  --light: #fff;
-  --dark: #000;
-  --discount: #008f39;
-}
-
-
-
-/* Configuracion general */
-
-* {
-  box-sizing: border-box;
-  font-family: poppins, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-
-body {
-  min-height: 100vh;
-}
-
-
-
 
 
 /* MAIN */
-
-main {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: var(--secondary);
-  padding-bottom: 50px;
-}
-
-
-
 
 .div-slider {
   width: 100%;
@@ -99,121 +57,60 @@ main {
 
 
 
-/* Titulos de las secciones */
-.titulo {
-  width: 100%;
-  text-align: center;
-  padding: 20px 0 10px;
-  color: var(--dark);
-  font-size: 1.3rem;
-}
 
 /* Secciones */
-.main-section {
+.section {
   display: flex;
   flex-wrap: wrap;
   width: 90%;
   justify-content: center;
+  gap: 10px;
+  margin-bottom: 50px;
 }
 
 /* Articulos de las secciones */
-.oferta,
-.mas-vendido {
-  width: 100%;
-  max-width: 500px;
+.product-card {
+  width: 200px;
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 10px;
-  justify-content: center;
-  background-color: var(--light);
-  margin: 5px 2.7px;
+  justify-content: flex-start;
   align-items: center;
+  background-color: var(--light);
+  padding: 10px;
   border-radius: 5px;
   position: relative;
   text-decoration: none;
 }
 
-.contenedor-img {
-  width: 25%;
-  max-width: 150px;
-  height: 100px;
+.product-card-div-img {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
-
-/* Imagenes de cada articulo */
-.oferta img,
-.mas-vendido img {
-  width: 90px;
-  max-width: 150px;
-  opacity: 90%;
-  height: auto;
-  object-fit: cover;
+.product-card-div-img img {
+  width: 100%;
 }
 
-.envio-gratis {
+.product-card-free {
   position: absolute;
-  font-size: 12px;
+  font-size: 14px;
   top: 10px;
   right: 10px;
   color: var(--light);
   background-color: var(--primary);
   font-weight: bold;
-  padding: 0 5px;
+  padding: 1px 3px 0;
 }
 
-.contenedor-precio-descripcion {
-  width: 75%;
-  padding-left: 15px;
-}
-
-/* Precio anterior del articulo */
-.precio-anterior {
-  text-decoration: line-through;
-  font-size: 10px;
-  color: var(--dark);
-}
-
-/* Precio del nuevo articulo para oferta */
-.precio {
-  color: var(--dark);
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.descuento {
-  font-size: 10px;
-  color: var(--discount);
-  margin-left: 10px;
-}
-
-/* Descripcion del articulo */
-.descripcion {
-  font-size: 12px;
-  color: var(--dark);
-}
-
-
-/* Contenedor de las marcas */
-.contenedor-marcas {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  justify-content: center;
-  padding: 40px 10px;
-}
-
-.marca {
-  display: flex;
-  background-color: var(--light);
-  width: 70px;
-  cursor: pointer;
-  margin: 10px 5px 0;
-}
-
-.marca img {
+.product-card-description {
   width: 100%;
+  padding: 10px 0;
 }
+
 
 
 
@@ -292,26 +189,7 @@ main {
 @media (min-width:768px) {
 
 
-  /* MAIN */
 
-  .titulo {
-      font-size: 1.5rem;
-  }
-
-  .main-section {
-      justify-content: space-around;
-      display: flex;
-  }
-
-  .oferta,
-  .mas-vendido {
-      width: 48%;
-      max-width: 400px;
-  }
-
-  .marca {
-      width: 100px;
-  }
 
 
 }
@@ -326,9 +204,8 @@ main {
 @media(min-width: 1024px) {
 
 
-  /* MAIN */
 
-  .titulo {
+/*   .titulo {
       font-size: 36px;
   }
 
@@ -350,7 +227,7 @@ main {
 
 
 
-  /* Articulos de las secciones */
+
   .oferta,
   .mas-vendido {
       width: 250px;
@@ -363,7 +240,6 @@ main {
   }
 
 
-  /* Imagenes de cada articulo */
   .contenedor-img {
       width: 100%;
       max-width: 300px;
@@ -398,6 +274,6 @@ main {
       transform: scale(1.1);
       background-color: var(--light-primary);
   }
-
+ */
 
 }

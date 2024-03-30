@@ -211,15 +211,6 @@ const controller = {
         } catch (error) {
             console.log(error);
         }
-    },
-
-
-
-
-
-
-    sendAllAPI: async (req, res) => {
-        res.send('Hola mundo');
     }
 }
 

@@ -1,137 +1,52 @@
-:root {
-    --dark-primary: #132c3a;
-    --primary: #4b858d;
-    --light-primary: #a2cadf;
-    --secondary-text: #666;
-    --secondary: #ebebeb;
-    --light: #fff;
-    --dark: #000;
-    --discount: #008f39;
-}
-
-
-
-
-/* MAIN */
-
-main {
-    width: 100%;
+.section {
     display: flex;
     flex-wrap: wrap;
+    width: 90%;
+    gap: 15px;
+    margin-bottom: 40px;
     justify-content: center;
-    background-color: var(--secondary);
-    padding-bottom: 50px;
 }
 
-
-
-
-
-/* Titulo */
-.titulo {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0 10px;
-    color: var(--dark);
-    font-size: 1.1rem;
-}
-
-.contenedor-usuarios{
-    display: grid;
-    grid-template-columns: repeat(1, minmax(150px, 250px));
-}
-
-.informacion{
-    font-size: 12px;
-    padding: 2px;
-    margin: 10px;
-    font-weight: bold;
-}
-
-.verde{
-    color: var(--discount);
-}
-
-.gris{
-    color: var(--secondary-text);
-}
-
-.activo,
-.inactivo {
+.user-card{
+    width: 300px;
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
-    justify-content: flex-start;
-    background-color: var(--light);
-    margin: 5px;
-    align-items: center;
-    border-radius: 5px;
     text-decoration: none;
+    border: 1px solid var(--dark-secondary);
+    border-radius: 7px;
+    background-color: var(--light);
+    padding: 5px;
 }
 
-.activo{
-    border: 1px solid var(--discount);
-}
 
-.inactivo{
-    border: 1px solid var(--secondary-text);
-}
-
-.foto-perfil {
+.user-card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
-    opacity: 90%;
-    border-radius: 50%;
 }
 
+.user-card-photo{
+    width: 70px;
+    height: 70px;
+    opacity: .7;
+}
 
-.dato {
-    color: var(--dark);
+.user-card-description{
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.user-card-info {
+    color: var(--secondary-text);
+    width: 100%;
     font-size: 12px;
-    width: 100%;
-    font-weight: bold;
 }
 
-
-
-
-
-
-
-
-
-/* MEDIA QUERYS */
-
-/* DISEÑOS PARA TABLETS */
-
-@media (min-width:768px) {
-
-
-    /* MAIN */
-
-    .titulo {
-        font-size: 1.4rem;
-    }
-
-
-
-}
-
-
-
-
-
-
-
-/* Resolucion para PC */
-@media(min-width: 1024px) {
-
-
-    /* MAIN */
-
-    .titulo {
-        font-size: 1.4rem;
-    }
-
-
-
+#user-card-btn{
+    font-size: 12px;
+    padding: 6px;
 }

@@ -15,6 +15,16 @@
     <!-- PRINCIPAL -->
     <main>
 
+        <!-- Imagenes -->
+        <h3 class="titulo">
+            Datos del producto
+        </h3>
+
+        <div class="div-link">
+            <a href="/products/edit/<%= producto.id %>" class="card-btn card-btn-add">
+                <i class="fa-solid fa-pen"></i> Editar producto
+            </a>
+        </div>
 
         <!-- Imagenes -->
         <h3 class="titulo">
@@ -22,8 +32,8 @@
         </h3>
 
         <div class="div-link">
-            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="link color-primary">
-                Agregar imagenes
+            <a href="/products/edit/<%= producto.id %>/relations/images/create" class="card-btn card-btn-add">
+                <i class="fa-solid fa-plus"></i> Agregar imagenes
             </a>
         </div>
 
@@ -32,6 +42,7 @@
             <% for (imagen of producto.imagenes){ %>
             <div class="div-image">
                 <img class="image" src=<%="/images/products/" + imagen.nombre %> alt=<%= imagen.nombre %>>
+
                 <form action="/products/edit/<%= producto.id %>/relations/images/<%= imagen.id %>?_method=DELETE"
                     method="POST">
                     <button type="submit" class="btn btn-delete">Eliminar</button>
@@ -48,8 +59,8 @@
         </h3>
 
         <div class="div-link">
-            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="link color-primary">
-                Agregar talle
+            <a href="/products/edit/<%= producto.id %>/relations/sizes/create" class="card-btn card-btn-add">
+                <i class="fa-solid fa-plus"></i> Agregar talle
             </a>
         </div>
 
@@ -71,7 +82,7 @@
                         <td class="dato-info"><%= talle.ProductoTalle.stock %></td>
                         <td>
                             <div class="dato-funciones">
-                                <a class="btn btn-primary" style="text-decoration: none;" id="btn-edit"
+                                <a class="btn btn-dark-primary" style="text-decoration: none;" id="btn-edit"
                                     href="/products/edit/<%= producto.id %>/relations/sizes/<%= talle.id %>">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
@@ -91,8 +102,8 @@
             </table>
         </section>
 
-        <div class="div-link-volver">
-            <a href="/products/detail/<%= producto.id %>" class="btn btn-primary" style="text-decoration: none;">
+        <div class="div-link">
+            <a href="/products/detail/<%= producto.id %>" class="link-back" style="text-decoration: none;">
                 Volver al producto
             </a>
         </div>
