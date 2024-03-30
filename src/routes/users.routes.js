@@ -44,7 +44,7 @@ router.get('/changePass', authUserMiddleware, userController.changePass);
 router.put('/changePass', authUserMiddleware, validationChangePassMiddleware.validation, validationChangePassMiddleware.result, userController.updatePass);
 
 // DARSE DE BAJA (USUARIOS Y ADMINS)
-router.delete('/softDelete/:id', userController.softDelete);
+router.delete('/softDelete/:id/:active', userController.softDelete);
 
 
 

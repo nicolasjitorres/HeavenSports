@@ -77,7 +77,7 @@ const controller = {
     },
     softDelete: async (req, res) => {
         try {
-            await userService.softDelete(req.params.id);
+            await userService.softDelete(req.params);
             if (req.session.userLogged && req.session.userLogged.id_rol == 1) {
                 res.clearCookie('emailUserRemember');
                 req.session.destroy();

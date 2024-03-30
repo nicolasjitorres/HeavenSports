@@ -197,10 +197,10 @@ const userService = {
             console.log(error.message);
         }
     },
-    softDelete: async function (id) {
+    softDelete: async function ({id, active}) {
         try {
             await db.Usuario.update({
-                active: false
+                active: active
             }, {
                 where: {
                     id: id
