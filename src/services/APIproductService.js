@@ -7,18 +7,24 @@ const capitalize = (palabra) => {
     return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
 }
 
+
+
 const productService = {
     
     // Retorna todos los productos
-    getAll: async function () {
+    getAll: async function (req) {
         try {
+
+            //console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`);
+            
             return await db.Producto.findAll({
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
-
+/*
                 attributes: [             
-                    [db.sequelize.fn('concat', 'http://localhost:3000/API/products/', db.sequelize.col('id')),' url']             
+                    //[db.sequelize.fn('concat', 'http://localhost:3000/API/products/', db.sequelize.col('id')),' url']             
+                    [db.sequelize.fn('concat', `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`, db.sequelize.col('id')),' url']             
                 ], 
-
+*/
                 where: {
                     active: true
                 },
@@ -168,7 +174,10 @@ const productService = {
     getByPk: async function (id) {
         try {
             return await db.Producto.findByPk(id, {
-                include: ['marca', 'categorias', 'imagenes', 'color', 'talles']
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+                attributes: [             
+                    'id', 'nombre', 'descripcion', 'precio', 'descuento'
+                ],
             });
         } catch (error) {
             console.log(error);

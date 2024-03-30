@@ -19,6 +19,10 @@ const controller = {
     getOneUser: async (req, res) => {
         try {
             const usuario = await APIuserService.getByPk(req.params.id);
+
+            if(!usuario) 
+                return res.status(404).json({message: 'El usuario no exite'})
+
             return res.status(200).json({
                 usuario: usuario
             });

@@ -4,7 +4,7 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
-            const productos = await APIproductService.getAll();
+            const productos = await APIproductService.getAll(req);
             const categorias1 = await APIproductService.getAllCategories();
             const categorias2 = await APIproductService.getCategories();
             //let [...catName] = categorias1
@@ -21,6 +21,7 @@ const controller = {
                 countByCategory: categorias2,
                 categorias: categorias1,
                 products: productos,
+                url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
             });
         } catch (error) {
             console.log(error);
@@ -30,10 +31,21 @@ const controller = {
     detail: async (req, res) => {
         try {
             const producto = await APIproductService.getByPk(req.params.id);
-            const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
+
+            if(!producto) 
+                return res.status(404).json({message: 'El producto no exite'})
+            //const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
             return res.status(200).json({
                 producto: producto,
+                marca: producto.marca,
+                categorias: producto.categorias,
+                imagenes: producto.imagenes, 
+                color: producto.color, 
+                talles: producto.talles, 
             });
+
+            
+
         } catch (error) {
             console.log(error);
         }

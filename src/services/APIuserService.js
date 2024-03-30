@@ -10,7 +10,7 @@ const userService = {
                 //include: ['rol', 'imagen', 'carrito'],
                 attributes: [             
                     'id', 'nombre', 'apellido', 'email',
-                    [db.sequelize.fn('concat', 'http://localhost:3000/API/users/', db.sequelize.col('id')),' url']             
+                    [db.sequelize.fn('concat', 'http://localhost:3000/API/users/', db.sequelize.col('id')),' detail']             
                 ],   
             });
         } catch (error) {
@@ -22,7 +22,7 @@ const userService = {
             return await db.Usuario.findByPk(id, {
                 include: ['rol'],
                 attributes: [             
-                    'id', 'nombre', 'apellido', 'telefono', 'email', 'rol.nombre'
+                    'id', 'nombre', 'apellido', 'telefono', 'email', 'rol.nombre',
                 ],
             });
         } catch (error) {
