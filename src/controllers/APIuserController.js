@@ -31,6 +31,21 @@ const controller = {
             console.log(error.message);
         }
     },
+
+    imagen: async (req, res) => {
+        try {
+            const usuario = await APIuserService.getByPk(req.params.id);
+
+            if(!usuario) 
+                return res.status(404).json({message: 'El usuario no exite'})
+
+            return res.status(200).json({
+                imagenURL: `${req.protocol}://${req.get('host')}/images/users/${usuario.imagen.nombre}`
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
 }
 
 module.exports = controller

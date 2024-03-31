@@ -19,11 +19,17 @@ router.get('/products/', APIproductController.index);
 // Ruta hacía el detalle del producto
 router.get('/products/:id', APIproductController.detail);
 
+// Ruta hacía la primer imagen del producto
+router.get('/products/:id/imagen', APIproductController.imagen);
+
 // TODOS LOS USUARIOS
 router.get('/users/', APIuserController.usuarios);
 
 // PERFIL DEL USUARIO 
 router.get('/users/:id', APIuserController.getOneUser);
+
+// Ruta hacía la imagen del usuario
+router.get('/users/:id/imagen', APIuserController.imagen);
 
 
 module.exports = router;

@@ -89,6 +89,49 @@ const productService = {
             return {};
         }
     },
+    getByPkForImag: async function (req, id) {
+        try {
+            
+            let imagen = await db.ProductoImagen.findAll({
+                where: 
+                    { id_producto: id },
+                    
+                attributes: [             
+                    'id','id_imagen', 
+                    //[db.sequelize.fn('CONCAT', `${req.protocol}://${req.get('host')}/images/products/${imagen[0].imagen.nombre}`),'url']
+
+                ],
+                include: ['imagen'],
+                
+                
+
+                /*
+                let imagen = await db.Imagen.findAll({
+                    attributes: [
+                        'Imagen.nombre', 'Producto.id'
+                    ],
+                    include: [{
+                        model: db.Producto,
+                        as: 'productos',
+                        //through: { attributes: [] },
+                        //attributes: []
+                    }],
+                    
+                    where: 
+                    { 'productos.id' : id },*/
+                 
+
+
+                
+            });
+
+            return imagen
+
+        } catch (error) {
+            console.log(error);
+            return {};
+        }
+    },
 
 
     /////////////////////////////////
