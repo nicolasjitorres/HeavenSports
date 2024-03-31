@@ -21,6 +21,7 @@ const controller = {
                 countByCategory: productos.categoria,
                 //categorias: categorias1,
                 products: productos.productos,
+                //Borrar lo de abajo
                 url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
             });
         } catch (error) {

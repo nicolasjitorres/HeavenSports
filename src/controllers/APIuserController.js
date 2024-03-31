@@ -24,7 +24,8 @@ const controller = {
                 return res.status(404).json({message: 'El usuario no exite'})
 
             return res.status(200).json({
-                usuario: usuario
+                usuario: usuario,
+                imagenURL: `${req.protocol}://${req.get('host')}/images/users/${usuario.imagen.nombre}`
             });
         } catch (error) {
             console.log(error.message);

@@ -20,7 +20,7 @@ const userService = {
     getByPk: async function (id) {
         try {
             return await db.Usuario.findByPk(id, {
-                include: ['rol'],
+                include: ['rol', 'imagen'],
                 attributes: [             
                     'id', 'nombre', 'apellido', 'telefono', 'email', 'rol.nombre',
                 ],
