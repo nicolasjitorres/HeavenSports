@@ -10,6 +10,7 @@ const userService = {
                 //include: ['rol', 'imagen', 'carrito'],
                 attributes: [             
                     'id', 'nombre', 'apellido', 'email',
+                    // Lo siguiente deberia mostrar el enlace al detalle de cada usuario, pero no consegui que funcionara
                     [db.sequelize.fn('concat', 'http://localhost:3000/API/users/', db.sequelize.col('id')),' detail']             
                 ],   
             });

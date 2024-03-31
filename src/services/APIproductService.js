@@ -34,9 +34,11 @@ const productService = {
                 
                 attributes: [
                     'id', 'nombre', 'descripcion', 'precio', 'descuento',
-                    [db.sequelize.fn('CONCAT', `${req.protocol}://${req.get('host')}${req.originalUrl}/`, db.sequelize.col('id')),' url']
+                    // La siguiente linea deberia ser el enlace al detalle de cada producto, pero no conseguí que funcionara
+                    //[db.sequelize.fn('CONCAT', `${req.protocol}://${req.get('host')}${req.originalUrl}/`, db.sequelize.col('id')),' url']
                   ],
                 //include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+                include: ['talles'],
                 where: {
                     active: true
                 },              
@@ -71,24 +73,32 @@ const productService = {
     },
     
     // Retorna un producto en base a su id
-    getByPk: async function (id) {
+    getByPk: async function (req, id) {
         try {
             let producto = await db.Producto.findByPk(id, {
                 
                 attributes: [             
-                    'id', 'nombre', 'descripcion', 'precio', 'descuento'
+                    'id', 'nombre', 'descripcion', 'precio', 'descuento',
+                    //[db.sequelize.fn('CONCAT', `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`),' urlImagen']
                 ],
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
                 
             });
 
-            return producto
+            let urlImagen = `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`
+
+            return {
+                producto,
+                urlImagen
+            }
 
         } catch (error) {
             console.log(error);
             return {};
         }
     },
+
+    /*
     getByPkForImag: async function (req, id) {
         try {
             
@@ -118,7 +128,7 @@ const productService = {
                     }],
                     
                     where: 
-                    { 'productos.id' : id },*/
+                    { 'productos.id' : id },
                  
 
 
@@ -131,12 +141,66 @@ const productService = {
             console.log(error);
             return {};
         }
-    },
+    },*/
 
 
     /////////////////////////////////
 
     /*
+    getCategories: async function () {
+        try {
+/*
+            let categorias = {}
+            let Deportivo = await db.ProductoCategoria.count({
+                distinct: true,
+                col: 'id_producto',
+                where: {
+                    id_categoria: '1'
+                }
+            });
+            let Casual = await db.ProductoCategoria.count({
+                distinct: true,
+                col: 'id_producto',
+                where: {
+                    id_categoria: '2'
+                }
+            });
+            let Running = await db.ProductoCategoria.count({
+                distinct: true,
+                col: 'id_producto',
+                where: {
+                    id_categoria: '3'
+                }
+            });
+            let Baloncesto = await db.ProductoCategoria.count({
+                distinct: true,
+                col: 'id_producto',
+                where: {
+                    id_categoria: '4'
+                }
+            });
+            let Ninos = await db.ProductoCategoria.count({
+                distinct: true,
+                col: 'id_producto',
+                where: {
+                    id_categoria: '5'
+                }
+            });
+            return categorias = {
+                Deportivo,
+                Casual,
+                Running,
+                Baloncesto,
+                Ninos
+            }
+            
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+*/
+/*    
     getAllCategories: async function () {
         try {
             return await db.Categoria.findAll({

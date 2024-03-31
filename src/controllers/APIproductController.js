@@ -5,6 +5,7 @@ const controller = {
     index: async (req, res) => {
         try {
             const productos = await APIproductService.getAll(req);
+
             //const categorias1 = await APIproductService.getAllCategories();
             //const categorias2 = await APIproductService.getCategories();
             //let [...catName] = categorias1
@@ -22,7 +23,7 @@ const controller = {
                 //categorias: categorias1,
                 products: productos.productos,
                 //Borrar lo de abajo
-                url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
+                //url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
             });
         } catch (error) {
             console.log(error);
@@ -31,15 +32,16 @@ const controller = {
     // Mostrar detalle de un producto mediante su id
     detail: async (req, res) => {
         try {
-            const producto = await APIproductService.getByPk(req.params.id);
+            const producto = await APIproductService.getByPk(req, req.params.id);
 
             if(!producto) 
                 return res.status(404).json({message: 'El producto no exite'})
 
             //const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
             return res.status(200).json({
-                producto: producto,
-                imagenURL: `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`
+                producto: producto.producto,
+                //imagenURL: `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`,
+                urlImagen: producto.urlImagen
                 /*
                 marca: producto.marca,
                 categorias: producto.categorias,
@@ -56,6 +58,22 @@ const controller = {
         }
     },
 
+    imagen: async (req, res) => {
+        try {
+            const producto = await APIproductService.getByPk(req, req.params.id);
+
+            if(!producto) 
+                return res.status(404).json({message: 'El producto no exite'})
+
+            return res.status(200).json({
+                urlImagen: producto.urlImagen
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+    },
+
+    /*
     imagen: async (req, res) => {
         try {
             const imagen = await APIproductService.getByPkForImag(req, req.params.id);
@@ -75,7 +93,7 @@ const controller = {
                 imagenes: producto.imagenes, 
                 color: producto.color, 
                 talles: producto.talles, 
-                */
+                
             });
 
             
@@ -84,7 +102,7 @@ const controller = {
             console.log(error);
         }
     },
-
+*/
 
 
 
