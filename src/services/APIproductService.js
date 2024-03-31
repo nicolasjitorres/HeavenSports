@@ -16,7 +16,7 @@ const productService = {
         try {
 
             //console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`);
-            
+            /*
             return await db.Producto.findAll({
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
 /*
@@ -24,19 +24,75 @@ const productService = {
                     //[db.sequelize.fn('concat', 'http://localhost:3000/API/products/', db.sequelize.col('id')),' url']             
                     [db.sequelize.fn('concat', `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`, db.sequelize.col('id')),' url']             
                 ], 
-*/
+*//*
                 where: {
                     active: true
                 },
+*/
 
-                       
-
+            let productos = await db.Producto.findAll({
+                
+                attributes: [
+                    'id', 'nombre', 'descripcion', 'precio', 'descuento',
+                    [db.sequelize.fn('CONCAT', `${req.protocol}://${req.get('host')}${req.originalUrl}/`, db.sequelize.col('id')),' url']
+                  ],
+                //include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+                where: {
+                    active: true
+                },              
             });
+            let categoria = await db.Categoria.findAll({
+                attributes: [
+                  'nombre',
+                  [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'totalProductos']
+                ],
+                include: [{
+                  model: db.Producto,
+                  as: 'productos',
+                  through: { attributes: [] },
+                  attributes: []
+                }],
+                group: ['Categoria.id']
+            })
+
+
+
+            return {
+                productos,
+                categoria
+            }
+
+
+
         } catch (error) {
             console.log(error);
             return [];
         }
     },
+    
+    // Retorna un producto en base a su id
+    getByPk: async function (id) {
+        try {
+            let producto = await db.Producto.findByPk(id, {
+                
+                attributes: [             
+                    'id', 'nombre', 'descripcion', 'precio', 'descuento'
+                ],
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+                
+            });
+
+            return producto
+
+        } catch (error) {
+            console.log(error);
+            return {};
+        }
+    },
+
+
+    /////////////////////////////////
+
     /*
     getAllCategories: async function () {
         try {
@@ -62,7 +118,7 @@ const productService = {
             console.log(error);
             return [];
         }
-    },*/
+    },
     getAllCategories: async function () {
         try {
             return await db.ProductoCategoria.findAll({
@@ -84,7 +140,7 @@ const productService = {
                     'id',
                     [sequelize.fn('concat', 'http://localhost:3200/api/users/', sequelize.col('id')),' url']             
                 ],        
-*/
+
             });
         } catch (error) {
             console.log(error);
@@ -94,33 +150,96 @@ const productService = {
     getCategories: async function () {
         try {
 
+            /*
             
-            // let cantCat = await this.getAllCategories.length
-            //let cantCat = await db.Categoria.findAll().length
-/*
+             let cantCat = await db.Categoria.count()
+            console.log(cantCat);
+
+            let obj = {}
             let unaCat
+            let unaCatNomb
             let todasCat = []
-            for (i = 1; i <= 5; i++ ) {
+            let todasCat2 = {}
+            let todosNombre = []
+            let todosNombre2 = {}
+            for (i = 1; i <= cantCat; i++ ) {
                 
                  unaCat = await db.ProductoCategoria.count({
                     where: {
                         id_categoria: i
                     }
                   });
-                  console.log(unaCat);
-                  todasCat.push(unaCat)
-                  todasCat2 = [...unaCat]
+
+                  unaCatNomb = await db.Categoria.findByPk(i, {
+                    attributes: [             
+                        'nombre'
+                    ],
+                    where: {
+                        id: i
+                    }
+                  });
                   
+
+                  Object.defineProperty(obj, unaCatNomb.dataValues.nombre, {
+                    value: unaCat
+                })
+
+                  console.log(unaCat);
+                  console.log(unaCatNomb.dataValues.nombre);
+
+                  todasCat.push(unaCat)
+                  todosNombre.push(unaCatNomb.dataValues.nombre)
+                  
+                  todasCat2 = {...todasCat}
+                  todosNombre2 = {...todosNombre}
+
+                  
+
             };
+            
+
             console.log(todasCat);
+            console.log(todosNombre);
             console.log(todasCat2);
-            
-            return todasCat2
-            
+            console.log(todosNombre2);
+
+            console.log(todosNombre[2]);
+            */
+            /*
+            function Todo (...todosNombre) {
+                for (i = 1; i <= cantCat; i++ ) {
+                this.todosNombre[i] = todasCat[i]
+                }
+            }
+            const Algo = new Todo(...todosNombre) 
+            console.log(Algo);
 */
+            /*
+            const nuevo = todasCat2.map(item => {
+                const obj = {};
+                
+            })
+           */
+/*
+            let obj = {}
+            for (i = 0; i < cantCat; i++ ) {
+                Object.defineProperty(obj, todosNombre[i], {
+                    value: todasCat[i]
+                })
+
+                }
+                //console.log(obj);
+*/
+
+
+
+
+            //return todasCat2
+            
+
                             
    
-
+/*
             let categorias = {}
             let Deportivo = await db.ProductoCategoria.count({
                 distinct: true,
@@ -170,21 +289,7 @@ const productService = {
             return [];
         }
     },
-    // Retorna un producto en base a su id
-    getByPk: async function (id) {
-        try {
-            return await db.Producto.findByPk(id, {
-                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
-                attributes: [             
-                    'id', 'nombre', 'descripcion', 'precio', 'descuento'
-                ],
-            });
-        } catch (error) {
-            console.log(error);
-            return {};
-        }
-    },
-    
+    */
 }
 
 

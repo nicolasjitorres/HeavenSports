@@ -5,8 +5,8 @@ const controller = {
     index: async (req, res) => {
         try {
             const productos = await APIproductService.getAll(req);
-            const categorias1 = await APIproductService.getAllCategories();
-            const categorias2 = await APIproductService.getCategories();
+            //const categorias1 = await APIproductService.getAllCategories();
+            //const categorias2 = await APIproductService.getCategories();
             //let [...catName] = categorias1
             /*
             let indCat = []
@@ -17,10 +17,10 @@ const controller = {
             }*/
 
             return res.status(200).json({
-                count: productos.length,
-                countByCategory: categorias2,
-                categorias: categorias1,
-                products: productos,
+                count: productos.productos.length,
+                countByCategory: productos.categoria,
+                //categorias: categorias1,
+                products: productos.productos,
                 url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
             });
         } catch (error) {
@@ -34,14 +34,18 @@ const controller = {
 
             if(!producto) 
                 return res.status(404).json({message: 'El producto no exite'})
+
             //const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
             return res.status(200).json({
                 producto: producto,
+                imagenURL: `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`
+                /*
                 marca: producto.marca,
                 categorias: producto.categorias,
                 imagenes: producto.imagenes, 
                 color: producto.color, 
                 talles: producto.talles, 
+                */
             });
 
             
