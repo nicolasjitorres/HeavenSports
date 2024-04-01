@@ -66,7 +66,7 @@ const productService = {
                 where: {
                     active: true
                 }
-            });
+            })
         } catch (error) {
             return [];
         }

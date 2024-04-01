@@ -1,6 +1,7 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/general.css">
 
 <title>Detalle</title>
 </head>
@@ -16,32 +17,33 @@
   <!-- PRINCIPAL -->
   <main>
 
-      <div class="contenedor-datos">
+    <div class="card-profile">
 
-        <% if (locals.message) { %>
-          <p style="color: green; text-align: center; width: 100%; text-align: center;"><%= message%></p>
-        <% } %>
+      <img class="imagen" src="/images/users/<%= usuario.imagen.nombre %>" alt="foto_perfil">
+      <p class="card-profile-info">¡Estás de vuelta, <%= usuario.nombre + " " + usuario.apellido %>!</p>
 
-        <img class="imagen" src="/images/users/<%= usuario.imagen.nombre %>" alt="foto_perfil">
-        <p class="dato">¡Estás de vuelta, <%= usuario.nombre + " " + usuario.apellido %>!</p>
+      <a href="/users/edit" class="btn btn-dark-primary" id="card-profile-btn">
+        <i class="fa-solid fa-user-pen"></i>
+        Editar mi perfil
+      </a>
 
-        <a href="/users/edit" class="boton-editar">
-          Editar mi perfil
-        </a>
+      <a href="/users/changePass" class="btn btn-primary" id="card-profile-btn">
+        <i class="fa-solid fa-key"></i>
+        Cambiar contraseña
+      </a>
 
-        <a href="/users/changePass" class="boton-editar">
-          Cambiar contraseña
-        </a>
+      <form action="/users/softDelete/<%= usuario.id %>/?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-delete">
+          <i class="fa-solid fa-trash"></i>
+          Darme de baja
+        </button>
+      </form>
 
-        <form action="/users/softDelete/<%= usuario.id %>/?_method=DELETE" method="POST" class="form-eliminar">
-          <button type="submit" class="boton-eliminar">Darme de baja</button>
-        </form>
-
-      </div>
+    </div>
 
 
   </main>
-<!-- PIE DE PAGINA -->
+  <!-- PIE DE PAGINA -->
   <%- include ('../partials/footer')%>
 
 </body>

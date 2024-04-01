@@ -1,37 +1,4 @@
-/* Configuracion general */
-:root {
-  --dark-primary: #132c3a;
-  --delete: #8f0000;
-  --delete-light: #d30000;
-  --primary: #4b858d;
-  --light-primary: #a2cadf;
-  --secondary-text: #666;
-  --secondary: #ebebeb;
-  --light: #fff;
-  --dark: #000;
-  --discount: #008f39;
-}
-
-
-
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/
-/*------------------------------------------------------*/
-
-
-/* MAIN */
-
-main {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.contenedor-datos {
+.card-profile {
   width: 90%;
   max-width: 300px;
   background-color: var(--light);
@@ -40,103 +7,22 @@ main {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  border-radius: 7px;
 }
 
-.dato {
+.card-profile-info {
   width: 100%;
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .imagen {
-  width: 25%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
 }
 
-.boton-editar,
-.form-eliminar {
-  width: 44%;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+#card-profile-btn {
+  width: auto;
   text-decoration: none;
-  color: var(--light);
-  margin: 20px 5px 0;
-  border-radius: 5px;
-  font-size: 9px;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
-}
-
-.boton-editar {
-  background-color: var(--primary);
-}
-
-.form-eliminar {
-  background-color: var(--delete);
-}
-
-.boton-eliminar {
-  background-color: transparent;
-  border: none;
-  color: var(--light);
-  font-size: 9px;
-  cursor: pointer;
-}
-
-.boton-editar:hover {
-  background-color: var(--light-primary);
-}
-
-.form-eliminar:hover {
-  background-color: var(--delete-light);
-}
-
-/* MEDIA QUERYS */
-
-/* DISEÑOS PARA TABLETS */
-
-@media (min-width:768px) {
-
-
-  /* MAIN */
-
-  .contenedor-datos {
-    max-width: 500px;
-    padding: 20px;
-  }
-
-  .dato {
-    font-size: 16px;
-  }
-
-  .boton-editar,
-  .boton-eliminar {
-    font-size: 15px;
-  }
-
-
-
-}
-
-
-
-/* Resolucion para PC */
-@media(min-width: 1024px) {
-
-  /* MAIN */
-
-  .contenedor-datos {
-    max-width: 700px;
-    padding: 20px;
-  }
-
-  .dato {
-    font-size: 18px;
-  }
-
-  .boton-editar,
-  .boton-eliminar {
-    font-size: 16px;
-  }
 }

@@ -26,8 +26,7 @@ form {
 
 
   /* MAIN */
-  .contenedor-form,
-  .contenedor-error {
+  .contenedor-form {
     width: 500px;
   }
 
@@ -39,8 +38,7 @@ form {
 
 
   /* MAIN */
-  .contenedor-form,
-  .contenedor-error {
+  .contenedor-form {
     width: 600px;
   }
 
