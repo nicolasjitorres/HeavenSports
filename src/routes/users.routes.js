@@ -26,13 +26,13 @@ router.get('/register', guestUserMiddleware, userController.register);
 router.post('/register', guestUserMiddleware, upload.single('imagen'), validationRegisterMiddleware.validation, validationRegisterMiddleware.result, userController.save);
 
 // TODOS LOS USUARIOS
-router.get('/', userController.usuarios);
+router.get('/', adminMiddleware, userController.usuarios);
 
 // PERFIL DEL USUARIO
-router.get('/profile', userController.profile);
+router.get('/profile', authUserMiddleware, userController.profile);
 
 // CAMBIAR DE CATEGORIA Y ELIMINAR USUARIO (SOLO ADMINISTRADOR)
-router.patch('/changeCategory/:id', userController.changeCategory);
+router.patch('/changeCategory/:id', adminMiddleware, userController.changeCategory);
 router.delete('/:id', adminMiddleware, userController.destroyUser);
 
 // EDICION DEL USUARIO
@@ -44,7 +44,7 @@ router.get('/changePass', authUserMiddleware, userController.changePass);
 router.put('/changePass', authUserMiddleware, validationChangePassMiddleware.validation, validationChangePassMiddleware.result, userController.updatePass);
 
 // DARSE DE BAJA (USUARIOS Y ADMINS)
-router.delete('/softDelete/:id/:active', userController.softDelete);
+router.delete('/softDelete/:id/:active', authUserMiddleware, userController.softDelete);
 
 
 
