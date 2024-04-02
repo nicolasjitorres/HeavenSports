@@ -132,7 +132,7 @@ const controller = {
     update: async (req, res) => {
         try {
             await productService.edit(req.body, req.params.id);
-            res.redirect(`/products/detail/${req.params.id}`);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
         } catch (error) {
             console.log(error);
         }
