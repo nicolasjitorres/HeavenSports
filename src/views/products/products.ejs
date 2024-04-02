@@ -35,7 +35,7 @@
 
       <% if (locals.userLogged && locals.admin) { %>
       <div class="div-link">
-        <a class="card-btn card-btn-add">
+        <a class="card-btn card-btn-add" href="/products/create">
           <i class="fa-solid fa-plus"></i> Agregar producto
         </a>
       </div>
@@ -74,7 +74,10 @@
           </a>
 
           <form action="/products/<%= producto.id %>/?_method=DELETE" method="POST">
-            <button type="submit" class="card-btn card-btn-delete">Dar de baja</button>
+            <button type="submit" class="card-btn card-btn-delete">
+              <i class="fa-solid fa-trash"></i>
+              Eliminar
+            </button>
           </form>
         </div>
         <% } %>
