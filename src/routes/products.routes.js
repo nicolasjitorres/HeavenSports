@@ -5,6 +5,7 @@ const adminMiddleware = require("../middlewares/adminMiddleware");
 const authUserMiddleware = require("../middlewares/authUserMiddleware");
 const multerMiddleware = require('../middlewares/multerMiddleware');
 const validationCreateMiddleware = require('../middlewares/validations/products/validationCreateMiddleware');
+const validationCartMiddleware = require('../middlewares/validations/products/validationCartMiddleware');
 const validationProductEditMiddleware = require('../middlewares/validations/products/validationProductEditMiddleware');
 const validationAddSizeMiddleware = require('../middlewares/validations/products/validationAddSizeMiddleware');
 const validationEditSizeMiddleware = require('../middlewares/validations/products/validationEditSizeMiddleware');
@@ -21,8 +22,15 @@ router.get('/detail/:id', productController.detail);
 // Ruta hacia el carrito de compras del usuario
 router.get('/cart', authUserMiddleware, productController.cart);
 
+// Agrega o resta un elemento del carrito
+router.patch('/cart/add', authUserMiddleware, productController.cartAdd);
+router.patch('/cart/remove', authUserMiddleware, productController.cartRemove);
+
+// Elimina un elemento del carrito
+router.delete('/cart', authUserMiddleware, productController.cartDelete);
+
 // Agrega un producto al carrito
-router.post('/cart/:id', productController.addCart);
+router.post('/cart/:id', validationCartMiddleware.validation, validationCartMiddleware.result, productController.addCart);
 
 /* CREATE ONE PRODUCT */
 router.get('/create', productController.create);

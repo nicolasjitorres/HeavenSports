@@ -10,6 +10,7 @@
 
 <body>
 
+  <script src="/js/products/detail.js" type="text/javascript"></script>
   <!-- ENCABEZADO -->
 
   <%- include ('../partials/header')%>
@@ -52,23 +53,40 @@
 
       <% if (tal.length > 0) { %>
 
-      <form action="/products/cart/<%= producto.id %>" method="POST" class="formCartProduct form-product">
+      <form action="/products/cart/<%= producto.id %>" method="POST" class="form-product detailForm">
 
-        <label class="product-lbl">Talle</label>
-        <select class="select" name="id_talle" required>
-          <option value="" selected disabled>- Seleccione un talle -</option>
-          <% tal.forEach(talle => { %>
-          <% if (talle.ProductoTalle.stock > 0) { %>
-          <option value=<%= talle.id %>> <%= talle.numero %> -
-            <%= talle.ProductoTalle.stock > 1 ? talle.ProductoTalle.stock +" disponibles" : "Último disponible" %>
-          </option>
+
+        <div class="box talle">
+          <label class="product-lbl">Talle</label>
+          <select class="select" name="id_talle" required>
+            <option selected disabled>- Seleccione un talle -</option>
+            <% tal.forEach(talle => { %>
+            <% if (talle.ProductoTalle.stock > 0) { %>
+            <option value=<%= talle.id %>> <%= talle.numero %> -
+              <%= talle.ProductoTalle.stock > 1 ? talle.ProductoTalle.stock +" disponibles" : "Último disponible" %>
+            </option>
+            <% } %>
+            <% }) %>
+          </select>
+          <i class="select-arrow" id="arrow"></i>
+          <% if (locals.errors) { %>
+          <% const talleError = errors.find(error => error.path == 'id_talle'); %>
+          <% if (talleError) { %>
+          <p class="error"><%= talleError.msg %></p>
           <% } %>
-          <% }) %>
-        </select>
-        <i class="select-arrow" id="arrow"></i>
+          <% } %>
+        </div>
 
-        <label for="cantidad_producto" class="product-lbl">Cantidad</label>
-        <input class="inp" type="number" id="cantidad_producto" name="cantidad_producto">
+        <div class="box stock">
+          <label for="cantidad_producto" class="product-lbl">Cantidad</label>
+          <input class="inp" type="number" id="cantidad_producto" name="cantidad_producto">
+          <% if (locals.errors) { %>
+          <% const stockError = errors.find(error => error.path == 'cantidad_producto'); %>
+          <% if (stockError) { %>
+          <p class="error"><%= stockError.msg %></p>
+          <% } %>
+          <% } %>
+        </div>
 
         <button type="submit" class="btn btn-primary" id="btn">
           <i class="iconoBoton fa-solid fa-cart-plus"></i> Agregar al Carrito

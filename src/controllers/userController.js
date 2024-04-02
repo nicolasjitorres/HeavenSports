@@ -8,9 +8,8 @@ const controller = {
     },
     signIn: async (req, res) => {
         try {
-            const id = await userService.signIn(req.body);
-            if (id) {
-                const user = await userService.getByPk(id);
+            const user = await userService.signIn(req.body);
+            if (user) {
                 req.session.userLogged = {
                     id: user.id,
                     nombre: user.nombre,
@@ -20,22 +19,17 @@ const controller = {
                     id_rol: user.id_rol,
                     imagen: user.imagen.nombre
                 };
-
                 if (req.body.recordar) {
                     res.cookie('sesionUserRemember', user.sesion, {
-                        maxAge: 1000 * 60 * 15 /* 15 minutos */,
-                        httpOnly: true,
-                        secure: true
+                        maxAge: 1000 * 60 * 15 /* 15 minutos */ 
                     });
                 }
-                res.redirect(`/users/profile`);
+                res.status(200).redirect(`/users/profile`);
             } else {
-                res.render('users/login', {
-                    error: "Credenciales invalidas"
-                });
+                throw new Error('Ocurrio un error de conexion con la base de datos...');
             }
         } catch (error) {
-            console.log(error.message);
+            res.status(500).render('info/error');
         }
     },
     logout: async (req, res) => {
@@ -141,7 +135,9 @@ const controller = {
         }
     },
     changePass: (req, res) => {
-        res.render('users/changePass', { idUsuario: req.session.userLogged.id });
+        res.render('users/changePass', {
+            idUsuario: req.session.userLogged.id
+        });
     },
     updatePass: async (req, res) => {
         try {

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const bcryptjs = require('bcryptjs');
 const db = require("../data/models");
+const crypto = require('crypto');
 
 const userService = {
     getAll: async function () {
@@ -27,7 +28,9 @@ const userService = {
             let whereClause = {};
             whereClause[field] = value;
             return await db.Usuario.findOne({
-                where: whereClause,
+                where: {
+                    [field]: value
+                },
                 include: ['rol', 'imagen', 'carrito']
             })
         } catch (error) {
@@ -48,9 +51,11 @@ const userService = {
                         idFile = id;
                     }
                     const newUsuario = new Usuario(data, idFile);
-                    const { id } = await db.Usuario.create(newUsuario);
+                    const {
+                        id
+                    } = await db.Usuario.create(newUsuario);
                     await db.Carrito.create({
-                        id_usuario : id
+                        id_usuario: id
                     })
                     return {
                         userSaved: true
@@ -74,55 +79,47 @@ const userService = {
             };
         }
     },
-    generateRandomNumber: function () {
-        let randomNumber = '';
-        for (let i = 0; i < 10; i++) {
-            randomNumber += Math.floor(Math.random() * 10);
+    generateSessionToken: function () {
+        try {
+            const buffer = crypto.randomBytes(32);
+            return buffer.toString('hex');
+        } catch (error) {
+            console.error("Error al generar el token de sesión:", error);
+            return null;
         }
-        return bcryptjs.hashSync(randomNumber, 15);
     },
     signIn: async function (data) {
-
         try {
             let user = await this.findByField('email', data.email);
-            if (user && user.active) {
-                let pass = bcryptjs.compareSync(data.contrasena, user.contrasena);
-                if (pass) {
-                    console.log('Usuario logueado correctamente');
-                    const sesion = this.generateRandomNumber();
-                    await db.Usuario.update({
-                        sesion: sesion
-                    }, {
-                        where: {
-                            id: user.id
-                        }
-                    });
-                    return user.id;
-                } else {
-                    throw new Error('Credenciales invalidas');
-                }
-            } else {
-                throw new Error('Usuario inexistente');
+            if (data.recordar) {
+                const sesion = this.generateSessionToken();
+                await db.Usuario.update({
+                    sesion: sesion
+                }, {
+                    where: {
+                        id: user.id
+                    }
+                });
             }
+            return await this.getByPk(user.id);
         } catch (error) {
-            console.log(error.message);
-            return false;
+            return null;
         }
     },
-    logoutUser: async function(sesion){
+    logoutUser: async function (sesion) {
         try {
             await db.Usuario.update({
                 sesion: null
             }, {
                 where: {
-                    sesion: sesion 
+                    sesion: sesion
                 }
             });
         } catch (error) {
             console.log(error.message);
         }
     },
-    deleteImagen: async function(usuario){
+    deleteImagen: async function (usuario) {
         if (usuario.imagen.nombre != 'default.png') {
             const rutaDirectorio = '../../public/images/users';
             const rutaImagen = path.join(__dirname, rutaDirectorio, usuario.imagen.nombre)
@@ -197,7 +194,10 @@ const userService = {
             console.log(error.message);
         }
     },
-    softDelete: async function ({id, active}) {
+    softDelete: async function ({
+        id,
+        active
+    }) {
         try {
             await db.Usuario.update({
                 active: active

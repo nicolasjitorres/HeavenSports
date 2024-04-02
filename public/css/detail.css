@@ -6,7 +6,7 @@
 }
 
 #arrow {
-    top: 47px
+    top: 37px
 }
 
 #btn {
@@ -15,7 +15,6 @@
 
 .product-lbl{
     color: var(--dark-secondary);
-    padding: 20px 0 2px;
 }
 
 .product-stock {
