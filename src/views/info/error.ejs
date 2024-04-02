@@ -1,6 +1,6 @@
 <%- include ('../partials/head')%>
 
-<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/general.css">
 <title>Error</title>
 
 </head>
@@ -13,15 +13,15 @@
   <!-- PRINCIPAL -->
   <main>
 
-    
+
     <!-- MENSAJE ERROR -->
-    <div class="contenedor-error">
+    <div class="card-error">
+      <p>¡UPS! Parece que ocurrío un error :( Pero no te preocupes, es nuestra culpa, no tuya...</p>
       <% if (locals.error) { %>
-       <p>Hola, error: <%= error %></p>
+      <p>Hola, error: <%= error %></p>
       <% } %>
-        <p>¡UPS! Parece que ocurrío un error... :(</p>
-        <a class ="linkError" href="/">Volver a la página principal</a>
     </div>
+    <a class="link color-primary" href="/">Volver a la página principal</a>
   </main>
   <!-- PIE DE PAGINA -->
   <%- include ('../partials/footer')%>

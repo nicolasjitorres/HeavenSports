@@ -89,7 +89,6 @@ window.addEventListener('load', function () {
             eliminarHijos(divImages);
             return;
         }
-
         eliminarHijos(divImages);
         agregarImagenes(fileInput, fileList, fileInfo, fileError, divImages);
     });

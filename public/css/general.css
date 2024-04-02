@@ -104,6 +104,18 @@ body {
     color: var(--upload);
 }
 
+/* Tarjeta de error */
+
+.card-error{
+    width: 400px;
+}
+
+.card-error p {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 50px;
+}
+
 /* Botones */
 .card-buttons {
     display: flex;
@@ -505,13 +517,14 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     overflow: hidden;
+    box-shadow: 0 5px 5px var(--dark-secondary);
+    border-radius: 8px;
 }
 
 .selector-main-image {
     width: 370px;
     height: 370px;
     object-fit: cover;
-    border-radius: 5px;
 }
 
 .selector-images {
@@ -521,6 +534,7 @@ main {
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
+    
 }
 
 .selector-image {
@@ -530,6 +544,7 @@ main {
     border-radius: 5px;
     opacity: .6;
     cursor: pointer;
+    box-shadow: 0 5px 5px var(--dark-secondary);
     transition: all 250ms ease-in-out;
 }
 

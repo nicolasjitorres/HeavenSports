@@ -74,15 +74,15 @@ const productService = {
                         id: data.idProductoTalle
                     }
                 });
-    
+
                 const CPT = await db.CarritoProductoTalle.findOne({
                     where: {
                         id: data.idCarritoProductoTalle
                     }
                 });
-    
+
                 let newCantidad = CPT.cantidad_producto + 1;
-    
+
                 await db.CarritoProductoTalle.update({
                     cantidad_producto: newCantidad
                 }, {
@@ -102,7 +102,7 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             let newStock = PT.stock + 1;
             await db.ProductoTalle.update({
                 stock: newStock
@@ -111,13 +111,13 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             const CPT = await db.CarritoProductoTalle.findOne({
                 where: {
                     id: data.idCarritoProductoTalle
                 }
             });
-    
+
             if (CPT.cantidad_producto > 1) {
                 let newCantidad = CPT.cantidad_producto - 1;
                 await db.CarritoProductoTalle.update({
@@ -139,13 +139,13 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             const CPT = await db.CarritoProductoTalle.findOne({
                 where: {
                     id: data.idCarritoProductoTalle
                 }
             });
-    
+
             let newStock = PT.stock + parseInt(CPT.cantidad_producto);
             await db.ProductoTalle.update({
                 stock: newStock

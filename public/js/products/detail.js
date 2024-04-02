@@ -11,7 +11,19 @@ window.addEventListener('load', function () {
     let labelStock = document.querySelector('.stock .product-lbl');
     let errorStock = document.querySelector(".stock .error");
 
+    let imagenPrincipal = document.querySelector('.selector-main-image');
+    let imagenes = document.querySelectorAll('.selector-image');
+
     let form = document.querySelector('.detailForm');
+
+    for (let imagen of imagenes) {
+        imagen.addEventListener('click', () => {
+            imagenes.forEach(img => img.classList.remove('selector-active'));
+            imagenPrincipal.src = imagen.src;
+            imagen.classList.add('selector-active');
+        })
+    }
+
 
     // Valida los datos 
     function validarError(box, input, label, error, msg) {

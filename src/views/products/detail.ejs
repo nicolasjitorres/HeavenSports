@@ -20,17 +20,23 @@
   <main>
 
     <div class="div-product">
+      <% if (producto.imagenes.length > 1) { %>
       <div class="selector-main">
         <img class="selector-main-image" src=<%= '/images/products/' + producto.imagenes[0].nombre %> alt="">
       </div>
 
-      <% if (producto.imagenes.length > 1) { %>
       <div class="selector-images">
         <% for( imagen of producto.imagenes) {%>
         <img class="selector-image <%= producto.imagenes[0] == imagen ? 'selector-active' : '' %>"
           src="<%='/images/products/' + imagen.nombre %>" alt="<%= imagen.nombre %>">
         <% } %>
       </div>
+      <% } else { %>
+
+      <div class="selector-main">
+        <img class="selector-main-image" src='/images/products/default.png' alt="">
+      </div>
+
       <% } %>
 
       <h1 class="product-name"><%= producto.nombre + " - " + producto.color.nombre %></h1>

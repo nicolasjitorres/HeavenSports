@@ -50,7 +50,6 @@ const controller = {
         try {
             const user = await userService.saveUser(req.body, req.file);
             if (user.userSaved) {
-                console.log('Usuario registrado correctamente');
                 res.redirect('/users/login');
             } else {
                 res.render('users/register.ejs', {
