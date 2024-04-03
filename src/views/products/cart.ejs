@@ -1,8 +1,9 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/cart.css">
+<link rel="stylesheet" href="/css/general.css">
 
-<title>Carrito de compras</title>
+<title>Carrito</title>
 </head>
 
 <body>
@@ -14,32 +15,68 @@
   <!-- MAIN -->
   <main>
 
-    <p class="titulo">Tu carrito!</p>
 
     <!-- CONTENEDOR DE PRODUCTOS -->
-    <div class="contenedor-productos">
+    <div class="contenedor-cart">
+      <p class="titulo">Carrito</p>
 
       <% if (carrito) { %>
+      <% let total = 0; %>
       <% for( dato of carrito.productosTalles ) { %>
-      <div class="producto">
-        <img class="producto-imagen"
+      <a href="/products/detail/<%= dato.producto.id %>" class="cart-card">
+        <img class="cart-card-image"
           src=<%= "/images/products/" + (dato.producto.imagenes[0].nombre || "default.png") %> alt="">
-        <div class="producto-datos">
-          <p class="nombre"><%= dato.producto.nombre %></p>
-          <p class="precio">$<%= dato.producto.precio %></p>
-          <p class="talle">Talle <%= dato.talle.numero %></p>
-          <p class="cantidad">Cantidad: <%= dato.CarritoProductoTalle.cantidad_producto %></p>
+        <div class="cart-card-description">
+          <p><b>Nombre:</b> <%= dato.producto.nombre %></p>
+          <p><b>Precio p/u:</b> $<%= dato.producto.precio %></p>
+          <p><b>Talle:</b> <%= dato.talle.numero %></p>
+          <p><b>Cantidad:</b> <%= dato.CarritoProductoTalle.cantidad_producto %></p>
+
+          <% if (dato.CarritoProductoTalle.cantidad_producto > 1) { %>
+          <form action="/products/cart/remove/?_method=PATCH" method="POST">
+            <input style="display: none;" type="text" name="idProductoTalle" value="<%= dato.id %>">
+            <input style="display: none;" type="text" name="idCarritoProductoTalle"
+              value="<%= dato.CarritoProductoTalle.id %>">
+
+            <button type="submit" class="card-btn card-btn-edit">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+          </form>
+          <% } %>
+
+          <% if (dato.stock != 0) { %>
+          <form action="/products/cart/add/?_method=PATCH" method="POST">
+            <input style="display: none;" type="text" name="idProductoTalle" value="<%= dato.id %>">
+            <input style="display: none;" type="text" name="idCarritoProductoTalle"
+              value="<%= dato.CarritoProductoTalle.id %>">
+
+            <button type="submit" class="card-btn card-btn-edit">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </form>
+          <% } %>
+
+          <form action="/products/cart/?_method=DELETE" method="POST">
+            <input style="display: none;" type="text" name="idProductoTalle" value="<%= dato.id %>">
+            <input style="display: none;" type="text" name="idCarritoProductoTalle"
+              value="<%= dato.CarritoProductoTalle.id %>">
+
+            <button type="submit" class="card-btn card-btn-delete">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </form>
+
         </div>
 
-      </div>
+      </a>
+      <% total += dato.producto.precio * dato.CarritoProductoTalle.cantidad_producto} %>
+      <p class="cart-card-total"><b>Total del carrito:</b> $<%= total %></p>
       <% } %>
-      <% } %>
-
-
     </div>
 
-    <a class="boton-volver" href="/">Volver a la Página principal</a>
-
+    <div class="cart-btn-volver">
+      <a class="link color-primary" href="/">Volver a la Página principal</a>
+    </div>
 
   </main>
 

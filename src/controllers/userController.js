@@ -8,9 +8,8 @@ const controller = {
     },
     signIn: async (req, res) => {
         try {
-            const id = await userService.signIn(req.body);
-            if (id) {
-                const user = await userService.getByPk(id);
+            const user = await userService.signIn(req.body);
+            if (user) {
                 req.session.userLogged = {
                     id: user.id,
                     nombre: user.nombre,
@@ -20,22 +19,17 @@ const controller = {
                     id_rol: user.id_rol,
                     imagen: user.imagen.nombre
                 };
-
                 if (req.body.recordar) {
                     res.cookie('sesionUserRemember', user.sesion, {
-                        maxAge: 1000 * 60 * 15 /* 15 minutos */,
-                        httpOnly: true,
-                        secure: true
+                        maxAge: 1000 * 60 * 15 /* 15 minutos */ 
                     });
                 }
-                res.redirect(`/users/profile`);
+                res.status(200).redirect(`/users/profile`);
             } else {
-                res.render('users/login', {
-                    error: "Credenciales invalidas"
-                });
+                throw new Error('Ocurrio un error de conexion con la base de datos...');
             }
         } catch (error) {
-            console.log(error.message);
+            res.status(500).render('info/error');
         }
     },
     logout: async (req, res) => {
@@ -56,7 +50,6 @@ const controller = {
         try {
             const user = await userService.saveUser(req.body, req.file);
             if (user.userSaved) {
-                console.log('Usuario registrado correctamente');
                 res.redirect('/users/login');
             } else {
                 res.render('users/register.ejs', {
@@ -77,17 +70,24 @@ const controller = {
     },
     softDelete: async (req, res) => {
         try {
-            await userService.softDelete(req.params.id);
-            res.clearCookie('emailUserRemember');
-            req.session.destroy();
-            res.redirect('/');
+            await userService.softDelete(req.params);
+            if (req.session.userLogged && req.session.userLogged.id_rol == 1) {
+                res.clearCookie('emailUserRemember');
+                req.session.destroy();
+                res.redirect('/');
+            } else {
+                res.redirect('/users');
+            }
         } catch (error) {
             console.log(error.message);
         }
     },
     usuarios: async (req, res) => {
         try {
-            const usuarios = await userService.getAll();
+            let usuarios = await userService.getAll();
+            if (req.session.userLogged) {
+                usuarios = usuarios.filter(usuario => usuario.id != req.session.userLogged.id)
+            }
             res.render('users/usuarios', {
                 usuarios: usuarios
             });
@@ -106,20 +106,10 @@ const controller = {
             res.redirect('/404');
         }
     },
-    getAdminEditView: async (req, res) => {
-        try {
-            const usuario = await userService.getByPk(req.params.id);
-            res.render('users/userEditAdmin', {
-                usuario: usuario
-            });
-        } catch (error) {
-            console.log(error.message);
-        }
-    },
     changeCategory: async (req, res) => {
         try {
             await userService.change(req.params.id);
-            res.redirect(`/users/userEdit/${req.params.id}`);
+            res.redirect(`/users`);
         } catch (error) {
             console.log(error);
         }
@@ -144,7 +134,9 @@ const controller = {
         }
     },
     changePass: (req, res) => {
-        res.render('users/changePass', { idUsuario: req.session.userLogged.id });
+        res.render('users/changePass', {
+            idUsuario: req.session.userLogged.id
+        });
     },
     updatePass: async (req, res) => {
         try {

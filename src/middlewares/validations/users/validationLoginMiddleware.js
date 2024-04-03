@@ -22,7 +22,7 @@ const validationLoginMiddleware = {
         .notEmpty().withMessage('El campo contraseña es obligatorio.').bail()
         .custom(async (contrasena, { req }) => {
             const user = await userService.findByField('email', req.body.email);
-            if(!bcryptjs.compareSync(contrasena, user.contrasena)){
+            if(user && !bcryptjs.compareSync(contrasena, user.contrasena)){
                 throw new Error('La contraseña es incorrecta')
             }
             return true;

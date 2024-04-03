@@ -9,7 +9,7 @@ const controller = {
                 productos: productos
             });
         } catch (error) {
-            console.log(error);
+
         }
     },
     // Mostrar detalle de un producto mediante su id
@@ -28,10 +28,6 @@ const controller = {
     addCart: async (req, res) => {
         try {
             if (!req.session.userLogged) {
-                req.session.productCart = {
-                    id: req.params.id,
-                    data: req.body
-                };
                 return res.render('users/login');
             }
             const data = await productService.addToCart(req.body, req.params.id, req.session.userLogged.id);
@@ -43,17 +39,40 @@ const controller = {
         } catch (error) {
             console.log(error.message);
         }
-        /* res.render('products/cart', {}); */
+
     },
     cart: async (req, res) => {
         try {
             const carrito = await productService.getCartView(req.session.userLogged.id);
-            // res.send(carrito)
             res.render('products/cart', {
                 carrito: carrito
             });
         } catch (error) {
             console.log(error.message);
+        }
+    },
+    cartAdd: async (req, res) => {
+        try {
+            await productService.addCartOne(req.body);
+            res.redirect('/products/cart');
+        } catch (error) {
+            res.status(500).redirect('/info/error');
+        }
+    },
+    cartRemove: async (req, res) => {
+        try {
+            await productService.removeCartOne(req.body);
+            res.redirect('/products/cart');
+        } catch (error) {
+            res.status(500).redirect('/info/error');
+        }
+    },
+    cartDelete: async (req, res) => {
+        try {
+            await productService.deleteCartOne(req.body);
+            res.redirect('/products/cart');
+        } catch (error) {
+            res.status(500).redirect('/info/error');
         }
     },
     // Muestra el formulario de creacion de un producto
@@ -113,7 +132,7 @@ const controller = {
     update: async (req, res) => {
         try {
             await productService.edit(req.body, req.params.id);
-            res.redirect(`/products/detail/${req.params.id}`);
+            res.redirect(`/products/edit/${req.params.id}/relations`);
         } catch (error) {
             console.log(error);
         }

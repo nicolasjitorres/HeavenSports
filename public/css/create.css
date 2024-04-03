@@ -1,24 +1,9 @@
-/* TITULO */
-.titulo {
-  width: 100%;
-  text-align: center;
-  padding: 10px 0 5px;
-  font-size: 1.2rem;
-  color: var(--secondary-text);
-}
+
 
 /* FORMULARIO */
 
 .cat {
   justify-content: space-between;
-}
-
-.contenedor-form {
-  max-width: 800px;
-  padding: 20px;
-  margin: 60px 20px;
-  background-color: var(--light);
-  border-radius: 10px;
 }
 
 form {
@@ -27,22 +12,11 @@ form {
   flex-wrap: wrap;
 }
 
-.box {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
-  padding: 10px 0;
-}
-
 .marca,
 .color,
 .talle {
   position: relative;
 }
-
-
-
 
 /* MEDIA QUERYS */
 
@@ -52,8 +26,7 @@ form {
 
 
   /* MAIN */
-  .contenedor-form,
-  .contenedor-error {
+  .contenedor-form {
     width: 500px;
   }
 
@@ -65,8 +38,7 @@ form {
 
 
   /* MAIN */
-  .contenedor-form,
-  .contenedor-error {
+  .contenedor-form {
     width: 600px;
   }
 

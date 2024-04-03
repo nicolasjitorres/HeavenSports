@@ -1,5 +1,4 @@
 window.addEventListener('load', function () {
-
     let boxNombre = document.querySelector('.nombre');
     let inputNombre = document.querySelector('.nombre .inp');
     let labelNombre = document.querySelector('.nombre .lbl');
@@ -15,16 +14,6 @@ window.addEventListener('load', function () {
     let labelEmail = document.querySelector('.email .lbl');
     let errorEmail = document.querySelector(".email .error");
 
-    let boxContrasena = document.querySelector('.contrasena');
-    let inputContrasena = document.querySelector('.contrasena .inp');
-    let labelContrasena = document.querySelector('.contrasena .lbl');
-    let errorContrasena = document.querySelector(".contrasena .error");
-
-    let boxReContrasena = document.querySelector('.reContrasena');
-    let inputReContrasena = document.querySelector('.reContrasena .inp');
-    let labelReContrasena = document.querySelector('.reContrasena .lbl');
-    let errorReContrasena = document.querySelector(".reContrasena .error");
-
     let fileBox = document.querySelector('.image');
     let fileInput = document.querySelector("#img");
     let fileInfo = document.querySelector('.file-info');
@@ -32,10 +21,9 @@ window.addEventListener('load', function () {
     let fileImg = document.querySelector('.file-image');
     let fileError = document.querySelector('.image .error');
 
-    const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const expRegContrasena = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    let form = document.querySelector('.userEditForm');
 
-    let form = document.querySelector('.registerForm');
+    const expRegEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Valida los datos 
     function validarError(box, input, label, error, msg) {
@@ -103,7 +91,7 @@ window.addEventListener('load', function () {
 
     // Evento para validar el campo apellido
     inputApellido.addEventListener('blur', () => {
-        if (inputApellido.value.length == 0) {
+        if (inputApellido.value.trim().length == 0) {
             return errorApellido = validarError(boxApellido, inputApellido, labelApellido, errorApellido, "Este campo es obligatorio.")
         }
 
@@ -127,37 +115,6 @@ window.addEventListener('load', function () {
         return datosCorrectos(inputEmail, labelEmail, errorEmail);
     })
 
-    // Evento para validar el campo contraseña
-    inputContrasena.addEventListener('blur', () => {
-        if (inputContrasena.value.length == 0) {
-            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "Este campo es obligatorio.")
-        }
-
-        if (inputContrasena.value.length < 8) {
-            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe tener al menos 8 caracteres.")
-        }
-
-        if (!expRegContrasena.test(inputContrasena.value)) {
-            return errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial.")
-        }
-
-        return datosCorrectos(inputContrasena, labelContrasena, errorContrasena);
-    })
-
-    // Evento para validar el campo reContraseña
-    inputReContrasena.addEventListener('blur', () => {
-        if (inputReContrasena.value.length == 0) {
-            return errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Este campo es obligatorio.")
-        }
-
-        if (inputContrasena.value != inputReContrasena.value) {
-            return errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Las contraseñas no coinciden.")
-        }
-
-        return datosCorrectos(inputReContrasena, labelReContrasena, errorReContrasena);
-    });
-
-
     // Validacion del input de imagen
     fileInput.addEventListener('change', () => {
         const result = validarImg(fileInput);
@@ -172,18 +129,22 @@ window.addEventListener('load', function () {
 
         fileList.textContent = fileInput.files[0].name;
         let reader = new FileReader();
+
         reader.onload = function (event) {
             fileImg.src = event.target.result;
         }
+
         reader.readAsDataURL(fileInput.files[0]);
         if (fileError) {
             fileError.style.display = 'none';
         }
+
         fileInfo.classList.add('inp-valid');
         fileList.classList.add('lbl-valid');
         fileInfo.classList.remove('inp-error');
         fileList.classList.remove('lbl-error');
     });
+
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -215,28 +176,6 @@ window.addEventListener('load', function () {
             errorEmail = validarError(boxEmail, inputEmail, labelEmail, errorEmail, "Introduzca un email valido.")
             validado = false;
         }
-
-        // Valida el campo contrasena
-        if (inputContrasena.value.length == 0) {
-            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "Este campo es obligatorio.")
-            validado = false;
-        } else if (inputContrasena.value.length < 8) {
-            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe tener al menos 8 caracteres.")
-            validado = false;
-        } else if (!expRegContrasena.test(inputContrasena.value)) {
-            errorContrasena = validarError(boxContrasena, inputContrasena, labelContrasena, errorContrasena, "La contraseña debe contener al menos una minúscula, una mayúscula, un dígito y un carácter especial.")
-            validado = false;
-        }
-
-        // Valida el campo reContrasena
-        if (inputReContrasena.value.length == 0) {
-            errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Este campo es obligatorio.")
-            validado = false;
-        } else if (inputContrasena.value != inputReContrasena.value) {
-            errorReContrasena = validarError(boxReContrasena, inputReContrasena, labelReContrasena, errorReContrasena, "Las contraseñas no coinciden.")
-            validado = false;
-        }
-
 
         // En caso de que todo sea correcto
         if (validado) {

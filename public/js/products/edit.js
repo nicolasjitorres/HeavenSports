@@ -26,26 +26,8 @@ window.addEventListener('load', function () {
     let arrowColor = document.querySelector('.color .select-arrow');
     let errorColor = document.querySelector(".color .error");
 
-    let boxTalle = document.querySelector('.talle');
-    let selectTalle = document.querySelector('.talle .select');
-    let labelTalle = document.querySelector('.talle .lbl');
-    let arrowTalle = document.querySelector('.talle .select-arrow');
-    let errorTalle = document.querySelector(".talle .error");
 
-    let boxStock = document.querySelector('.stock');
-    let inputStock = document.querySelector('.stock .inp');
-    let labelStock = document.querySelector('.stock .lbl');
-    let errorStock = document.querySelector(".stock .error");
-
-    let fileBox = document.querySelector('.image');
-    let fileInput = document.querySelector("#img");
-    let fileInfo = document.querySelector('.file-info');
-    let fileList = document.querySelector('.file-info-p');
-    let divImages = document.querySelector('.div-images');
-    let fileImg = document.querySelector('.file-image');
-    let fileError = document.querySelector('.image .error');
-
-    let form = document.querySelector('.createProductForm');
+    let form = document.querySelector('.editProductForm');
 
     // Valida los datos 
     function validarError(box, input, label, error, msg) {
@@ -77,66 +59,7 @@ window.addEventListener('load', function () {
         input.classList.remove("inp-error");
         label.classList.remove("lbl-error");
     }
-
-    // Valida si los elementos cargados mediante el input de tipo file son correctos
-    function validarImg(input) {
-        let imagenes = input.files;
-        for (const imagen of imagenes) {
-            let extension = imagen.name.split('.').pop().toLowerCase();
-            let extensionesValidas = ['jpg', 'png', 'jpeg'];
-            if (!extensionesValidas.includes(extension)) {
-                return `La extensión del archivo ${imagen.name} no está permitida.`;
-            }
-
-            let size = imagen.size / (1024 * 1024);
-            if (size > 10) {
-                return `El tamaño del archivo ${imagen.name} supera los 10Mb.`;
-            }
-        }
-
-        return null;
-    }
-
-    // Funcion que elimina todas las imagenes menos la imagen por defecto
-    function eliminarHermanos(div, img) {
-        // Aqui buscamos al hermano de la imagen por defecto (default.png) dentro del contenedor de imagenes (divImages) ya que
-        // se pretende que no se elimine la imagen por defecto
-        let imgActual = img.nextElementSibling;
-        while (imgActual) {
-            // Se guarda la referencia del siguiente hermano, antes de eliminar el actual
-            const imgSiguiente = imgActual.nextElementSibling;
-            // Se elimina el actual
-            div.removeChild(imgActual);
-            // Ahora el hermano del eliminado pasa a ser el actual
-            imgActual = imgSiguiente;
-        }
-    }
-
-    // Agrega las imagenes cargadas, si todo está correcto, a la vista previa
-    function agregarImagenes(input, list, info, error, div) {
-        const imagenes = input.files;
-        list.textContent = '';
-        for (const imagen of imagenes) {
-            list.innerHTML += `● ${imagen.name} <br>`;
-            const img = document.createElement('img');
-            img.classList.add('images');
-            let reader = new FileReader();
-            reader.onload = function (event) {
-                img.src = event.target.result;
-            }
-            div.appendChild(img);
-            reader.readAsDataURL(imagen);
-            if (error) {
-                error.style.display = 'none';
-            }
-            info.classList.add('inp-valid');
-            list.classList.add('lbl-valid');
-            info.classList.remove('inp-error');
-            list.classList.remove('lbl-error');
-        }
-
-    }
-
+ 
 
     // VALIDACIONES DE LOS CAMPOS
 
@@ -214,53 +137,7 @@ window.addEventListener('load', function () {
         return datosCorrectos(selectColor, labelColor, errorColor);
     })
 
-    // Evento para validar el campo talle
-    selectTalle.addEventListener('blur', () => {
-        if (selectTalle.value.includes('Seleccione')) {
-            selectTalle.classList.remove('lbl-valid');
-            arrowTalle.classList.remove('inp-valid');
-            selectTalle.classList.add('lbl-error');
-            arrowTalle.classList.add('inp-error');
-            return errorTalle = validarError(boxTalle, selectTalle, labelTalle, errorTalle, "Seleccione un talle.");
-        }
 
-        selectTalle.classList.remove('lbl-error');
-        arrowTalle.classList.remove('inp-error');
-        selectTalle.classList.add('lbl-valid');
-        arrowTalle.classList.add('inp-valid');
-        return datosCorrectos(selectTalle, labelTalle, errorTalle);
-    })
-
-    // Evento para validar el campo stock
-    inputStock.addEventListener('blur', () => {
-        if (inputStock.value.length == 0) {
-            return errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "Este campo es obligatorio.")
-        }
-
-        if (inputStock.value < 0) {
-            return errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "El stock debe ser mayor o igual a 0.")
-        }
-
-        return datosCorrectos(inputStock, labelStock, errorStock);
-    })
-
-
-    // Validacion del input de imagen
-    fileInput.addEventListener('change', () => {
-        const result = validarImg(fileInput);
-        if (result) {
-            fileError = validarError(fileBox, fileInfo, fileList, fileError, result);
-            fileList.textContent = 'Ningun archivo seleccionado.';
-            fileInput.value = '';
-            fileImg.style.display = 'block';
-            eliminarHermanos(divImages, fileImg);
-            return;
-        }
-
-        eliminarHermanos(divImages, fileImg);
-        fileImg.style.display = 'none';
-        agregarImagenes(fileInput, fileList, fileInfo, fileError, divImages);
-    });
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -293,15 +170,6 @@ window.addEventListener('load', function () {
             validado = false;
         }
 
-        // Valida el campo stock
-        if (inputStock.value.length == 0) {
-            errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "Este campo es obligatorio.")
-            validado = false;
-        } else if (inputStock.value < 0) {
-            errorStock = validarError(boxStock, inputStock, labelStock, errorStock, "El stock debe ser mayor o igual a 0.")
-            validado = false;
-        }
-
         // Valida el campo marca
         if (selectMarca.value.includes('Seleccione')) {
             selectMarca.classList.remove('lbl-valid');
@@ -322,15 +190,6 @@ window.addEventListener('load', function () {
             validado = false;
         }
 
-        // Valida el campo talle
-        if (selectTalle.value.includes('Seleccione')) {
-            selectTalle.classList.remove('lbl-valid');
-            arrowTalle.classList.remove('inp-valid');
-            selectTalle.classList.add('lbl-error');
-            arrowTalle.classList.add('inp-error');
-            errorTalle = validarError(boxTalle, selectTalle, labelTalle, errorTalle, "Seleccione un talle.");
-            validado = false;
-        }
 
         // En caso de que todo sea correcto
         if (validado) {

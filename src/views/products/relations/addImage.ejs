@@ -1,66 +1,76 @@
 <%- include ('../../partials/head')%>
 
 <link rel="stylesheet" href="/css/createRelations.css">
+<link rel="stylesheet" href="/css/general.css">
 
-<title>Agregar imagenes</title>
+<title>Cargar imagenes</title>
 </head>
 
 <body id="body">
 
-    <!-- ENCABEZADO -->
+  <script src="/js/products/relations/images.js" type="text/javascript"></script>
 
-    <%- include ('../../partials/header')%>
+  <!-- ENCABEZADO -->
 
+  <%- include ('../../partials/header')%>
 
-
-
-    <!-- PRINCIPAL -->
-    <main>
-
-
-        <!-- Imagenes -->
+  <!-- PRINCIPAL -->
+  <main>
+    <section class="contenedor-form">
+      <form action="/products/edit/<%= producto.id %>/relations/images" method="POST" enctype="multipart/form-data">
         <h3 class="titulo">
-            Cargar imagenes al producto
+          Cargar imagenes al producto
         </h3>
 
+        <!-- NOMBRE PRODUCTO -->
+        <div class="box nombre">
+          <label for="nombre" class="lbl">Nombre del producto</label>
+          <input class="inp" type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
+        </div>
+
+        <!-- CARGAR IMAGENES PRODUCTO -->
+        <div class="box image">
+          <label class="lbl">Fotos del producto (Vista previa)</label>
+          <div class="div-images">
+          </div>
+          <input type="file" id="img" name="imagenes" multiple accept=".jpeg, .png, .jpg">
+
+          <div id="num-files" class="file-info file-multiple">
+            <label for="img" class="btn btn-upload">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              Subir imagenes
+            </label>
+            <p class="file-info-p">Ningun archivo seleccionado.</p>
+          </div>
+          <p class="file-info-p">Archivos permitidos: .jpeg, .png, .jpg, Tamaño máximo 10Mb.</p>
+          <% if (locals.errors) { %>
+          <% const reImageError = errors.find(error => error.path == 'image'); %>
+          <% if (reImageError) { %>
+          <p class="error"><%= reImageError.msg %></p>
+          <% } %>
+          <% } %>
+        </div>
 
 
-        <section class="main-section">
-            <form action="/products/edit/<%= producto.id %>/relations/images" method="POST" enctype="multipart/form-data" class="contenedor-form">
+        <!-- Boton carga -->
+        <button type="submit" class="btn btn-primary">Cargar</button>
+        <a href="/products/edit/<%= producto.id %>/relations" class="link color-primary">Cancelar</a>
 
-                <!-- NOMBRE PRODUCTO -->
-                <div class="box">
-                  <input type="text" name="nombre" id="nombre" value=<%= producto.nombre %> readonly>
-                  <label for="nombre">Nombre del producto</label>
-                </div>
-        
-                <!-- CARGAR IMAGENES PRODUCTO -->
-                <div class="box box-img">
-                  <label for="img" class="label-img">Subir imagenes</label>
-                  <input class="input-image" type="file" id="img" name="imagenes" multiple accept=".jpg, .png">
-                </div>
-        
-                
-                <div class="botones">
-                  <!-- Boton carga -->
-                  <button type="submit" class="boton-cargar">Cargar</button>
-                  <a href="/products/edit/<%= producto.id %>/relations" class="boton-cancelar">Cancelar</a>
-                </div>
-        
-              </form>
-        </section>
+
+      </form>
+    </section>
 
 
 
-    </main>
+  </main>
 
 
 
 
 
-    <!-- PIE DE PAGINA -->
+  <!-- PIE DE PAGINA -->
 
-    <%- include ('../../partials/footer')%>
+  <%- include ('../../partials/footer')%>
 
 </body>
 

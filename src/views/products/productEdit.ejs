@@ -1,13 +1,14 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/productEdit.css">
+<link rel="stylesheet" href="/css/general.css">
 <title>Editar producto</title>
 
 </head>
 
 <body>
 
-  <script src="/js/product_create-edit.js" type="text/javascript"></script>
+  <script src="/js/products/edit.js" type="text/javascript"></script>
 
   <!-- ENCABEZADO -->
   <%- include ('../partials/header')%>
@@ -18,69 +19,67 @@
 
     <!-- Formulario edicion -->
     <div class="contenedor-form">
-      <h4 class="titulo">Edicion de producto</h4>
+      <h4 class="titulo">Editar producto</h4>
 
       <form action="/products/<%= producto.id  %>?_method=PUT" method="POST" class="editProductForm">
 
         <!-- NOMBRE PRODUCTO -->
         <div class="box nombre">
-          <input type="text" name="nombre" id="nombre" value="<%= producto.nombre %>">
-          <label for="nombre">Nombre</label>
+          <label class="lbl" for="nombre">Nombre*</label>
+          <input class="inp" type="text" name="nombre" id="nombre" value="<%= producto.nombre %>">
+          <% if (locals.errors) { %>
+          <% const nombreError = errors.find(error => error.path == 'nombre'); %>
+          <% if (nombreError) { %>
+          <p class="error"><%= nombreError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg nombre"></div>
-        <% if (locals.errors) { %>
-        <% const nombreError = errors.find(error => error.path == 'nombre'); %>
-        <% if (nombreError) { %>
-        <h6 style="color: red;"><%= nombreError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- DESCRIPCION PRODUCTO -->
         <div class="box descripcion">
-          <input type="text" name="descripcion" id="descripcion" value="<%= producto.descripcion %>"></input>
-          <label for="descripcion">Descripción</label>
+          <label class="lbl" for="descripcion">Descripción</label>
+          <input class="inp" type="text" name="descripcion" id="descripcion"
+            value="<%= producto.descripcion %>"></input>
+          <% if (locals.errors) { %>
+          <% const descError = errors.find(error => error.path == 'descripcion'); %>
+          <% if (descError) { %>
+          <p class="error"><%= descError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg descripcion"></div>
-        <% if (locals.errors) { %>
-        <% const descError = errors.find(error => error.path == 'descripcion'); %>
-        <% if (descError) { %>
-        <h6 style="color: red;"><%= descError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- PRECIO PRODUCTO -->
         <div class="box precio">
-          <input type="number" name="precio" id="precio" value="<%= producto.precio %>">
-          <label for="precio">Precio</label>
+          <label class="lbl" for="precio">Precio*</label>
+          <input class="inp" type="number" name="precio" id="precio" value="<%= producto.precio %>">
+          <% if (locals.errors) { %>
+          <% const precioError = errors.find(error => error.path == 'precio'); %>
+          <% if (precioError) { %>
+          <p class="error"><%= precioError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg precio"></div>
-        <% if (locals.errors) { %>
-        <% const precioError = errors.find(error => error.path == 'precio'); %>
-        <% if (precioError) { %>
-        <h6 style="color: red;"><%= precioError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- DESCUENTO PRODUCTO -->
         <div class="box descuento">
-          <input type="number" name="descuento" id="descuento" value="<%= producto.descuento %>">
-          <label for="descuento">Descuento</label>
+          <label class="lbl" for="descuento">Descuento (%)*</label>
+          <input class="inp" type="number" name="descuento" id="descuento" value="<%= producto.descuento %>">
+          <% if (locals.errors) { %>
+          <% const descError = errors.find(error => error.path == 'descuento'); %>
+          <% if (descError) { %>
+          <p class="error"><%= descError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg descuento"></div>
-        <% if (locals.errors) { %>
-        <% const descError = errors.find(error => error.path == 'descuento'); %>
-        <% if (descError) { %>
-        <h6 style="color: red;"><%= descError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- MARCA PRODUCTO -->
         <div class="box marca">
-          <select name="id_marca" id="marca">
+          <label class="lbl">Marca*</label>
+          <select class="select" name="id_marca" id="marca">
             <% if (locals.mar) { %>
             <% mar.forEach(marca => { %>
             <option value=<%= marca.id %> <%= producto.id_marca == marca.id ? 'selected' : '' %>> <%= marca.nombre %>
@@ -88,19 +87,20 @@
             <% }); %>
             <% } %>
           </select>
+          <i class="select-arrow"></i>
+          <% if (locals.errors) { %>
+          <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
+          <% if (marcaError) { %>
+          <p class="error"><%= marcaError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg marca"></div>
-        <% if (locals.errors) { %>
-        <% const marcaError = errors.find(error => error.path == 'id_marca'); %>
-        <% if (marcaError) { %>
-        <h6 style="color: red;"><%= marcaError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- COLOR PRODUCTO -->
         <div class="box color">
-          <select name="id_color" id="color">
+          <label class="lbl">Color*</label>
+          <select class="select" name="id_color" id="color">
             <% if (locals.col) { %>
             <% col.forEach(color => { %>
             <option value=<%= color.id %> <%= producto.id_color == color.id ? 'selected' : '' %>> <%= color.nombre %>
@@ -108,18 +108,19 @@
             <% }); %>
             <% } %>
           </select>
+          <i class="select-arrow"></i>
+          <div class="errorMsg color"></div>
+          <% if (locals.errors) { %>
+          <% const colorError = errors.find(error => error.path == 'id_color'); %>
+          <% if (colorError) { %>
+          <p class="error"><%= colorError.msg %></p>
+          <% } %>
+          <% } %>
         </div>
-        <div class="errorMsg color"></div>
-        <% if (locals.errors) { %>
-        <% const colorError = errors.find(error => error.path == 'id_color'); %>
-        <% if (colorError) { %>
-        <h6 style="color: red;"><%= colorError.msg %></h6>
-        <% } %>
-        <% } %>
 
 
         <!-- CATEGORIAS VIEJAS PRODUCTO -->
-        <div class="box-check" style="display: none;">
+        <div class="box" style="display: none;">
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
           <input type="checkbox" name="categoriasViejas[]" value=<%= categoria.id %>
@@ -130,25 +131,25 @@
         </div>
 
         <!-- CATEGORIA PRODUCTO -->
-        <div class="box-check">
-          <label class="box-check-titulo">Categorias</label>
+        <div class="box cat">
+          <label class="lbl">Categoria</label>
           <% if (locals.cat) { %>
           <% cat.forEach(categoria => { %>
-          <input type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value=<%= categoria.id %>
+          <input class="check" type="checkbox" name="categorias[]" id=<%=categoria.nombre %> value=<%= categoria.id %>
             <%= producto.categorias && producto.categorias.some(cat => cat.id == categoria.id) ? 'checked' : '' %>
             <%= locals.producto && producto.categorias && producto.categorias.find(cate => cate == categoria.id) ? "checked" : "" %>>
-          <label for=<%=categoria.nombre %> class="label-check">
+          <label for=<%=categoria.nombre %> class="check-lbl">
             <%= categoria.nombre %>
           </label>
           <% }); %>
           <% } %>
         </div>
 
-        <div class="botones">
-          <!-- Boton carga -->
-          <button type="submit" class="boton">Guardar</button>
-          <a href="/products/detail/<%= producto.id %>" class="boton-cancelar">Cancelar</a>
-        </div>
+        <!-- Boton carga -->
+        <button type="submit" class="btn btn-primary">¡Editar producto!</button>
+
+        <!-- Boton de cancelar -->
+        <a href="/products/detail/<%= producto.id %>" class="link color-primary">Cancelar</a>
 
       </form>
 

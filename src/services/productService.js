@@ -58,6 +58,112 @@ const productService = {
             console.log(error.message);
         }
     },
+    addCartOne: async function (data) {
+        try {
+            const PT = await db.ProductoTalle.findOne({
+                where: {
+                    id: data.idProductoTalle
+                }
+            });
+            if (PT.stock > 0) {
+                let newStock = PT.stock - 1;
+                await db.ProductoTalle.update({
+                    stock: newStock
+                }, {
+                    where: {
+                        id: data.idProductoTalle
+                    }
+                });
+    
+                const CPT = await db.CarritoProductoTalle.findOne({
+                    where: {
+                        id: data.idCarritoProductoTalle
+                    }
+                });
+    
+                let newCantidad = CPT.cantidad_producto + 1;
+    
+                await db.CarritoProductoTalle.update({
+                    cantidad_producto: newCantidad
+                }, {
+                    where: {
+                        id: data.idCarritoProductoTalle
+                    }
+                });
+            }
+        } catch (error) {
+            return null;
+        }
+    },
+    removeCartOne: async function (data) {
+        try {
+            const PT = await db.ProductoTalle.findOne({
+                where: {
+                    id: data.idProductoTalle
+                }
+            });
+    
+            let newStock = PT.stock + 1;
+            await db.ProductoTalle.update({
+                stock: newStock
+            }, {
+                where: {
+                    id: data.idProductoTalle
+                }
+            });
+    
+            const CPT = await db.CarritoProductoTalle.findOne({
+                where: {
+                    id: data.idCarritoProductoTalle
+                }
+            });
+    
+            if (CPT.cantidad_producto > 1) {
+                let newCantidad = CPT.cantidad_producto - 1;
+                await db.CarritoProductoTalle.update({
+                    cantidad_producto: newCantidad
+                }, {
+                    where: {
+                        id: data.idCarritoProductoTalle
+                    }
+                });
+            }
+        } catch (error) {
+            return null;
+        }
+    },
+    deleteCartOne: async function (data) {
+        try {
+            const PT = await db.ProductoTalle.findOne({
+                where: {
+                    id: data.idProductoTalle
+                }
+            });
+    
+            const CPT = await db.CarritoProductoTalle.findOne({
+                where: {
+                    id: data.idCarritoProductoTalle
+                }
+            });
+    
+            let newStock = PT.stock + parseInt(CPT.cantidad_producto);
+            await db.ProductoTalle.update({
+                stock: newStock
+            }, {
+                where: {
+                    id: data.idProductoTalle
+                }
+            });
+
+            await db.CarritoProductoTalle.destroy({
+                where: {
+                    id: data.idCarritoProductoTalle
+                }
+            });
+        } catch (error) {
+            return null;
+        }
+    },
     // Retorna todos los productos
     getAll: async function () {
         try {
@@ -66,9 +172,8 @@ const productService = {
                 where: {
                     active: true
                 }
-            });
+            })
         } catch (error) {
-            console.log(error);
             return [];
         }
     },
@@ -312,15 +417,24 @@ const productService = {
                 }
             });
 
-            for (cat of data.categorias) {
-                if (!data.categoriasViejas.includes(cat)) {
+            let categorias = data.categorias;
+            let categoriasViejas = data.categoriasViejas;
+            if (!categorias) {
+                categorias = [];
+            }
+            if (!categoriasViejas) {
+                categoriasViejas = [];
+            }
+
+            for (cat of categorias) {
+                if (!categoriasViejas.includes(cat)) {
                     const newProductoCategoria = new ProductoCategoria(id, cat)
                     await db.ProductoCategoria.create(newProductoCategoria);
                 }
             }
 
-            for (catVieja of data.categoriasViejas) {
-                if (!data.categorias.includes(catVieja)) {
+            for (catVieja of categoriasViejas) {
+                if (!categorias.includes(catVieja)) {
                     await db.ProductoCategoria.destroy({
                         where: {
                             id_producto: id,
