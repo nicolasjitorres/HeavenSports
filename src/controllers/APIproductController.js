@@ -4,18 +4,37 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
+            let limit = 1;
             const {
                 productos,
-                categoria
-            } = await APIproductService.getAll();
+                categoria,
+                length
+            } = await APIproductService.getAll(req.query, limit);
+
+            if (!productos.length) {
+                return res.status(404).json({
+                    error: 'Recurso inexistente'
+                });
+            }
+
             let count = {};
             for (cat of categoria) {
                 count[cat.nombre] = cat.toJSON().totalProductos;
             }
+
+            let links = {};
+            if (req.query.page && req.query.page > 0) {
+                links.previous = `${req.protocol}://${req.get('host')}/API/products${req.query.page ? '/?page='+ (req.query.page - 1) : '/?page=1'}`;
+            }
+            if (length > (parseInt(req.query.page) + 1 || 1) * limit) {
+                links.next = `${req.protocol}://${req.get('host')}/API/products${req.query.page ? '/?page='+ (1 + parseInt(req.query.page)) : '/?page=1'}`
+            }
+
             return res.status(200).json({
-                count: productos.length,
+                count: length,
                 countByCategory: count,
                 products: productos,
+                ...links
             });
         } catch (error) {
             console.log(error);
@@ -25,24 +44,26 @@ const controller = {
     // Mostrar detalle de un producto mediante su id
     detail: async (req, res) => {
         try {
-            const {
-                producto,
-                urlImagen
-            } = await APIproductService.getByPk(req, req.params.id);
+            let producto = await APIproductService.getByPk(req.params.id);
 
-            if (!producto)
+            if (!producto) {
                 return res.status(404).json({
                     message: 'El producto no exite'
                 })
+            }
+            producto = producto.toJSON()
+            for (let imagen of producto.imagenes) {
+                imagen.url = `${req.protocol}://${req.get('host')}/images/products/${imagen.nombre}`
+            }
 
             return res.status(200).json({
-                producto: {
-                    ...producto.toJSON(),
-                    urlImagen
-                }
+                producto: producto
             });
+
         } catch (error) {
-            console.log(error);
+            return res.status(500).json({
+                message: 'Ha ocurrido un error de conexion'
+            })
         }
     },
 

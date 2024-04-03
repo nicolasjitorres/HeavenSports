@@ -12,19 +12,21 @@ const capitalize = (palabra) => {
 const productService = {
 
     // Retorna todos los productos
-    getAll: async function () {
+    getAll: async function (query, limit) {
         try {
-            let productos = await db.Producto.findAll({
+            const productos = await db.Producto.findAll({
                 attributes: [
                     'id', 'nombre', 'descripcion', 'precio', 'descuento',
-                    [db.sequelize.literal(`CONCAT('http://localhost:3000/API/products/', id_producto)`), 'detail']
+                    [db.sequelize.literal(`CONCAT('http://localhost:3000/API/products/', id)`), 'detail']
                 ],
                 include: ['talles'],
                 where: {
                     active: true
                 },
+                limit: limit,
+                offset: (query.page || 0) * limit,
             });
-            let categoria = await db.Categoria.findAll({
+            const categoria = await db.Categoria.findAll({
                 attributes: [
                     'nombre',
                     [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'totalProductos']
@@ -40,39 +42,35 @@ const productService = {
                 group: ['Categoria.id']
             });
 
+            const totalProducts = await db.Producto.findAll();
+
             return {
                 productos,
-                categoria
+                categoria,
+                length: totalProducts.length
             }
 
-
-
         } catch (error) {
-            console.log(error);
-            return [];
+            console.log(error.message);
+            return {
+                productos: [],
+                categoria: [],
+                length: 0
+            };
         }
     },
 
     // Retorna un producto en base a su id
-    getByPk: async function (req, id) {
+    getByPk: async function (id) {
         try {
-            let producto = await db.Producto.findByPk(id, {
+            return await db.Producto.findByPk(id, {
 
                 attributes: [
                     'id', 'nombre', 'descripcion', 'precio', 'descuento',
                 ],
                 include: ['marca', 'categorias', 'imagenes', 'color', 'talles']
             });
-
-            let urlImagen = `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`
-
-            return {
-                producto,
-                urlImagen
-            }
-
         } catch (error) {
-            console.log(error);
             return {};
         }
     },

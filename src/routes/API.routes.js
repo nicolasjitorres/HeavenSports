@@ -20,7 +20,7 @@ router.get('/products', APIproductController.index);
 router.get('/products/:id', APIproductController.detail);
 
 // Ruta hacía la primer imagen del producto
-router.get('/products/:id/:imagen', APIproductController.imagen);
+router.get('/products/:id/imagen', APIproductController.imagen);
 
 // TODOS LOS USUARIOS
 router.get('/users', APIuserController.usuarios);

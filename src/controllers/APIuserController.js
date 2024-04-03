@@ -6,13 +6,35 @@ const controller = {
 
     usuarios: async (req, res) => {
         try {
-            const usuarios = await APIuserService.getAll();
-            res.status(200).json({
-                count: usuarios.length,
-                users: usuarios
+            let limit = 1;
+            const {
+                usuarios,
+                length
+            } = await APIuserService.getAll(req.query, limit);
+
+            if (!usuarios.length) {
+                return res.status(404).json({
+                    error: 'Recurso inexistente.'
+                });
+            }
+
+            let links = {};
+            if (req.query.page > 0) {
+                links.previous = `${req.protocol}://${req.get('host')}/API/users${req.query.page ? '/?page='+ (req.query.page - 1) : '/?page=1'}`
+            }
+            if (length > (parseInt(req.query.page) + 1 || 1) * limit) {
+                links.next = `${req.protocol}://${req.get('host')}/API/users${req.query.page ? '/?page='+ (1 + parseInt(req.query.page)) : '/?page=1'}`
+            }
+
+            return res.status(200).json({
+                count: length,
+                users: usuarios,
+                ...links
             });
         } catch (error) {
-            console.log(error);
+            return res.status(500).json({
+                error: error.message
+            });
         }
     },
 
@@ -29,7 +51,7 @@ const controller = {
             return res.status(200).json({
                 usuario: {
                     ...usuario.toJSON(),
-                    imagenURL: `${req.protocol}://${req.get('host')}/images/users/${usuario.imagen.nombre}`
+                    URLImagenPerfil: `${req.protocol}://${req.get('host')}/images/users/${usuario.imagen.nombre}`
                 }
             });
         } catch (error) {
