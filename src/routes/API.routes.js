@@ -13,17 +13,17 @@ const upload = multerMiddleware('products');
 
 /* GET ALL PRODUCTS */
 /* Obtener todos los productos */
-router.get('/products/', APIproductController.index);
+router.get('/products', APIproductController.index);
 
 /* GET ONE PRODUCT */
 // Ruta hacía el detalle del producto
 router.get('/products/:id', APIproductController.detail);
 
 // Ruta hacía la primer imagen del producto
-router.get('/products/:id/imagen', APIproductController.imagen);
+router.get('/products/:id/:imagen', APIproductController.imagen);
 
 // TODOS LOS USUARIOS
-router.get('/users/', APIuserController.usuarios);
+router.get('/users', APIuserController.usuarios);
 
 // PERFIL DEL USUARIO 
 router.get('/users/:id', APIuserController.getOneUser);

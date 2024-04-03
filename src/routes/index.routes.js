@@ -3,10 +3,10 @@ const router = express.Router();
 const routerIndex = require('./main.routes');
 const routerProducts = require('./products.routes');
 const routerUsers = require('./users.routes');
-const APIrouter = require('./APIrouter');
+const routerAPI = require('./API.routes');
 
 
-router.use('/API', APIrouter);
+router.use('/API', routerAPI);
 router.use('/products', routerProducts);
 router.use('/users', routerUsers);
 router.use('/', routerIndex);

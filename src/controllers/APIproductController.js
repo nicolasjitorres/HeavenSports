@@ -4,55 +4,43 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
-            const productos = await APIproductService.getAll(req);
-
-            //const categorias1 = await APIproductService.getAllCategories();
-            //const categorias2 = await APIproductService.getCategories();
-            //let [...catName] = categorias1
-            /*
-            let indCat = []
-            categorias1.forEach(ele => indCat.push(ele.nombre))
-
-            for (let i = 1; i < pelisQueue.length; i++) {
-                pelisQueueObj[i] = pelisQueue[i];
-            }*/
-
+            const {
+                productos,
+                categoria
+            } = await APIproductService.getAll();
+            let count = {};
+            for (cat of categoria) {
+                count[cat.nombre] = cat.toJSON().totalProductos;
+            }
             return res.status(200).json({
-                count: productos.productos.length,
-                countByCategory: productos.categoria,
-                //categorias: categorias1,
-                products: productos.productos,
-                //Borrar lo de abajo
-                //url: `${req.protocol}://${req.get('host')}${req.originalUrl}/${req.params.id}`
+                count: productos.length,
+                countByCategory: count,
+                products: productos,
             });
         } catch (error) {
             console.log(error);
         }
     },
+
     // Mostrar detalle de un producto mediante su id
     detail: async (req, res) => {
         try {
-            const producto = await APIproductService.getByPk(req, req.params.id);
+            const {
+                producto,
+                urlImagen
+            } = await APIproductService.getByPk(req, req.params.id);
 
-            if(!producto) 
-                return res.status(404).json({message: 'El producto no exite'})
+            if (!producto)
+                return res.status(404).json({
+                    message: 'El producto no exite'
+                })
 
-            //const talles = producto.talles.filter(talle => talle.ProductoTalle.stock > 0);
             return res.status(200).json({
-                producto: producto.producto,
-                //imagenURL: `${req.protocol}://${req.get('host')}/images/products/${producto.imagenes[0].nombre}`,
-                urlImagen: producto.urlImagen
-                /*
-                marca: producto.marca,
-                categorias: producto.categorias,
-                imagenes: producto.imagenes, 
-                color: producto.color, 
-                talles: producto.talles, 
-                */
+                producto: {
+                    ...producto.toJSON(),
+                    urlImagen
+                }
             });
-
-            
-
         } catch (error) {
             console.log(error);
         }
@@ -62,8 +50,10 @@ const controller = {
         try {
             const producto = await APIproductService.getByPk(req, req.params.id);
 
-            if(!producto) 
-                return res.status(404).json({message: 'El producto no exite'})
+            if (!producto)
+                return res.status(404).json({
+                    message: 'El producto no exite'
+                })
 
             return res.status(200).json({
                 urlImagen: producto.urlImagen
