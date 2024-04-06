@@ -6,7 +6,7 @@ const controller = {
 
     usuarios: async (req, res) => {
         try {
-            let limit = 1;
+            let limit = 10;
             const {
                 usuarios,
                 length

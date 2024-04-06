@@ -4,7 +4,7 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
-            let limit = 1;
+            let limit = 10;
             const {
                 productos,
                 categoria,
@@ -17,11 +17,6 @@ const controller = {
                 });
             }
 
-            let count = {};
-            for (cat of categoria) {
-                count[cat.nombre] = cat.toJSON().totalProductos;
-            }
-
             let links = {};
             if (req.query.page && req.query.page > 0) {
                 links.previous = `${req.protocol}://${req.get('host')}/API/products${req.query.page ? '/?page='+ (req.query.page - 1) : '/?page=1'}`;
@@ -32,7 +27,7 @@ const controller = {
 
             return res.status(200).json({
                 count: length,
-                countByCategory: count,
+                countByCategory: categoria,
                 products: productos,
                 ...links
             });
