@@ -9,7 +9,7 @@ const controller = {
             } = await productService.getIndex();
             res.status(200).render('info/index', {
                 ultimosProductos: productos.slice(-3),
-                mejoresOfertas: productos.filter(p => p.descuento > 0).sort((a, b) => b.descuento - a.descuento).slice(-3),
+                mejoresOfertas: productos.filter(p => p.descuento > 0).sort((a, b) => b.descuento - a.descuento).slice(0, 3),
                 categorias
             });
         } catch (error) {
