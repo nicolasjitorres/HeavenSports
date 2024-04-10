@@ -27,16 +27,23 @@
       <h3 class="titulo">TODOS LOS PRODUCTOS</h3>
       <% } %>
 
+      <% if (locals.userLogged && locals.admin) { %>
+      <div class="div-link">
+        <a class="card-btn card-btn-add" href="/products/create">
+          <i class="fa-solid fa-plus"></i> Agregar producto
+        </a>
+      </div>
+      <% } %>
+
       <div class="filters-container">
 
         <p class="filter-title">Filtros</p>
 
-        <form method="get" class="form-filters <%= Object.entries(query).length != 0 ? 'filter-appear' : '' %>">
+        <form method="get" class="form-filters <%= Object.entries(query).length > 0 && !query.page ? 'filter-appear' : '' %>">
 
 
           <% if (query && query.q) { %>
-           <input type="text" name="q" id="q" value="<%= query.q %>"
-           style="display: none;">
+          <input type="text" name="q" id="q" value="<%= query.q %>" style="display: none;">
           <% } %>
 
           <!-- Filtro por categorias -->
@@ -45,12 +52,8 @@
             <% for (cat of categorias) { %>
             <% let categoria = cat.toJSON() %>
             <label for="<%=categoria.nombre %>">
-              <input type="checkbox" 
-              name="categorias[]" 
-              id="<%=categoria.nombre %>" 
-              value="<%= categoria.id %>"
-              <%= query && query.categorias && query.categorias.includes(`${categoria.id}`) ? 'checked' : ''  %>
-              >
+              <input type="checkbox" name="categorias[]" id="<%=categoria.nombre %>" value="<%= categoria.id %>"
+                <%= query && query.categorias && query.categorias.includes(`${categoria.id}`) ? 'checked' : ''  %>>
               <%=categoria.nombre %>
               (<%= categoria.total %>)
             </label>
@@ -64,8 +67,7 @@
             <% let marca = mar.toJSON() %>
             <label for="<%=marca.nombre %>">
               <input type="checkbox" name="marcas[]" id=<%=marca.nombre %> value="<%= marca.id %>"
-              <%= query && query.marcas && query.marcas.includes(`${marca.id}`) ? 'checked' : ''  %>
-              >
+                <%= query && query.marcas && query.marcas.includes(`${marca.id}`) ? 'checked' : ''  %>>
               <%=marca.nombre %>(<%= marca.total %>)</label>
             <% } %>
           </div>
@@ -77,8 +79,7 @@
             <% let color = col.toJSON() %>
             <label for="<%=color.nombre %>">
               <input type="checkbox" name="colores[]" id=<%=color.nombre %> value="<%= color.id %>"
-              <%= query && query.colores && query.colores.includes(`${color.id}`) ? 'checked' : ''  %>
-              >
+                <%= query && query.colores && query.colores.includes(`${color.id}`) ? 'checked' : ''  %>>
               <%=color.nombre %>(<%= color.total %>)
             </label>
             <% } %>
@@ -91,8 +92,7 @@
             <% let talle = tal.toJSON() %>
             <label for="<%=talle.numero %>">
               <input type="checkbox" name="talles[]" id=<%=talle.numero %> value="<%= talle.id %>"
-              <%= query && query.talles && query.talles.includes(`${talle.id}`) ? 'checked' : ''  %>
-              >
+                <%= query && query.talles && query.talles.includes(`${talle.id}`) ? 'checked' : ''  %>>
               <%=talle.numero %>(<%= talle.total %>)
             </label>
             <% } %>
@@ -104,20 +104,15 @@
           </div>
 
         </form>
-        <i class="fa-solid fa-chevron-down <%= Object.entries(query).length != 0 ? 'arrow-rotate' : '' %>" id="filter-arrow"></i>
+        <i class="fa-solid fa-chevron-down <%= Object.entries(query).length != 0 ? 'arrow-rotate' : '' %>"
+          id="filter-arrow"></i>
       </div>
 
       <% if (productos.length == 0) { %>
       <p class="titulo">¡UPS! ¿Aún no hay nada? No te desanimes, pronto tendremos novedades ;)</p>
       <% } %>
 
-      <% if (locals.userLogged && locals.admin) { %>
-      <div class="div-link">
-        <a class="card-btn card-btn-add" href="/products/create">
-          <i class="fa-solid fa-plus"></i> Agregar producto
-        </a>
-      </div>
-      <% } %>
+
 
       <% for (producto of productos) {%>
       <div class="product-card">

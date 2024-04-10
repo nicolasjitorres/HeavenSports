@@ -4,7 +4,7 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
-            let limit = 8;
+            let limit = 3;
             const {
                 productos,
                 length,
@@ -19,7 +19,7 @@ const controller = {
 
             res.status(200).render('products/products', {
                 productos: productos,
-                paginas: paginas > 0 ? paginas : 1,
+                paginas: paginas > 0 ? paginas + 1 : 1,
                 page,
                 categorias,
                 marcas,
@@ -123,9 +123,7 @@ const controller = {
                 throw new Error('No se pudo cargar el producto en la base de datos.')
             }
         } catch (error) {
-            res.render('/info/error.ejs', {
-                error: error
-            })
+            res.redirect('/info/error');
         }
     },
     // Muestra el formulario de edicion de un producto mediante su id

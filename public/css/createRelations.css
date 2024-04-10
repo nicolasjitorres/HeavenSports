@@ -1,5 +1,5 @@
 /* MAIN */
-form {
+.contenedor-form form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
