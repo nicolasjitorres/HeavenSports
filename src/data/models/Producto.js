@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) =>{
         },
         nombre:{
             type: DataTypes.STRING(100),
+            collate: 'utf8_general_ci',
         },
         descripcion:{
             type: DataTypes.STRING(200),

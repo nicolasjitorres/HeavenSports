@@ -1,15 +1,19 @@
-
 const productService = require('../services/productService');
 
 const controller = {
     index: async (req, res) => {
         try {
-            const productos = await productService.getAll();
-            res.status(200).render('products/products', {
-                productos: productos
+            const {
+                productos,
+                categorias
+            } = await productService.getIndex();
+            res.status(200).render('info/index', {
+                ultimosProductos: productos.slice(-3),
+                mejoresOfertas: productos.filter(p => p.descuento > 0).sort((a, b) => b.descuento - a.descuento).slice(-3),
+                categorias
             });
         } catch (error) {
-            console.log(error);
+            res.status(404).redirect('/info/error');
         }
     },
     about: (req, res) => {

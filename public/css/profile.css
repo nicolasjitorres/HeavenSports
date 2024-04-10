@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin: 90px 0;
   border-radius: 7px;
 }
 
@@ -21,6 +22,7 @@
   height: 90px;
   border-radius: 50%;
 }
+
 
 #card-profile-btn {
   width: auto;

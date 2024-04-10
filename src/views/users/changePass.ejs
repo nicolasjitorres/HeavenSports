@@ -52,12 +52,6 @@
         <div class="box reContrasena">
           <label class="lbl" for="ReContrasena">Repetir contraseña</label>
           <input class="inp" type="password" name="reContrasena" id="ReContrasena">
-          <% if (locals.errors) { %>
-          <% const reContrasenaError = errors.find(error => error.path == 'reContrasena'); %>
-          <% if (reContrasenaError) { %>
-          <p class="error"><%= reContrasenaError.msg %></p>
-          <% } %>
-          <% } %>
         </div>
 
 

@@ -1,11 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const db = require("../data/models");
-
-// Funcion que recibe una palabra sin importar como está escrita y la retorna capitalizada (ejemplo: hOlA => Hola)
-const capitalize = (palabra) => {
-    return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
-}
+const {
+    Op
+} = require('sequelize');
 
 const productService = {
     addToCart: async function (data, idProd, idUser) {
@@ -74,15 +72,15 @@ const productService = {
                         id: data.idProductoTalle
                     }
                 });
-    
+
                 const CPT = await db.CarritoProductoTalle.findOne({
                     where: {
                         id: data.idCarritoProductoTalle
                     }
                 });
-    
+
                 let newCantidad = CPT.cantidad_producto + 1;
-    
+
                 await db.CarritoProductoTalle.update({
                     cantidad_producto: newCantidad
                 }, {
@@ -102,7 +100,7 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             let newStock = PT.stock + 1;
             await db.ProductoTalle.update({
                 stock: newStock
@@ -111,13 +109,13 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             const CPT = await db.CarritoProductoTalle.findOne({
                 where: {
                     id: data.idCarritoProductoTalle
                 }
             });
-    
+
             if (CPT.cantidad_producto > 1) {
                 let newCantidad = CPT.cantidad_producto - 1;
                 await db.CarritoProductoTalle.update({
@@ -139,13 +137,13 @@ const productService = {
                     id: data.idProductoTalle
                 }
             });
-    
+
             const CPT = await db.CarritoProductoTalle.findOne({
                 where: {
                     id: data.idCarritoProductoTalle
                 }
             });
-    
+
             let newStock = PT.stock + parseInt(CPT.cantidad_producto);
             await db.ProductoTalle.update({
                 stock: newStock
@@ -164,17 +162,207 @@ const productService = {
             return null;
         }
     },
+    getIncludes: function (query) {
+        const includeModels = [];
+
+        // Marca
+        if (query.marcas) {
+            includeModels.push({
+                model: db.Marca,
+                where: {
+                    id: query.marcas
+                },
+                as: 'marca'
+            });
+        }
+
+        // Categoría
+        if (query.categorias) {
+            includeModels.push({
+                model: db.Categoria,
+                where: {
+                    id: query.categorias
+                },
+                as: 'categorias'
+            });
+        }
+
+        // Imágenes
+        includeModels.push('imagenes');
+
+        // Color
+        if (query.colores) {
+            includeModels.push({
+                model: db.Color,
+                where: {
+                    id: query.colores
+                },
+                as: 'color'
+            });
+        } else {
+            includeModels.push('color');
+        }
+
+        // Talle
+        if (query.talles) {
+            includeModels.push({
+                model: db.Talle,
+                where: {
+                    id: query.talles
+                },
+                as: 'talles'
+            });
+        }
+
+        return includeModels;
+    },
     // Retorna todos los productos
-    getAll: async function () {
+    getAll: async function (query, limit) {
         try {
-            return await db.Producto.findAll({
-                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+            const allProducts = await db.Producto.findAll({
                 where: {
                     active: true
                 }
-            })
+            });
+
+            const includeModels = this.getIncludes(query);
+            let whereClause = {};
+
+            if (query.q) {
+                whereClause.nombre = {
+                    [Op.like]: `%${query.q}%`
+                }
+            }
+
+            const productos = await db.Producto.findAll({
+                include: includeModels,
+                where: {
+                    active: true,
+                    ...whereClause
+                },
+                limit: limit,
+                offset: (query?.page - 1 || 0) * limit,
+                group: ['Producto.id']
+            });
+
+            const productosIds = productos.map(producto => producto.id);
+
+            const categorias = await db.Categoria.findAll({
+                attributes: [
+                    'id', 'nombre',
+                    [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'total']
+                ],
+                include: [{
+                    model: db.Producto,
+                    as: 'productos',
+                    where: {
+                        id: productosIds
+                    },
+                    through: {
+                        attributes: []
+                    },
+                    attributes: []
+                }],
+                group: ['Categoria.id'],
+                order: [
+                    ['id', 'ASC']
+                ],
+                having: db.sequelize.literal('total > 0')
+            });
+
+            const marcas = await db.Marca.findAll({
+                attributes: [
+                    'id', 'nombre',
+                    [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'total']
+                ],
+                include: [{
+                    model: db.Producto,
+                    as: 'productos',
+                    where: {
+                        id: productosIds
+                    },
+                    attributes: []
+                }],
+                group: ['Marca.id'],
+                having: db.sequelize.literal('total > 0')
+            });
+
+            const colores = await db.Color.findAll({
+                attributes: [
+                    'id', 'nombre',
+                    [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'total']
+                ],
+                include: [{
+                    model: db.Producto,
+                    as: 'productos',
+                    where: {
+                        id: productosIds
+                    },
+                    attributes: []
+                }],
+                group: ['Color.id'],
+                having: db.sequelize.literal('total > 0')
+            });
+
+            const talles = await db.Talle.findAll({
+                attributes: [
+                    'id', 'numero',
+                    [db.sequelize.fn('COUNT', db.sequelize.col('productos.id')), 'total']
+                ],
+                include: [{
+                    model: db.Producto,
+                    as: 'productos',
+                    where: {
+                        id: productosIds
+                    },
+                    through: {
+                        attributes: []
+                    },
+                    attributes: []
+                }],
+                group: ['Talle.id'],
+                having: db.sequelize.literal('total > 0')
+            });
+
+            return {
+                productos,
+                length: allProducts.length,
+                page: query?.page || 1,
+                categorias,
+                marcas,
+                colores,
+                talles
+            }
+
         } catch (error) {
-            return [];
+            console.log(error);
+            return {
+                productos: [],
+                length: 0,
+                page: 0
+            }
+        }
+    },
+    // Retorna el index
+    getIndex: async function () {
+        try {
+            const productos = await db.Producto.findAll({
+                where: {
+                    active: true
+                },
+                include: ['imagenes', 'color']
+            });
+            const categorias = await db.Categoria.findAll();
+
+            return {productos, categorias}
+
+        } catch (error) {
+            console.log(error);
+            return {
+                productos: [],
+                length: 0,
+                page: 0
+            }
         }
     },
     // Retorna un producto en base a su id
@@ -459,6 +647,20 @@ const productService = {
             console.log("producto eliminado con exito");
         } catch (error) {
             console.log(error);
+        }
+    },
+    searchProducts: async function (query) {
+        try {
+            return await db.Producto.findAll({
+                include: ['marca', 'categorias', 'imagenes', 'color', 'talles'],
+                where: {
+                    nombre: {
+                        [Op.like]: `%${query.q}%`
+                    }
+                }
+            })
+        } catch (error) {
+            return [];
         }
     }
 }

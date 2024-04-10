@@ -20,9 +20,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  box-shadow: 0 0 15px rgba(119, 119, 119, 0.7);
 }
 
-form {
+.contenedor-form form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;

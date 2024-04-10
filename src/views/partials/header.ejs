@@ -1,39 +1,78 @@
-<header>
+<header class="header">
+  <div class="menu-appear menu-animation"></div>
 
-  <div class="header-nav-superior">
+  <script src="/js/partials.js" type="text/javascript"></script>
 
-    <!-- Barra de navegacion -->
-    <input type="checkbox" id="check">
-    <label for="check" id="label-hamburguesa"><i class="fa-solid fa-bars icono-hamburguesa"></i></label>
+  <div class="header-nav">
 
-    <nav class="barra-navegacion">
-      <a href="/"><i class="fa-solid fa-home"></i> Inicio</a>
-      <a href="/products"><i class="fa-solid fa-book"></i> Productos</a>
-      <a href="/about"><i class="fa-solid fa-question"></i> Nosotros</a>
+    <label class="menu-lbl">
+      <i class="fa-solid fa-bars icono-hamburguesa"></i>
+    </label>
+
+
+
+    <nav class="menu-nav menu-animation">
+      <a href="/">
+        Inicio <i class="fa-solid fa-home"></i>
+      </a>
+
+      <a href="/about">
+        Nosotros <i class="fa-solid fa-circle-info"></i></i>
+      </a>
+
+      <a href="/products">
+        Productos <i class="fa-solid fa-book"></i>
+      </a>
+
+
       <% if (locals.userLogged) { %>
-      <a href="/products/cart"><i class="fa-solid fa-cart-shopping icono-carrito"></i> Carrito</a>
-      <a href="/users/profile"><i class="fa-solid fa-user icono-usuario"></i> Mi perfil</a>
-      <a href="/users/logout"><i class="fa-solid fa-right-from-bracket icono-usuario"></i> Cerrar sesión</a>
-      <% }else{ %>
-      <a href="/users/login"><i class="fa-solid fa-right-to-bracket icono-usuario"></i> Iniciá sesión</a>
-      <a href="/users/register"><i class="fa-solid fa-user-plus icono-usuario"></i> Registrate</a>
-      <% } %>
+      <a href="/products/cart">
+        Carrito <i class="fa-solid fa-cart-shopping icono-carrito"></i>
+      </a>
+
+      <a href="/users/profile">
+        Mi perfil <i class="fa-solid fa-user icono-usuario"></i>
+      </a>
+
       <% if (locals.userLogged && locals.admin) { %>
-      <a href="/users"><i class="fa-solid fa-users icono-usuario"></i> Lista Usuarios</a>
+      <a href="/users">
+        Usuarios <i class="fa-solid fa-users icono-usuario"></i>
+      </a>
+
+      <a href="http://localhost:5173/">
+        Dashboard <i class="fa-solid fa-gauge"></i>
+      </a>
       <% } %>
+
+      <a href="/users/logout">
+        Cerrar sesión <i class="fa-solid fa-right-from-bracket icono-usuario"></i>
+      </a>
+
+      <% }else{ %>
+      <a href="/users/register">
+        Registrate <i class="fa-solid fa-user-plus icono-usuario"></i>
+      </a>
+
+      <a href="/users/login">
+        Iniciá sesión <i class="fa-solid fa-right-to-bracket icono-usuario"></i>
+      </a>
+      <% } %>
+
+
     </nav>
 
     <!-- Contenedor Logo -->
-    <a href="/" class="inicio">
-      <div class="contenedor-logo">
-        <h3 class="nombre-pagina">Heaven</h3>
-        <img src="/images/logos/Logo-zapa.png" alt="Logo provisirio" class="logo">
-        <h3 class="nombre-pagina">Sports</h3>
-      </div>
-    </a>
+    <a href="/" class="link-logo">HEAVEN SPORTS</a>
+    <!-- <img src="/images/logos/Logo-zapa.png" alt="Logo provisirio" class="link-logo-img"> -->
+
 
     <!-- Barra de busqueda -->
-    <input type="text" placeholder="Buscar..." class="barra-busqueda">
+    <form method="get" class="search-bar">
+      <input type="text" placeholder="¿Qué estás buscando?" class="search-bar-inp menu-animation" id="search-bar" name="q">
+      <label for="search-bar" class="search-bar-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </label>
+    </form>
 
   </div>
 

@@ -19,6 +19,9 @@ router.get('/', productController.index);
 // Ruta hacía el detalle del producto
 router.get('/detail/:id', productController.detail);
 
+// SEARCH ONE PRODUCT
+router.get('/search', productController.search);
+
 // Ruta hacia el carrito de compras del usuario
 router.get('/cart', authUserMiddleware, productController.cart);
 
@@ -35,7 +38,6 @@ router.post('/cart/:id', authUserMiddleware, validationCartMiddleware.validation
 /* CREATE ONE PRODUCT */
 router.get('/create', adminMiddleware, productController.create);
 router.post('/create', adminMiddleware, upload.array('imagenes'), validationCreateMiddleware.validation, validationCreateMiddleware.result, productController.save);
-
 
 /* EDIT ONE PRODUCT */
 router.get('/edit/:id', adminMiddleware, productController.edit);

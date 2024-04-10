@@ -25,12 +25,17 @@
       <% for( dato of carrito.productosTalles ) { %>
       <a href="/products/detail/<%= dato.producto.id %>" class="cart-card">
         <img class="cart-card-image"
-          src=<%= "/images/products/" + (dato.producto.imagenes[0].nombre || "default.png") %> alt="">
+          src=<%= "/images/products/" + (dato.producto.imagenes ? dato.producto.imagenes[0].nombre : "default.png") %>
+          alt="">
         <div class="cart-card-description">
           <p><b>Nombre:</b> <%= dato.producto.nombre %></p>
-          <p><b>Precio p/u:</b> $<%= dato.producto.precio %></p>
+          <p><b>Precio p/u:</b>
+            $<%= (dato.producto.precio - (dato.producto.precio * (dato.producto.descuento / 100))).toFixed(0) %></p>
           <p><b>Talle:</b> <%= dato.talle.numero %></p>
           <p><b>Cantidad:</b> <%= dato.CarritoProductoTalle.cantidad_producto %></p>
+          <p><b>Total:</b>
+            $<%= (dato.producto.precio - (dato.producto.precio * (dato.producto.descuento / 100))).toFixed(0) * dato.CarritoProductoTalle.cantidad_producto %>
+          </p>
 
           <% if (dato.CarritoProductoTalle.cantidad_producto > 1) { %>
           <form action="/products/cart/remove/?_method=PATCH" method="POST">
@@ -69,7 +74,7 @@
         </div>
 
       </a>
-      <% total += dato.producto.precio * dato.CarritoProductoTalle.cantidad_producto} %>
+      <% total += (dato.producto.precio - (dato.producto.precio * (dato.producto.descuento / 100))).toFixed(0) * dato.CarritoProductoTalle.cantidad_producto} %>
       <p class="cart-card-total"><b>Total del carrito:</b> $<%= total %></p>
       <% } %>
     </div>

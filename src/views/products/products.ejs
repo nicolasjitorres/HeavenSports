@@ -8,6 +8,8 @@
 
 <body id="body">
 
+  <script src="/js/products/index.js" type="text/javascript"></script>
+
   <!-- ENCABEZADO -->
 
   <%- include ('../partials/header')%>
@@ -17,21 +19,97 @@
 
   <!-- PRINCIPAL -->
   <main>
-
-
-
-
-    <div class="div-slider">
-      <div class="slider">
-        <div class="img-slider slide1"><img src="/images/slider/slider1.jpg" alt="Slide 1"></div>
-        <div class="img-slider slide2"><img src="/images/slider/slider2.webp" alt="Slide 2"></div>
-        <div class="img-slider slide3"><img src="/images/slider/slider3.webp" alt="Slide 3"></div>
-      </div>
-    </div>
-
     <section class="section">
 
+      <% if (typeof titulo !== 'undefined' && titulo) { %>
+      <h3 class="titulo"><%= titulo %></h3>
+      <% } else { %>
       <h3 class="titulo">TODOS LOS PRODUCTOS</h3>
+      <% } %>
+
+      <div class="filters-container">
+
+        <p class="filter-title">Filtros</p>
+
+        <form method="get" class="form-filters <%= Object.entries(query).length != 0 ? 'filter-appear' : '' %>">
+
+
+          <% if (query && query.q) { %>
+           <input type="text" name="q" id="q" value="<%= query.q %>"
+           style="display: none;">
+          <% } %>
+
+          <!-- Filtro por categorias -->
+          <div class="filter">
+            <p>Categorias</p>
+            <% for (cat of categorias) { %>
+            <% let categoria = cat.toJSON() %>
+            <label for="<%=categoria.nombre %>">
+              <input type="checkbox" 
+              name="categorias[]" 
+              id="<%=categoria.nombre %>" 
+              value="<%= categoria.id %>"
+              <%= query && query.categorias && query.categorias.includes(`${categoria.id}`) ? 'checked' : ''  %>
+              >
+              <%=categoria.nombre %>
+              (<%= categoria.total %>)
+            </label>
+            <% } %>
+          </div>
+
+          <!-- Filtro por marcas -->
+          <div class="filter">
+            <p>Marcas</p>
+            <% for (mar of marcas) { %>
+            <% let marca = mar.toJSON() %>
+            <label for="<%=marca.nombre %>">
+              <input type="checkbox" name="marcas[]" id=<%=marca.nombre %> value="<%= marca.id %>"
+              <%= query && query.marcas && query.marcas.includes(`${marca.id}`) ? 'checked' : ''  %>
+              >
+              <%=marca.nombre %>(<%= marca.total %>)</label>
+            <% } %>
+          </div>
+
+          <!-- Filtro por colores -->
+          <div class="filter">
+            <p>Colores</p>
+            <% for (col of colores) { %>
+            <% let color = col.toJSON() %>
+            <label for="<%=color.nombre %>">
+              <input type="checkbox" name="colores[]" id=<%=color.nombre %> value="<%= color.id %>"
+              <%= query && query.colores && query.colores.includes(`${color.id}`) ? 'checked' : ''  %>
+              >
+              <%=color.nombre %>(<%= color.total %>)
+            </label>
+            <% } %>
+          </div>
+
+          <!-- Filtro por talles -->
+          <div class="filter">
+            <p>Talles</p>
+            <% for (tal of talles) { %>
+            <% let talle = tal.toJSON() %>
+            <label for="<%=talle.numero %>">
+              <input type="checkbox" name="talles[]" id=<%=talle.numero %> value="<%= talle.id %>"
+              <%= query && query.talles && query.talles.includes(`${talle.id}`) ? 'checked' : ''  %>
+              >
+              <%=talle.numero %>(<%= talle.total %>)
+            </label>
+            <% } %>
+          </div>
+
+          <div class="filter-btns">
+            <button type="submit" class="btn btn-dark-primary" id="filter-btn">Aplicar</button>
+            <button type="reset" class="btn btn-primary" id="filter-btn">Limpiar</button>
+          </div>
+
+        </form>
+        <i class="fa-solid fa-chevron-down <%= Object.entries(query).length != 0 ? 'arrow-rotate' : '' %>" id="filter-arrow"></i>
+      </div>
+
+      <% if (productos.length == 0) { %>
+      <p class="titulo">¡UPS! ¿Aún no hay nada? No te desanimes, pronto tendremos novedades ;)</p>
+      <% } %>
 
       <% if (locals.userLogged && locals.admin) { %>
       <div class="div-link">
@@ -85,6 +163,33 @@
       </div>
 
       <% } %>
+
+      <% if (productos.length > 0) { %>
+      <div class="pages-container">
+        <a href="/products?page=<%= page - 1 %>"
+          class="pages-follow <%= page == 1 ? 'page-disabled' : '' %>">Anterior</a>
+
+        <% if (page > 3 && paginas > 5) { %>
+        <a class="page-point">...</a>
+        <% } %>
+
+        <% let contador = page > 3 && paginas > 5 ? page - 2 : 1 %>
+        <% let total = 1 %>
+        <% while (paginas >= contador && total <= 5) { %>
+        <a href="/products?page=<%= contador %>"
+          class="page <%= contador == page ? 'page-actual' : '' %>"><%= contador %></a>
+        <% contador++; %>
+        <% total++; } %>
+
+        <% if (paginas > contador - 1) { %>
+        <a class="page-point">...</a>
+        <% } %>
+
+        <a href="/products?page=<%= parseInt(page) + 1 %>"
+          class="pages-follow <%= page == paginas ? 'page-disabled' : '' %>">Siguiente</a>
+      </div>
+      <% } %>
+
     </section>
 
   </main>

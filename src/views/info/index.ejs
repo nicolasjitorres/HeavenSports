@@ -1,25 +1,21 @@
 <%- include ('../partials/head')%>
 
 <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/general.css">
 
 <title>Inicio</title>
 </head>
 
 <body id="body">
 
+  <script src="/js/products/index.js" type="text/javascript"></script>
+
   <!-- ENCABEZADO -->
 
   <%- include ('../partials/header')%>
 
-
-
-
   <!-- PRINCIPAL -->
   <main>
-
-
-
-
     <div class="div-slider">
       <div class="slider">
         <div class="img-slider slide1"><img src="/images/slider/slider1.jpg" alt="Slide 1"></div>
@@ -29,48 +25,106 @@
     </div>
 
 
+    <section class="section">
+      <h3 class="titulo">PRODUCTOS RECIENTES</h3>
+
+      <% if (ultimosProductos.length == 0) { %>
+      <p class="titulo">¡UPS! ¿Aún no hay nada? No te desanimes, pronto tendremos novedades ;)</p>
+      <% } %>
+
+      <% for (producto of ultimosProductos) {%>
+      <div class="product-card">
+
+        <p class="product-card-free">ENVIO GRATIS</p>
+
+        <a href="/products/detail/<%= producto.id %>" style="text-decoration: none;">
+          <div class="product-card-div-img">
+            <img
+              src="/images/products/<%= (producto.imagenes[0] && producto.imagenes[0].nombre) ? producto.imagenes[0].nombre : 'default.png' %>"
+              alt="Ejemplo2">
+          </div>
+
+          <div class="product-card-description">
+            <p class="card-name"><%= producto.nombre %> - <%= producto.color.nombre %></p>
+            <% if (producto.descuento != 0) { %>
+            <p class="card-old-price">$<%= producto.precio %></p>
+            <p class="card-new-price">
+              $<%= (producto.precio - (producto.precio * (producto.descuento / 100))).toFixed(0) %>
+              <span class="card-discount"><%= producto.descuento %>% OFF</span>
+            </p>
+            <% } else { %>
+            <p class="card-new-price">$<%= producto.precio%>
+              <% } %>
+          </div>
+        </a>
+
+      </div>
+      <% } %>
+
+      <div class="div-link">
+        <a class="card-btn card-btn-add" href="/products/create">
+          Todos los productos
+        </a>
+      </div>
+
+    </section>
 
 
+    <section class="section">
+      <h3 class="titulo">MEJORES OFERTAS</h3>
 
-    <!-- Ofertas -->
-    <section class="main-section">
+      <% if (mejoresOfertas.length == 0) { %>
+      <p class="titulo">¡UPS! ¿Aún no hay nada? No te desanimes, pronto tendremos novedades ;)</p>
+      <% } %>
 
-      <h3 class="titulo">OFERTAS</h3>
+      <% for (producto of mejoresOfertas) {%>
+      <div class="product-card">
 
-      <% for (let i= 0; i< productos.length; i++) {%>
-      <% if(productos[i].Descuento != 0) {%>
-      <a class="oferta" href="/products/<%= productos[i].Id %>/detail">
-        <p class="envio-gratis">ENVIO GRATIS</p>
-        <div class="contenedor-img">
-          <img src="/images/products/<%= productos[i].Imagen[0] %>" alt="Ejemplo2">
-        </div>
-        <div class="contenedor-precio-descripcion">
-          <% if (productos[i].Descuento != 0) { %>
-          <p class="precio-anterior">$<%= productos[i].Precio %></p>
-          <p class="precio">
-            $<%= Math.ceil((productos[i].Precio - (productos[i].Precio * (productos[i].Descuento / 100)))) %> 
-            <span class="descuento"><%= productos[i].Descuento %>% descuento</span>
-          </p>
-          <% } else { %>
-          <p class="precio">$<%= productos[i].Precio%>
-            <% } %>
-            <p class="descripcion"><%= productos[i].Nombre %></p>
-        </div>
+        <p class="product-card-free">ENVIO GRATIS</p>
+
+        <a href="/products/detail/<%= producto.id %>" style="text-decoration: none;">
+          <div class="product-card-div-img">
+            <img
+              src="/images/products/<%= (producto.imagenes[0] && producto.imagenes[0].nombre) ? producto.imagenes[0].nombre : 'default.png' %>"
+              alt="Ejemplo2">
+          </div>
+
+          <div class="product-card-description">
+            <p class="card-name"><%= producto.nombre %> - <%= producto.color.nombre %></p>
+            <% if (producto.descuento != 0) { %>
+            <p class="card-old-price">$<%= producto.precio %></p>
+            <p class="card-new-price">
+              $<%= (producto.precio - (producto.precio * (producto.descuento / 100))).toFixed(0) %>
+              <span class="card-discount"><%= producto.descuento %>% OFF</span>
+            </p>
+            <% } else { %>
+            <p class="card-new-price">$<%= producto.precio%>
+              <% } %>
+          </div>
+        </a>
+
+      </div>
+      <% } %>
+
+
+    </section>
+
+    <section class="section">
+      <h3 class="titulo">NUESTRAS CATEGORIAS</h3>
+
+      <% if (categorias.length == 0) { %>
+      <p class="titulo">¡UPS! ¿Aún no hay nada? No te desanimes, pronto tendremos novedades ;)</p>
+      <% } %>
+
+      <% for (cat of categorias) {%>
+      <a href="/products?categorias%5B%5D=<%= cat.id %>" style="text-decoration: none;" class="category-card">
+        <p class="category-title"><%= cat.nombre %></p>
       </a>
-      <%} %>
-      <%} %>
+      <% } %>
+
     </section>
 
   </main>
-
-
-
-
-
-
-
-
-
 
   <!-- PIE DE PAGINA -->
 

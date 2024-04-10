@@ -4,12 +4,31 @@ const controller = {
     // Mostrar todos los productos
     index: async (req, res) => {
         try {
-            const productos = await productService.getAll();
+            let limit = 8;
+            const {
+                productos,
+                length,
+                page,
+                categorias,
+                marcas,
+                colores,
+                talles
+            } = await productService.getAll(req.query, limit);
+
+            const paginas = parseInt(length / limit);
+
             res.status(200).render('products/products', {
-                productos: productos
+                productos: productos,
+                paginas: paginas > 0 ? paginas : 1,
+                page,
+                categorias,
+                marcas,
+                colores,
+                talles,
+                query: req.query
             });
         } catch (error) {
-
+            console.log(error);
         }
     },
     // Mostrar detalle de un producto mediante su id
@@ -227,6 +246,18 @@ const controller = {
         try {
             await productService.destroySize(req.params.id, req.params.idTalle);
             res.redirect(`/products/edit/${req.params.id}/relations`);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    search: async (req, res) => {
+        try {
+            const productos = await productService.searchProducts(req.query);
+
+            res.status(200).render('products/products', {
+                productos: productos,
+                titulo: `RESULTADOS DE LA BUSQUEDA: "${req.query.q}"`
+            });
         } catch (error) {
             console.log(error);
         }
