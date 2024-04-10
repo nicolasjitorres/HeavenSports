@@ -1,3 +1,23 @@
+# SPRINT 8
+
+Una reunion para distribucion de las tareas, con comunicacion continua por Whatsapp.
+
+**Torres Nicolas:**
+- Que se hizo ayer: Correcciones y actualizaciones en general con referencia a Sprints anteriores.
+- Impedimentos: -                             
+- Que se hara: Armado del Dashboard con React.              
+
+**Yacuk Maria:**
+- Que se hizo ayer: Armado de ruteo para consumo de API de usuarios y productos.
+- Impedimentos: -
+- Que se hara: Aplicacion de estilos al Dashboard. Actualizacion de Retro, weekly y readme.
+
+
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
+
+
 # SPRINT 7
 
 Una reunion para distribucion de las tareas, con comunicacion continua por Whatsapp.

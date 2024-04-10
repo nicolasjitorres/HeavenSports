@@ -20,6 +20,13 @@ app.use(session({
 app.use(cookieParser('Hola, esto es un secreto...'));
 app.use(userLoggedMiddleware);
 
+// Seteo de los headers-cors sin implementar la librería "cors" de npm
+app.use((req, res, next)=>{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+})
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, './views'));
