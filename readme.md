@@ -5,10 +5,25 @@ Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclus
 
 --------------------
 
-Se debe tener un archivo ".env" con el siguiente contenido:
-DB_USER = user
-DB_PASS = pass
-DB_NAME = db_name
+# Pasos para levantar el proyecto:
+
+- Ejecutar el siguiente comando en la consola para descargar los modulos requeridos y detallados en las dependencias:
+
+> npm install
+
+- Carga la base de datos con ***heaven_db***
+
+- Crear un archivo ***.env*** que contenga con la configuracion de acceso a la base de datos:
+
+> DB_USER = user
+> DB_PASS = pass
+> DB_NAME = db_name
+
+- Ingresar al sitio con el siguiente usuario, que tiene permisos de administrador por defecto:
+
+> email: admin@admin.com
+> contraseña: Az12345.
+
 
 
 
