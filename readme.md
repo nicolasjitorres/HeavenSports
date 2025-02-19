@@ -1,47 +1,51 @@
-Nuestro sitio web es un e-commerce que ofrece una amplia gama de calzados deportivos, abarcando la variedad de marcas, disciplinas deportivas, talles, géneros y modalidad. Podrá encontrar desde calzado Outdoor, para Futbol, Golf, Tennis, Jockey, ocasionales, hasta zapatillas acuáticas entre muchos otros mas. Trabajamos hasta el talle 47 iniciando desde talles para niños. 
-Realizamos envíos a todo el país.
-Nuestra empresa está orientado a todo aquel que practique deportes ya sea de manera amateur o profesional, de todas las edades y que busque calidad, comodidad y confort en su andar y eficiencia en su práctica deportiva.
-Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclusivos. Asesoramos en cuanto a necesidades ortopédicas y vasculares, talles, sujeción y materiales. Con nuestros clientes nos comprometemos a enviarles avisos de ofertas exclusivas de productos y un sistema de fidelización del cliente con beneficios en sus futuras compras. Como servicio post venta ofrecemos orientación en cuanto al mantenimiento y una garantía de cambio directo los primeros 10 días.
+# ⚽ HeavenSports - Sistema de Gestión Deportiva
 
---------------------
+## ✨ Introducción
 
-Se debe tener un archivo ".env" con el siguiente contenido:
-DB_USER = user
-DB_PASS = pass
-DB_NAME = db_name
+HeavenSports es una aplicación para la gestión de torneos deportivos. Permite administrar equipos, jugadores, partidos y resultados en tiempo real. Cuenta con un backend robusto en Java + Spring Boot y un frontend moderno en React + TypeScript.
 
+## 👥 Integrantes
 
+- **Torres, Nicolás Juan Ignacio**
+- **Yacuck Muñoz, María de los Milagros**
 
-## Paginas referentes:
+## 🔧 Tecnologías
 
-https://www.nike.com.ar/ → Simplicidad en el diseño.
+### Backend (👨‍💻 Node.js + Express)
 
-https://www.adidas.com.ar/ → Familiaridad en el uso.
+- **Node.js** + **Express**
+- **MySQL** como base de datos
+- **Sequelize** para las consultas a la BD
 
-https://www.stockcenter.com.ar/ → Impacto visual. Ofertas destacadas en Home.
+### Frontend (🖥️ HTML5 + CSS3)
 
-https://www.sporting.com.ar/ → Sobriedad y variedad de diseño. Referente para Header y Footer.
+- **HTML5** + **CSS3** para los estilos
+- **EJS** para construir plantillas HTML con Javascript
+- **Javascript** para crear interfaces interactivas y dinámicas
+- **SweetAlert2** para y alertas
 
-https://www.saucony.com.ar/ → Para incluir variedad.
+## ⚡ Instalación y Ejecución
 
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/nicolasjitorres/HeavenSports.git
+   ```
+2. Configurar la base de datos MySQL en `.env`.
+3. Iniciar el backend:
+   ```bash
+   npm start
+   ```
 
-## Integrantes:
+## 🛠️ Funcionalidades
 
-Peralta, Diego Maximiliano
+- **Gestión de Usuarios y Calzados deportivos**
+- **Descripcion, precio e imagenes de cada producto**
+- **Vistas de administrador para la gestión**
+- **Interfaz amigable y responsiva*
 
-Sandez, Matias
+## 💌 Contacto
 
-Torres, Nicolas Juan Ignacio
+Para dudas o sugerencias, no dudes en contactarnos.
 
-Yacuk Muñoz, Maria de los Milagros
-
-
---------------------------------------------------
-## Link de Trello
---------------------------------------------------
-
-https://trello.com/b/hHFi26MA/dh-sprints
-
-
-
+🎉 ¡Gracias por visitar HeavenSports! 🏆
 
