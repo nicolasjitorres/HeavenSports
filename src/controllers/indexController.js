@@ -1,26 +1,14 @@
-import productService from '../services/productService.js';
+import productService from "../services/productService.js";
+import asyncHandler from "express-async-handler";
 
-const controller = {
-    index: (req, res) => {
-        productService.getAll()
-        .then(products => {res.status(200).render('products/products', {
-            productos: products
-        })})
-        .catch(err => {console.log(err);
-        })
-    },
-    inde: async (req, res) => {
-        try {
-            res.status(200).render('products/products', {
-                productos: await productService.getAll()
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    },
-    about: (req, res) => {
-        res.render('info/about.ejs', {});
-    }
-}
-
-export default controller
+export default {
+  index: asyncHandler(async (req, res) => {
+    const products = await productService.getAll();
+    res.status(200).render("products/products", {
+      productos: products,
+    });
+  }),
+  about: (req, res) => {
+    res.render("info/about.ejs", {});
+  },
+};
