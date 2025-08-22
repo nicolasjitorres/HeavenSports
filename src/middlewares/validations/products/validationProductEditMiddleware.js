@@ -1,8 +1,8 @@
-const {
+import {
     body,
     validationResult
-} = require('express-validator');
-const productService = require('../../../services/productService');
+} from 'express-validator';
+import productService from '../../../services/productService.js';
 
 const validationProductEditMiddleware = {
     validation: [
@@ -77,4 +77,4 @@ const validationProductEditMiddleware = {
     }
 }
 
-module.exports = validationProductEditMiddleware;
+export default validationProductEditMiddleware;

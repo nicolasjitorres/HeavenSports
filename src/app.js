@@ -1,12 +1,15 @@
-// Dependencias
 import express from 'express';
 const app = express();
 import { resolve } from 'path';
 import methodOverride from 'method-override';
-import indexRouter from './routes/index.routes';
+import indexRouter from './routes/index.routes.js';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import userLoggedMiddleware from './middlewares/userLoggedMiddleware';
+import userLoggedMiddleware from './middlewares/userLoggedMiddleware.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 app.use(express.static('public'));

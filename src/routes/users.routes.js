@@ -1,17 +1,17 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const userController = require('../controllers/userController');
+import userController from '../controllers/userController.js';
 
 
 // Middlewares
-const guestUserMiddleware = require('../middlewares/guestUserMiddleware');
-const authUserMiddleware = require('../middlewares/authUserMiddleware');
-const adminMiddleware = require("../middlewares/adminMiddleware");
-const multerMiddleware = require('../middlewares/multerMiddleware');
-const validationRegisterMiddleware = require('../middlewares/validations/users/validationRegisterMiddleware');
-const validationEditMiddleware = require('../middlewares/validations/users/validationEditMiddleware');
-const validationChangePassMiddleware = require('../middlewares/validations/users/validationChangePassMiddleware');
-const validationLoginMiddleware = require('../middlewares/validations/users/validationLoginMiddleware');
+import guestUserMiddleware from '../middlewares/guestUserMiddleware.js';
+import authUserMiddleware from '../middlewares/authUserMiddleware.js';
+import adminMiddleware from "../middlewares/adminMiddleware.js";
+import multerMiddleware from '../middlewares/multerMiddleware.js';
+import validationRegisterMiddleware from '../middlewares/validations/users/validationRegisterMiddleware.js';
+import validationEditMiddleware from '../middlewares/validations/users/validationEditMiddleware.js';
+import validationChangePassMiddleware from '../middlewares/validations/users/validationChangePassMiddleware.js';
+import validationLoginMiddleware from '../middlewares/validations/users/validationLoginMiddleware.js';
 const upload = multerMiddleware('users');
 
 // LOGIN
@@ -51,4 +51,4 @@ router.delete('/softDelete/:id', authUserMiddleware, userController.softDelete);
 
 
 
-module.exports = router;
+export default router;

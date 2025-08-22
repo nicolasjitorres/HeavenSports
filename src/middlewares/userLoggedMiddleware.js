@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+import userService from '../services/userService.js';
 
 const userLoggedMiddleware = async (req, res, next) => {
 
@@ -31,4 +31,4 @@ const userLoggedMiddleware = async (req, res, next) => {
     next();
 }
 
-module.exports = userLoggedMiddleware;
+export default userLoggedMiddleware;

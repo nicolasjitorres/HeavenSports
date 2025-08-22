@@ -6,4 +6,4 @@ const guestMiddleware = (req, res, next) => {
     next();
 }
 
-module.exports = guestMiddleware;
+export default guestMiddleware;

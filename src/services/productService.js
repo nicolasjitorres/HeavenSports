@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const db = require("../data/models");
+import path from 'path';
+import fs from 'fs';
+import db from "../data/models/index.js";
 
 // Funcion que recibe una palabra sin importar como está escrita y la retorna capitalizada (ejemplo: hOlA => Hola)
 const capitalize = (palabra) => {
@@ -400,4 +400,4 @@ function CarritoProductoTalle(id_carrito, id_producto_talle, cantidad_producto) 
 }
 
 
-module.exports = productService;
+export default productService;

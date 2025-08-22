@@ -1,9 +1,9 @@
-const {
+import {
     body,
     validationResult
-} = require('express-validator');
-const userService = require('../../../services/userService');
-const bcryptjs = require('bcryptjs');
+} from 'express-validator';
+import userService from '../../../services/userService.js';
+import bcryptjs from 'bcryptjs';
 
 const validationChangePassMiddleware = {
     validation: [
@@ -42,4 +42,4 @@ const validationChangePassMiddleware = {
     }
 }
 
-module.exports = validationChangePassMiddleware;
+export default validationChangePassMiddleware;

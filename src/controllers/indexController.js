@@ -1,12 +1,18 @@
-
-const productService = require('../services/productService');
+import productService from '../services/productService.js';
 
 const controller = {
-    index: async (req, res) => {
+    index: (req, res) => {
+        productService.getAll()
+        .then(products => {res.status(200).render('products/products', {
+            productos: products
+        })})
+        .catch(err => {console.log(err);
+        })
+    },
+    inde: async (req, res) => {
         try {
-            const productos = await productService.getAll();
             res.status(200).render('products/products', {
-                productos: productos
+                productos: await productService.getAll()
             });
         } catch (error) {
             console.log(error);
@@ -17,4 +23,4 @@ const controller = {
     }
 }
 
-module.exports = controller
+export default controller

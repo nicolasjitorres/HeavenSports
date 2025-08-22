@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const indexController = require('../controllers/indexController');
+import indexController from '../controllers/indexController.js';
 
 
 // Ruta hacía la pagina principal
@@ -9,4 +9,4 @@ router.get('/', indexController.index);
 // Ruta hacía el about
 router.get('/about', indexController.about);
 
-module.exports = router;
+export default router;

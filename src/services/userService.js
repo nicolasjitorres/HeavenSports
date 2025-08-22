@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const bcryptjs = require('bcryptjs');
-const db = require("../data/models");
+import fs from 'fs';
+import path from 'path';
+import bcryptjs from 'bcryptjs';
+import db from "../data/models/index.js";
 
 const userService = {
     getAll: async function () {
@@ -279,4 +279,4 @@ function Imagen(filename) {
     this.nombre = filename
 }
 
-module.exports = userService;
+export default userService;

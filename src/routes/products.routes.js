@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const productController = require('../controllers/productController');
-const adminMiddleware = require("../middlewares/adminMiddleware");
-const authUserMiddleware = require("../middlewares/authUserMiddleware");
-const multerMiddleware = require('../middlewares/multerMiddleware');
-const validationCreateMiddleware = require('../middlewares/validations/products/validationCreateMiddleware');
-const validationProductEditMiddleware = require('../middlewares/validations/products/validationProductEditMiddleware');
-const validationAddSizeMiddleware = require('../middlewares/validations/products/validationAddSizeMiddleware');
-const validationEditSizeMiddleware = require('../middlewares/validations/products/validationEditSizeMiddleware');
+import productController from '../controllers/productController.js';
+import adminMiddleware from "../middlewares/adminMiddleware.js";
+import authUserMiddleware from "../middlewares/authUserMiddleware.js";
+import multerMiddleware from '../middlewares/multerMiddleware.js';
+import validationCreateMiddleware from '../middlewares/validations/products/validationCreateMiddleware.js';
+import validationProductEditMiddleware from '../middlewares/validations/products/validationProductEditMiddleware.js';
+import validationAddSizeMiddleware from '../middlewares/validations/products/validationAddSizeMiddleware.js';
+import validationEditSizeMiddleware from '../middlewares/validations/products/validationEditSizeMiddleware.js';
 const upload = multerMiddleware('products');
 
 /* GET ALL PRODUCTS */
@@ -64,4 +64,4 @@ router.delete('/edit/:id/relations/sizes/:idTalle', adminMiddleware, productCont
 
 
 
-module.exports = router;
+export default router;
