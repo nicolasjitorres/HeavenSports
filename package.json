@@ -1,7 +1,7 @@
 {
-  "name": "grupo_2_heaven_sport",
+  "name": "heaven_sports",
   "version": "1.0.0",
-  "description": "Nuestro sitio web es un e-commerce que ofrece una amplia gama de calzados deportivos, abarcando la variedad de marcas, disciplinas deportivas, talles, géneros y modalidad. Podrá encontrar desde calzado Outdoor, para Futbol, Golf, Tennis, Jockey, ocasionales, hasta zapatillas acuáticas entre muchos otros mas. Trabajamos hasta el talle 47 iniciando desde talles para niños. \r Realizamos envíos a todo el país.\r Nuestra empresa está orientado a todo aquel que practique deportes ya sea de manera amateur o profesional, de todas las edades y que busque calidad, comodidad y confort en su andar y eficiencia en su práctica deportiva.\r Nos adaptamos a sus necesidades, estamos abiertos a sugerencias y pedidos exclusivos. Asesoramos en cuanto a necesidades ortopédicas y vasculares, talles, sujeción y materiales. Con nuestros clientes nos comprometemos a enviarles avisos de ofertas exclusivas de productos y un sistema de fidelización del cliente con beneficios en sus futuras compras. Como servicio post venta ofrecemos orientación en cuanto al mantenimiento y una garantía de cambio directo los primeros 10 días.",
+  "description": "E-commerce de calzado deportivo.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon src/app.js"
@@ -10,17 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.4.2",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "express-validator": "^7.0.1",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
     "method-override": "^3.0.0",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.9.1",
-    "nodemon": "^3.0.1",
-    "sequelize": "^6.37.0"
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.3",
+    "nodemon": "^3.1.10",
+    "sequelize": "^6.37.7"
   }
 }

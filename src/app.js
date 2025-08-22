@@ -1,12 +1,12 @@
 // Dependencias
-const express = require('express');
+import express from 'express';
 const app = express();
-const path = require('path');
-const methodOverride =  require('method-override');
-const indexRouter = require('./routes/index.routes')
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
+import { resolve } from 'path';
+import methodOverride from 'method-override';
+import indexRouter from './routes/index.routes';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import userLoggedMiddleware from './middlewares/userLoggedMiddleware';
 
 
 app.use(express.static('public'));
@@ -22,7 +22,7 @@ app.use(userLoggedMiddleware);
 
 
 app.set('view engine', 'ejs');
-app.set('views', path.resolve(__dirname, './views'));
+app.set('views', resolve(__dirname, './views'));
 
 // Constantes
 const PUERTO = 3000;
@@ -38,9 +38,4 @@ app.use('/', indexRouter);
 app.use((req, res, next) => {
   res.status(404).render('info/error');
 });
-
-
-
-
-
 
