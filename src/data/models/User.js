@@ -1,5 +1,5 @@
 import { Model } from "sequelize";
-import { ROLES } from "../../constants/enums.js";
+import { ROLES, PROVIDERS } from "../../constants/enums.js";
 
 export default class User extends Model {
   static init(sequelize, DataTypes) {
@@ -25,11 +25,18 @@ export default class User extends Model {
         password: {
           type: DataTypes.STRING(150),
         },
+        provider: {
+          type: DataTypes.ENUM(...Object.values(PROVIDERS)),
+          defaultValue: PROVIDERS.LOCAL,
+        },
+        provider_id: {
+          type: DataTypes.STRING(150),
+        },
         active: {
           type: DataTypes.BOOLEAN,
         },
         role: {
-          type: DataTypes.ENUM(...Object.values( ROLES )),
+          type: DataTypes.ENUM(...Object.values(ROLES)),
           defaultValue: ROLES.USER,
         },
         created_at: {

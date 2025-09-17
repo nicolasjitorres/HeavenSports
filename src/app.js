@@ -8,13 +8,14 @@ import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 
 // Importando rutas
-import indexRouter from './routes/index.routes.js';
+import indexRouter from './index/index-routes.js';
 import userLoggedMiddleware from './middlewares/userLoggedMiddleware.js';
-import errorMiddleware from './middlewares/errorHandler/errorMiddleware.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 // Definiendo rutas
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 // Definición de middlewares
 app.use(express.static('public'));
@@ -39,7 +40,7 @@ app.listen(process.env.PORT, () => {
 });
 
 // Manejo de errores
-app.use(errorMiddleware);
+app.use(errorHandler);
 
 // Manejo de rutas no definidas
 app.use((req, res) => {

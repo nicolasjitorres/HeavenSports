@@ -63,3 +63,9 @@ export const SHIPMENT_STATUSES = {
   DELIVERED: "Delivered",
   RETURNED: "Returned",
 };
+
+export const PROVIDERS = {
+  GOOGLE: "Google",
+  FACEBOOK: "Facebook",
+  LOCAL: "Local",
+};

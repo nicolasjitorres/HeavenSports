@@ -1,4 +1,4 @@
-import userService from '../services/userService.js';
+import userService from '../user/user-service.js';
 
 const userLoggedMiddleware = async (req, res, next) => {
 

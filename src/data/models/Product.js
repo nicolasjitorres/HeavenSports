@@ -23,6 +23,7 @@ export default class Product extends Model {
         },
         active: {
           type: DataTypes.BOOLEAN,
+          defaultValue: true,
         },
         stock: {
           type: DataTypes.INTEGER,
